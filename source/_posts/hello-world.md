@@ -20,11 +20,13 @@ To test render result locally, run
 hexo s --debug
 ```
 
-To generate static file, run
+To generate static file then update to github, run
 
 ```
-hexo generate
+hexo generate --deploy --debug
 ```
+
+Since I have about 600 articles in this blog, make sure you have enough memory if you run the command in VM.
 
 The template comes from [http://theme-next.iissnan.com/ next] with great document.
 

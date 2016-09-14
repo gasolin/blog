@@ -12,8 +12,8 @@ timezone: Asia/Taipei
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.gasolin.idv.tw
-root: /
+url: https://gasolin.github.io/blog/
+root: /blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -70,6 +70,5 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/gasolin/blog.git
-  branch: master
-  message: [message]
+  branch: gh-pages
 
