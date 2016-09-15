@@ -1,0 +1,6 @@
+---
+title: All categories
+date: 2016-09-15 08:17:58
+type: "categories"
+comments: false
+---

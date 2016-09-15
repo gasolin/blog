@@ -124,6 +124,7 @@ font:
   #LinkLabel: Link
   HomePage: http://www.gasolin.idv.tw
   Github: https://www.github.com/gasolin
+  BookShelf: http://www.anobii.com/gasolin
 
 
 # Social Links Icons
@@ -139,6 +140,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  BookShelf: book
 
 
 # Sidebar Avatar
@@ -247,7 +249,7 @@ mathjax:
 #duoshuo_shortname:
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: blog-gasolin-idv-tw
 
 # Baidu Share
 # Available value:
@@ -257,7 +259,7 @@ mathjax:
 
 # Share
 #jiathis:
-#add_this_id:
+add_this_id: ra-57da69da7827f70b
 
 # Share
 #duoshuo_share: true
