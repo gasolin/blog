@@ -1,7 +1,9 @@
 ---
 title: Hello Hexo
 ---
-I just migrated my blog from Blogger to [Hexo](https://hexo.io/)! Because I'd like use Markdown to write things efficiently, and think if I can integrate blog as part of my homepage.
+I just **migrated my blog** from Blogger to Github (via [Hexo](https://hexo.io/))! Because I'd like use Markdown to write things efficiently, and think if I can integrate blog as part of my homepage (which soon or later will be hosted on github).
+
+## Migrate from blogger
 
 To migrate from blogger, I use these instructions: 
 
@@ -26,8 +28,23 @@ To generate static file then update to github, run
 hexo generate --deploy --debug
 ```
 
-Since I have about 600 articles in this blog, make sure you have enough memory if you run the command in VM.
+If you have amount of articles like me (about 600 articles), make sure you have allocate enough memory if you run the command in VM.
 
-The template comes from [http://theme-next.iissnan.com/ next] with great document.
+The template comes from [next](http://theme-next.iissnan.com/) with great document.
 
+## Github related configurations
+
+Make sure you've follow ["Setting up a custom subdomain"](https://help.github.com/articles/setting-up-a-custom-subdomain/) , and install `hexo-generator-cname` to generate CNAME file for your static web site.
+
+```
+npm install --save hexo-generator-cname
+```
+
+Add `cname` property in `_config.yml`:
+
+```
+cname: blog.gasolin.idv.tw
+```
+
+You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml) and [themes/next/_config.yml](https://github.com/gasolin/blog/blob/master/themes/next/_config.yml) for my site configurations.
 

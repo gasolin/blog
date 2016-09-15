@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "mobile, web, internet, android, iot"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -122,6 +122,8 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 #social:
   #LinkLabel: Link
+  HomePage: http://www.gasolin.idv.tw
+  Github: https://www.github.com/gasolin
 
 
 # Social Links Icons
@@ -133,6 +135,7 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
+  HomePage: child
   GitHub: github
   Twitter: twitter
   Weibo: weibo
@@ -141,8 +144,8 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-#avatar:
-
+avatar:
+  /uploads/avatar.jpg
 
 # Table Of Contents in the Sidebar
 toc:
@@ -155,7 +158,7 @@ toc:
 # Creative Commons 4.0 International License.
 # http://creativecommons.org/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-#creative_commons: by-nc-sa
+creative_commons: by-nc-sa
 #creative_commons:
 
 
@@ -265,7 +268,7 @@ mathjax:
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-2833924-9
 
 # CNZZ count
 #cnzz_siteid:
