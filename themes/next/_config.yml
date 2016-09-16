@@ -120,11 +120,14 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
+social:
   #LinkLabel: Link
   HomePage: http://www.gasolin.idv.tw
   Github: https://www.github.com/gasolin
-  BookShelf: http://www.anobii.com/gasolin
+  Read: http://www.anobii.com/gasolin/books
+  Watch: https://movie.douban.com/people/gasolin/
+  Twitter: https://www.twitter.com/gasolin
+  SlideShare: http://www.slideshare.net/gasolin
 
 
 # Social Links Icons
@@ -140,7 +143,9 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
-  BookShelf: book
+  Read: book
+  Watch: film
+  Slideshare: slideshare
 
 
 # Sidebar Avatar

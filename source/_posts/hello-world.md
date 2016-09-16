@@ -1,7 +1,7 @@
 ---
 title: Hello Hexo
 ---
-I just **migrated my blog** from Blogger to Github (via [Hexo](https://hexo.io/))! Because I'd like use Markdown to write things efficiently, and think if I can integrate blog as part of my homepage (which soon or later will be hosted on github).
+I just **migrated my blog** from Blogger to Github (via [Hexo](https://hexo.io/))! Because I'd like to use Markdown to write things efficiently, and think if I can finally integrate blog as part of my homepage (which soon or later will be hosted on github).
 
 ## Migrate from blogger
 
