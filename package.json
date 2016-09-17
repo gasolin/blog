@@ -19,5 +19,8 @@
     "hexo-renderer-marked": "^0.2.11",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0"
+  },
+  "scripts": {
+    "postinstall": "cp themes/_config.yml themes/next/_config.yml"
   }
 }

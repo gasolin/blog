@@ -48,3 +48,8 @@ cname: blog.gasolin.idv.tw
 
 You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml) and [themes/next/_config.yml](https://github.com/gasolin/blog/blob/master/themes/next/_config.yml) for my site configurations.
 
+## deploy via travis CI
+
+Read [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese) for step by step instruction.
+
+
