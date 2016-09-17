@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-  - "6.6.0"
+  - "6"
 
 before_install:
   - git config --global push.default matching
-  - git config --global user.name "gasolin"
+  - git config --global user.name "gasolin via Travis CI"
   - git config --global user.email "gasolin@gmail.com"
   - npm install hexo-cli -g
-  - sed -i -- "s~https://github.com/gasolin/blog.git~https://${DEPLOY_REPO}@github.com/gasolin/blog.git~" _config.yml
+  - sed -i'' "s~https://github.com/gasolin/blog.git~https://${GH_TOKEN}@github.com/gasolin/blog.git~" _config.yml
 
 install:
   - npm install
