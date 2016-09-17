@@ -6,7 +6,6 @@ before_install:
   - git config --global push.default matching
   - git config --global user.name "gasolin"
   - git config --global user.email "gasolin@gmail.com"
-  - git submodule update --init --recursive
   - npm install hexo-cli -g
 
 install:
