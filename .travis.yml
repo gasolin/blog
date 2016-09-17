@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - "6.5.0"
+
+before_install:
+  - git config --global push.default gh-pages
+  - git config --global user.name "gasolin"
+  - git config --global user.email "gasolin@gmail.com"
+  - git submodule update --init --recursive
+  - npm install hexo-cli -g
+
+install:
+  - npm install
+
+script:
+  - hexo clean
+  - hexo generate
+
+after_success:
+  - cd ./public
+  - git init
+  - git add --all .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force https://$DEPLOY_REPO@github.com/gasolin/blog.git gh-pages
+
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+
