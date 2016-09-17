@@ -53,6 +53,6 @@ You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.
 
 ## deploy via travis CI
 
-Read [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese) for step by step instruction. Or you can check [My modified version of .travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
+Read [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese) and [Deploying Hexo to Github Pages with Travis](https://sazzer.github.io/blog/2015/05/04/Deploying-Hexo-to-Github-Pages-with-Travis/) for step by step instruction. Or you can check [My modified version of .travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
 
 
