@@ -14,7 +14,7 @@ install:
 
 script:
   - hexo clean
-  - hexo generate --deploy --debug
+  - hexo generate --deploy --quiet
 
 branches:
   only:
