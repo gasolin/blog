@@ -21,7 +21,7 @@ after_success:
   - git init
   - git add --all .
   - git commit -m "Travis CI Auto Builder"
-  - git push --quiet --force https://$DEPLOY_REPO@github.com/gasolin/blog.git gh-pages
+  - git push --force https://$DEPLOY_REPO@github.com/gasolin/blog.git gh-pages
 
 branches:
   only:
