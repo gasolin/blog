@@ -1,6 +1,9 @@
 ---
 title: Hello Hexo
 ---
+
+![Imgur](http://i.imgur.com/EPzmO6p.png)
+
 I just **migrated my blog** from Blogger to Github (via [Hexo](https://hexo.io/))! Because I'd like to use Markdown to write things efficiently, and think if I can finally integrate blog as part of my homepage (which soon or later will be hosted on github).
 
 ## Migrate from blogger
@@ -30,7 +33,7 @@ hexo generate --deploy --debug
 
 If you have amount of articles like me (about 600 articles), make sure you have allocate enough memory if you run the command in VM.
 
-The template comes from [next](http://theme-next.iissnan.com/) with great document.
+The template comes from [hexo-theme-next](http://theme-next.iissnan.com/) with great document.
 
 ## Github related configurations
 
@@ -50,6 +53,6 @@ You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.
 
 ## deploy via travis CI
 
-Read [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese) for step by step instruction.
+Read [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese) for step by step instruction. Or you can check [My modified version of .travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
 
 
