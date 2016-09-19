@@ -31,7 +31,7 @@ To generate static file then update to github, run
 hexo generate --deploy --debug
 ```
 
-If you have amount of articles like me (about 600 articles), make sure you have allocate enough memory if you run the command in VM.
+If you have amount of articles like me (about 500 articles), make sure you have allocate enough memory if you run the command in VM.
 
 The template comes from [hexo-theme-next](http://theme-next.iissnan.com/) with great document.
 
@@ -49,14 +49,15 @@ Add `cname` property in `_config.yml`:
 cname: blog.gasolin.idv.tw
 ```
 
-You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml) and [themes/next/_config.yml](https://github.com/gasolin/blog/blob/master/themes/next/_config.yml) for my site configurations.
+You can check [_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml) and [themes/](https://github.com/gasolin/blog/tree/master/themes) for my site configurations.
 
-## deploy via travis CI
+The theme customization is done via npm scripts. You can check [package.json::scripts](https://github.com/gasolin/blog/blob/master/package.json) for detail.
+
+## deploy automatically via travis CI
 
 Read
 - [使用Travis CI自动构建hexo博客](http://magicse7en.github.io/2016/03/27/travis-ci-auto-deploy-hexo-github/) (in chinese)
 - [Deploying Hexo to Github Pages with Travis](https://sazzer.github.io/blog/2015/05/04/Deploying-Hexo-to-Github-Pages-with-Travis/)
 
-for step by step instruction. Or you can check [My modified version of .travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
-
+for step by step instructions. Or you can check My version of [.travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
 
