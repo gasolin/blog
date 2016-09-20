@@ -1,5 +1,10 @@
 ---
 title: Hello Hexo
+tags:
+  - life
+  - blog
+  - webframework
+date: 2016-09-18 14:17:44
 ---
 
 ![Imgur](http://i.imgur.com/EPzmO6p.png)
@@ -8,7 +13,7 @@ I just **migrated my blog** from Blogger to Github (via [Hexo](https://hexo.io/)
 
 ## Migrate from blogger
 
-To migrate from blogger, I use these instructions: 
+To migrate from blogger, I use these instructions:
 
 ```sh
 npm install -g hexo-cli
@@ -60,4 +65,3 @@ Read
 - [Deploying Hexo to Github Pages with Travis](https://sazzer.github.io/blog/2015/05/04/Deploying-Hexo-to-Github-Pages-with-Travis/)
 
 for step by step instructions. Or you can check My version of [.travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
-
