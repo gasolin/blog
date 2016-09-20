@@ -16,12 +16,14 @@
     "hexo-generator-search": "^1.0.2",
     "hexo-generator-seo-friendly-sitemap": "0.0.19",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-new-post-pinyin": "0.0.3",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.11",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "hexo-tag-mermaid": "^1.0.0"
   },
   "scripts": {
-    "postinstall": "cp themes/_config.yml themes/next/_config.yml && cp themes/base.styl themes/next/source/css/_variables/base.styl"
+    "postinstall": "cp themes/_config.yml themes/next/_config.yml && cp themes/base.styl themes/next/source/css/_variables/base.styl && cp themes/head.swig themes/next/layout/_partials/head.swig"
   }
 }
