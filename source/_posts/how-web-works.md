@@ -3,6 +3,7 @@ title: 網站的基本運作方式 (科普)
 tags:
   - web
   - mobile
+  - webframework
 date: 2016-09-20 15:13:31
 ---
 
@@ -27,6 +28,8 @@ sequenceDiagram
 網頁中包含的資源通常指的是Javascript[^2]，CSS[^3]，與圖片，影片，聲音等檔案。現代網頁通常以HTML呈現網頁的語義（網頁的大致架構與內容），以CSS改變在不同設備上呈現的效果，以Javascript控制網頁的實際運作。
 
 從網路上接收到所有相關的CSS與JavaScript資源後，瀏覽器才會開始繪製頁面。
+
+網站伺服器的基本作用，就是接受網頁請求與各種相關資源請求，並回傳對應的網頁或資源。
 
 {% mermaid %}
 graph LR
