@@ -65,3 +65,7 @@ Read
 - [Deploying Hexo to Github Pages with Travis](https://sazzer.github.io/blog/2015/05/04/Deploying-Hexo-to-Github-Pages-with-Travis/)
 
 for step by step instructions. Or you can check My version of [.travis.yml](https://github.com/gasolin/blog/blob/master/.travis.yml) with [hexo-theme-next gitsubmodule](https://github.com/gasolin/blog/blob/master/.gitmodules)
+
+## SEO enhancements
+
+Read [如何向google提交sitemap](http://fionat.github.io/blog/2013/10/23/sitemap/) (in chinese) to send sitemap.xml to google for better indexing.
