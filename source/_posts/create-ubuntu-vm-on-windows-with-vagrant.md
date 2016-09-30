@@ -23,5 +23,7 @@ vagrant up
 ```
 
 第一次啟動後要開啟VirtualBox並選擇「顯示」，之後就不需再用到vagrant命令了。
+vagrant box所使用的登入的密碼是"vagrant"。
+
 由於Vagrant使用最小化地配置VM可使用的CPU和記憶體，對於桌面開發環境來說有些不夠用。我會到VirtualBox中修改「配置」，去適量增加可用的記憶體數值。
 目前這方式在Windows上運作地相當順利。
