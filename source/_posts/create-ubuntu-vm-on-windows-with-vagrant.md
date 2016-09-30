@@ -1,5 +1,5 @@
 ---
-title: create ubuntu vm on windows with vagrant
+title: 在Windows 10上透過vagrant, virtualbox安裝Ubuntu 16.04
 date: 2016-09-30 16:51:23
 tags:
   - desktop
