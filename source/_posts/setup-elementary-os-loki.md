@@ -35,7 +35,7 @@ vagrant up
 第一次啟動後要開啟VirtualBox並選擇「顯示」，之後就不需再用到vagrant命令了。
 vagrant box所使用的登入的密碼是"vagrant"。
 
-啟動後我照著「11 things to do after install Elementary OS Loki」(https://itsfoss.com/things-to-do-after-installing-elementary-os-loki/) 文章的建議，安裝了一些工具。
+啟動後我照著[11 things to do after install Elementary OS Loki](https://itsfoss.com/things-to-do-after-installing-elementary-os-loki/) 文章的建議，安裝了一些工具。
 同時因為我的Dell XPS 13(9495)筆電解析度較高，預設的解析度之下每個字都超級小，我透過gsettings命令多設定了text scaling:
 
 ```sh
