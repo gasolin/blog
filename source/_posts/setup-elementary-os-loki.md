@@ -11,7 +11,7 @@ tags:
 承上一篇，我工作用的桌機通常灌的是Ubuntu（Linux）系統。筆電則是在Windows 10上灌Ubuntu VM解決。
 
 但上個月我的桌機從16.04LTS升級到16.04.1時，竟然升級失敗無法開機，這讓我很火。
-於是利用這個機會，我嘗試安裝了 [Mint](https://www.linuxmint.com/) 和 [Elementary OS](http://elementary.io/)。
+於是利用這個機會，我嘗試安裝了 [Mint](https://www.linuxmint.com/) 和 [Elementary OS](http://elementary.io/)[^1]。
 Mint和Elementary OS都是Ubuntu的衍生版本，所以在套件和命令行使用上與Ubuntu一致，在重新設定開發環境時比較不會遇到困難。
 
 兩者嘗試後，最終是Elementary OS的高顏值與類似Mac OS的使用經驗，讓我決定繼續用下去。
@@ -44,3 +44,5 @@ gsettings set org.gnome.desktop.interface scaling-factor 2
 ```
 
 在做了這個修改之後，才得到對眼睛比較友善的使用界面。（如題圖）
+
+[^1]: https://zh.wikipedia.org/wiki/Elementary_(%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
