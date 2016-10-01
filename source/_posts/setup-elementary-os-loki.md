@@ -45,4 +45,4 @@ gsettings set org.gnome.desktop.interface scaling-factor 2
 
 在做了這個修改之後，才得到對眼睛比較友善的使用界面。（如題圖）
 
-[^1]: https://zh.wikipedia.org/wiki/Elementary_(%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
+[^1]: [維基百科Elementary OS詞條](https://zh.wikipedia.org/wiki/Elementary_(%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F))
