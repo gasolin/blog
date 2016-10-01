@@ -20,7 +20,7 @@ tags:
 
 這樣相對樂觀的期待，仍然可以套用在新的傳言上。
 
-[^1]: http://www.pcworld.com/article/3124563/open-source-tools/mozilla-is-stopping-all-commercial-development-on-firefox-os.html
-[^2]: http://www.chinatimes.com/realtimenews/20160929002813-260410
-[^3]: http://3c.ltn.com.tw/news/26619
-[^4]: http://technews.tw/2016/09/27/google-andromeda-hybrid-androidchrome-os-tested-on-nexus-9/
+[^1]: [Mozilla is stopping all commercial development on Firefox OS](http://www.pcworld.com/article/3124563/open-source-tools/mozilla-is-stopping-all-commercial-development-on-firefox-os.html)
+[^2]: [全面外包，黑莓宣布停產智慧手機](http://www.chinatimes.com/realtimenews/20160929002813-260410)
+[^3]: [承認打不過 Android 與 iOS！微軟：全面退出消費手機市場！](http://3c.ltn.com.tw/news/26619)
+[^4]: [Android 和 Chrome OS 要合併，已在 Nexus 9 上開始測試了](http://technews.tw/2016/09/27/google-andromeda-hybrid-androidchrome-os-tested-on-nexus-9/)
