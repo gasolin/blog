@@ -5,6 +5,9 @@ tags:
   - Android
   - mobile
 ---
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/notahipster/4600503144/in/photostream/" title="peanut butter-filled chocolate cake"><img src="https://c1.staticflickr.com/2/1359/4600503144_8c91bce43c_z.jpg" width="640" height="426" alt="peanut butter-filled chocolate cake"></a>
+
 隨著Firefox OS[^1]，黑莓BlackBerry 10[^2]，與Windows Phone[^3]三種行動裝置OS都陸續傳出退出消費市場或停產的消息，表明現在行動裝置OS已大勢底定，由Android與iOS二分天下。
 最近甚囂塵上的傳言[^4]是Google將在下周發表Android與Chrome OS合併的作業系統Andromeda(英文中是"仙女座"的意思。有人跟我一樣感覺這唸起來尾音頗像韓國話嗎?)
 
