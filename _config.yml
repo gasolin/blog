@@ -92,6 +92,6 @@ sitemap:
 
 feed:
   type: atom
-  path: atom.xml
+  path: feeds/posts/default
   limit: 25
   hub:
