@@ -44,5 +44,4 @@ graph LR
 
 # 2016年學習寫網頁
 
-如果對現在的前端/Javascript相關技術發展感興趣，可以進一步查看我去年的演講[Javascript，征服世界是可能的嗎？](https://blog.gasolin.idv.tw/2015/05/31/Javascript%EF%BC%8C%E5%BE%81%E6%9C%8D%E4%B8%96%E7%95%8C%E6%98%AF%E5%8F%AF%E8%83%BD%E7%9A%84%E5%97%8E%EF%BC%9F%20/)
-或看看這篇最近頗熱門的文章[在 2016 年学 JavaScript 是一种什么样的体验？](https://www.v2ex.com/t/310767);)。
+如果對現在的前端/Javascript相關技術發展感興趣，可以進一步查看我去年的演講[Javascript，征服世界是可能的嗎？](https://blog.gasolin.idv.tw/2015/05/31/Javascript%EF%BC%8C%E5%BE%81%E6%9C%8D%E4%B8%96%E7%95%8C%E6%98%AF%E5%8F%AF%E8%83%BD%E7%9A%84%E5%97%8E%EF%BC%9F%20/)，或看看這篇最近頗熱門的文章[在 2016 年学 JavaScript 是一种什么样的体验？](https://www.v2ex.com/t/310767);)。
