@@ -39,6 +39,7 @@ viewport的中文意義是「視界」，更白話一點就是「可視範圍」
 ![Imgur](http://i.imgur.com/W7oP5Mxm.png)
 
 使用桌面瀏覽器瀏覽本站時，才展開顯示各種相關功能。
+
 ![Imgur](http://i.imgur.com/iHRuLa4m.png)
 
 響應式網站設計需要考慮的觀念不少，此前在謀智台客發表的文章[^3]可供初步參考。
