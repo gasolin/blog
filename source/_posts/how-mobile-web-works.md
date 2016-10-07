@@ -25,9 +25,9 @@ viewport的中文意義是「視界」，更白話一點就是「可視範圍」
 
 ## 行動裝置網頁Mobile Web
 
-在iPhone領頭的智慧型手機興起後，為了更好地服務使用者，除了一般桌面網站外，也漸漸出現專為便利行動裝置瀏覽所設計的網頁[^2]。
+在iPhone領頭的智慧型手機興起後，為了更好地服務使用者，除了一般桌面網站外，也漸漸出現專為便利行動裝置瀏覽所設計的網頁。以雅虎奇摩網頁[^2]為例，在網址列上輸入"https://tw.mobi.yahoo.com"可以連到行動版的雅虎奇摩首頁。
 
-![Imgur](http://i.imgur.com/nx5Iyi0.png)
+![Imgur](http://i.imgur.com/nx5Iyi0m.png)
 
 這類行動裝置網頁預設提供了符合設備寬度，字級清晰，更容易點擊的界面。
 
@@ -36,10 +36,10 @@ viewport的中文意義是「視界」，更白話一點就是「可視範圍」
 在行動裝置更為流行後，開始有人喊出Mobile First的呼聲，提倡設計網頁時應從行動裝置版本設計起，再根據裝置的寬度來顯示不同的網頁樣式。這種設計思路被稱為響應式網站設計（Responsive Web Design, RWD）。 
 
 例如使用行動裝置瀏覽本站時，所有的額外功能都收藏到左上角的選單中，只留下部落格標題與文章內容。
-![Imgur](http://i.imgur.com/W7oP5Mx.png)
+![Imgur](http://i.imgur.com/W7oP5Mxm.png)
 
 使用桌面瀏覽器瀏覽本站時，才展開顯示各種相關功能。
-![Imgur](http://i.imgur.com/iHRuLa4t.png)
+![Imgur](http://i.imgur.com/iHRuLa4l.png)
 
 響應式網站設計需要考慮的觀念不少，此前在謀智台客發表的文章[^3]可供初步參考。
 
