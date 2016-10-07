@@ -45,5 +45,5 @@ viewport的中文意義是「視界」，更白話一點就是「可視範圍」
 響應式網站設計需要考慮的觀念不少，此前在謀智台客發表的文章[^3]可供初步參考。
 
 [^1]: http://www.everymac.com/systems/apple/iphone/specs/apple-iphone-specs.html
-[^2]: 如在網址列上輸入"https://tw.yahoo.com/"可以連到YAHOO奇摩，輸入"https://tw.mobi.yahoo.com"可以連到行動版
+[^2]: 在網址列上輸入 https://tw.yahoo.com/ 可以連到YAHOO奇摩，輸入 https://tw.mobi.yahoo.com 可以連到行動版
 [^3]: [讓網頁應用支援多樣設備](https://blog.gasolin.idv.tw/2013/11/20/%E8%AE%93%E7%B6%B2%E9%A0%81%E6%87%89%E7%94%A8%E6%94%AF%E6%8F%B4%E5%A4%9A%E6%A8%A3%E8%A8%AD%E5%82%99/)
