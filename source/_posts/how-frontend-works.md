@@ -42,3 +42,7 @@ graph LR
 
 網頁服務大量地使用Javascript來處理頁面上的各種行為，多種功能並存於同一個頁面中，大大增加了網頁的複雜度。一些大公司如Yahoo開始出現專注於網頁前端（FrontEnd）開發的職位。
 
+# 2016年學習寫網頁
+
+如果對現在的前端/Javascript相關技術發展感興趣，可以進一步查看我去年的演講[Javascript，征服世界是可能的嗎？](https://blog.gasolin.idv.tw/2015/05/31/Javascript%EF%BC%8C%E5%BE%81%E6%9C%8D%E4%B8%96%E7%95%8C%E6%98%AF%E5%8F%AF%E8%83%BD%E7%9A%84%E5%97%8E%EF%BC%9F%20/)
+或看看這篇最近頗熱門的文章[在 2016 年学 JavaScript 是一种什么样的体验？](https://www.v2ex.com/t/310767);)。
