@@ -93,7 +93,7 @@ $ sudo apt-get install git
 
 ### 2. Install git-cinnarbar
 
-Gecko itself managed via mercurial, we need install [git-cinnarbar](https://github.com/glandium/git-cinnabar) to help us deal with mercurial codebase via git.`</pre>Check `[http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git](http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git)&nbsp;`[](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development)
+Gecko itself managed via mercurial, we need install [git-cinnarbar](https://github.com/glandium/git-cinnabar) to help us deal with mercurial codebase via git.Check [http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git](http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git)&nbsp;`[](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development)
 
 ```sh
 $ sudo apt-get install mercurial
