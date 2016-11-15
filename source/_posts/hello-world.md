@@ -69,3 +69,14 @@ for step by step instructions. Or you can check My version of [.travis.yml](http
 ## SEO enhancements
 
 Read [如何向google提交sitemap](http://fionat.github.io/blog/2013/10/23/sitemap/) (in chinese) to send sitemap.xml to google for better indexing.
+
+## Update theme
+
+Use command
+
+```sh
+git submodule foreach git pull origin master
+```
+
+to update your theme. Read [Update Git submodule to latest commit on origin](http://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin) for more detail.
+
