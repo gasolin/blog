@@ -11,5 +11,6 @@ From Dubai Airport
 
 之前寫過一篇[使用手機上傳 360 圖片到 Facebook](upload-360photo-to-facebook)，但其實要分享360圖片的話，我們也可以用[aframe](http://aframe.io)自己弄個網頁來分享。
 
-將圖片放在自己空間的缺點是所有工作得自己來。我用[yeoman](http://yeoman.io/)寫了個的360-photo產生器[generator-360-photo](https://www.npmjs.com/package/generator-360-photo)，可以用來產生如上的360照片網頁。
+將圖片放在自己空間的缺點是所有工作得自己來。我用[yeoman](http://yeoman.io/)寫了個的360-photo產生器[generator-360-photo](https://www.npmjs.com/package/generator-360-photo)，可以用來產生如上的360照片網頁(照片與照片網頁都放在github page，透過iframe嵌入)，簡化了自己弄網頁來分享360圖片的難度。
 
+[generator-360-photo](https://www.npmjs.com/package/generator-360-photo)在產生展示360照片網頁的同時，也對照片做優化。由於嵌入到600x400空間的圖檔解析度不需要太大，原本圖檔大小5.6MB，解析度5660x2830，優化為解析度2048x1024的圖檔後，大小只剩下481KB。下載時間只需要原來的1/11。
