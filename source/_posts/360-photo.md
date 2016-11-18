@@ -40,4 +40,4 @@ yo 360-photo
 
 如果使用上有遇到什麼問題或建議，可以前往[專案網頁](https://github.com/gasolin/generator-360-photo/issues)回報。
 
-[1]:  [環景圖](https://zh.wikipedia.org/wiki/%E5%85%A8%E6%99%AF%E5%9B%BE)
+[^1]:  [環景圖](https://zh.wikipedia.org/wiki/%E5%85%A8%E6%99%AF%E5%9B%BE)
