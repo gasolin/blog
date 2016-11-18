@@ -1,7 +1,7 @@
 ---
 title: 使用手機上傳 360 圖片到 Facebook
 tags:
-  - 360image
+  - 360photo
 date: 2016-07-04 05:56:24
 ---
 
@@ -18,7 +18,7 @@ date: 2016-07-04 05:56:24
 
 1\. 首先準備一張 360 照片 （我用的是 LG 360 CAM）
 
-<div class="separator" style="clear: both; text-align: center;">[![](https://3.bp.blogspot.com/-vYbbKwCqZHU/V15VyI-P9ZI/AAAAAAAAELs/De5JfreicgM4iprWmEeRD74eIiqLdAzxwCLcB/s640/2016-06-12%2B06.42.34.png)](https://3.bp.blogspot.com/-vYbbKwCqZHU/V15VyI-P9ZI/AAAAAAAAELs/De5JfreicgM4iprWmEeRD74eIiqLdAzxwCLcB/s1600/2016-06-12%2B06.42.34.png)</div>
+[![](https://3.bp.blogspot.com/-vYbbKwCqZHU/V15VyI-P9ZI/AAAAAAAAELs/De5JfreicgM4iprWmEeRD74eIiqLdAzxwCLcB/s640/2016-06-12%2B06.42.34.png)](https://3.bp.blogspot.com/-vYbbKwCqZHU/V15VyI-P9ZI/AAAAAAAAELs/De5JfreicgM4iprWmEeRD74eIiqLdAzxwCLcB/s1600/2016-06-12%2B06.42.34.png)
 
 2\. 接著從應用商店取得可以編輯照片 Exif 資訊的應用。我選的是免費的 Photo Exif editor。
 3\. 從照片 (Gallery, Photo) App 預覽到想要修改的 360 照片，選擇分享（Share）到 Photo Exif editor。
@@ -28,10 +28,10 @@ Camera maker: **Ricoh **（首字母大寫）**
 **
 Camera model: **RICOH THETA S**** **（全大寫）
 
-<div class="separator" style="clear: both; text-align: center;">[![](https://1.bp.blogspot.com/-Oj_TnMi4gOo/V15V-GIQGqI/AAAAAAAAEL8/Y8mpHvEJ6ekCWxQpQoTaMo13_mO0uiyhwCLcB/s640/2016-06-12%2B06.42.55.png)](https://1.bp.blogspot.com/-Oj_TnMi4gOo/V15V-GIQGqI/AAAAAAAAEL8/Y8mpHvEJ6ekCWxQpQoTaMo13_mO0uiyhwCLcB/s1600/2016-06-12%2B06.42.55.png)</div>
+[![](https://1.bp.blogspot.com/-Oj_TnMi4gOo/V15V-GIQGqI/AAAAAAAAEL8/Y8mpHvEJ6ekCWxQpQoTaMo13_mO0uiyhwCLcB/s640/2016-06-12%2B06.42.55.png)](https://1.bp.blogspot.com/-Oj_TnMi4gOo/V15V-GIQGqI/AAAAAAAAEL8/Y8mpHvEJ6ekCWxQpQoTaMo13_mO0uiyhwCLcB/s1600/2016-06-12%2B06.42.55.png)
 5\. 最後再透過相片軟體選擇分享到 Facebook 即可。如果成功，可以看到相片下角出現球狀 360 影片圖示。
 
-<div class="separator" style="clear: both; text-align: center;">[![](https://3.bp.blogspot.com/-QlivFrXBAH8/V15cHOpDbjI/AAAAAAAAEMQ/ArxXPl95BKUXm1koRXcVd9u8TJkoGr09gCLcB/s640/2016-06-13%2B07.08.05.png)](https://3.bp.blogspot.com/-QlivFrXBAH8/V15cHOpDbjI/AAAAAAAAEMQ/ArxXPl95BKUXm1koRXcVd9u8TJkoGr09gCLcB/s1600/2016-06-13%2B07.08.05.png)</div>
+[![](https://3.bp.blogspot.com/-QlivFrXBAH8/V15cHOpDbjI/AAAAAAAAEMQ/ArxXPl95BKUXm1koRXcVd9u8TJkoGr09gCLcB/s640/2016-06-13%2B07.08.05.png)](https://3.bp.blogspot.com/-QlivFrXBAH8/V15cHOpDbjI/AAAAAAAAEMQ/ArxXPl95BKUXm1koRXcVd9u8TJkoGr09gCLcB/s1600/2016-06-13%2B07.08.05.png)
 
 我的觀察啦，360 相機使用上相當方便，按一下拍攝鈕啟動相機，再按一下就拍張照。長按就開始拍攝影片。
 
