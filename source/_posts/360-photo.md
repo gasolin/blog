@@ -7,7 +7,7 @@ tags:
 ---
 
 <iframe src="https://gasolin.github.io/2016-london-allhands/dubai_airport.html" height="400px" width="600px" align="center"></iframe>
-From Dubai Airport
+From Dubai Airport (The image is dragable to change view 可以拖曳照片來改變視角喔)
 
 之前寫過一篇[使用手機上傳 360 圖片到 Facebook](2016/07/03/upload-360photo-to-facebook/)，但其實要分享360照片[^1]的話，我們也可以用[aframe](http://aframe.io)自己弄個網頁來分享。
 
