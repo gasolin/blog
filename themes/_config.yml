@@ -130,10 +130,11 @@ social:
   #LinkLabel: Link
   HomePage: http://www.gasolin.idv.tw
   Github: https://www.github.com/gasolin
+  SlideShare: http://www.slideshare.net/gasolin
+  Twitter: https://www.twitter.com/gasolin
   Read: http://www.anobii.com/gasolin/books
   Watch: https://movie.douban.com/people/gasolin/
-  Twitter: https://www.twitter.com/gasolin
-  SlideShare: http://www.slideshare.net/gasolin
+  Visited: http://www.mytravelmap.tk/u/gg112695256249584453237
 
 
 # Social Links Icons
@@ -152,6 +153,7 @@ social_icons:
   Read: book
   Watch: film
   Slideshare: slideshare
+  Visited: map-marker
 
 
 # Sidebar Avatar
