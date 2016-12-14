@@ -1,5 +1,5 @@
 ---
-title: install react-native android development environment on windows
+title: Install react-native for android environment on windows
 tags:
   - web
   - mobile
