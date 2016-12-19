@@ -29,4 +29,10 @@ IFTTT會定時追蹤你使用的一些服務的狀況。當你的配方中包含
 *   Anobii 書籍
 *   豆瓣書籍/音樂更新
 *   Youtube 設為喜歡的影片
-*   FourSquare 地點打卡（很少用）&nbsp;如果你有其他自動生活紀錄 (LifeLog)的想法，也歡迎與我分享。
+
+Update at 2016/12/19
+
+* Twitter 貼文
+* Todoist 完成的事項
+
+如果你有其他自動生活紀錄 (LifeLog)的想法，也歡迎與我分享。
