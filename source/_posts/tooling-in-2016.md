@@ -18,14 +18,9 @@ date: 2016-12-19 17:16:00
 
 ## Windows & Linux
 
-* 主要瀏覽器：[Firefox](https://www.mozilla.org/en-US/firefox/products/)
-
-### 常用插件
-
-* [tab center](https://testpilot.firefox.com/experiments/tab-center)
-
 ### 網站工具
 
+* 主要瀏覽器：[Firefox](https://www.mozilla.org/en-US/firefox/products/)
 * 主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
 * [Google日曆](http://www.google.com/calendar)
 * [Google Tasks](https://mail.google.com/tasks/canvas?pli=1), 將遷移到[Todoist](https://todoist.com/)
@@ -39,6 +34,7 @@ date: 2016-12-19 17:16:00
 * [豆瓣](http://www.douban.com/) 看電影記錄
 * 個人網站：使用[OpenShift](https://www.openshift.com)架設, 將遷移到[Github](https://github.com/gasolin/blog/)
 * 個人履歷：[個人網站](http://www.gasolin.idv.tw)、Linkedin
+* IFTTT 自動化生活紀錄(https://github.com/gasolin/blog/blob/master/source/_posts/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog.md)
 
 ### 設計
 
@@ -47,8 +43,17 @@ date: 2016-12-19 17:16:00
 ### 開發
 
 * 編輯器：Visual Studio Code
-* 版本控制：git
-* 套件管理：apt, Chocolatey, nvm
+* 版本控制：git, git-cinnabar
+* 套件管理：apt, nvm, Chocolatey(windows)
+* Ubuntu bash on windows
+
+### 常用插件
+
+Browser
+* [tab center](https://testpilot.firefox.com/experiments/tab-center)
+VSCode
+* ESLint
+* WakaTime
 
 ### 娛樂
 
