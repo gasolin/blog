@@ -12,8 +12,7 @@ This article is like a cookbook that I encountered during debugging Firefox devt
 
 ## Remote debugging
 
-According to [MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging), 
-First of all you need go through `Developer > Toggle Tools > Toolbox Options > Advance settings` to check 2 options:
+According to [MDN](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Debugging), first of all you need to go through `Developer > Toggle Tools > Toolbox Options > Advance settings` to check 2 options:
 
 * Enable browser chrome and add-on debugging toolboxes
 * Enable remote debugging
@@ -28,8 +27,27 @@ https://developer.mozilla.org/zh-TW/Add-ons/WebExtensions/Debugging#Disable_auto
 
 ### Boost build time via set mozconfig artifact
 
-If you just develop frontend, the [artifact build](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Artifact_builds) prebuild the C++ and static part of code so you can download and link it automatically during `mach build`,
-it saves you tremendous build time and helps you move quicker.
+Add these settings in `mozconfig` file
+```
+# Enable debug version of the pre-build binary artifact
+export MOZ_DEBUG="1"
+
+# Automatically download and use compiled C++ components:
+ac_add_options --enable-artifact-builds
+
+# Write build artifacts to:
+mk_add_options MOZ_OBJDIR=./objdir-frontend-debug-artifact
+```
+
+If you just develop frontend UI(JS, CSS, XUL, HTML), the [artifact build](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Artifact_builds) prebuild the C++ and static part of code so you can download and link it automatically during `mach build`, it saves you tremendous build time and helps you move quicker.
+
+### Enable React and other JS debugging message
+
+Add these settings in `mozconfig` file
+
+`ac_add_options --enable-debug-js-modules`
+
+It will turn on React and other JS debugging message. Note that will influence performance while running.
 
 ### Open devtools and chrome debugger with website
 
@@ -42,7 +60,7 @@ You may not know its possible to open a website with opened devtool with command
 
 ### Via global search in editor
 
-`Ctrl + Shift + f` is your good friend.
+Many modern editor ex sublime, visual studio code provide great support of global search. `Ctrl + Shift + f` is your good friend.
 
 
 ### Via DXR
@@ -55,10 +73,31 @@ http://dxr.mozilla.org/
 
 ## ES6 nits
 
-### not use forEach with yield
+### Do not use forEach with yield
 
 `forEach` is a good way to loop array, but is not compatible with generator(because the need of implement iterator interface), so if you use `yield` inside of `forEach` loop, it will not behave as you expect.
 The better choice is use `for..of` loop or `map` instead.
+
+### Try to be functional
+
+The powerful `=>` arrow syntax sugar is not just for replace `bind(this)`, it gives developer a clear way to write more compact code.
+
+For example 
+
+```js
+promise.then(function(a , b) {
+  return a + b;
+});
+```
+
+can be written as 
+
+```
+promise.then((a, b) => a + b);
+```
+
+### Do not use 
+
 
 ## Misc
 
