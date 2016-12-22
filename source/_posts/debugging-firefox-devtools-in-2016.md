@@ -63,9 +63,9 @@ You may not know its possible to open a website with opened devtool with command
 Many modern editor ex sublime, visual studio code provide great support of global search. `Ctrl + Shift + f` is your good friend.
 
 
-### Via DXR
+### Via DXR or searchfox
 
-[DXR](http://dxr.mozilla.org/) is a code search and navigation tool for large projects like Mozilla-center. 
+[DXR](http://dxr.mozilla.org/) and [searchfox](http://searchfox.org) is a code search and navigation tool for large projects like Mozilla-center. 
 It supports full-text and regex searches as well as structural queries.
 
 http://dxr.mozilla.org/
@@ -95,9 +95,6 @@ can be written as
 ```
 promise.then((a, b) => a + b);
 ```
-
-### Do not use 
-
 
 ## Misc
 
