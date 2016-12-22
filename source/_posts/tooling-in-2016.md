@@ -34,7 +34,7 @@ date: 2016-12-19 17:16:00
 * [豆瓣](http://www.douban.com/) 看電影記錄
 * 個人網站：使用[OpenShift](https://www.openshift.com)架設, 將遷移到[Github](https://github.com/gasolin/blog/)
 * 個人履歷：[個人網站](http://www.gasolin.idv.tw)、Linkedin
-* IFTTT 自動化生活紀錄(https://github.com/gasolin/blog/blob/master/source/_posts/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog.md)
+* IFTTT [自動化生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)
 
 ### 設計
 
