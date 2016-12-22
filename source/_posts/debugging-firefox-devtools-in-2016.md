@@ -1,5 +1,5 @@
 ---
-title: debugging firefox devtools in 2016
+title: Debugging Firefox Devtools in 2016
 tags:
   - devtools
   - web
