@@ -55,6 +55,16 @@ You may not know its possible to open a website with opened devtool with command
 
 `./mach run --devtools --jsdebugger www.yahoo.com.tw`
 
+### Test on Try server
+
+Moizlla Try server let you run tests on all supported platforms. You can pick which test set and which platform to run by providing command arguments. Here's what I used for test devtools related bugs on windows, mac, and linux.
+
+```
+try: -b do -p linux64,macosx64,win64 -u mochitest-dt,mochitest-e10s-devtools-chrome -t none --artifact
+```
+
+Add `--artifact` argument will both save total running time and computing resources.
+
 
 ## Tracing Code
 
