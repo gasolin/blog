@@ -1,5 +1,5 @@
 ---
-title: Useful template to automatically deploy master to github pages via Travis CI
+title: Automatically deploy new commit to github pages via Travis CI
 tags:
   - web
   - travis
