@@ -20,48 +20,49 @@ Before apply auto deploy method, the usual workflow to hosting web page on githu
 
 First, user commit changes to local git master branch.
 
-```
+{% mermaid %}
 graph LR
 user(User)
 master[Local:master]
 user -- commits* --> master
-```
+{% endmermaid %}
 
 Then, user run the build process to generate contents for deploy.
 
-```
+{% mermaid %}
 graph LR
 user(User)
 dist[dist/]
 user -- build --> dist
-```
+{% endmermaid %}
 
 Then, use git commands to push generated contents to github `gh-pages` branch
 
-```
+{% mermaid %}
 graph LR
 user(User)
 ghpages[Github:gh-pages]
 user -- deploy --> ghpages
-```
+{% endmermaid %}
 
 At this time, our source code is still stored in local machine, we have to push the changes to github as well for safety.
 
-```
+{% mermaid %}
 graph LR
 user(User)
 master[Github:master]
 user -- push --> master
-```
+{% endmermaid %}
 
 Of course the manual works can be improved. After apply auto deploy method, all I have to do is
 commit to github and let the web services do the rest.
+
 
 ## After auto deploy
 
 Here's what my current workflow looks like
 
-```
+{% mermaid %}
 graph LR
 user(User)
 master[Github:master]
@@ -70,7 +71,10 @@ ghpages[Github:gh-pages]
 user -- commit --> master
 master -- auto build --> travis
 travis --  auto deploy --> ghpages
-```
+{% endmermaid %}
+
+
+## Github page auto deploy to rescue
 
 After auto deploy, I am able to run test, do lint check, and build source with a few changes on `.travis.yml`(The travis configuration file),
 **the only thing I need to care about is the content**.
@@ -82,4 +86,4 @@ For security concern, my current workflow add the github token into Travis envir
 To not reinvent wheels myself, I distilled the auto deploy scripts and instructions into [ghpage-auto-deploy](https://github.com/gasolin/ghpage-auto-deploy) project.
 you can use it to deploy your next web page as well.
 
-[Fork the ghpage-auto-deploy project](https://github.com/gasolin/ghpage-auto-deploy#fork-destination-box) to get start, send response or PR to me if you want to imporove it.
+[Fork the ghpage-auto-deploy project](https://github.com/gasolin/ghpage-auto-deploy#fork-destination-box) to get start, feel free to add new issues to send suggestions or pull request to me if you want to imporove it.
