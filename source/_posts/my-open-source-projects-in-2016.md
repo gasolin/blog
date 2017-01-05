@@ -39,7 +39,6 @@ https://gasolin.github.io/aframe-href-component/
 
 ## May
 
-* [Expretron](https://github.com/gasolin/expretron) Express.js web server wrapped in Electron desktop runtime for any desktop application
 * New Firefox Sites Permission
 
 ## June
