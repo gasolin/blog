@@ -15,7 +15,7 @@ install:
 script:
   - hexo clean
   - hexo generate --quiet
-  - cp feeds/posts/default.xml atom.xml
+  - cp public/feeds/posts/default.xml public/atom.xml
   - hexo deploy --quiet
 
 branches:
