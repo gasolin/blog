@@ -9,7 +9,7 @@ date: 2017-01-03 16:48:35
 ---
 
 
-![](http://i.imgur.com/sh87aeKm.png)
+![](http://i.imgur.com/sh87aeK.png)
 
 今年隨著Firefox OS退場，工作內容有了不小的改變。年初時嘗試了一些不同的方向，也修了一些Firefox界面bug，後半年則主要專注於開發者工具改進這塊。
 以下是我今年主要參與或建立的開源專案。
