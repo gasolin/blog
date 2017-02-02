@@ -22,7 +22,7 @@ date: 2017-02-02 10:57:29
 {% mermaid %}
 graph LR
 Phone --> Dropbox
-Phone --> Google Photo
+Phone --> gphoto(Google Photo)
 Dropbox --> NAS
 {% endmermaid %}
 照片備份規則
@@ -47,7 +47,7 @@ Dropbox --> NAS
 {% mermaid %}
 graph LR
 Todoist --> IFTTT
-IFTTT --> Google Calendar
+IFTTT --> gcal(Google Calendar)
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
@@ -66,7 +66,7 @@ graph LR
 Anobii --> RSS
 Douban --> RSS
 RSS --> IFTTT
-IFTTT --> Google Calendar
+IFTTT --> gcal(Google Calendar)
 {% endmermaid %}
 
 ### 文章更新提醒
@@ -77,7 +77,7 @@ IFTTT --> Google Calendar
 
 ### 紀錄看過或待看的網頁
 
-因為我唯一的收集箱是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
+因為我唯一的收件夾是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
 在手機上就直接使用Todoist和Facebook等App達到一樣的效果。
 
 {% mermaid %}
