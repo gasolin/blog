@@ -44,7 +44,7 @@ date: 2016-12-19 17:16:00
 
 * 編輯器：Visual Studio Code
 * 版本控制：git, git-cinnabar
-* 套件管理：apt, nvm, Chocolatey(windows)
+* 套件管理：apt, [nvm](https://github.com/creationix/nvm), Chocolatey(windows)
 * Ubuntu bash on windows
 
 ### 常用插件
@@ -54,6 +54,9 @@ Browser
 VSCode
 * ESLint
 * WakaTime
+JS
+* Babel
+* ESlint
 
 ### 娛樂
 
@@ -69,25 +72,24 @@ VSCode
 * 地圖：Google地圖
 * 內建相機, 內建時鐘
 * 相簿：Dropbox, Google相簿
-* 社交：Facebook, LINE, WeChat
-* 待辦事項：[GTasks](https://play.google.com/store/apps/details?id=org.dayup.gtask), [Todoist](https://play.google.com/store/apps/details?id=com.todoist)
-* 習慣：[Loop](https://play.google.com/store/apps/details?id=org.isoron.uhabits)
+* 社交：Facebook, LINE, Twitter, WeChat
+* 待辦事項：[Todoist](https://play.google.com/store/apps/details?id=com.todoist), [GTasks](https://play.google.com/store/apps/details?id=org.dayup.gtask),
 * 密碼：[LastPass](https://play.google.com/store/apps/details?id=com.lastpass.lpandroid)
 * 線上學習：Udemy, Pluralsight, Duolingo
 * 線上影片：Youtube, Eleven Sports
 * 影片播放：MX Player, DS video
 * 閱讀：Palabre (feedly), Readmoo
 * 音樂：豆瓣FM
-* 公司：Expensify, Duo Mobile
+* 公事：Expensify, Duo Mobile
 * 遊戲：Pokemon Go
-* 心智圖：SimpleMind
+* 心智圖：SimpleMind, XMind
 * 健康：小米運動
 
 不常用
 
 * 旅遊：Google翻譯, TripAdvisor
 * IFTTT
-* Anobii，記錄看書狀況
+* Anobii，Readmoo 記錄看書狀況
 
 ## Reference
 
