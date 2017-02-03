@@ -17,7 +17,10 @@ date: 2017-02-02 10:57:29
 
 {% mermaid %}
 graph LR
-cam(360 CAM) --> Phone
+cam[360 CAM]
+User -- take photo --> cam
+User -- take photo --> Phone
+cam --> Phone
 Phone -.-> Dropbox
 Phone -.-> gphoto[Google Photo]
 Dropbox -.-> NAS
@@ -36,6 +39,9 @@ Dropbox -.-> NAS
 
 {% mermaid %}
 graph LR
+User -. 走路 .-> 小米手環2
+User -. 睡覺 .-> 小米手環2
+User -- 量體重 --> 小米體重計
 小米手環2 -.-> 小米運動App
 小米體重計 -.-> 小米運動App
 {% endmermaid %}
