@@ -8,9 +8,9 @@ tags:
 date: 2017-02-02 10:57:29
 ---
 
-
 ## 照片備份自動化
 
+* 360CAM所拍的相片一律備份到手機
 * [Dropbox](http://www.dropbox.com/), 自動從手機上傳照片
 * Google相簿, 自動從手機上傳照片
 * NAS (Synnalogy), 從Dropbox同步照片. 由於Dropbox空間有限，會不定期將Dropbox上的照片手動整理備份到NAS上.
@@ -21,17 +21,26 @@ date: 2017-02-02 10:57:29
 
 {% mermaid %}
 graph LR
+cam(360 CAM) --> Phone
 Phone --> Dropbox
-Phone --> gphoto(Google Photo)
+Phone --> gphoto[Google Photo]
 Dropbox --> NAS
 {% endmermaid %}
 照片備份規則
 
 ## 運動紀錄自動化
 
-小米手環2 + 小米體重計
+* 記步，睡眠紀錄：小米手環2
+* 體重：小米體重計
 
-今年將每天預定的步數提高到4000步，略高於平常的活動數字，需要特意地多走幾步路。
+{% mermaid %}
+graph LR
+小米手環2 --> 小米運動App
+小米體重計 --> 小米運動App
+{% endmermaid %}
+
+今年將每天預定的步數提高到`4000步`，略高於平常的活動數字，
+每天要達成這個目標的話，需要特意地多走幾步路。
 
 ----
 
@@ -46,27 +55,31 @@ Dropbox --> NAS
 
 {% mermaid %}
 graph LR
+User -- checked --> Todoist
 Todoist --> IFTTT
-IFTTT --> gcal(Google Calendar)
+IFTTT --> gcal[Google Calendar]
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
 ### 工作紀錄
 
-透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來。
+透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。
 
 ----
 
 ### 自動閱讀/觀看紀錄
 
-對於書籍與電影, 我使用RSS + IFTTT + Google Calendar 自動紀錄。若Anobii或豆瓣的RSS改變了，IFTTT會將新事項紀錄到Google Calendar上。
+對於書籍與電影, 我使用RSS + IFTTT + Google Calendar來自動紀錄。
+當我在Anobii或豆瓣上修改狀態，Anobii或豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google Calendar上。
 
 {% mermaid %}
 graph LR
+User -- update book --> Anobii
+User -- add movie --> Douban
 Anobii --> RSS
 Douban --> RSS
 RSS --> IFTTT
-IFTTT --> gcal(Google Calendar)
+IFTTT --> gcal[Google Calendar]
 {% endmermaid %}
 
 ### 文章更新提醒
@@ -82,12 +95,13 @@ IFTTT --> gcal(Google Calendar)
 
 {% mermaid %}
 graph LR
-Browser --> IFTTT(IFTTT Maker Channel)
+User -- tap --> Browser[Browser addon]
+Browser --> IFTTT[IFTTT Maker Channel]
 IFTTT --> Todoist
 IFTTT --> Facebook
 IFTTT --> Twitter
 {% endmermaid %}
-
+If new task then create new Todoist item, If share then share to Facebook and Twitter.
 
 ----
 
@@ -96,3 +110,17 @@ IFTTT --> Twitter
 目前已使用Github來放我的個人網站與部落格，透過與Travis CI整合，我所修改的任何內容，在幾分鐘之內都會自動部署到網站上。
 
 如何做可參考 [Hello Hexo](https://blog.gasolin.idv.tw/2016/09/18/hello-world/) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](https://blog.gasolin.idv.tw/2017/01/03/ghpage-auto-deploy/)
+
+{% mermaid %}
+graph LR
+master[Github:master]
+travis[Travis CI]
+ghpages[Github:gh-pages]
+User -- commit --> master
+master -- auto build --> travis
+travis --  auto deploy --> ghpages
+{% endmermaid %}
+Auto website deploy flow
+
+一些可以直接運作在瀏覽器的專案(如BlocklyDuino和Saihubot)，我會直接將gh-pages設為預設分支，所有改動直接push到這分支中。
+這樣一有改動即可在網頁上看到更新成果。
