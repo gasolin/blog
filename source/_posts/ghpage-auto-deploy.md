@@ -64,15 +64,15 @@ Here's what my current workflow looks like
 
 {% mermaid %}
 graph LR
-user(User)
 master[Github:master]
 travis[Travis CI]
 ghpages[Github:gh-pages]
-user -- commit --> master
-master -- auto build --> travis
-travis --  auto deploy --> ghpages
+User -- commit --> master
+master -.- auto build -.-> travis
+travis -.-  auto deploy -.-> ghpages
 {% endmermaid %}
 
+The dot line process are automatically done for you.
 
 ## Github page auto deploy to rescue
 
