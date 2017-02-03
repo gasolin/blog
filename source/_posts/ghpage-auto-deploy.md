@@ -68,8 +68,8 @@ master[Github:master]
 travis[Travis CI]
 ghpages[Github:gh-pages]
 User -- commit --> master
-master -.- auto build -.-> travis
-travis -.-  auto deploy -.-> ghpages
+master -. auto build .-> travis
+travis -.  auto deploy .-> ghpages
 {% endmermaid %}
 
 The dot line process are automatically done for you.
