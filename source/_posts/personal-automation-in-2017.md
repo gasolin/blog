@@ -14,19 +14,20 @@ date: 2017-02-02 10:57:29
 * [Dropbox](http://www.dropbox.com/), 自動從手機上傳照片
 * Google相簿, 自動從手機上傳照片
 * NAS (Synnalogy), 從Dropbox同步照片. 由於Dropbox空間有限，會不定期將Dropbox上的照片手動整理備份到NAS上.
-我的照片並不算多，但若有出遊的月份通常照片會暴增。所以我的基本備份規則是依年份，並以雙月份命名資料夾,若是當月有重大活動則直接在檔名中標注。
-例如2016年的照片資料夾裡會有`2016_1011`，或是`2016_06倫敦`這樣的命名。
-
-在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
 
 {% mermaid %}
 graph LR
 cam(360 CAM) --> Phone
-Phone --> Dropbox
-Phone --> gphoto[Google Photo]
-Dropbox --> NAS
+Phone -.-> Dropbox
+Phone -.-> gphoto[Google Photo]
+Dropbox -.-> NAS
 {% endmermaid %}
 照片備份規則
+
+我的照片並不算多，但若有出遊的月份通常照片會暴增。所以我的基本備份規則是依年份，並以雙月份命名資料夾,若是當月有重大活動則直接在檔名中標注。
+例如2016年的照片資料夾裡會有`2016_1011`，或是`2016_06倫敦`這樣的命名。
+
+在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
 
 ## 運動紀錄自動化
 
@@ -35,29 +36,29 @@ Dropbox --> NAS
 
 {% mermaid %}
 graph LR
-小米手環2 --> 小米運動App
-小米體重計 --> 小米運動App
+小米手環2 -.-> 小米運動App
+小米體重計 -.-> 小米運動App
 {% endmermaid %}
 
-今年將每天預定的步數提高到`4000步`，略高於平常的活動數字，
+今年將每天預定的步數由3000步提高到`4000步`，略高於平常的活動數字，
 每天要達成這個目標的話，需要特意地多走幾步路。
 
 ----
 
 ## 生活紀錄自動化
 
-延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，
-我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章, 每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
+延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
 
 ### 每日完成的事項自動紀錄
 
-使用 Todoist + IFTTT + Google Calendar 即可達成。我在Google Calendar上使用一個單獨的日曆(日記)來紀錄每日完成的事項。
+這部份是自動紀錄的核心。使用 Todoist + IFTTT + Google Calendar 即可達成。
+我在Google Calendar上使用一個單獨的日曆(成功日記)來紀錄每日完成的事項。
 
 {% mermaid %}
 graph LR
 User -- checked --> Todoist
-Todoist --> IFTTT
-IFTTT --> gcal[Google Calendar]
+Todoist -.-> IFTTT
+IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
@@ -76,10 +77,10 @@ If task completed in Todoist, Then log into Google Calendar
 graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
-Anobii --> RSS
-Douban --> RSS
-RSS --> IFTTT
-IFTTT --> gcal[Google Calendar]
+Anobii -.-> RSS
+Douban -.-> RSS
+RSS -.-> IFTTT
+IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 
 ### 文章更新提醒
@@ -96,10 +97,10 @@ IFTTT --> gcal[Google Calendar]
 {% mermaid %}
 graph LR
 User -- tap --> Browser[Browser addon]
-Browser --> IFTTT[IFTTT Maker Channel]
-IFTTT --> Todoist
-IFTTT --> Facebook
-IFTTT --> Twitter
+Browser -.-> IFTTT[IFTTT Maker Channel]
+IFTTT -.-> Todoist
+IFTTT -.-> Facebook
+IFTTT -.-> Twitter
 {% endmermaid %}
 If new task then create new Todoist item, If share then share to Facebook and Twitter.
 
@@ -117,8 +118,8 @@ master[Github:master]
 travis[Travis CI]
 ghpages[Github:gh-pages]
 User -- commit --> master
-master -- auto build --> travis
-travis --  auto deploy --> ghpages
+master -.- auto build -.-> travis
+travis -.-  auto deploy -.-> ghpages
 {% endmermaid %}
 Auto website deploy flow
 
