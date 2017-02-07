@@ -1,5 +1,5 @@
 ---
-title: 個人自動化
+title: 我如何做個人自動化紀錄-2017版
 tags:
   - web
   - mobile
@@ -8,7 +8,7 @@ tags:
 date: 2017-02-02 10:57:29
 ---
 
-## 照片備份自動化
+## 照片自動化備份
 
 * 360CAM所拍的相片一律備份到手機
 * [Dropbox](http://www.dropbox.com/), 自動從手機上傳照片
@@ -32,7 +32,7 @@ Dropbox -.-> NAS
 
 在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
 
-## 運動紀錄自動化
+## 運動自動化紀錄
 
 * 記步，睡眠紀錄：小米手環2
 * 體重：小米體重計
@@ -51,11 +51,11 @@ User -- 量體重 --> 小米體重計
 
 ----
 
-## 生活紀錄自動化
+## 生活事件自動化紀錄
 
 延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
 
-### 每日完成的事項自動紀錄
+### 自動紀錄每日完成的事項
 
 這部份是自動紀錄的核心。使用 Todoist + IFTTT + Google Calendar 即可達成。
 我在Google Calendar上使用一個單獨的日曆(成功日記)來紀錄每日完成的事項。
@@ -68,10 +68,9 @@ IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
-### 工作紀錄
+### 半自動工作紀錄
 
-透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。
-
+透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。這塊也許可以再繼續改進。
 ----
 
 ### 自動閱讀/觀看紀錄
@@ -89,7 +88,7 @@ RSS -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 
-### 文章更新提醒
+### 文章更新時自動提醒
 
 除了偶而瀏覽Facebook或Twitter上充滿同溫層的快餐短文，我也使用Feedly訂閱一些自己挑選過的網站。
 然而有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
@@ -112,7 +111,7 @@ If new task then create new Todoist item, If share then share to Facebook and Tw
 
 ----
 
-## 網站部署自動化
+## 自動化網站部署
 
 目前已使用Github來放我的個人網站與部落格，透過與Travis CI整合，我所修改的任何內容，在幾分鐘之內都會自動部署到網站上。
 
