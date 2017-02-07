@@ -8,6 +8,11 @@ tags:
 date: 2017-02-02 10:57:29
 ---
 
+### 為什麼要做個人自動化紀錄?
+
+有人會問，Facebook/Twitter不就可以記錄大小事了嗎? 如果會這麼回答，那就實在太天真了。FB上也許包含了自己覺得值得分享的事，但生活中還有諸多事情值得記錄，而不適合與大眾分享。
+擁有自己的一份完整數位化生活記錄，是我今年的個人目標之一。要達成這個目標，需要藉助一些自動化紀錄工具，好讓整個過程變得自然而不困難。
+
 ## 照片自動化備份
 
 * 360CAM所拍的相片一律備份到手機
@@ -70,21 +75,26 @@ If task completed in Todoist, Then log into Google Calendar
 
 ### 半自動工作紀錄
 
-透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。這塊也許可以再繼續改進。
+透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。
+也可以說這塊目前只能算半自動化地列出過去事項列表，可以再繼續改進。
+
 ----
 
 ### 自動閱讀/觀看紀錄
 
 對於書籍與電影, 我使用RSS + IFTTT + Google Calendar來自動紀錄。
 當我在Anobii或豆瓣上修改狀態，Anobii或豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google Calendar上。
+對於Youtube上like的影片，也會透過IFTTT紀錄到Google Calendar上。
 
 {% mermaid %}
 graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
+User -- like --> Youtube
 Anobii -.-> RSS
 Douban -.-> RSS
 RSS -.-> IFTTT
+Youtube -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 
@@ -93,6 +103,12 @@ IFTTT -.-> gcal[Google Calendar]
 除了偶而瀏覽Facebook或Twitter上充滿同溫層的快餐短文，我也使用Feedly訂閱一些自己挑選過的網站。
 然而有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
 搭配Todoist稍候閱讀列表，我可以不在看到文章連結當下急著消費，而是在有空閒的時候才閱讀這些文章。
+
+{% mermaid %}
+graph LR
+webalert[Web Alert] --> User
+User --> Browser
+{% endmermaid %}
 
 ### 紀錄看過或待看的網頁
 
