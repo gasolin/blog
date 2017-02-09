@@ -91,6 +91,10 @@ IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
+#### 從Email新增待辦事項
+
+為了更方便地蒐集待辦事項，我參考這份影片 https://youtu.be/V7Dk7pzjJmM?t=11m30s 來將Todoist#Inbox設定為Email聯絡人，這樣處理Email的過程中也能快速地新增待辦事項。
+
 ### 紀錄看過或待看的網頁
 
 因為我唯一的收件夾是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
