@@ -7,19 +7,22 @@ tags:
 ---
 
 Traditional computer architecture
+
 {% mermaid %}
 graph TD
-Input -> Computing
-Computing --> Output
-Computing <--> Storage
+Input --> CPU
+CPU --> Output
+CPU <--> Memory
+CPU <--> Storage[Second Storage]
 {% endmermaid %}
 
-Morden age computer architecture
+IoT computing architecture [^1]
+
 {% mermaid %}
 graph TD
 Input[IoT Sensor] -> Computing[Cloud computing]
 Computing --> Output[IoT Trigger]
-Computing <--> Storage[cloud Storage]
+Computing <--> Storage[Cloud Storage]
 {% endmermaid %}
 
 {% mermaid %}
@@ -49,3 +52,6 @@ graph LR
   router --> processor
   processor --> dispatcher
 {% endmermaid %}
+
+
+[^1] http://www.slideshare.net/williamwyliang/the-development-trends-of-smart-applications-and-open-source-system-software-during-the-past-few-years-for-ntu-csie-2017-01
