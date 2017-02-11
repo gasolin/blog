@@ -6,6 +6,22 @@ tags:
   - bot
 ---
 
+Traditional computer architecture
+{% mermaid %}
+graph TD
+Input -> Computing
+Computing --> Output
+Computing <--> Storage
+{% endmermaid %}
+
+Morden age computer architecture
+{% mermaid %}
+graph TD
+Input[IoT Sensor] -> Computing[Cloud computing]
+Computing --> Output[IoT Trigger]
+Computing <--> Storage[cloud Storage]
+{% endmermaid %}
+
 {% mermaid %}
 graph LR
   User[Human input]
