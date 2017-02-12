@@ -128,7 +128,7 @@ webalert[Web Alert] --> User
 User --> Browser
 {% endmermaid %}
 
-### 半自動工作紀錄
+### 半自動工作紀錄 :briefcase:
 
 透過翻看Todoist或Google Calendar，我可以輕易地將過去一週達成的事項整理出來，再送PR到Github上。
 也可以說這塊目前只能算半自動化地列出過去事項列表，可以再繼續改進。
