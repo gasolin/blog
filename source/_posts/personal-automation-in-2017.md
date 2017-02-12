@@ -64,15 +64,21 @@ User -- 量體重 --> 小米體重計
 
 對於書籍與電影, 我使用RSS + IFTTT + Google Calendar來自動紀錄。
 當我在Anobii或豆瓣上修改狀態，Anobii或豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google Calendar上。
-對於Youtube上like的影片，也會透過IFTTT紀錄到Google Calendar上。
+對於Youtube上like的影片，Facebook或Twitter上新貼的文章，也會透過IFTTT紀錄到Google Calendar上。
 
 {% mermaid %}
 graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
 User -- like --> Youtube
+User -- post --> Blog
+User -- post --> Facebook
+User -- post --> Twitter
+Blog -.-> RSS
 Anobii -.-> RSS
 Douban -.-> RSS
+Facebook -.-> IFTTT
+Twitter -.-> IFTTT
 RSS -.-> IFTTT
 Youtube -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
