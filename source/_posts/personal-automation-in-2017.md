@@ -71,18 +71,25 @@ graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
 User -- post --> Blog
-User -- like --> Youtube
-User -- post --> Facebook
-User -- post --> Twitter
 Blog -.-> RSS
 Anobii -.-> RSS
 Douban -.-> RSS
 RSS -.-> IFTTT
+IFTTT -.-> gcal[Google Calendar]
+{% endmermaid %}
+透過RSS轉IFTTT紀錄
+
+{% mermaid %}
+graph LR
+User -- like --> Youtube
+User -- post --> Facebook
+User -- post --> Twitter
 Youtube -.-> IFTTT
 Facebook -.-> IFTTT
 Twitter -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
+直接透過IFTTT紀錄
 
 ### 自動紀錄每日完成的事項 :notebook:
 
