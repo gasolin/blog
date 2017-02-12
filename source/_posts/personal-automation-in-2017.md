@@ -10,10 +10,10 @@ date: 2017-02-02 10:57:29
 
 ## 為什麼要做個人自動化紀錄?
 
-有人會問，Facebook/Twitter不就可以記錄大小事了嗎? 如果會這麼回答，那就實在太天真了。FB上也許包含了自己覺得值得分享的事，但生活中還有諸多事情值得記錄，而不適合與大眾分享。
+有人會問，Facebook/Twitter不就可以記錄大小事了嗎? 如果會這麼回答，那就實在太天真了:smirk:。FB上也許包含了自己覺得值得分享的事，但生活中還有諸多事情值得記錄，而不適合與大眾分享。
 擁有自己的一份完整數位化生活記錄，是我今年的個人目標之一。要達成這個目標，需要藉助一些自動化紀錄工具，好讓整個過程變得自然而不困難。
 
-## 照片自動化備份
+## 照片自動化備份 :camera:
 
 * 360CAM所拍的相片一律備份到手機
 * [Dropbox](http://www.dropbox.com/), 自動從手機上傳照片
@@ -37,7 +37,7 @@ Dropbox -.-> NAS
 
 在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
 
-## 運動自動化紀錄
+## 運動自動化紀錄 :walking:
 
 * 記步，睡眠紀錄：小米手環2
 * 體重：小米體重計
@@ -60,7 +60,7 @@ User -- 量體重 --> 小米體重計
 
 延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
 
-### 自動閱讀/觀看紀錄
+### 自動閱讀/觀看紀錄 :books:
 
 對於書籍與電影, 我使用RSS + IFTTT + Google Calendar來自動紀錄。
 當我在Anobii或豆瓣上修改狀態，Anobii或豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google Calendar上。
@@ -78,7 +78,7 @@ Youtube -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 
-### 自動紀錄每日完成的事項
+### 自動紀錄每日完成的事項 :notebook:
 
 這部份是自動紀錄的核心。使用 Todoist + IFTTT + Google Calendar 即可達成。
 我在Google Calendar上使用一個單獨的日曆(成功日記)來紀錄每日完成的事項。
@@ -91,11 +91,11 @@ IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 If task completed in Todoist, Then log into Google Calendar
 
-#### 從Email新增待辦事項
+#### 從Email新增待辦事項 :email:
 
 為了更方便地蒐集待辦事項，我參考這份影片 https://youtu.be/V7Dk7pzjJmM?t=11m30s 來將Todoist#Inbox設定為Email聯絡人，這樣處理Email的過程中也能快速地新增待辦事項。
 
-### 紀錄看過或待看的網頁
+### 紀錄看過或待看的網頁 :globe_with_meridians:
 
 因為我唯一的收件夾是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
 在手機上就直接使用Todoist和Facebook等App達到一樣的效果。
@@ -110,7 +110,7 @@ IFTTT -.-> Twitter
 {% endmermaid %}
 If new task then create new Todoist item, If share then share to Facebook and Twitter.
 
-### 文章更新時自動提醒
+### 文章更新時自動提醒 :alarm_clock:
 
 除了偶而瀏覽Facebook或Twitter上充滿同溫層的快餐短文，我也使用Feedly訂閱一些自己挑選過的網站。
 然而有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
@@ -129,7 +129,7 @@ User --> Browser
 
 ----
 
-## 自動化網站部署
+## 自動化網站部署 :globe_with_meridians:
 
 目前已使用Github來放我的個人網站與部落格，透過與Travis CI整合，我所修改的任何內容，在幾分鐘之內都會自動部署到網站上。
 
