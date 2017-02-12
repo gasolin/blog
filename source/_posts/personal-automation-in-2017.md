@@ -70,17 +70,17 @@ User -- 量體重 --> 小米體重計
 graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
-User -- like --> Youtube
 User -- post --> Blog
+User -- like --> Youtube
 User -- post --> Facebook
 User -- post --> Twitter
 Blog -.-> RSS
 Anobii -.-> RSS
 Douban -.-> RSS
-Facebook -.-> IFTTT
-Twitter -.-> IFTTT
 RSS -.-> IFTTT
 Youtube -.-> IFTTT
+Facebook -.-> IFTTT
+Twitter -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
 {% endmermaid %}
 
