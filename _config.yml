@@ -71,7 +71,7 @@ plugins:
   - markdown-it-ins
   - markdown-it-sup
   - markdown-it-sub
-  - hexo-deployer-git
+#  - hexo-deployer-git
 
 ## Themes: https://hexo.io/themes/
 theme: next
