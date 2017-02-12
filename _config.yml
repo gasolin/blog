@@ -64,13 +64,13 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
-plugins:
-  - markdown-it-abbr
-  - markdown-it-emoji
-  - markdown-it-footnote
-  - markdown-it-ins
-  - markdown-it-sup
-  - markdown-it-sub
+#plugins:
+#  - markdown-it-abbr
+#  - markdown-it-emoji
+#  - markdown-it-footnote
+#  - markdown-it-ins
+#  - markdown-it-sup
+#  - markdown-it-sub
 
 ## Themes: https://hexo.io/themes/
 theme: next
