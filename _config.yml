@@ -64,14 +64,6 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
-plugins:
-  - markdown-it-abbr
-  - markdown-it-emoji
-  - markdown-it-footnote
-  - markdown-it-ins
-  - markdown-it-sup
-  - markdown-it-sub
-#  - hexo-deployer-git
 
 ## Themes: https://hexo.io/themes/
 theme: next
@@ -104,3 +96,30 @@ feed:
   path: feeds/posts/default
   limit: 25
   hub:
+
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: false
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  plugins:
+    - markdown-it-abbr
+    - markdown-it-emoji
+    - markdown-it-footnote
+    - markdown-it-ins
+    - markdown-it-sup
+    - markdown-it-sub
+  anchors:
+    # Minimum level for ID creation. (Ex. h2 to h6)
+    level: 2
+    # A suffix that is prepended to the number given if the ID is repeated.
+    collisionSuffix: 'v'           
+    # If `true`, creates an anchor tag with a permalink besides the heading.
+    permalink: false              
+    # Class used for the permalink anchor tag.
+    permalinkClass: header-anchor 
+    # The symbol used to make the permalink
+    permalinkSymbol: ¶
