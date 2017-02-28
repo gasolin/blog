@@ -1,10 +1,20 @@
 ---
-title: how bot works
+title: 聊天機器人是怎麼運作的
 tags:
   - web
-  - mobile
   - bot
 ---
+
+{% mermaid %}
+graph TD
+User --> Adapter[UI Adapter]
+Adapter --> Parser[Intent Parser]
+Parser - Action -> Processor[Actioner]
+Processor --> Responder
+Responder --> Adapter
+{% endmermaid %}
+
+
 
 Traditional computer architecture
 
