@@ -133,6 +133,8 @@ graph RL
 subgraph chatbot
 Parser -- Action --> Processor[Do actions]
 Processor --> contexture[Context Brain]
+contexture --> Processor
+contexture --> Responder
 Processor --> Responder[Build Response]
 end
 User -- request --> Parser[Intent Parser]
