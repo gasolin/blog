@@ -126,5 +126,7 @@ Responder -- response --> User
 例如Google Assistant會根據你之前的查詢,去進一步找到你想听的音樂。
 
 
-[^1] https://en.wikipedia.org/wiki/Siri
-[^2] 在網際網路上，沒人知道你是一隻狗 https://zh.wikipedia.org/wiki/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%EF%BC%8C%E6%B2%A1%E4%BA%BA%E7%9F%A5%E9%81%93%E4%BD%A0%E6%98%AF%E4%B8%80%E6%9D%A1%E7%8B%97
+## 參考資料
+
+* [^1] https://en.wikipedia.org/wiki/Siri
+* [^2] 在網際網路上，沒人知道你是一隻狗 https://zh.wikipedia.org/wiki/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%EF%BC%8C%E6%B2%A1%E4%BA%BA%E7%9F%A5%E9%81%93%E4%BD%A0%E6%98%AF%E4%B8%80%E6%9D%A1%E7%8B%97
