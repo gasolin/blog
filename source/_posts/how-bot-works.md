@@ -92,7 +92,7 @@ bot --> Group
 
 ## 聊天機器人的應對方式
 
-除了「一對一」，「群組」（多對多）之外，依據聊天機器人的應對方式，還可以分為通知型（Notify），模式型（Pattern Matching），對話型（Context Aware）等幾種聊天機器人。
+除了「一對一」，「群組」（多對多）之外，依據聊天機器人的應對方式，還可以分為通知型（Notify），模式型（Pattern Matching），對話型（Context Aware）等幾種聊天機器人[^4]。
 
 ### 通知型（Notify）
 
@@ -152,3 +152,4 @@ Responder -- response --> User
 * [^1] 羅輯思維4小時跨年演講 https://kknews.cc/zh-tw/tech/xz2x4p8.html
 * [^2] https://en.wikipedia.org/wiki/Siri
 * [^3] [在網際網路上，沒人知道你是一隻狗](https://zh.wikipedia.org/wiki/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%EF%BC%8C%E6%B2%A1%E4%BA%BA%E7%9F%A5%E9%81%93%E4%BD%A0%E6%98%AF%E4%B8%80%E6%9D%A1%E7%8B%97)
+* [^4] [Bot Design Patterns](http://willschenk.com/bot-design-patterns/)
