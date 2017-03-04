@@ -29,10 +29,10 @@ date: 2017-3-4 16:08:00
 
 ## 參考資料
 
-[^1] [Hello Hexo](hello-world)
-[^2] [Mermaid, Generation of diagrams and flowcharts from text](https://knsv.github.io/mermaid/)
-[^3] [hexo-renderer-markdown-it](https://github.com/celsomiranda/hexo-renderer-markdown-it)
-[^4] [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji)
-[^5] [本Blog的_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml#L100)
-[^6] [hexo-reading-time](https://github.com/ierhyna/hexo-reading-time/)
-[^7] [hexo-wordcount](https://github.com/willin/hexo-wordcount)
+* [^1] [Hello Hexo](hello-world)
+* [^2] [Mermaid, Generation of diagrams and flowcharts from text](https://knsv.github.io/mermaid/)
+* [^3] [hexo-renderer-markdown-it](https://github.com/celsomiranda/hexo-renderer-markdown-it)
+* [^4] [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji)
+* [^5] [本Blog的_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml#L100)
+* [^6] [hexo-reading-time](https://github.com/ierhyna/hexo-reading-time/)
+* [^7] [hexo-wordcount](https://github.com/willin/hexo-wordcount)
