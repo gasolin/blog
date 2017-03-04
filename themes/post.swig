@@ -105,7 +105,7 @@
 
           <!--custom reading time-->
           &nbsp; | &nbsp;
-          <span class="post-count">{{ min2read(page.content) }} min. read</span>
+          <span class="post-words">{{ wordcount(post.content) }} words,</span> <span class="post-count">{{ min2read(page.content) }} min. read</span>
 
           {% if post.comments %}
             {% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %}
