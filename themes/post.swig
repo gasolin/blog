@@ -105,7 +105,7 @@
 
           <!--custom reading time-->
           &nbsp; | &nbsp;
-          <span>{{ readingTime(page.content) }}</span>
+          <span>{{ min2read(page.content) }}</span>
 
           {% if post.comments %}
             {% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %}
