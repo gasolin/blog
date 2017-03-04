@@ -104,6 +104,7 @@
           {% endif %}
 
           <!--custom reading time-->
+          &nbsp; | &nbsp;
           <span>{{ readingTime(page.content) }}</span>
 
           {% if post.comments %}
