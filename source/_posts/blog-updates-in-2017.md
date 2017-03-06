@@ -25,7 +25,7 @@ date: 2017-3-4 16:08:00
 
 ## 加入類似Medium的文章預計閱讀時間
 
-原本我裝的是 `hexo-reading-time`[^6]，整合好後一看，所有中文文章的閱讀時長都短得可以，讓我懷疑它根本沒有支援中文字數計算。後來找一找，才拿可支援中文字數計算的`hexo-wordcount`[^7]來替換掉。
+原本我裝的是 `hexo-reading-time`[^6]，整合好後一看，所有中文文章的閱讀時長都短得可以，讓我懷疑它根本沒有支援中文字數計算。後來找一找，才拿可支援中文字數計算的`hexo-wordcount`[^7]來替換掉。隨後又丟了個PR[^8]過去來調整預設的閱讀時長，最終才接近想要的效果。
 
 ## 參考資料
 
@@ -36,3 +36,4 @@ date: 2017-3-4 16:08:00
 * [^5] [本Blog的_config.yml](https://github.com/gasolin/blog/blob/master/_config.yml#L100)
 * [^6] [hexo-reading-time](https://github.com/ierhyna/hexo-reading-time/)
 * [^7] [hexo-wordcount](https://github.com/willin/hexo-wordcount)
+* [^8] [Patch for hexo-wordcount](https://github.com/willin/hexo-wordcount/issues/3)
