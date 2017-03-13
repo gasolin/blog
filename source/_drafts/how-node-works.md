@@ -12,3 +12,6 @@ https://github.com/creationix/nvm
 nvm install v6
 
 npm init
+
+npm install -g yarn
+
