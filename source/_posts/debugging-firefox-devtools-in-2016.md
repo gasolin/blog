@@ -108,6 +108,5 @@ promise.then((a, b) => a + b);
 
 ## Misc
 
-### SSH Error handling in linux
-
-http://stackoverflow.com/questions/29134512/insecureplatformwarning-a-true-sslcontext-object-is-not-available-this-prevent
+* [](https://wiki.mozilla.org/DevTools/Hacking)
+* [SSH Error handling in linux](http://stackoverflow.com/questions/29134512/insecureplatformwarning-a-true-sslcontext-object-is-not-available-this-prevent)
