@@ -13,9 +13,9 @@ Firefox Devtools is in progress of modernizing its infrastructure to use the sam
 Firefox Devtools was no different from Firefox itself. The Devtools panels are written in `XUL`, an HTML-like syntax language, and use several Firefox internal API called `XPCOM` or `Chrome privileged API`(Nothing related to Chrome Browser) to make the browser works.
 
 In last year(2016), Firefox Devtools team's main goal is to convert the code base from XUL to pure HTML. The second goal is convert each tool with React/Redux structure for maintenance. Debugger, Inspector, Web Console are the first batch in the conversion progress.
-[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt from Firefox Devtools team to embrace the modern web developers' toolset. Now new Debugger and Web Console are now available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
+[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt from Firefox Devtools team to embrace the modern web developers' toolset. Now new Debugger and Web Console are available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
 
-[Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has their standalone repository hosted on Github. The developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html/perf.html with any browser's devtools! 
+[Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has their standalone repository hosted on Github. A developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html/perf.html with any browser's devtools! 
 
 {% mermaid %}
 graph LR
@@ -25,14 +25,15 @@ install --> start[yarn start]
 
 ## What `Run on the Browser tab` means?
 
-`Run on the Browser tab` is a term versus `Run inside of the developer panel`. Traditionally Devtools are running inside of the browser's developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve our Devtools with any Browser's Devtools, its an unfair advantage.
+`Run on the Browser tab` is a term versus `Run inside of the developer panel`. Traditionally Devtools are running inside of the browser's developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened in a browser tab by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve Firefox Devtools with any Browser's Devtools, its an unfair advantage.
 
 {% mermaid %}
 graph LR
-Firefox -- mozilla-rdp --> netmonitor(Netmonitor.html)
+Firefox -- debugging --> netmonitor(Netmonitor.html)
 Chrome -- debugging --> netmonitor
 Safari -- debugging --> netmonitor
 Edge -- debugging --> netmonitor
+netmonitor -- mozilla-rdp --> Firefox
 {% endmermaid %}
 
 We are going to make more Devtools easy to debug and can be used for cross-browser debugging.
@@ -47,7 +48,7 @@ Here are the projects in progress and where they are hosted from:
 graph LR
 Nightly --> debugger(Debugger.html)
 Nightly --> perf(Perf.html)
-Nightly --> webconsole(WebConsole.html
+Nightly --> webconsole(WebConsole.html)
 debugger --> standalone[Github]
 perf --> standalone
 webconsole --> refactor[mozilla-central]
@@ -78,13 +79,17 @@ Here they are:
 
 ## What could expect in the future
 
-Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node!
+Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node.js!
 
 {% mermaid %}
 graph LR
-Firefox -- mozilla-rdp --> debugger(Debugger.html)
-Chrome -- chrome-rdp --> debugger
-Node -- chrome-rdp --> debugger
+Firefox -- debugging --> netmonitor(Netmonitor.html)
+Chrome -- debugging --> netmonitor
+Safari -- debugging --> netmonitor
+Edge -- debugging --> netmonitor
+netmonitor -- mozilla-rdp --> Firefox
+netmonitor -- chrome-rdp --> Chrome
+netmonitor -- chrome-rdp --> Node[Node.js]
 {% endmermaid %}
 
 Since Debugger.html's pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!
