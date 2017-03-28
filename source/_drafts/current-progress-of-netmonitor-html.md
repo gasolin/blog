@@ -5,13 +5,17 @@ tags:
   - devtools
 ---
 
-Firefox Devtools is in progress of `modernize` its infrastructure to use the same toolset that modern web developers are used to. For `modern` web developers' toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.
+Firefox Devtools is in progress of `modernize` its infrastructure to use the same toolset that modern web developers are used to. When talk about `modern` web developers' toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.
 
 ## What Firefox Devtools team have done
 
-[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt for Firefox Devtools team.
+Firefox Devtools was no different from Firefox itself, the Devtools panels are written by `XUL`, a HTML-like syntax language, and use several Firefox internal API called `XPCOM` or `Chrome privilliged API`(Nothing related to Chrome Browser) to make the browser works.
 
-Debugger.html has [its own repository hosted on Github](https://github.com/devtools-html/debugger.html), developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html with any browser's devtools! 
+In last year(2016), Firefox Devtools team's main goal is convert the code base from XUL to pure HTML. The second goal is convert each tool with React/Redux structure. Debugger, Inspector, Web Console are the first batch in the conversion progress.
+
+[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt from Firefox Devtools team to embrace the modern web developers' toolset. Now new Debugger and Web Console are now available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
+
+[Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has its own repository hosted on Github, developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html with any browser's devtools! 
 
 {% mermaid %}
 graph LR
@@ -38,23 +42,17 @@ debugger --> Editor
 debugger --> other[Other Browser]
 {% endmermaid %}
 
+We'd like make more Devtools easy to debug and can be used for cross browser debugging.
+
+## Current Status
+
+Replacing the Jet Engine While Still Flying
+
 ## What we have done
 
-Firefox Devtools was no different with Firefox its self, the Devtools panels are written by `XUL`, which is a HTML-like syntax language, and use several Firefox internal API called `XPCOM` or `Chrome privilliged API`(Nothing related to Chrome Browser).
+Ricky Chien and I joined the effort of convert DOM Inspector from XUL to HTML. DOM Inspector is a more complicated tool to convert, so its still half React and half plain Javascript.
 
-In last year, Firefox Devtools team's main goal is convert the code base from XUL to pure HTML. The second goal is convert each tool with React/Redux structure. Debugger, Inspector, Web Console are the first batch in the conversion progress.
-
-New Debugger and Web Console are now available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
-
-Inspector is a more complicated tool to convert, so its still half React and half plain Javascript.
-
-## Why Netmonitor.html?
-
-Ricky Chien and I joined the effort of converting inspector from XUL to HTML, and then we start focus on convert the next important Devtool: `Netmonitor`. With Honza, Janda, Steve Chung, and other contributors' help, we converted the whole Netmonitor panel from XUL to HTML. With `React`, `Redux`, `Immutablejs`.
-
-## Replacing the Jet Engine While Still Flying
-
-
+Then we start focus on convert the next important Devtool: `Netmonitor`. With Honza, Janda, Steve Chung, and other contributors' help, we converted the whole Netmonitor panel from XUL to HTML, with `React`, `Redux`, `Immutablejs`.
 
 ## What we plan to do
 
@@ -62,7 +60,7 @@ We just finished the Netmonitor workweek (Fred, Honza, Ricky) in Taiwan, plenty 
 
 Here they are:
 
-* We have two different(!) Prove-Of-Concept branches to prove we can run netmonitor on browser tab
+* We have Prove-Of-Concept branches to prove we can run netmonitor on browser tab
 * We stop Netmonitor.html phase I work immediately (convert XUL to HTML, MVP 100% completed)
 * We'll start Netmonitor.html phase II (To run Netmonitor on a browser tab, so we can debug Netmonitor with any browser's devtool)
   * plan and file bugs
