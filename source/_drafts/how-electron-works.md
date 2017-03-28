@@ -39,3 +39,10 @@ communicate with ipc (electron.ipcMain)
 
 multiple window!
 
+
+{% mermaid %}
+graph LR
+Node --> Electron
+Webkit --> Blink
+Blink --> Electron
+{% endmermaid %}
