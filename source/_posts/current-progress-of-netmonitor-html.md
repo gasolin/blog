@@ -6,7 +6,6 @@ tags:
 date: 2017-03-29 00:33:37
 ---
 
-
 Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about `modern` web developers toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.
 
 ## What Firefox Devtools team did last year
@@ -30,7 +29,7 @@ install --> start[yarn start]
 
 {% mermaid %}
 graph LR
-Firefox --> mozilla-rdp --> netmonitor(Netmonitor.html)
+Firefox -- mozilla-rdp --> netmonitor(Netmonitor.html)
 Chrome -- debugging --> netmonitor
 Safari -- debugging --> netmonitor
 Edge -- debugging --> netmonitor
@@ -46,11 +45,16 @@ Here are the projects in progress and where they are hosted from:
 
 {% mermaid %}
 graph LR
-debugger(Debugger.html[Nightly]) --> standalone[Github]
-perf(Perf.html[Nightly]) --> standalone
-webconsole(WebConsole.html[Nightly]) --> refactor[mozilla-central]
-inspector(Inspector.html[Release]) --> refactor
-netmonitor(Netmonitor.html[Release]) --> refactor
+Nightly --> debugger(Debugger.html)
+Nightly --> perf(Perf.html)
+Nightly --> webconsole(WebConsole.html
+debugger --> standalone[Github]
+perf --> standalone
+webconsole --> refactor[mozilla-central]
+Release --> inspector(Inspector.html)
+Release --> netmonitor(Netmonitor.html)
+inspector --> refactor
+netmonitor --> refactor
 {% endmermaid %}
 
 ## What we have done in Netmonitor.html
@@ -78,7 +82,7 @@ Currently, Debugger.html have supported both Firefox and Chrome remote debugging
 
 {% mermaid %}
 graph LR
-Firefox --> mozilla-rdp --> debugger(Debugger.html)
+Firefox -- mozilla-rdp --> debugger(Debugger.html)
 Chrome -- chrome-rdp --> debugger
 Node -- chrome-rdp --> debugger
 {% endmermaid %}
