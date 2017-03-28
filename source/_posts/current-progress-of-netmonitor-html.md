@@ -3,7 +3,9 @@ title: Current Progress of Netmonitor.html
 tags:
   - web
   - devtools
+date: 2017-03-29 00:33:37
 ---
+
 
 Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about `modern` web developers toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.
 
