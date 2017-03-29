@@ -30,10 +30,10 @@ install --> start[yarn start]
 {% mermaid %}
 graph LR
 Firefox -- debugging --> netmonitor(Netmonitor.html)
-Chrome -- debugging --> netmonitor
-Safari -- debugging --> netmonitor
-Edge -- debugging --> netmonitor
 netmonitor -- mozilla-rdp --> Firefox
+Chrome -- debugging --> netmonitor
+Edge -- debugging --> netmonitor
+Safari -- debugging --> netmonitor
 {% endmermaid %}
 
 We are going to make more Devtools easy to debug and can be used for cross-browser debugging.
@@ -46,16 +46,16 @@ Here are the projects in progress and where they are hosted from:
 
 {% mermaid %}
 graph LR
-Nightly --> debugger(Debugger.html)
-Nightly --> perf(Perf.html)
-Nightly --> webconsole(WebConsole.html)
-debugger --> standalone[Github]
-perf --> standalone
-webconsole --> refactor[mozilla-central]
-Release --> inspector(Inspector.html)
-Release --> netmonitor(Netmonitor.html)
-inspector --> refactor
-netmonitor --> refactor
+debugger(Debugger.html) --> Nightly
+perf(Perf.html) --> Nightly
+webconsole(WebConsole.html) --> Nightly
+standalone[Github] --> debugger
+standalone --> perf
+refactor[mozilla-central] --> webconsole
+inspector(Inspector.html) --> Release
+netmonitor(Netmonitor.html) --> Release
+refactor --> inspector
+refactor --> netmonitor
 {% endmermaid %}
 
 ## What we have done in Netmonitor.html
@@ -84,12 +84,12 @@ Currently, Debugger.html have supported both Firefox and Chrome remote debugging
 {% mermaid %}
 graph LR
 Firefox -- debugging --> netmonitor(Netmonitor.html)
-Chrome -- debugging --> netmonitor
-Safari -- debugging --> netmonitor
-Edge -- debugging --> netmonitor
 netmonitor -- mozilla-rdp --> Firefox
+Chrome -- debugging --> netmonitor
 netmonitor -- chrome-rdp --> Chrome
 netmonitor -- chrome-rdp --> Node[Node.js]
+Safari -- debugging --> netmonitor
+Edge -- debugging --> netmonitor
 {% endmermaid %}
 
 Since Debugger.html's pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!😇
