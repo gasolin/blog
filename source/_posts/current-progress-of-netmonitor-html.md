@@ -6,16 +6,16 @@ tags:
 date: 2017-03-29 00:33:37
 ---
 
-Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about `modern` web developers toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.
+Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about `modern` web developers toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.😎
 
 ## What Firefox Devtools team did last year
 
-Firefox Devtools was no different from Firefox itself. The Devtools panels are written in `XUL`, an HTML-like syntax language, and use several Firefox internal API called `XPCOM` or `Chrome privileged API`(Nothing related to Chrome Browser) to make the browser works.
+Firefox Devtools was no different from Firefox itself. The Devtools panels are written in `XUL`, an HTML-like syntax language, and use several Firefox internal API called `XPCOM` or `Chrome privileged API`(Nothing related to Chrome Browser) to make the browser works.👽
 
 In last year(2016), Firefox Devtools team's main goal is to convert the code base from XUL to pure HTML. The second goal is convert each tool with React/Redux structure for maintenance. Debugger, Inspector, Web Console are the first batch in the conversion progress.
-[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt from Firefox Devtools team to embrace the modern web developers' toolset. Now new Debugger and Web Console are available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
+[Debugger.html](https://hacks.mozilla.org/2016/09/introducing-debugger-html/) is the very first attempt from Firefox Devtools team to embrace the modern web developers' toolset. Now new Debugger and Web Console are available in Firefox [Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)🍸
 
-[Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has their standalone repository hosted on Github. A developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html/perf.html with any browser's devtools! 
+[Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has their standalone repository hosted on Github. A developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html/perf.html with any browser's devtools!🚅
 
 {% mermaid %}
 graph LR
@@ -25,7 +25,7 @@ install --> start[yarn start]
 
 ## What `Run on the Browser tab` means?
 
-`Run on the Browser tab` is a term versus `Run inside of the developer panel`. Traditionally Devtools are running inside of the browser's developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened in a browser tab by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve Firefox Devtools with any Browser's Devtools, its an unfair advantage.
+`Run on the Browser tab` is a term versus `Run inside of the developer panel`. Traditionally Devtools are running inside of the browser's developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened in a browser tab by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve Firefox Devtools with any Browser's Devtools, its an unfair advantage.🚀
 
 {% mermaid %}
 graph LR
@@ -60,9 +60,9 @@ netmonitor --> refactor
 
 ## What we have done in Netmonitor.html
 
-Ricky Chien and I joined the effort of convert DOM Inspector from XUL to HTML. DOM Inspector is a more complicated tool to convert, so DOM Inspector is still half `React` and without `Redux` in the playground.
+Ricky Chien and I joined the effort of convert Object Inspector from XUL to HTML. Object Inspector is a more complicated tool to convert, so Object Inspector is still half `React` and without `Redux` in the playground.
 
-When the DOM Inspector is fully converted to HTML, we shift our focus on convert the next important Devtool: `Netmonitor`. With Honza, Janda, Steve Chung, and other contributors' help, at the end of Feb we have reached our first phase tangible goal: Converted the whole Netmonitor panel from XUL to HTML, with `React`, `Redux`, and `Immutablejs`. Now we have confidence that the code base is easy to read and contribute.
+When the Object Inspector is fully converted to HTML, we shift our focus on convert the next important Devtool: `Netmonitor`. With Honza, Janda, Steve Chung, and other contributors' help, at the end of Feb we have reached our first phase tangible goal: Converted the whole Netmonitor panel from XUL to HTML, with `React`, `Redux`, and `Immutablejs`. Now we have confidence that the code base is easy to read and contribute.🤗
 
 ## What we plan to do next
 
@@ -79,7 +79,7 @@ Here they are:
 
 ## What could expect in the future
 
-Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node.js!
+Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node.js!😮
 
 {% mermaid %}
 graph LR
@@ -92,7 +92,7 @@ netmonitor -- chrome-rdp --> Chrome
 netmonitor -- chrome-rdp --> Node[Node.js]
 {% endmermaid %}
 
-Since Debugger.html's pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!
+Since Debugger.html's pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!😇
 
 {% mermaid %}
 graph LR
