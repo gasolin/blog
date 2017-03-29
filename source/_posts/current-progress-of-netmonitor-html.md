@@ -64,6 +64,9 @@ Ricky Chien and I joined the effort of convert Object Inspector from XUL to HTML
 
 When the Object Inspector is fully converted to HTML, we shift our focus on convert the next important Devtool: `Netmonitor`. With Honza, Janda, Steve Chung, and other contributors' help, at the end of Feb we have reached our first phase tangible goal: Converted the whole Netmonitor panel from XUL to HTML, with `React`, `Redux`, and `Immutablejs`. Now we have confidence that the code base is easy to read and contribute.🤗
 
+![Imgur](http://i.imgur.com/aiqBXV5.png)
+Picture: How current Netmonitor looks like
+
 ## What we plan to do next
 
 We just finished the Netmonitor workweek (Fred, Honza, Ricky) in Taiwan, plenty of discussions have occurred, and we have good progress for what should be going on for the Netmonitor.
