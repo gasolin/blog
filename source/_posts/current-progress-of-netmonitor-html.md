@@ -6,6 +6,8 @@ tags:
 date: 2017-03-29 00:33:37
 ---
 
+Update: Full instructions are avaiable on [Netmonitor Readme](https://github.com/mozilla/gecko-dev/blob/master/devtools/client/netmonitor/README.md) to run the Network Monitor in the browser tab.
+
 Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about `modern` web developers toolset, I mean `React`, `Redux`, `Immutablejs`, and `npm` modules.😎
 
 ## What Firefox Devtools team did last year
