@@ -26,7 +26,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
 <span style="font-weight:bold;">第二步</span>
 編輯 controllers.py 這個檔案 (檔案的路徑應該是ProjName/ProjName/controllers.py),
 我們將檔案內看到的框架自動生成的內容都先清除或註解掉後, 輸入如下一段程式碼:
-<pre>
+```
 0  from turbogears import controllers
 0  from turbogears import expose
 1  from turbogears.widgets import DataGrid
@@ -53,8 +53,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
 22              ('Lose','lose')<span style="font-weight:bold;">,</span>
 23        ])
 24        return status_form.<span style="font-weight:bold;">render</span>(teams)
-
-</pre>
+```
 
 <span style="font-weight:bold;">第三步</span>
 回到命令列, 在命令列上先進入剛剛建立的資料夾後, 輸入
@@ -62,8 +61,8 @@ $ ./start-ProjName.py
 
 在執行 ProjName/start-ProjName.py 後, 打開瀏覽器輸入 http://localhost:8000/status 這個網址,可以看到如下表結果.
 
-<pre>
+```
  Team   Play   Win   Draw   Lose     
 Arsenal  38    30     5      3
 chelsea  38    35     2      1
-</pre>
+```

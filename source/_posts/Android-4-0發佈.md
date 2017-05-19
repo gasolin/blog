@@ -7,9 +7,11 @@ date: 2011-10-19 09:38:33
 
 <div class="separator" style="clear: both; text-align: center;">[![](http://developer.android.com/sdk/images/4.0/face-unlock.png)](http://developer.android.com/sdk/images/4.0/face-unlock.png)</div>
 Android 4.0 (IceCream Sandwich)如期推出了  這次的改進比較多是在軟體層面，套用Apple的OSX Lion廣告詞：
-> <pre>ICS擁有超過250種全新功能，
+> ICS擁有超過250種全新功能，
 > 包括臉部解鎖、連續語音辨識、全景照片與影像特效、5倍瀏覽器速度、流量監測...
-> ICS把Android推向下一個紀元</pre>Android 4.0比較重要的新功能已列在 [http://developer.android.com/sdk/android-4.0-highlights.html](http://developer.android.com/sdk/android-4.0-highlights.html)
+> ICS把Android推向下一個紀元
+
+Android 4.0比較重要的新功能已列在 [http://developer.android.com/sdk/android-4.0-highlights.html](http://developer.android.com/sdk/android-4.0-highlights.html)
 
 <iframe allowfullscreen="" frameborder="0" height="360" src="http://www.youtube.com/embed/-F_ke3rxopc" width="640"></iframe>
 

@@ -24,7 +24,8 @@ How to try it? Well, it's extremely simple.
 For a fresh quickstart site,
 
 In <span style="font-weight: bold;">controllers.py</span>:
-<pre>
+
+```
 from plotkit import EasyPlot
 
 class Root(controllers.RootController):
@@ -38,7 +39,7 @@ return dict(ep= EasyPlot(id="diag",
                        width="300",
                        height="300",
                        data=[setA, setB, setC]))
-</pre>
+```
 
 In <span style="font-weight: bold;">welcome.kid</span>:
 

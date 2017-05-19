@@ -13,14 +13,14 @@ TurboGears 中可以使用從模板生成網頁 (Templating) 的方式,可以更
 讓我們用模板功能取代將網頁用字串存在 controllers 中的方式:
 
 <span style="font-weight:bold;">1.建立控制邏輯(Add Logic)</span>
-<pre>
+```
 0 from turbogears import controllers
 1 from turbogears import expose
 2 class Root(controllers.RootController):
 3    @expose(template=".templates.<span style="font-style:italic;">filename</span>")
 4    def <span style="font-style:italic;">webpage</span>(self):
 5        return dict()
-</pre>
+```
 
 透過在 @expose()方法中加入 template=".templates.<span style="font-style:italic;">filename</span>"宣告來指定要使用的模板名稱.
 

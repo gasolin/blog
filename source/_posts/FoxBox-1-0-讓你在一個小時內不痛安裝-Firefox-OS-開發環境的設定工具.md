@@ -36,7 +36,9 @@ date: 2015-08-24 07:36:58
 
 當VM跑起來後，登入VM（帳號/密碼為 vagrant/vagrant）並執行以下命令：
 
-> <pre>`<code>$ gaia_init.sh
+```
+> $ gaia_init.sh
 > $ cd gaia
-> $ make` </code></pre>
+> $ make`
+```
 即可順利編譯好Firefox OS 的 Web 端（Gaia）程式碼囉！

@@ -12,7 +12,7 @@ SUM = (int(A)+int(B))
 我們可以使用"@validate()"來預先先確認輸入資料, 並將資料轉換成預期的資料型態.
 範例如下:
 
-<pre>
+```
 from turbogears.validators import *
         @expose(<span style="font-weight:bold;">inputform ="add"</span>)
         @validate(<span style="font-weight:bold;">validators=dict(A=validators.Int(),B=validators.Int())</span>)
@@ -25,7 +25,7 @@ from turbogears.validators import *
             """
             SUM = <span style="font-weight:bold;">A + B</span>
             return template%(A,B,SUM)
-</pre>
+```
 
 @validate(validators=dict(A=Int(),B=Int()))
 @validate(validators={"A":Int()}, "B":Int())

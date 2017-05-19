@@ -16,17 +16,22 @@ date: 2005-03-10 13:46:39
 成功後再裝 [Mobiwan2](http://www.ti-wmc.nl/mobiwan2/) 卻遇到問題.
 
 解決方法是在執行NS2-AllinOne 安裝前先照著 Mobiwan2 網站上的指令 patch 好,
-<pre># cd <your>ns-allinone-2.27/ns-2.27
-# zcat <patchfile.gz></patchfile.gz></your>patchfile.gz<your><patchfile.gz> |patch -p1</patchfile.gz></your></pre> 然後再執行 NS2 安裝
+```
+# cd <your>ns-allinone-2.27/ns-2.27
+# zcat <patchfile.gz></patchfile.gz></your>patchfile.gz<your><patchfile.gz> |patch -p1</patchfile.gz></your>
+```
+然後再執行 NS2 安裝
 # ./install
 
 要是已經把 NS2 裝好了怎麼辦? 還能怎麼辦, 我只會一個笨方法......
 先把之前裝的整個目錄砍掉後, 再裝一次吧...Orz.
 
 <span style="font-family:新細明體;">在Cygwin上測試的方法: 命令列中輸入 </span><span lang="EN-US">startxwin.bat</span><span style="font-family:新細明體;">。會產生一個新的視窗，在此命令視窗中輸入</span>
-<pre>$ cd your path to ns-2.27
+```
+$ cd your path to ns-2.27
 $ ./ns simple-mipv6.tcl
-</pre>
+```
+
 若要在Fedora Core 3 上安裝, 因為 gcc 版本太新(3.34)的關係, 笨笨的 NS2 不懂得支援,
 去下載 [http://www.ececs.uc.edu/~cdmc/ucbt/src/ns227-gcc34.patch ](http://www.ececs.uc.edu/%7Ecdmc/ucbt/src/ns227-gcc34.patch)
 這個好心人寫的修正檔,

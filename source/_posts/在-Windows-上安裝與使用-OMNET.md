@@ -71,18 +71,18 @@ Install and Using OMNET++ on Windows
 **6, VC 中編譯專案**
 首先打開命令列, 準備開始編譯的動作.
 命令列開啟流程為按作業系統左下角的"開始", 在選單中選擇"執行",
-其後將跳出輸入視窗, 在視窗中鍵入 <pre class="code"> cmd (或 Terminal)</pre>  按下確定後即彈出類似 Dos 視窗.
+其後將跳出輸入視窗, 在視窗中鍵入 `cmd (或 Terminal)`  按下確定後即彈出類似 Dos 視窗.
 接著用一般 Dos 指令切換到專案目錄下準備開始編譯, 鍵入
-<pre class="code"> opp_nmakemake</pre>  這動作會根據目錄中的來源檔案生成 Makefile.vc 檔案
+`opp_nmakemake`  這動作會根據目錄中的來源檔案生成 Makefile.vc 檔案
 
 接著使用下面指令來生成模擬:
-<pre class="code">nmake -f Makefile.vc</pre>  做完以上部驟之後就可以照一般 VC 編譯方式編譯啦:)
+`nmake -f Makefile.vc`  做完以上部驟之後就可以照一般 VC 編譯方式編譯啦:)
 
 **7, 重新編譯專案**
-之前已編譯過時資料夾中會存有舊的 Makefile.vc 檔案, 可鍵入  <pre class="code">opp_nmakemake -f </pre>  來強制覆寫 Makefile.vc .
+之前已編譯過時資料夾中會存有舊的 Makefile.vc 檔案, 可鍵入 `opp_nmakemake -f`  來強制覆寫 Makefile.vc .
 
 在編譯前要清除過時連結資料, 可以在命令列中輸入
-<pre class="code">nmake Makefile.vc clean </pre>  也可以在 VC 中使用 選單/Build/Clean 選項將過時連結資料清除
+`nmake Makefile.vc clean`  也可以在 VC 中使用 選單/Build/Clean 選項將過時連結資料清除
 
 **8.選擇 Tkenv 視窗模式模擬**
 在預設的情況下, 使用 OMNET++ 編譯出來的檔案將是在 cmdenv 命令列環境下執行.

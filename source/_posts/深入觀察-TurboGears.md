@@ -17,20 +17,24 @@ TurboGears 的多數的秘密存在於 Decorator (用"＠"符號開頭的敘述)
 適度使用可以讓程式碼更清晰.
 
 TurboGears 基本的網頁型態是這樣:
-> <pre>
+```
+>
 >     @expose()
 >     def index():
->         return </pre>
+>         return
+```
 
 基本的 pyhton method 加上 [@expose()](http://docs.turbogears.org/1.0/ExposeDecorator) 這個 decorator 敘述, 
 讓 server 知道這個函式是 public to web 的.
 
 需要登入認證功能, 就再加一個 [@identity](http://docs.turbogears.org/1.0/IdentityDecorator) 敘述
+```
 > #auth_admin_required = identity.in_group("admin")
 >     @identity.require(auth_admin)
 >     @expose()
 >     def index():
 >         return
+```
 
 如此被裝飾到的網頁就有了認證功能.
 
@@ -47,10 +51,12 @@ TurboGears 基本的網頁型態是這樣:
 
 @error_handler 和 @exception_handeler 被用來對應表單驗證功能
 讓我們可在同一個函式裡處理錯誤, 或另外定義函式做錯誤處理
-> <pre>
+```
+>
 >     @error_handler("index")
 >     def ex_report():
->         return "exception"</pre>
+>         return "exception"
+```
 
 <span style="font-weight:bold;">
 2\. 一個函式, 多重輸出</span>
@@ -58,7 +64,9 @@ TurboGears 基本的網頁型態是這樣:
 很多人知道 TurboGears 在樣板選擇上的多樣性, 
 但是卻沒有挖掘到在 TurboGears 的神奇之處.
 在 TurboGears 中使用同一個函式,就可以針對不同需求, 輸出多種期望的格式.
-> <pre>
+
+```
+>
 >     # 使用網頁樣板產生網頁介面 
 >     @expose(template = "hello.welcome") 
 >     # 產生 JSON 格式介面供 AJAX 程式調用
@@ -66,7 +74,8 @@ TurboGears 基本的網頁型態是這樣:
 >     #使用不同的樣板引擎, 產生RSS格式介面
 >     @expose(template = "genshitext:hello.hoho", as_format="RSS/XML") 
 >     def show(self, **kw):
->         return dict(name = 'foo', url = 'boo')</pre>
+>         return dict(name = 'foo', url = 'boo')
+```
 
 這是因為 TurboGears 回傳使用 python 特殊的 "字典 (dict)" 形式, 
 而不是一般常見的字串形式(當然 TurboGears 同樣也可以直接輸出字串).
@@ -80,10 +89,13 @@ method 輸出字典型式的返回值到 decorator. 再根據 @expose decorator 
 
 要從別的 method 調用這個函式不同的輸出也很容易, 
 只要在返回值裡加上一個 "tg_format" 參數即可手動指定輸出格式.
-> <pre>
+```
+>
 >     @expose()
 >     def rss():
->         return rss(tg_format = "RSS/XML")</pre>
+>         return rss(tg_format = "RSS/XML")
+```
+
     <span style="font-weight:bold;">
 3\. 簡單設定 </span>
 

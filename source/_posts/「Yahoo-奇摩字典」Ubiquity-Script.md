@@ -6,7 +6,9 @@ date: 2008-09-10 03:43:48
 ---
 
 把下面的 script copy 到 [Ubiquity](http://labs.mozilla.com/2008/08/introducing-ubiquity/) 的 command-editor 中。
-每當看到不熟的生字，打開 [Ubiquity](http://labs.mozilla.com/2008/08/introducing-ubiquity/)，輸入「fy」，按下「Enter」鍵，即可連結到「[Yahoo!奇摩字典](http://tw.dictionary.yahoo.com/)」看解釋。> <pre>
+每當看到不熟的生字，打開 [Ubiquity](http://labs.mozilla.com/2008/08/introducing-ubiquity/)，輸入「fy」，按下「Enter」鍵，即可連結到「[Yahoo!奇摩字典](http://tw.dictionary.yahoo.com/)」看解釋。
+
+```
 > CmdUtils.CreateCommand({
 > name: "fy",
 > homepage: "zhpy.googlecode.com",
@@ -30,4 +32,4 @@ date: 2008-09-10 03:43:48
 > Utils.openUrlInBrowser(urlString);
 > }
 > })
-> </pre>
+```

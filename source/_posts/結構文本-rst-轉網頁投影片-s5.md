@@ -36,7 +36,7 @@ rst2s5.py xxx.rst ooo.html
 語法備忘
 =============
 
-<pre>
+```
 =======
 標題
 =======
@@ -81,4 +81,4 @@ http://docutils.sourceforge.net/docs/user/slide-shows.html
 
    前一張後的 include 語句支援嵌套其他 rst 文件.
 
-</pre>
+```

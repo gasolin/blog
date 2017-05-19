@@ -8,7 +8,8 @@ date: 2006-11-16 02:43:13
 
 用 [TurboEntity](http://turboentity.ematia.de/) 照著 '[SimpleBlog Part II](http://www.splee.co.uk/2006/10/20/simpleblog-part-2/)' 中的範例改寫後, 獲得以下程式碼 (model.py):
 
-> <pre>
+```
+>
 > from turboentity import *
 > from docutils.core import publish_parts
 > 
@@ -36,7 +37,8 @@ date: 2006-11-16 02:43:13
 >     comment_date = Column(DateTime, default=datetime.now())
 >     content = Column(Unicode)
 >     post = ManyToOne("Post",backref='comments') 
-> </pre>
+>
+```
 
 要表示 post-comments 關係只需分別在兩個類別中宣告 OneToMany - ManyToOne 即可,真是方便呀.
 

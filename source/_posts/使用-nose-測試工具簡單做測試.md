@@ -26,12 +26,14 @@ date: 2007-03-04 17:24:14
 
 將要測試的內容寫入 something.py 這個檔案[註1]:
 
-> <pre>class Hello(object):
+```
+> class Hello(object):
 >       def  __init__(self):
 >            self.template = "hello world"
 > 
 >       def render(self):
->           return self.template</pre>
+>           return self.template
+```
 
 nose 測試工具識別測試例子的條件, 是判斷找到的這個類別或方法的名稱是不是以"test" 或 "Test"開頭. 如果是的話就當成是測試例子. nose 會自動搜尋子目錄下所有符合的測試例子, 並自動開始測試.
 
@@ -39,14 +41,16 @@ nose 測試工具識別測試例子的條件, 是判斷找到的這個類別或�
 
 testsomething.py:
 
-> <pre>
+```
+>
 >     def test_Hello():
 >         abc = Hello()
 >         assert "hello" in abc.render()
 > 
 >     def test_foreign():
 >         abc = Hello()
->         assert "bonjour" not in abc.render()</pre>
+>         assert "bonjour" not in abc.render()
+```
 
 assert 是 nose 用來判斷測試結果的語法. 主要有這兩種:
 
@@ -71,7 +75,8 @@ assert 是 nose 用來判斷測試結果的語法. 主要有這兩種:
 
 有測試工具的好處就是我們只要單純地再次運行 nosetests 命令就好了, 不用花腦力去判斷或思考:) 我們查看訊息時會看到類似以下的訊息:
 
-> <pre>2, in runTest
+```
+> 2, in runTest
 > self.testFunc()
 > File "D:\path\pyfile\testsomething.py", line 90, in test_Hello
 > assert "bonjour" not in abc.render()
@@ -80,7 +85,8 @@ assert 是 nose 用來判斷測試結果的語法. 主要有這兩種:
 > Ran 1 tests in 0.030s
 > 
 > FAILED (failures=1, errors=1)
-> </pre>
+>
+```
 
 上面的報告提醒我們有一件錯誤: "bonjour"字串原本不應該出現在 abc.render() 回應結果中的, 但結果中竟然出現了!
 
@@ -99,10 +105,12 @@ assert 是 nose 用來判斷測試結果的語法. 主要有這兩種:
 
 加入的測試例子:
 
-> <pre>
+```
+>
 >     def test_bonjour():
 >         abc = Hello('bonjour')
->         assert "bonjour" in abc.render()</pre>
+>         assert "bonjour" in abc.render()
+```
 
 接著要做的就是再跑一次 nosetests, 看到這個新的例子跟我們報告錯誤了. OK, 那就開始修改 hello 函式吧![註2]
 
@@ -111,7 +119,7 @@ assert 是 nose 用來判斷測試結果的語法. 主要有這兩種:
 nose 支援的測試的方式琳瑯滿目, 可以使用 "nosetests -h" 命令來查看支援的項目.
 
 例如另外一個常用的測試方式是使用 doctest:
-<pre class="literal-block">nosetests --with-doctest</pre>
+`nosetests --with-doctest`
 
 那麼 doctest 是什麼樣的測試方式? 
 又該怎麼使用 doctest 呢? 嘿嘿, 4月 [OSDC.tw 07](http://osdc.tw/2007/02/post_7.html) 再開講囉:D

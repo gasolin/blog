@@ -46,20 +46,24 @@ Setup apache host site
 $ sudo gedit /etc/apache2/mods-enabled/dav_svn.conf
 
 uncomment following lines:
-<pre>[Location /svn]
+```
+[Location /svn]
 DAV svn
 SVNPath /home/svn
 AuthType Basic
 AuthName "Subversion Repository"
 AuthUserFile /etc/subversion/passwd
 [/Location]
-</pre>
+```
 or add following just above the /location:
-<pre>
-    [LimitExcept GET PROPFIND OPTIONS REPORT]
+
+```
+[LimitExcept GET PROPFIND OPTIONS REPORT]
     Require valid-user
     [/LimitExcept]
-</pre>為 subversion 存取加上密碼:
+```
+
+為 subversion 存取加上密碼:
 
 sudo htpasswd -c /etc/subversion/passwd user_name
 
@@ -83,8 +87,8 @@ To add a virtual host to host trac:
 
 $ sudo gedit /etc/apache2/sites-available/trac
 
-<pre><span style="font-family:monospace;">
-</span>[VirtualHost *]
+```
+[VirtualHost *]
      ServerAdmin webmaster@localhost
      ServerName trac.example.com
      DocumentRoot /usr/share/trac/cgi-bin/
@@ -109,7 +113,8 @@ $ sudo gedit /etc/apache2/sites-available/trac
      CustomLog /var/log/apache2/access.trac.log combined
 
 [/VirtualHost]
-</pre>
+```
+
 Uncomment the AddHandler line in /etc/apache2/apache2.conf so that the Trac CGI program will be executed:
 
 # To use CGI scripts outside /cgi-bin/:

@@ -17,36 +17,52 @@ date: 2010-09-11 00:27:20
 **開分支**
 
 我有一個名為「ZAKU」（薩克）的目錄，主幹版本代號為3, 現在要實作一個將綠色變成紅色的功能，這時我們可以建立一個新分支來繼續開發這個新功能。分支命令的格式為：
+
+```
 > $ hg branch [branch name]
+```
+
 因此要建立一個名為「red」的分支，可以使用以下命令：
-> <pre>$ hg branch red
-> marked working directory as branch red</pre>
+
+```
+> $ hg branch red
+> marked working directory as branch red
+```
 這麼一來，之後 commit 的 code 都會進入「red」這個分支了。
 
 **查看狀態**
 
 在 commit 進一些 code 之後（版本代號到13），輸入「hg branchs」命令可以列出所有版本
 
-> <pre>$ hg branches
+```
+> $ hg branches
 > default                       3:e2287f9031a1 (inactive)
-> red                           13:e590de4b0dc9</pre>
+> red                           13:e590de4b0dc9
+```
+
 **切換分支**
 
 在開發新功能的同時，也可能會碰上整個專案共通的bug，以前老派的作法是再 check out 一份主幹的程式碼，然後兩邊修正，現在有了hg, 只要先暫時切換回主幹，把bug修正了再合併回分支（或到時一次把分支合併回主幹）。
 
 要切換回主幹，輸入「hg update default」即可。
 
-> <pre>$ hg up default
-> 4 files 已更新, 0 files 已合併, 3 files 已移除, 0 files unresolved</pre>
+```
+> $ hg up default
+> 4 files 已更新, 0 files 已合併, 3 files 已移除, 0 files unresolved
+```
+
 **合併**
 
 當我們把「red」分支中的新功能做好後，可以很容易地將這些修改合併回主幹。
 
 首先，用上面的方法切換回主幹，然後輸入「hg merge red」，即可將「red」分支中的修改加進主幹。
 
-> <pre>$ hg merge red
+```
+> $ hg merge red
 > 5 files 已更新, 0 files 已合併, 0 files 已移除, 0 files unresolved
-> (branch merge, don't forget to commit)</pre>
+> (branch merge, don't forget to commit)
+```
+
 合併命令的格式為
 
 > hg merge [branch name]

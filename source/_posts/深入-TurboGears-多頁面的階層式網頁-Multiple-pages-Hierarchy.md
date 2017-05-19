@@ -23,7 +23,7 @@ http://localhost:8080/calcit?A=4&B=5
 <span style="font-weight:bold;">CASE1: controllers.py 內</span>
 在 controllers.py 內編寫多個類別(class)
 
-<pre>
+```
 0  from turbogears import controllers,expose
 1
 2  class <span style="font-weight:bold;">Subfolder</span>(controllers.RootController):
@@ -42,21 +42,21 @@ http://localhost:8080/calcit?A=4&B=5
 15    def A(self):
 16        return "I am A"
 17    <span style="font-weight:bold;">B = Subfolder()</span>
-</pre>
+```
 
 我們在 2~8 行編寫了一個類別, 在 Root 類別內第 17 行建立該類別的實體, 最後我們會得到像下面的網頁階層樹
-<pre>
+```
    Root
    /    A    B
                  C
-</pre>
+```
 網頁 localhost/ 跟網頁 localhost/B 的文字是由各自類別的 index() 方法來處理.
 
 <span style="font-weight:bold;">CASE2: controllers.py 外 (同目錄):</span>
 
 將 Subfolder 類別存成 subfolder.py , 保存在與 controllers.py 同目錄下. subfolder.py 內容如下:
 
-<pre>
+```
 0  from turbogears import controllers,expose
 1
 2  class Subfolder(controllers.RootController):
@@ -66,11 +66,11 @@ http://localhost:8080/calcit?A=4&B=5
 6     @expose()
 7     def C(self):
 8         return "I am C"
-</pre>
+```
 
 TurboGears 可以從 controllers.py 內調用同目錄下的其他類別
 
-<pre>
+```
 from subfolder import Subfolder
 from turbogears import controllers,expose
 class Root(controllers.RootController):
@@ -82,7 +82,7 @@ class Root(controllers.RootController):
         return "I am A"
 
     B = Subfolder()
-</pre>
+```
 
 "from subfolder import Subfolder" 前面小寫的"subfolder"是檔名 (subfolder.py), 後面的 Subfolder 是類別名
 

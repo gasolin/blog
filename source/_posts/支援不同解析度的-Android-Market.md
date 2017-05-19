@@ -13,13 +13,13 @@ date: 2009-11-18 01:34:36
 
 一般來說要支援各種解析度，可以在編譯前先將編譯 Target 選為 1.6（專案名>右鍵>Properties>Android>Android 1.6），並在 AndroidManifest 清單中加入如下設定：
 
-<pre>
+```
  [supports-screens 
      android:largeScreens="true" 
      android:normalScreens="true" 
      android:smallScreens="true" 
      android:anyDensity="false"/]
-</pre>
+```
 
 「normalScreens」代表的是一般解析度（如 G1, Hero），「smallScreens」代表的是較低解析度（如 Tatoo）。
 

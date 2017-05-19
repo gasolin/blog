@@ -28,7 +28,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
 編輯 controllers.py 這個檔案 (檔案的路徑應該是ProjName/ProjName/controllers.py),
 我們將檔案內看到的框架自動生成的內容都先清除或註解掉後, 輸入如下一段程式碼:
 
-<pre>
+```
     0 from turbogears import controllers,expose
     1 class Root(controllers.RootController):
     2     @expose(<span style="font-weight:bold;">inputform ="add"</span>)
@@ -41,7 +41,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
     9         """
    10         SUM = (int(A)+int(B))
    11         return template%(A,B,SUM)
-</pre>
+```
 
 第三步
 回到命令列, 在命令列上先進入剛剛建立的資料夾後, 輸入

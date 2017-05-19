@@ -6,7 +6,7 @@ date: 2006-02-15 15:59:06
 ---
 
 這個例子可以在上個例子產生的表格後面再加上一個增加資料的表單連結, 
-<pre>
+```
 from turbogears import widgets
 ....
     @expose()
@@ -36,4 +36,4 @@ from turbogears import widgets
     def addteam(self, <span style="font-weight:bold;">name, win, draw, lose</span>):
         teams.append(TeamStatus(name, <span style="font-weight:bold;">int</span>(win),<span style="font-weight:bold;">int</span>(draw),<span style="font-weight:bold;">int</span>(lose)))
         raise redirect(url('/status'))
-</pre>
+```

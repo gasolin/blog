@@ -27,7 +27,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
 編輯 controllers.py 這個檔案 (檔案的路徑應該是ProjName/ProjName/controllers.py), 
 我們將檔案內看到的框架自動生成的內容都先清除或註解掉後, 輸入如下一段程式碼:
 
-<pre>
+```
     0 from turbogears import <span style="font-weight:bold;">controllers,expose,url</span>
     1 class Root(controllers.RootController):
     2         @expose()
@@ -37,7 +37,7 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
     6         @expose()
     7         def tg(self):
     8                 return "TurboGears World!&lt;br/&gt; &lt;a href=%s&gt;Home&lt;/a&gt;"""%<span style="font-weight:bold;">url</span>("/home")
-</pre>
+```
 
 恩, 看的出來這一分鐘的例子跟前一篇有很多一樣的地方了嗎? 
 這個例子跟上一個例子一樣由"import", "class"(Root), 跟 "def"三個部分構成.

@@ -27,13 +27,13 @@ ProjName 是我們自己指定的專案名稱, 專案名稱可以有空格, 第�
 
 我們現在來進入剛剛建立的資料夾, 用你習慣的 python 文本(文件)編輯器來編輯 controllers.py 這個檔案 (檔案的路徑應該是ProjName/ProjName/controllers.py), 我們將檔案內看到的框架自動生成的內容都先清除或註解掉後, 輸入如下一段程式碼:
 
-<pre>
+```
    0 from turbogears import controllers, expose
    1 class Root(controllers.RootController):
    2      @expose()
    3      def index(self):
    4          return "Hello World!"
-</pre>
+```
 
 <span style="font-weight: bold;">
 第三步</span>

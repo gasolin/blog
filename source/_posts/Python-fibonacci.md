@@ -15,7 +15,7 @@ date: 2006-09-07 11:17:42
 
 <span style="font-weight: bold;">Python 程式碼:</span>
 
-<pre>
+```
 def Fib1(n):
    """遞迴函式"""
    if n==0:
@@ -52,7 +52,7 @@ if __name__=="__main__":
         print Fib2(30)
         endtime = time.clock()
         print endtime - begintime
-</pre>
+```
 
 執行結果:
 832040

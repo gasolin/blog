@@ -68,7 +68,7 @@ Create a folder, switch in it, and run the following command:
 > $ repo init -u https://&lt;your own git URL&gt;.gitThen, fetch the resources with command
 
 > $ repo syncTo fetch a branch, run command
-<pre>&nbsp;</pre>> $ repo init -u https://&lt;your own git URL&gt;.git **-b** &lt;branch&gt;
+> $ repo init -u https://&lt;your own git URL&gt;.git **-b** &lt;branch&gt;
 Read [Git and repo cheatsheet](http://source.android.com/source/developing.html#git-and-repo-cheatsheet) for more details about how git and repo tool work together. &nbsp; 
 
 ## Sample
