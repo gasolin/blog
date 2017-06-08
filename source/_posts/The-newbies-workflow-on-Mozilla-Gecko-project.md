@@ -175,3 +175,6 @@ try: -b od -t none -p win32,win64,macosx64,linux,linux64,linux64-asan -u mochite
 
 You can manipulate the script based on what you need to test.
 
+## Reference
+
+* https://sny.no/2016/03/geckogit
