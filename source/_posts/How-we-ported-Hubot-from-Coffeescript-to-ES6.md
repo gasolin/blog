@@ -34,11 +34,13 @@ The converted code is... not all pretty for human read, and all converted functi
 **4\. test cases matter**
 
 <div dir="ltr">Hubot itself contains good coverage of unit tests. So we are able to test one ported script file with one ported test file when we start the porting. The unit test files contain great number of redundant return sentences when convert from coffeescript.</div><div dir="ltr">
-</div>**5\. class and super**
+</div>
+
+**5\. class and super**
 
 Hubot use Class syntax from Coffeescript。Thanksfully ES6 support the Class syntax, which is a bit different from Coffeescript. You can check how to use Class and super on [MDN.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 
-**
-****6\. Default + rest + spread**
+
+**6\. Default + rest + spread**
 
 Hubot contain several syntax like 'reply(strings...)'. The syntax 'strings...' in Coffeescript is correspondent to "...strings" in ES6（The order of '...' is reversed）.
 '...strings' denotes an array and I feel its a bit hard to figure out when to expand it or not.
@@ -58,11 +60,13 @@ We can use [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 Learning how chat bot works is the main reason we start porting hubot to ES6!
 A simple plain javascript plugin could be as easy as: (src/simple.js)
 
+```
 > module.exports = function(robot) {
 > &nbsp; robot.respond(/(hello)/i, function(res) {
 > &nbsp; &nbsp; res.send('hi'); 
 > &nbsp; });
 > }You can put it in generated plugin folder and it will just work.
+```
 
 I've created a [ticket on hubot issue list](https://github.com/github/hubot/issues/1138) to start a discussion if hubot would like to go with ES6 in its future version.
 
