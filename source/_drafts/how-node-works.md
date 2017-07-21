@@ -1,5 +1,5 @@
 ---
-title: how node.js works
+title: Node.js 的發展
 tags:
   - web
   - mobile
@@ -22,32 +22,16 @@ Node.js推出當時，除了擁有一個比其他相似競爭者快上幾倍的�
 
 ## Node.js衍生發展
 
+隨著Node.js更加成熟，Web開發者也圍繞著Node.js重新發明他們常用的工具。最先是Web開發框架（如Express, hapi, koa）與資料庫接口，再來是相關的編譯工具（grunt, gulp, webpack）。同時，也有人開始嘗試將Node.js與原有的瀏覽器環境結合，讓開發者得以使用網頁相關技術打造桌面應用（nw.js, electron)。時至今日，也可透過Node.js相關編譯工具，使用網頁相關技術來做行動裝置App開發（Cordova, React Native）。
+
 {% mermaid %}
 graph LR
 Javascript --> Node
+Node --> webframework[Web Framework]
 Node --> Build[Build tools]
-Build --> ReactNative
-Node --> Electron
+Build --> ReactNative[Mobile App]
+Node --> Electron[Desktop App]
 {% endmermaid %}
-
-
-
-## 安裝
-
-https://github.com/creationix/nvm
-
-
-```
-C:\> choco install nvm
-```
-
-
-nvm install v6
-
-npm init
-
-npm install -g yarn
-
 
 ## 參考資料
 
