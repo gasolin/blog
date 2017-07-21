@@ -3,7 +3,9 @@ title: Node.js 的發展
 tags:
   - web
   - mobile
+date: 2017-07-21 17:54:18
 ---
+
 
 2009年推出的Node.js是讓Javascript成為一門廣為通用的程式語言的關鍵。Node.js將原專為Chrome瀏覽器開發的V8引擎抽離出瀏覽器，讓使用者在一般命令行環境中就可以執行Javascript。
 
