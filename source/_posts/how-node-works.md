@@ -30,8 +30,8 @@ Node.js推出當時，除了擁有一個比其他相似競爭者快上幾倍的�
 
 {% mermaid %}
 graph LR
-Javascript <--> Browser
-Javascript <--> Node
+Javascript --> Browser
+Javascript --> Node
 Node --> webframework[Web Framework(Express)]
 Node --> Build[Build tools(Webpack)]
 Build --> ReactNative[Mobile App(React Native)]
