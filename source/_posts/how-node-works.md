@@ -32,11 +32,11 @@ Node.js推出當時，除了擁有一個比其他相似競爭者快上幾倍的�
 graph LR
 Javascript --> Browser
 Javascript --> Node
-Node --> webframework[Web Framework(Express)]
-Node --> Build[Build tools(Webpack)]
-Build --> ReactNative[Mobile App(React Native)]
-Node --> Electron[Desktop App(Electron)]
-Electron --> Editor[Editor(Visual Studio Code)]
+Node --> Webframework[Web Framework]
+Node --> Build[Build tools]
+Build --> ReactNative[Mobile App]
+Node --> Electron[Desktop App]
+Electron --> Editor[Editor]
 Browser --> Electron
 {% endmermaid %}
 
