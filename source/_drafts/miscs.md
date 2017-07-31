@@ -56,3 +56,35 @@ graph LR
 
 
 [^1] http://www.slideshare.net/williamwyliang/the-development-trends-of-smart-applications-and-open-source-system-software-during-the-past-few-years-for-ntu-csie-2017-01
+
+# Etherium
+
+Address: 0xfDa995Eb398750319a2D5E8A4766c02e54db24b8
+
+gasolin.eth
+
+A beginner’s guide to buying an ENS domain
+https://medium.com/the-ethereum-name-service/a-beginners-guide-to-buying-an-ens-domain-3ccac2bdc770
+
+## Solicity
+
+https://monax.io/docs/tutorials/solidity/
+
+https://learnxinyminutes.com/docs/solidity/
+
+
+# write web extension
+
+
+# port web extension
+
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_Google_Chrome_extension
+
+https://github.com/mozilla/webextension-polyfill
+
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext
+
+web-ext run --firefox=/Applications/FirefoxNightly.app/Contents/MacOS/firefox
+
+
+
