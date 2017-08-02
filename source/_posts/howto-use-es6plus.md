@@ -24,9 +24,9 @@ ES6代表的是ECMAscript[^1]第六版規則。ECMA是一個國際標準組織�
 
 如果想要使用最新的功能，同時又希望能相容其他瀏覽器或舊版的Node，可以使用Babel[^2]來達成。Babel是當前最通用的javascript語言轉譯器(Transpiler)，它可以接受使用新語法撰寫的Javascript程式，並將這份程式轉換成與舊版語法相容的Javascript程式。
 
-實際使用babel時，不需要手動設定ES2015~各年份的preset，只要安裝Env preset[^8]並設定
+實際使用babel時，不需要手動設定ES2015~各年份的preset，只要安裝Env preset[^8]並在`package.json`中做以下設定：
 
-···
+```
 {
   "presets": [
     ["env", {
@@ -41,11 +41,11 @@ ES6代表的是ECMAscript[^1]第六版規則。ECMA是一個國際標準組織�
 
 babel 就會根據近期的瀏覽器支援與你所使用的Node版本，自動引入所有需要的plugin，相當方便。
 
-## ES6+有什麼新功能
+## ES6+有什麼新功能?
 
 想要大致了解各種語法上的改動，可以查看babel的 es2015[^3], es2016[^4], es2017[^5] preset。每個preset中包含了各種相關語法的plugin。
 
-例如今年的preset (es2017) ，帶來了 trailing-function-commas[^6] 和 async[^7] 語法的支援。
+例如今年的preset(es2017) ，帶來了 trailing-function-commas[^6] 和 async[^7] 語法的支援。
 
 ## 參考資料
 
