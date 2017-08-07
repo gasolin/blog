@@ -66,6 +66,12 @@ gasolin.eth
 A beginner’s guide to buying an ENS domain
 https://medium.com/the-ethereum-name-service/a-beginners-guide-to-buying-an-ens-domain-3ccac2bdc770
 
+挖礦教學
+https://www.ptt.cc/bbs/DigiCurrency/M.1495624721.A.6A8.html
+
+http://www.gooread.com/article/20122396003/
+
+
 ## Solicity
 
 https://monax.io/docs/tutorials/solidity/
@@ -85,6 +91,4 @@ https://github.com/mozilla/webextension-polyfill
 https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext
 
 web-ext run --firefox=/Applications/FirefoxNightly.app/Contents/MacOS/firefox
-
-
 

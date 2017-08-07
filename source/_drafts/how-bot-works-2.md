@@ -15,3 +15,37 @@ tags:
 從上面的分類來看，對話型機器人無疑是最強力的。取代真实的服务员。但就實用的角度來看，模式型機器人
 
 實際上，「對話」是件很複雜的事情。兩個人要能對談，首先兩個人的語言要相通。再則，兩個人對要談的事情需要有相近的背景知識，否則就需要理解的一方先解釋事情的梗概，讓另一方有概念後才談得起來。
+
+
+IM Service --> Inbound message
+Outbound Message --> IM Service
+Inbound message -> Bot Engine
+Bot Engine --> Bot Model
+
+文字處理 Word Processing
+
+斷詞, POS tagging, sentence analysis and question tagging
+進行自然語言的理解。這裡 NLP 一般是進行一些規範化的操作，比如識別一些專有名詞和地名，把主謂賓等一些簡單的語言結構分析出來，糾正一些常見的語法和拼寫錯誤，把一些時態相關的詞根分解出來等。
+
+Dialog State Tracking: topic 聊天狀態的跟蹤
+
+意圖感知 Intent Parser
+
+知識圖譜
+WordNet
+http://wordnet.princeton.edu/
+中文 http://lope.linguistics.ntu.edu.tw/cwn2/
+
+World Knowledge, bot knowledge, user knowledge
+
+
+問答對 -> ML -> 問答語料
+
+對話引擎
+
+plugin to call API/NLP
+
+NLG 自然語言生成
+
+
+https://www.zixundingzhi.com/yidonghulianwang/a36bf975daebc732.html
