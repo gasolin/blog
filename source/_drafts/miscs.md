@@ -57,21 +57,6 @@ graph LR
 
 [^1] http://www.slideshare.net/williamwyliang/the-development-trends-of-smart-applications-and-open-source-system-software-during-the-past-few-years-for-ntu-csie-2017-01
 
-# Etherium
-
-Address: 0xfDa995Eb398750319a2D5E8A4766c02e54db24b8
-
-gasolin.eth
-
-A beginner’s guide to buying an ENS domain
-https://medium.com/the-ethereum-name-service/a-beginners-guide-to-buying-an-ens-domain-3ccac2bdc770
-
-挖礦教學
-https://www.ptt.cc/bbs/DigiCurrency/M.1495624721.A.6A8.html
-
-http://www.gooread.com/article/20122396003/
-
-
 ## Solicity
 
 https://monax.io/docs/tutorials/solidity/
@@ -92,3 +77,14 @@ https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_w
 
 web-ext run --firefox=/Applications/FirefoxNightly.app/Contents/MacOS/firefox
 
+
+## Knowledge Graph
+LevelGraph
+
+## Machine Learning
+
+如何比较Keras, TensorLayer, TFLearn ？
+https://www.zhihu.com/question/50030898
+
+TensorFlow 如何入门？
+https://www.zhihu.com/question/49909565
