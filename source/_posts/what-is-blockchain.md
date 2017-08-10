@@ -2,6 +2,7 @@
 title: 區塊鏈是什麼？
 tags:
   - blockchain
+date: 2017-08-10 22:23:31
 ---
 
 今年比特幣(Bitcoin)[^1]與乙太幣(Ether)[^2]價格紛紛到達新高。主因除了隨著更多的加密貨幣(Crypto Currency)/當地貨幣交易所的開張，取得虛擬貨幣的方式更加多元外，首次公開發行加密代幣(ICO, Initial Coin/Crypto Token Offering)[^3] 這種創新的投資/募資方式愈加熱絡，也讓一些個人與機構意識到虛擬貨幣作為貨幣或貨品的投資價值。
