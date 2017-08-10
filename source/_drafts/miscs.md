@@ -75,9 +75,9 @@ https://learnxinyminutes.com/docs/solidity/
 P2P、加密、智能合約
 
 
-## 區塊鏈類型
+## 區塊鏈有哪些類型?
 
-公有鍊，私有鍊，聯盟鍊
+區塊鏈根據受眾，大致分為公有鏈，私有鏈、聯盟鏈幾種。公有鏈就是大眾比較常聽到的各種加密代幣。可以在 https://coinmarketcap.com/
 
 
 做生意 訊息 - 信任 - 價值
