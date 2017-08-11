@@ -8,9 +8,9 @@ tags:
 {% mermaid %}
 graph TD
 DAPP --- 智能合約
-智能合約 --- 乙太坊
-乙太幣 --- 乙太坊
-乙太幣 --- 激勵機制
+智能合約 --- 以太坊
+以太幣 --- 以太坊
+以太幣 --- 激勵機制
 區塊鏈 --- P2P
 區塊鏈 --- 共識機制
 共識機制 --- 密碼學
@@ -36,7 +36,7 @@ A beginner’s guide to buying an ENS domain
 https://medium.com/the-ethereum-name-service/a-beginners-guide-to-buying-an-ens-domain-3ccac2bdc770
 
 
-* 乙太坊設計原理 http://ethfans.org/posts/510
+* 以太坊設計原理 http://ethfans.org/posts/510
 
 * Merkle Patricia tree/trie https://github.com/ethereum/wiki/wiki/Patricia-Tree
 * RLP https://github.com/ethereum/wiki/wiki/RLP
