@@ -28,7 +28,13 @@ graph TD
 P2P --- 網際網路
 {% endmermaid %}
 
-區塊鏈不僅只是加密貨幣，透過區塊鏈，我們可以和各地的人做生意，而不用考慮如何在不同國家收款與匯款；透過新一代的區塊鏈技術，我們可以和各地的人做生意，所有的合約都由網路上的節點自動執行(智能合約 Smart Contract)；未來還可以透過瀏覽器使用智能合約，就像使用網站一樣容易(分散式應用 DAPP)。
+區塊鏈不僅只是加密貨幣，透過區塊鏈，我們可以和各地的人做生意，而不用考慮如何在不同國家收款與匯款；透過乙太坊(Ethereum)[^2]等新一代的區塊鏈技術，我們可以和各地的人做生意，所有的合約都由網路上的節點自動執行(智能合約 Smart Contract)；未來還可以透過瀏覽器使用智能合約，就像使用網站一樣容易(分散式應用 DAPP)。
+
+## 聯盟鏈
+
+除了公有鏈之外，多家銀行、支付機構、甚至IBM、微軟等科技公司也相繼投入資源，參與區塊鏈研究與發展。Apache基金會下的Hyper Ledger[^9]計畫是目前發展較好的聯盟鏈。
+
+聯盟鏈與公有鏈有許多不同點。其一是對資料一致性有更高地要求。其二因為相對來說聯盟鏈的節點比較可控，也不需要加入代幣激勵機制或浪費能源在比拚算力的Prove-of-WOrk(PoW)共識機制上。其三是需要對資源與智能合約存取設置權限，以符合機構內部要求。
 
 ## 參考資料
 
@@ -40,3 +46,6 @@ P2P --- 網際網路
 * [6] BitTorrent https://en.wikipedia.org/wiki/BitTorrent
 * [7] 磁力連結 https://zh.wikipedia.org/wiki/%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5
 * [8] [What Are Magnet Links, and How Do I Use Them to Download Torrents?](http://lifehacker.com/5875899/what-are-magnet-links-and-how-do-i-use-them-to-download-torrents)
+* [9] https://www.hyperledger.org/
+* [10] https://entethalliance.org/
+* [11] https://en.wikipedia.org/wiki/Proof-of-work_system
