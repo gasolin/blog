@@ -47,3 +47,8 @@ https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutoria
 * Recursive Length Prefix(RLP): 序列化格式
 
 * REMIX IDE https://remix.ethereum.org/
+
+
+https://github.com/ethereum/wiki/wiki
+
+https://github.com/vinsgo/awesome-ethereum
