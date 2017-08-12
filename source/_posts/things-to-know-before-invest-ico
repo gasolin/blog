@@ -29,8 +29,7 @@ date: 2007-08-12 19:08:30
 
 但是交易所的錢包畢竟是交易所的錢包。在轉出比特幣/以太幣時，交易所會動態選用自己轄下的某個錢包帳號出帳。你所參與的代幣眾籌，它的智能合約收到的是交易所的錢包帳號而不是你的錢包帳號，所以智能合約發代幣的對象也變成交易所了。
 
-比較建議的方式是使用[MyEtherWallet](https://www.myetherwallet.com/)等冷錢包參與以太幣相關ICO。
-
+比較建議的方式是使用[MyEtherWallet](https://www.myetherwallet.com/)或硬體錢包參與以太坊相關的ICO。
 
 ## 轉帳時填錯地址
 
@@ -54,7 +53,12 @@ date: 2007-08-12 19:08:30
 因此投資前務必多方確認。也可以到cointelegraph[^3]上查看近期的ICO列表。上面列出的ICO項目不代表可靠，但至少新聞網站為了信譽，會把明顯是詐騙的ICO剔除掉。
 
 
-雖然上面gasolin ICO只是例子，但 [gasolin.eth](https://etherscan.io/enslookup?q=gasolin.eth) 這個網址真的可以用喔！
+## 結語
+
+投資一定有風險，ICO投資有賺有賠，申購前應詳閱公開說明書。
+可以將上面提到的幾點當作檢核表，避免因為技術原因投資失利。
+
+雖然上面舉的gasolin ICO只是個例子，但 [gasolin.eth](https://etherscan.io/enslookup?q=gasolin.eth) 這個網址真的可以用喔！
 覺得這篇文章寫得蠻好想打賞一下，可以打賞一點ETH到我的錢包地址，順便試試ENS的功能:p
 之後也將分享如何註冊ETH地址的心得。
 
@@ -65,3 +69,4 @@ date: 2007-08-12 19:08:30
 * [2] 嫩模幣 http://nmb.fun/
 * [3] https://cointelegraph.com/ico-calendar
 * [4] https://registrar.ens.domains/
+* [] (http://blockcast.it/2017/05/27/eth-and-eth-token-wallet-series-myetherwallet/)
