@@ -6,9 +6,9 @@ tags:
 ---
 
 
+ENS (Ethereum Name Service) 的功能是提供以太坊(Ethereum)錢包地址對應的網址。
 
-ENS (Ethereum Name Service) 的功能是提供以太坊(Ethereum)
-是智能合約。
+ENS本身也是一些智能合約的集合，很值得參考。
 
 https://arachnid.github.io/devcon2/#/title
 
