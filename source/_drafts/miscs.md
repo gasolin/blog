@@ -114,3 +114,17 @@ https://www.zhihu.com/question/50030898
 TensorFlow 如何入门？
 https://www.zhihu.com/question/49909565
 
+"你吃了這些藥有1%的機率會中獎喔"
+要不要搏幾把？如果你了解ICO，也很看好ICO這種投資方式，可以酌量根據自己的財力來參與，但別在還搞不清的狀況下賭身家。
+在這上面賭身家，就像醫師在你決定開始吃這些藥後才改跟你說"你病後的五年存活率有1%喔"，想必心都涼了吧。
+
+
+https://ethereum.stackexchange.com/questions/2404/upgradeable-smart-contracts
+
+upgradable
+https://gist.github.com/Arachnid/4ca9da48d51e23e5cfe0f0e14dd6318f
+
+https://github.com/ConsenSys/smart-contract-best-practices
+
+
+ETH ERC-20
