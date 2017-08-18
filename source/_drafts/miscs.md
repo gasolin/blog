@@ -143,10 +143,15 @@ ETH ERC-20
 
 [How to create a Token Factory with Ethereum — Part 1](https://hackernoon.com/how-to-create-a-token-factory-with-ethereum-part-1-85e84d1f38fc)
 
-$ npm install -g embark ethereumjs-testrpc
+# Getting Start your first smart contract
+
+How to install Truffle & TestRPC on Windows for Blockchain development
+https://davidburela.wordpress.com/2016/11/18/how-to-install-truffle-testrpc-on-windows-for-blockchain-development/
+
+<!-- $ npm install -g embark ethereumjs-testrpc
 $ embark sample
 $ cd sample
-$ embark simulator
+$ embark simulator -->
 
 C:\Users\gasol\Documents\TokenFactory>embark simulator
 EthereumJS TestRPC v4.0.1 (ganache-core: 1.0.1)
@@ -187,3 +192,23 @@ in another console
 
 $ embark run
 
+best practices
+https://github.com/ConsenSys/smart-contract-best-practices
+
+slide
+http://slides.com/ming-derwang/solidity-tutorial-6-37-38-54#/11
+
+## DAPP與Web的交集
+
+* Merkle Patricia tree/trie https://github.com/ethereum/wiki/wiki/Patricia-Tree
+* RLP https://github.com/ethereum/wiki/wiki/RLP
+
+
+https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-2-30b3d335aa1f
+
+* Merkle Patricia tree/trie (MPT) 存储所有账户状态，以及每个区块中的交易和收据数据
+* Recursive Length Prefix(RLP): 序列化格式
+* REMIX IDE https://remix.ethereum.org/
+
+
+https://codetract.io/
