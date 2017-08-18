@@ -58,7 +58,7 @@ P2P --- 網際網路
 
 ## 以太坊的缺點
 
-目前以太坊區塊鏈的速度和電腦執行速度無法相比，不適合快速交易，或是需要儲存較大資料的情境。近期的[plasma](http://www.investopedia.com/news/what-plasma-and-how-will-it-strengthen-ethereum-blockchain/)提案有望解決此問題。
+目前以太坊區塊鏈的速度和電腦執行速度無法相比，不適合快速交易，或是需要儲存較大資料的情境。近期的[plasma](http://www.investopedia.com/news/what-plasma-and-how-will-it-strengthen-ethereum-blockchain/)提案有望解決快速交易的問題。
 
 因為缺乏即時調控區塊大小的手段，在一些很熱門的交易時段(如某些熱門的ICO開放認購時)，整個網路的交易延遲會變地很長。
 
