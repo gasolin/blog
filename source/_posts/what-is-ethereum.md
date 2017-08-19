@@ -6,13 +6,13 @@ tags:
 date: 2017-08-18 23:21:31
 ---
 
-以太坊(Ethereum)是近幾年才發展起來的一種新的底層[區塊鏈](https://blog.gasolin.idv.tw/2017/08/10/what-is-blockchain/)技術。以太幣(Ether)是以太坊公有鏈上產生的加密貨幣(Crypto　Currency)，除了可以拿來像比特幣(Bitcoin)一樣做交易外，還具有實際的用途。
+以太坊(Ethereum)是近幾年才發展起來的一種新的底層[區塊鏈](https://blog.gasolin.idv.tw/2017/08/10/what-is-blockchain/)技術。以太幣(Ether)是以太坊公有鏈上產生的🔒💵加密貨幣(Crypto　Currency)，除了可以拿來像比特幣(Bitcoin)一樣做交易外，還具有實際的用途。
 
-以太坊和比特幣一樣是基於P2P網路與密碼學建立起的區塊鏈機制，不同之處是，以太坊在每個運作的節點上都運行著一個以太坊虛擬機(Ethereum Virtual Machine, EVM)，可以用來執行完整的程式。這些程式在以太坊中被稱為**智能合約**(Smart Contract)。智能合約除了可以處理資料，還內建轉帳功能，可以很容易地透過智能合約來交易加密貨幣。由於智能合約可在每個以太坊的節點上執行並進行驗證，所以計算結果被認為是可信任的。以太坊還開發出了[web3.js](https://github.com/ethereum/wiki/wiki/JavaScript-API)讓開發者可以使用網頁技術撰寫智能合約的操作介面。這樣的網頁操作介面又稱為"分散式應用程式"(DAPP)。要使用DAPP，必須在支援DAPP的瀏覽器中才能使用(如[Mist](https://github.com/ethereum/mist/releases)或[Parity](https://parity.io/))。
+以太坊和比特幣一樣是基於P2P網路與密碼學建立起的區塊鏈機制，不同之處是，以太坊在每個運作的節點上都運行著一個以太坊虛擬機(Ethereum Virtual Machine, EVM)，可以用來執行完整的程式。這些程式在以太坊中被稱為⚖📒**智能合約**(Smart Contract)。智能合約除了可以處理資料，還內建轉帳功能，可以很容易地透過智能合約來交易加密貨幣。由於智能合約可在每個以太坊的節點上執行並進行驗證，所以計算結果被認為是可信任的。以太坊還開發出了[web3.js](https://github.com/ethereum/wiki/wiki/JavaScript-API)讓開發者可以使用網頁技術撰寫智能合約的操作介面。這樣的網頁操作介面又稱為🕸**分散式應用程式**(DAPP)。要使用DAPP，必須在支援DAPP的瀏覽器中才能使用(如[Mist](https://github.com/ethereum/mist/releases)或[Parity](https://parity.io/))。
 
 使用智能合約技術製作的服務，也構成了以太坊生態圈的一環。例如[Ethereum Name Service(ENS)](https://blog.gasolin.idv.tw/2017/08/13/got-my-ens-domain/)就提供了讓使用者更容易尋找到轉帳對象、智能合約，和DAPP的方式。
 
-以太坊提供了加密貨幣以太幣(Ether)，可透過智能合約解決交易上的信任問題，同時也可撰寫DAPP來提供友善的資訊彙總與操作介面，讓以太坊成為一個目前最接近理想的區塊鏈底層技術。
+以太坊提供了便於交易的加密貨幣以太幣(Ether)，可透過智能合約解決交易上的信任問題，同時也可撰寫DAPP來提供友善的資訊彙總與操作介面，讓以太坊成為一個目前最理想的區塊鏈底層技術。
 
 {% mermaid %}
 graph TD
