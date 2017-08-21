@@ -49,11 +49,11 @@ babel 就會根據近期的瀏覽器支援與你所使用的Node版本，自動�
 
 ## 參考資料
 
-[1]: https://en.wikipedia.org/wiki/ECMAScript
-[2]: https://babeljs.io/
-[3]: https://babeljs.io/docs/plugins/preset-es2015/
-[4]: https://babeljs.io/docs/plugins/preset-es2016/
-[5]: https://babeljs.io/docs/plugins/preset-es2017/
-[6]: https://babeljs.io/docs/plugins/syntax-trailing-function-commas/
-[7]: https://babeljs.io/docs/plugins/transform-async-to-generator/
-[8]: https://babeljs.io/docs/plugins/preset-env/
+* [1] https://en.wikipedia.org/wiki/ECMAScript
+* [2] https://babeljs.io/
+* [3] https://babeljs.io/docs/plugins/preset-es2015/
+* [4] https://babeljs.io/docs/plugins/preset-es2016/
+* [5] https://babeljs.io/docs/plugins/preset-es2017/
+* [6] https://babeljs.io/docs/plugins/syntax-trailing-function-commas/
+* [7] https://babeljs.io/docs/plugins/transform-async-to-generator/
+* [8] https://babeljs.io/docs/plugins/preset-env/
