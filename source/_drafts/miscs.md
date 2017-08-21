@@ -108,11 +108,21 @@ LevelGraph
 
 ## Machine Learning
 
+ML如何入門?
+
+1. https://www.coursera.org/learn/machine-learning
+2. http://course.fast.ai
+3. https://www.deeplearning.ai
+
+
 如何比较Keras, TensorLayer, TFLearn ？
 https://www.zhihu.com/question/50030898
 
-TensorFlow 如何入门？
+TensorFlow如何入門?
 https://www.zhihu.com/question/49909565
+
+http://bangqu.com/181i1U.html
+
 
 "你吃了這些藥有1%的機率會中獎喔"
 要不要搏幾把？如果你了解ICO，也很看好ICO這種投資方式，可以酌量根據自己的財力來參與，但別在還搞不清的狀況下賭身家。
