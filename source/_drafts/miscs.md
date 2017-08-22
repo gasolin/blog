@@ -108,11 +108,21 @@ LevelGraph
 
 ## Machine Learning
 
+ML如何入門?
+
+1. https://www.coursera.org/learn/machine-learning
+2. http://course.fast.ai
+3. https://www.deeplearning.ai
+
+
 如何比较Keras, TensorLayer, TFLearn ？
 https://www.zhihu.com/question/50030898
 
-TensorFlow 如何入门？
+TensorFlow如何入門?
 https://www.zhihu.com/question/49909565
+
+http://bangqu.com/181i1U.html
+
 
 "你吃了這些藥有1%的機率會中獎喔"
 要不要搏幾把？如果你了解ICO，也很看好ICO這種投資方式，可以酌量根據自己的財力來參與，但別在還搞不清的狀況下賭身家。
@@ -153,39 +163,39 @@ $ embark sample
 $ cd sample
 $ embark simulator -->
 
-C:\Users\gasol\Documents\TokenFactory>embark simulator
-EthereumJS TestRPC v4.0.1 (ganache-core: 1.0.1)
+/Applications/Mist.app/Contents/MacOS/Mist --rpc localhost:8545
 
 Available Accounts
 ==================
-(0) 0x6af5362aaf6c2ab09080823b35cab6fec12114ff
-(1) 0x003eb258f2173150cfe2c070db01ed341df7e983
-(2) 0xe845c81a06e8b3eabdfed9e948e039896225713c
-(3) 0x5ff63992c35c65c2792428d2d3281d1892f5f92b
-(4) 0x68325c28043e2ce23ab2d4bede3d50c3f5d2d691
-(5) 0x4e995b2e4a230b47ae1191e09592f8a1b451dd49
-(6) 0x09aeaf344b2a6191735341053cd72ce062243568
-(7) 0xc5bbaf241c8df6f5e796529d13eb9a1e2a682836
-(8) 0x75045ccdfe0f303b723ffffed5324051b7cffe97
-(9) 0x77579332dc3c96f596e3d369c51c94c96fb2143b
+(0) 0xa4d7ce9137e6f8de4fb1311595b33230be15be50
+(1) 0x26c231bdd7c8a7304983b04694c3437b30331019
+(2) 0xe238ccca936dcdbd48f0cf3a1e6f147d04b55527
+(3) 0x769ed341bf83cc86e5037cb78388012d6e2d9cc9
+(4) 0x72a084c80195de79e5cd8dca59488e67982f65d7
+(5) 0xcfda0765b0a82721d2f59581f53846a12e392999
+(6) 0x4b0349aea768b4e1ed4cec683f8f7dd112729fea
+(7) 0x643c305f0b3844984d7f1f7b9f3ab93a73dfdfcf
+(8) 0x2ee0a7974326604442dca127d02fac4957ab3e8a
+(9) 0xe00e57db1772f6e81bcccc982e565a10ae26ab92
 
 Private Keys
 ==================
-(0) 502084ea5f19ed0039b32f9027777ae01dbb1abe0e16fef3da9a3d4166cf2526
-(1) 1ea55f278da5932cc552333aa09ade35485a7cd81f727c558de0e2ab54f7fd7c
-(2) 58d516d17c86a5a5ef34a2ef1a1442e4ddbeb8c3e806df98d2a5b32bb9f7e2db
-(3) 54262ffa4926258e4187b77013ea2a4b94737974124d47d05b644ffa57b85b49
-(4) ebec5efd7c2b80a8f593069277ab7f5306a5250d61a27d04192176a35ad59c5a
-(5) 4d8b05d035473124cd5eebee2cb75062e78691218bae7dc02f1f6ec4a572f50a
-(6) 7c98c217d59f58bd01566ea1af6e92b56eb684098a6e10e88267eb6a916412a1
-(7) 51e9e15619383362210d0f46c597fa5758dbc8a5f31fa27d81fc37233921087d
-(8) 9cde1df82f97e53a88490f999a668b203414178ad9975d0560d8218283a9eb71
-(9) e7f10368c849b85dc3b1910f442734244c979fe98617f307af3744c765a3b0b2
+(0) 7de56fb677edc8d0c7a1f3a6d5bcb8f73ce257d44996e9b5fc8ad414af38a22a
+(1) 4401de20cf287d15d1c062005d866a35cd82e2a73f8cb43ec0cb90b117d1ec38
+(2) 8f51f9100a81218343d44a047ae3b0be5d80d262a13fbef24dc569b3e335e820
+(3) 241a0ff98dfb6f290dbee909c9a7a4eea2de3a2174e7cddf834868ea03f80fa9
+(4) ce1108cc6763bc74658068a55b080c6ccbfb1bd26e609588b81c07d13affc70d
+(5) f9614c1fd34224787e6c95bbe881fb28fd0fdc00808ef85d0430505f4a348690
+(6) 4c1baad08f720f5c5754bb185e66490b45e3480aa3ec419e4b76f7a81118b296
+(7) af9af2c6b519d49605cc58b719240299e5e8b9a89a7e94a85625734fc30c46bd
+(8) 55ab79ae6de4fad5b98bc1dfd795b945ba8e7d92dcc88073f9e3fdfef471f69f
+(9) e9299fb391c8830370991659780933e6b62269e32a8cbc55a29aa5f73df995a2
 
 HD Wallet
 ==================
-Mnemonic:      immense can theme physical media stove marine pizza general fee crisp winter
+Mnemonic:      addict cherry medal cupboard bless reduce oven beauty egg gift pledge exact
 Base HD Path:  m/44'/60'/0'/0/{account_index}
+
 
 5
 in another console
