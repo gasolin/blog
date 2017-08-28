@@ -52,3 +52,4 @@ P2P --- 網際網路
 * [10] https://entethalliance.org/
 * [11] https://en.wikipedia.org/wiki/Proof-of-work_system
 * [12] How Bitcoin Works Under the Hood https://www.youtube.com/watch?v=Lx9zgZCMqXE
+* [13] TED [How the blockchain will radically transform the economy](https://www.youtube.com/watch?v=RplnSVTzvnU)
