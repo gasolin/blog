@@ -43,10 +43,10 @@ c:\> choco install visualstudiocode
 Now you are on the fast track to install react-native, its all node related instructions now.
 
 ```
-c:\> npm install -g react-native-cli
-c:\> react-native init sample
+c:\> npm install -g create-react-native-app
+c:\> create-react-native-app sample
 c:\> cd sample
-c:\sample> react-native run-android
+c:\sample> npm start
 ```
 
 Happy coding!
