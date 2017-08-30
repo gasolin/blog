@@ -11,6 +11,39 @@ tags:
 $ npm install -g ethereumjs-testrpc truffle zeppelin-solidity
 $ testrpc
 
+```
+Available Accounts
+==================
+(0) 0xa4d7ce9137e6f8de4fb1311595b33230be15be50
+(1) 0x26c231bdd7c8a7304983b04694c3437b30331019
+(2) 0xe238ccca936dcdbd48f0cf3a1e6f147d04b55527
+(3) 0x769ed341bf83cc86e5037cb78388012d6e2d9cc9
+(4) 0x72a084c80195de79e5cd8dca59488e67982f65d7
+(5) 0xcfda0765b0a82721d2f59581f53846a12e392999
+(6) 0x4b0349aea768b4e1ed4cec683f8f7dd112729fea
+(7) 0x643c305f0b3844984d7f1f7b9f3ab93a73dfdfcf
+(8) 0x2ee0a7974326604442dca127d02fac4957ab3e8a
+(9) 0xe00e57db1772f6e81bcccc982e565a10ae26ab92
+
+Private Keys
+==================
+(0) 7de56fb677edc8d0c7a1f3a6d5bcb8f73ce257d44996e9b5fc8ad414af38a22a
+(1) 4401de20cf287d15d1c062005d866a35cd82e2a73f8cb43ec0cb90b117d1ec38
+(2) 8f51f9100a81218343d44a047ae3b0be5d80d262a13fbef24dc569b3e335e820
+(3) 241a0ff98dfb6f290dbee909c9a7a4eea2de3a2174e7cddf834868ea03f80fa9
+(4) ce1108cc6763bc74658068a55b080c6ccbfb1bd26e609588b81c07d13affc70d
+(5) f9614c1fd34224787e6c95bbe881fb28fd0fdc00808ef85d0430505f4a348690
+(6) 4c1baad08f720f5c5754bb185e66490b45e3480aa3ec419e4b76f7a81118b296
+(7) af9af2c6b519d49605cc58b719240299e5e8b9a89a7e94a85625734fc30c46bd
+(8) 55ab79ae6de4fad5b98bc1dfd795b945ba8e7d92dcc88073f9e3fdfef471f69f
+(9) e9299fb391c8830370991659780933e6b62269e32a8cbc55a29aa5f73df995a2
+
+HD Wallet
+==================
+Mnemonic:      addict cherry medal cupboard bless reduce oven beauty egg gift pledge exact
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+```
+
 $ mkdir demo
 $ cd demo
 $ truffle init
