@@ -19,10 +19,16 @@ The very first step is install chocolatey via [following its instuction]https://
 Then install git, node, android-sdk
 
 ```
-C:\> choco install git nodejs android-sdk
+C:\> choco install git nvm android-sdk
 ```
 
-Note that Java Development Kit (JDK) is also installed when you install android-sdk, neat!
+And you can download the [latest node version](https://nodejs.org/en/download/current/) via command
+
+```
+nvm install 8.4.0
+```
+
+Note that Java Development Kit (JDK) is also installed when you install `android-sdk`, neat!
 As I mentioned earlier, the SYSTEM PATH are automatically set so you can run `android` command on `cmd` or the alternative to open up the SDK manager after install is complete! 
 
 Once you can open android SDK manager, check [Getting Started](https://facebook.github.io/react-native/docs/getting-started.html#3-install-the-android-6-0-marshmallow-sdk) section in React Native doc to find out which android SDK versions to download.
