@@ -28,13 +28,13 @@ date: 2017-9-1 00:01:00
 
 * 主要瀏覽器：[Firefox](https://www.mozilla.org/en-US/firefox/products/)
 * 主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
-* [Todoist](https://todoist.com/)
+* [Todoist](https://todoist.com/) ✅ (付費)
 * [GMail](http://mail.google.com/), Inbox
 * [Google日曆](http://www.google.com/calendar)
 * Google Doc, [Google keep](http://keep.google.com/) 記事
 * 個人網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片，
 * 密碼管理🔑：[Lasspass](https://www.lastpass.com/)
-* 記帳📒: [Toshl](https://toshl.com)
+* 記帳📒: [Toshl](https://toshl.com) (付費)
 * 新聞聚合：[Feedly](https://feedly.com/)
 * [Readmoo分享書](https://share.readmoo.com/)
 * [豆瓣](http://www.douban.com/) 看電影記錄

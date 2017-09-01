@@ -1,5 +1,5 @@
 ---
-title: 如何撰寫智能合約(Smart Contract)?
+title: 如何撰寫智能合約(Smart Contract)?(I)
 tags:
   - web
   - mobile
@@ -9,6 +9,9 @@ tags:
 ## Testrpc + Truffle
 
 $ npm install -g ethereumjs-testrpc truffle zeppelin-solidity
+
+testrpc 是用 jsvm 做的。
+
 $ testrpc
 
 ```
@@ -48,7 +51,54 @@ $ mkdir demo
 $ cd demo
 $ truffle init
 
-$ truffle create contract Hello
+$ truffle create contract HelloWorld
+
+```
+pragma solidity ^0.4.4;
+
+contract HelloWorld {
+  function HelloWorld() {
+    // constructor
+  }
+}
+```
+
+```
+pragma solidity ^0.4.4;
+
+contract HelloWorld {
+  function sayHello() returns (string) {
+    return ("Hello World");
+  }
+}
+```
+(sample from pluralsight)
+
+
+/migrations/2_deploy_contracts.js
+
+```
+var HelloWorld = artifacts.require("./HelloWorld.sol");
+
+module.exports = function(deployer) {
+  deployer.deploy(HelloWorld);
+};
+```
+
+$ truffle compile
+$ truffle migrate
+
+// run migrate again
+$ truffle migrate --reset
+
+```
+$ truffle console
+> let hw
+> HelloWorld.deployed().then(deployed => hw = deployed)
+> hw.sayHello.call()
+'Hello World'
+```
+
 
 ```
 pragma solidity ^0.4.4;
@@ -67,6 +117,14 @@ contract HelloToken is StandardToken {
 }
 ```
 
+```
+var HelloToken = artifacts.require("./HelloToken.sol");
+
+module.exports = function(deployer) {
+  deployer.deploy(HelloToken);
+};
+```
+
 // It is a good guideline to structure functions that interact
 // with other contracts (i.e. they call functions or send Ether)
 // into three phases:
@@ -80,24 +138,6 @@ contract HelloToken is StandardToken {
 // If functions called internally include interaction with external
 // contracts, they also have to be considered interaction with
 // external contracts.
-
-
-/migrations/2_deploy_contracts.js
-
-```
-var HelloToken = artifacts.require("./HelloToken.sol");
-
-module.exports = function(deployer) {
-  deployer.deploy(HelloToken);
-};
-```
-
-
-$ truffle compile
-$ truffle migrate
-
-// run migrate again
-$ truffle migrate --reset
 
 * The Hitchhiker’s Guide to Smart Contracts in Ethereum https://blog.zeppelin.solutions/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05
 * Truffle on Windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
@@ -117,3 +157,14 @@ or Parity
 https://parity.io/parity.html
 
 https://geth.ethereum.org/downloads/
+
+truffle + webpack
+http://truffleframework.com/tutorials/bundling-with-webpack
+
+https://app.pluralsight.com/library/courses/blockchain-fundamentals/
+
+testnet
+
+// $ truffle migrate --network production
+$ geth attach
+> personal.unlockAccount(eth.coinbase)

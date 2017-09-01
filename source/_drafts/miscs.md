@@ -194,3 +194,4 @@ currency
 voting
 Auction
 DAO
+store data
