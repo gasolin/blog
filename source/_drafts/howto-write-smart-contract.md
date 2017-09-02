@@ -9,6 +9,11 @@ tags:
 本文最後章節節就直接教你如何建立一個相容於ERC20標準的加密代幣。
 https://www.ethereum.org/token
 
+最成熟的開發框架是 truffle，之前提到過的ENS(Ethereum Name Service)也是採用truffle框架。其他還有embark
+
+testrpc
+部署用的是真金白銀，而且根據網路狀況，上鏈要一小段時間15秒 ~ 數分鐘
+
 ## Testrpc + Truffle
 
 $ npm install -g ethereumjs-testrpc truffle zeppelin-solidity
