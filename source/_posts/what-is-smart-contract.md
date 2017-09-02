@@ -43,21 +43,43 @@ Ethereum上的智能合約需要使用solidity[^2]語言來撰寫。之前還有
 
 ## 將智能合約部署到區塊鏈的流程
 
-solidity和Java或C#其中的一個相似之處，是寫好solidity程式碼(.sol)後，需要先編譯(compile)成EVM(Ethereum Virtual Machine)能讀懂的二進位Contract ByteCode，才能部署到Ethereum的區塊鏈上執行。
+solidity和Java或C#其中的一個相似之處，是寫好solidity程式碼(.sol)後，需要先編譯(compile)成EVM(Ethereum Virtual Machine)能讀懂的二進位Contract ByteCode，才能部署到Ethereum的區塊鏈上執行。部署到區塊鏈上的合約會有一個和錢包地址（Address）一樣格式的合約地址（Contract Address）。
 
 {% mermaid %}
 graph LR
-.sol - compile -> bytecode(Contract Bytecode)
-bytecode - deploy -> ethereum
+subgraph local
+.sol -- compile --> bytecode[Contract Bytecode]
+end
+subgraph ethereum
+bytecode -- deploy --> Contract
+end
 {% endmermaid %}
 
 部署後智能合約可自動執行。後續呼叫智能合約的時候，使用者可以使用部署合約的錢包地址(Owner Account)，或依據撰寫的智能合約條件，讓其他錢包地址也能呼叫這個智能合約。
+所謂的"呼叫智能合約"，其實就是向這個合約地址發起交易，只是交易的不只是代幣，而可以是智能合約提供的呼叫方法。
 
 {% mermaid %}
 graph LR
-Account - call -> ethereum
-ethereum - EVM -> result
+subgraph local
+Account
+end
+subgraph ethereum
+Account -- call --> Contract
+Contract --> EVM
+end
 {% endmermaid %}
+
+## 有點抽象，來個例子？ :chestnut:
+
+在[收到我的ENS網域啦 gasolin.eth](https://blog.gasolin.idv.tw/2017/08/13/got-my-ens-domain/)這篇文章中我介紹了申請Ethereum Name Service的過程。其實ENS就是一堆智能合約的集合，一起提供了Name Service服務。
+
+要和合約互動，除了需要有合約地址外，還需要知道合約所提供的操作介面(Application Binary Interface，ABI)，即如何呼叫對應功能的方法和如何解釋程式回傳的資料。
+
+下圖即是ENS Public Resolver這個合約的地址和ABI。
+![](https://i.imgur.com/y6jvpAUl.png)
+
+準備好合約地址和ABI後我們才能呼叫對應功能來存取合約。
+![Imgur](https://i.imgur.com/5550HgNl.png)
 
 ## 參考資料
 
