@@ -6,6 +6,9 @@ tags:
   - ethereum
 ---
 
+本文最後章節節就直接教你如何建立一個相容於ERC20標準的加密代幣。
+https://www.ethereum.org/token
+
 ## Testrpc + Truffle
 
 $ npm install -g ethereumjs-testrpc truffle zeppelin-solidity
@@ -124,6 +127,8 @@ module.exports = function(deployer) {
   deployer.deploy(HelloToken);
 };
 ```
+
+繼續看 http://truffleframework.com/tutorials/pet-shop 範例
 
 // It is a good guideline to structure functions that interact
 // with other contracts (i.e. they call functions or send Ether)
