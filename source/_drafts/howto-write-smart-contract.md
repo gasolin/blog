@@ -6,6 +6,52 @@ tags:
   - ethereum
 ---
 
+
+## 使用solidity語言撰寫智能合約
+
+Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。之前還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。宣傳上說solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈都是使用屬於Javascript生態系的npm來提供的。但我覺得它還是比較像Java或C#。因為它與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
+
+## 將智能合約部署到區塊鏈的流程
+
+solidity和Java或C#其中的一個相似之處，是寫好solidity程式碼(.sol)後，需要先編譯(compile)成EVM(Ethereum Virtual Machine)能讀懂的二進位Contract ByteCode，才能部署到Ethereum的區塊鏈上執行。部署到區塊鏈上的合約會有一個和錢包地址（Address）一樣格式的合約地址（Contract Address）。
+
+{% mermaid %}
+graph LR
+subgraph local
+.sol -- compile --> bytecode[Contract Bytecode]
+end
+subgraph ethereum
+bytecode -- deploy --> Contract
+end
+{% endmermaid %}
+
+部署後智能合約可自動執行。後續呼叫智能合約的時候，使用者可以使用部署合約的錢包地址(Owner Account)，或依據撰寫的智能合約條件，讓其他錢包地址也能呼叫這個智能合約。
+所謂的"呼叫智能合約"，其實就是向這個合約地址發起交易，只是交易的不只是代幣，而可以是智能合約提供的呼叫方法。
+
+{% mermaid %}
+graph LR
+subgraph local
+Account
+end
+subgraph ethereum
+Account -- call --> Contract
+Contract --> EVM
+end
+{% endmermaid %}
+
+## 有點抽象，來個例子？ :chestnut:
+
+在[收到我的ENS網域啦 gasolin.eth](https://blog.gasolin.idv.tw/2017/08/13/got-my-ens-domain/)這篇文章中我介紹了申請Ethereum Name Service的過程。其實ENS就是一堆智能合約的集合，一起提供了Name Service服務。
+
+要和合約互動，除了需要有合約地址外，還需要知道合約所提供的操作介面(Application Binary Interface，ABI)，即如何呼叫對應功能的方法和如何解釋程式回傳的資料。
+
+下圖即是ENS Public Resolver這個合約的地址和ABI。
+![](https://i.imgur.com/y6jvpAUl.png)
+
+準備好合約地址和ABI後，我們才能呼叫對應功能來存取合約。
+![Imgur](https://i.imgur.com/5550HgNl.png)
+
+
 本文最後章節節就直接教你如何建立一個相容於ERC20標準的加密代幣。
 https://www.ethereum.org/token
 
@@ -178,3 +224,7 @@ testnet
 // $ truffle migrate --network production
 $ geth attach
 > personal.unlockAccount(eth.coinbase)
+
+## 參考資料
+
+* [1] Solidity http://solidity.readthedocs.io/en/latest/index.html
