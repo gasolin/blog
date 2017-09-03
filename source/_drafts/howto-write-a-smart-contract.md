@@ -6,18 +6,15 @@ tags:
   - ethereum
 ---
 
-
 ## 使用solidity語言撰寫智能合約
 
 Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。之前還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。宣傳上說solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈都是使用屬於Javascript生態系的npm來提供的。但我覺得它還是比較像Java或C#。因為它與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
 
+[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來操作一遍。在本文尾端你將學會建立一個相容於ERC20標準的加密代幣。
 
 ## 開始前的準備
 
-本文最後章節節就直接教你如何建立一個相容於ERC20標準的加密代幣。
-https://www.ethereum.org/token
-
-最成熟的開發框架是 truffle，之前提到過的ENS(Ethereum Name Service)也是採用truffle框架。其他還有embark
+當前最成熟的開發框架是 truffle，之前提到過的ENS(Ethereum Name Service)也是採用truffle框架。其他還有embark
 
 testrpc
 部署用的是真金白銀，而且根據網路狀況，上鏈要一小段時間15秒 ~ 數分鐘
@@ -190,3 +187,6 @@ $ geth attach
 ## 參考資料
 
 * [1] Solidity http://solidity.readthedocs.io/en/latest/index.html
+* [2] Solidity線上編輯器　https://ethereum.github.io/browser-solidity/
+etherscan.io https://etherscan.io/
+ethstats.net https://ethstats.net/

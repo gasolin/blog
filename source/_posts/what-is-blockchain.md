@@ -38,6 +38,10 @@ P2P --- 網際網路
 
 聯盟鏈與公有鏈有許多不同點。其一是對資料一致性有更高地要求。其二因為相對來說聯盟鏈的節點比較可控，也不需要加入代幣激勵機制或浪費能源在比拚算力的Prove-of-WOrk(PoW)共識機制上。其三是需要對資源與智能合約存取設置權限，以符合企業內部的需求。
 
+## 區塊鏈用到的加密技術
+
+可以在Youtube上查看 [Blockchain 101 - A Visual Demo](https://youtu.be/_160oMzblY8)影片[^14]，或前往對應的[Block Chain Demo網站](https://anders.com/blockchain/)[^15]自行動手試驗。
+
 ## 參考資料
 
 * [1] 比特幣 https://zh.wikipedia.org/wiki/%E6%AF%94%E7%89%B9%E5%B8%81
@@ -53,3 +57,5 @@ P2P --- 網際網路
 * [11] https://en.wikipedia.org/wiki/Proof-of-work_system
 * [12] How Bitcoin Works Under the Hood https://www.youtube.com/watch?v=Lx9zgZCMqXE
 * [13] TED [How the blockchain will radically transform the economy](https://www.youtube.com/watch?v=RplnSVTzvnU)
+* [14] [Blockchain 101 - A Visual Demo](https://youtu.be/_160oMzblY8)
+* [15] [Block Chain Demo網站](https://anders.com/blockchain/)

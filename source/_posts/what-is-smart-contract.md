@@ -76,6 +76,7 @@ end
 在[收到我的ENS網域啦 gasolin.eth](https://blog.gasolin.idv.tw/2017/08/13/got-my-ens-domain/)這篇文章中，我介紹了申請Ethereum Name Service的心得。其實ENS本身就是一堆智能合約的集合，透過這些智能合約，一起提供了Ethereum Name Service從申請，競價，到設定地址對應的服務。
 
 要和智能合約互動，除了需要有合約地址外，還需要知道合約所提供的操作介面(Application Binary Interface，ABI)，即知道如何呼叫程式提供的功能，和如何解釋程式回傳的資料。
+ABI（JSON格式）檔案在從原始碼編譯成ByteCode時會一併產生。
 
 下圖即是ENS Public Resolver這個合約的地址和ABI。
 ![](https://i.imgur.com/y6jvpAUl.png)
