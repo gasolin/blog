@@ -84,7 +84,7 @@ ABI（JSON格式）檔案在從原始碼編譯成ByteCode時會一併產生。
 準備好合約地址和ABI後，我們才能呼叫對應功能來存取合約。
 ![Imgur](https://i.imgur.com/5550HgNl.png)
 
-在下一篇中，我將簡單介紹如何撰寫Solidity程式，敬請期待。
+在[下一篇](https://blog.gasolin.idv.tw/2017/09/06/howto-write-a-smart-contract/)中，我將簡單介紹如何撰寫Solidity程式。
 
 ## 參考資料
 
