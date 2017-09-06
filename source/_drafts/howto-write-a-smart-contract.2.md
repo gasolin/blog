@@ -57,12 +57,8 @@ module.exports = function(deployer) {
 // external contracts.
 
 * The Hitchhiker’s Guide to Smart Contracts in Ethereum https://blog.zeppelin.solutions/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05
-* Truffle on Windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
 * https://amisamity.github.io/contract-training/
-* http://truffleframework.com/docs/getting_started/
-
 * Robust Smart Contracts with OpenZeppelin http://truffleframework.com/tutorials/robust-smart-contracts-with-openzeppelin
-
 * http://zeppelin-solidity.readthedocs.io/en/latest/getting-started.html
 
 Mist Browser

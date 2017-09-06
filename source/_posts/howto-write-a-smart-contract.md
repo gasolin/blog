@@ -4,6 +4,7 @@ tags:
   - javascript
   - solidity
   - ethereum
+date: 2017-09-06 18:30:31
 ---
 
 [上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
@@ -196,7 +197,7 @@ HelloWorld.deployed().then(function(deployed) {
 
 如此一來我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。
 
-本篇設計的範例[^8]超級簡單，但已達到完整地帶大家快速走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity http://solidity.readthedocs.io/en/latest/index.html] 和 [Truffle]( http://truffleframework.com/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
+本篇設計的範例[^8]超級簡單，但已達到完整地帶大家快速走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example]( http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
 
 下一篇會接著介紹如何建立一個可以放到乙太幣錢包的加密代幣。
 
