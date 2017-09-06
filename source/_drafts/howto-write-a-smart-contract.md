@@ -1,12 +1,12 @@
 ---
 title: 如何撰寫智能合約(Smart Contract)?(I)
 tags:
-  - web
-  - mobile
+  - javascript
+  - solidity
   - ethereum
 ---
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來寫智能合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包的加密代幣。
+[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
 
 ## 使用solidity語言撰寫智能合約
 
@@ -87,14 +87,14 @@ $ truffle init
 
 如此一來，我們已建立好第一份智能合約專案了。
 
-在`demo`資料夾下，可以看到`contracts`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts`資料夾中額外建立一個`HelloWorld.sol`檔案[^8]。（或者也可以用`truffle create contract HelloWorld`命令來建立）
+在`demo`資料夾下，可以看到`contracts`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts`資料夾中額外建立一個`HelloWorld.sol`檔案。（或者也可以用`truffle create contract HelloWorld`命令來建立）
 
 HelloWorld.sol檔案內容如下：
 ```
 pragma solidity ^0.4.4;
 
 contract HelloWorld {
-  function hello() returns (string) {
+  function sayHello() returns (string) {
     return ("Hello World");
   }
 }
@@ -117,7 +117,7 @@ contract HelloWorld {
 `contract`關鍵字類似於其他語言中較常見的`class`。因為solidity是專為智能合約(Contact)設計的語言，宣告`contract`後即內建了開發智能合約所需的功能。也可以把這句理解為`class HelloWorld extends Contract`。
 
 ```
-function hello() returns (string) {
+function sayHello() returns (string) {
   return ("Hello World");
 }
 ```
@@ -132,7 +132,7 @@ function hello() returns (string) {
 $ truffle compile
 ```
 
-編譯成功的話，在`build/contracts`目錄下會多出`HelloWorld.json`這個檔案。
+編譯成功的話，在`build/contracts`目錄下會多出`HelloWorld.json`這個檔案。（在Windows平台上執行truffle compile若遇到問題，可以查看參考資料[^9]來解決。）
 
 ### 部署
 
@@ -168,92 +168,37 @@ Saving artifacts...
 如此一來合約已經部署到testrpc中。切換到testrpc視窗，可以看到testrpc有反應了。
 ### 與合約互動
 
-truffle提供命令行工具，執行`truffle console`命令
+truffle提供命令行工具，執行`truffle console`命令後，可用Javascript來和剛剛部署的合約互動。
 
 ```
 $ truffle console
-> let hw
-> HelloWorld.deployed().then(deployed => hw = deployed)
-> hw.hello.call()
+> let hello
+> HelloWorld.deployed().then(deployed => hello = deployed)
+> hello.sayHello.call()
 'Hello World'
 ```
 
-```
-$ npm install zeppelin-solidity
-```
+#### 講解
 
-```
-pragma solidity ^0.4.4;
-import 'zeppelin-solidity/contracts/token/StandardToken.sol';
-
-contract HelloToken is StandardToken {
-  string public name = 'TutorialToken';
-  string public symbol = 'TT';
-  uint public decimals = 2;
-  uint public INITIAL_SUPPLY = 12000;
-
-  unction HelloToken() {
-    totalSupply = INITIAL_SUPPLY;
-    balances[msg.sender] = INITIAL_SUPPLY;
-  }
-}
+```js
+> HelloWorld.deployed().then(deployed => hello = deployed)
 ```
 
-把全域變數設為public時，就會新增一個讀取public變數的ABI接口。
+這邊使用`HelloWorld.deployed().then`語句來取得HelloWorld合約的Object，並存到`hello`變數中，以方便後續的呼叫。
 
+上面用的是Javascript ES6+的語法，這句也可以寫成
 
+```js
+HelloWorld.deployed().then(function(deployed) {
+  hello = deployed;
+});
 ```
-var HelloToken = artifacts.require("./HelloToken.sol");
 
-module.exports = function(deployer) {
-  deployer.deploy(HelloToken);
-};
-```
+如此一來我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。
 
-繼續看 http://truffleframework.com/tutorials/pet-shop 範例
+本篇設計的範例[^8]超級簡單，但已達到完整地帶大家快速走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity http://solidity.readthedocs.io/en/latest/index.html] 和 [Truffle]( http://truffleframework.com/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
 
-// It is a good guideline to structure functions that interact
-// with other contracts (i.e. they call functions or send Ether)
-// into three phases:
-// 1. checking conditions
-// 2. performing actions (potentially changing conditions)
-// 3. interacting with other contracts
-
-// If these phases are mixed up, the other contract could call
-// back into the current contract and modify the state or cause
-// effects (ether payout) to be performed multiple times.
-// If functions called internally include interaction with external
-// contracts, they also have to be considered interaction with
-// external contracts.
-
-* The Hitchhiker’s Guide to Smart Contracts in Ethereum https://blog.zeppelin.solutions/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05
-* Truffle on Windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
-* https://amisamity.github.io/contract-training/
-* http://truffleframework.com/docs/getting_started/
-
-* Robust Smart Contracts with OpenZeppelin http://truffleframework.com/tutorials/robust-smart-contracts-with-openzeppelin
-
-* http://zeppelin-solidity.readthedocs.io/en/latest/getting-started.html
-
-Mist Browser
-
-Mist-installer-x.x.x
-https://github.com/ethereum/mist/releases
-
-or Parity
-https://parity.io/parity.html
-
-https://geth.ethereum.org/downloads/
-
-truffle + webpack
-http://truffleframework.com/tutorials/bundling-with-webpack
-
-testnet
-
-// $ truffle migrate --network production
-$ geth attach
-> personal.unlockAccount(eth.coinbase)
-
+下一篇會接著介紹如何建立一個可以放到乙太幣錢包的加密代幣。
 
 ## 參考資料
 
@@ -267,3 +212,4 @@ ethstats.net https://ethstats.net/
 * [6] https://github.com/ethereumjs/testrpc
 * [7] https://github.com/ethereumjs/ethereumjs-vm
 * [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
+* [9]  Truffle issue on windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
