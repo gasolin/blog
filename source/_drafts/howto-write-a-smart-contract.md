@@ -6,35 +6,39 @@ tags:
   - ethereum
 ---
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來寫智能合約。在閱讀完本文後，你將學會建立一個相容於ERC20標準的加密代幣。
+[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來寫智能合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包的加密代幣。
 
 ## 使用solidity語言撰寫智能合約
 
-Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。雖然還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，
-但目前看到所有公開的智能合約都是使用solidity撰寫。
+Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。雖然還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。
 
 宣傳上說，solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈，都是使用屬於Javascript生態系的npm來提供的。但我覺得solidity還是比較像Java或C#。
 因為和Javascript不同，solidity與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
 
-## 開始前的準備
+## 開發前的準備
 
 本文將使用當前最活躍的智能合約開發框架truffle[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有embark[^4]。
 
-就像一般網站或App開發一樣，在提供公開服務之前，開發者會使用單台電腦(通常就是開發者用於寫程式的電腦，又稱作本機)或測試網路來測試效果，測試完成後才部署到公開的網路上提供服務。
-開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有的操作都需要真金白銀(虛擬代幣)，而且根據網路狀況，每個鏈上操作都需要要一小段反應時間(15秒 ~ 數分鐘)，一來一往頗浪費寶貴的開發時間。
-因此在開發的過程中，我們將使用testrpc[^6]工具在電腦上模擬智能合約所需的區塊鏈。
+就像一般網站或App開發一樣，在提供公開服務之前，開發者會在自己用於寫程式的電腦(又稱作本機)或透過測試網路來測試程式執行的效果，測試完成後，才會部署到公開的網路上提供服務。
+開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有的操作都需要真金白銀(虛擬代幣)，而且根據網路狀況，每個公開鏈上的操作都需要要一小段反應時間(15秒 ~ 數分鐘)，這些等待頗浪費寶貴的開發時間。
+因此在開發的過程中，我們將使用testrpc[^6]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
 
-testrpc中也包含了和使用Javascript撰寫的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約。
+testrpc中也包含了Javascript版本的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約。
 
-## Testrpc + Truffle
+### 安裝所需工具
 
-$ npm install -g ethereumjs-testrpc truffle zeppelin-solidity
+首先開發機上必須裝好Node.js，再使用以下命令安裝所需的工具：
 
-testrpc 是用 jsvm 做的。
-
-$ testrpc
-
+```sh
+$ npm install -g ethereumjs-testrpc truffle
 ```
+
+### 啟動 Testrpc
+
+安裝好後隨時可以使用`testrpc`命令來啟動乙太坊測試環境。
+
+```sh
+$ testrpc
 Available Accounts
 ==================
 (0) 0xa4d7ce9137e6f8de4fb1311595b33230be15be50
@@ -67,35 +71,72 @@ Mnemonic:      addict cherry medal cupboard bless reduce oven beauty egg gift pl
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 ```
 
+可以看到testrpc啟動後自動建立了10個帳號(Accounts)，與每個帳號對應的私鑰(Private Key)。
+
+一切準備就緒，我們可以開始建立第一份智能合約專案了。
+
+## 建立專案
+
+開啟另一個命令列視窗，輸入以下命令以建立專案：
+
+```sh
 $ mkdir demo
 $ cd demo
 $ truffle init
+```
 
-$ truffle create contract HelloWorld
+如此一來，我們已建立好第一份智能合約專案了。
 
+在`demo`資料夾下，可以看到`contracts`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts`資料夾中額外建立一個`HelloWorld.sol`檔案[^8]。（或者也可以用`truffle create contract HelloWorld`命令來建立）
+
+HelloWorld.sol檔案內容如下：
 ```
 pragma solidity ^0.4.4;
 
 contract HelloWorld {
-  function HelloWorld() {
-    // constructor
-  }
-}
-```
-
-```
-pragma solidity ^0.4.4;
-
-contract HelloWorld {
-  function sayHello() returns (string) {
+  function hello() returns (string) {
     return ("Hello World");
   }
 }
 ```
-(sample from pluralsight)
 
+### 講解
 
-/migrations/2_deploy_contracts.js
+```
+pragma solidity ^0.4.4;
+```
+
+第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。
+
+```
+contract HelloWorld {
+  ...
+}
+```
+
+`contract`關鍵字類似於其他語言中較常見的`class`。因為solidity是專為智能合約(Contact)設計的語言，宣告`contract`後即內建了開發智能合約所需的功能。也可以把這句理解為`class HelloWorld extends Contract`。
+
+```
+function hello() returns (string) {
+  return ("Hello World");
+}
+```
+
+函式的結構與其他程式類似，但如果有傳入的參數或回傳值，需要指定參數或回傳值的型別(type)。
+
+### 編譯
+
+現在執行`truffle compile`命令，我們可以將`HelloWorld.sol`原始碼編譯成Ethereum bytecode。
+
+```sh
+$ truffle compile
+```
+
+編譯成功的話，在`build/contracts`目錄下會多出`HelloWorld.json`這個檔案。
+
+### 部署
+
+truffle框架中提供了部署的腳本，打開`/migrations/2_deploy_contracts.js`檔案，將內容修改如下
 
 ```
 var HelloWorld = artifacts.require("./HelloWorld.sol");
@@ -105,20 +146,41 @@ module.exports = function(deployer) {
 };
 ```
 
-$ truffle compile
-$ truffle migrate
+使用`artifacts.require`語句來取得準備部署的合約，使用`deployer.deploy`語句將合約部署到區塊鏈上。
 
-// run migrate again
-$ truffle migrate --reset
+現在執行`truffle migrate`命令，
+
+```sh
+$ truffle migrate
+Using network 'development'.
+
+Running migration: 1_initial_migration.js
+...
+Saving successful migration to network...
+Running migration: 2_deploy_contracts.js
+...
+Saving successful migration to network...
+...
+Saving artifacts...
+
+```
+
+如此一來合約已經部署到testrpc中。切換到testrpc視窗，可以看到testrpc有反應了。
+### 與合約互動
+
+truffle提供命令行工具，執行`truffle console`命令
 
 ```
 $ truffle console
 > let hw
 > HelloWorld.deployed().then(deployed => hw = deployed)
-> hw.sayHello.call()
+> hw.hello.call()
 'Hello World'
 ```
 
+```
+$ npm install zeppelin-solidity
+```
 
 ```
 pragma solidity ^0.4.4;
@@ -186,8 +248,6 @@ https://geth.ethereum.org/downloads/
 truffle + webpack
 http://truffleframework.com/tutorials/bundling-with-webpack
 
-https://app.pluralsight.com/library/courses/blockchain-fundamentals/
-
 testnet
 
 // $ truffle migrate --network production
@@ -206,3 +266,4 @@ ethstats.net https://ethstats.net/
 * [5] ENS也使用Truffle框架 https://github.com/ethereum/ens
 * [6] https://github.com/ethereumjs/testrpc
 * [7] https://github.com/ethereumjs/ethereumjs-vm
+* [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
