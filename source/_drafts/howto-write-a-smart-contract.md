@@ -6,18 +6,25 @@ tags:
   - ethereum
 ---
 
+[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來寫智能合約。在閱讀完本文後，你將學會建立一個相容於ERC20標準的加密代幣。
+
 ## 使用solidity語言撰寫智能合約
 
-Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。之前還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。宣傳上說solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈都是使用屬於Javascript生態系的npm來提供的。但我覺得它還是比較像Java或C#。因為它與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
+Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。雖然還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，
+但目前看到所有公開的智能合約都是使用solidity撰寫。
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將使用solidity語言來操作一遍。在本文尾端你將學會建立一個相容於ERC20標準的加密代幣。
+宣傳上說，solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈，都是使用屬於Javascript生態系的npm來提供的。但我覺得solidity還是比較像Java或C#。
+因為和Javascript不同，solidity與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
 
 ## 開始前的準備
 
-當前最成熟的開發框架是 truffle，之前提到過的ENS(Ethereum Name Service)也是採用truffle框架。其他還有embark
+本文將使用當前最活躍的智能合約開發框架truffle[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有embark[^4]。
 
-testrpc
-部署用的是真金白銀，而且根據網路狀況，上鏈要一小段時間15秒 ~ 數分鐘
+就像一般網站或App開發一樣，在提供公開服務之前，開發者會使用單台電腦(通常就是開發者用於寫程式的電腦，又稱作本機)或測試網路來測試效果，測試完成後才部署到公開的網路上提供服務。
+開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有的操作都需要真金白銀(虛擬代幣)，而且根據網路狀況，每個鏈上操作都需要要一小段反應時間(15秒 ~ 數分鐘)，一來一往頗浪費寶貴的開發時間。
+因此在開發的過程中，我們將使用testrpc[^6]工具在電腦上模擬智能合約所需的區塊鏈。
+
+testrpc中也包含了和使用Javascript撰寫的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約。
 
 ## Testrpc + Truffle
 
@@ -130,6 +137,9 @@ contract HelloToken is StandardToken {
 }
 ```
 
+把全域變數設為public時，就會新增一個讀取public變數的ABI接口。
+
+
 ```
 var HelloToken = artifacts.require("./HelloToken.sol");
 
@@ -184,9 +194,15 @@ testnet
 $ geth attach
 > personal.unlockAccount(eth.coinbase)
 
+
 ## 參考資料
 
 * [1] Solidity http://solidity.readthedocs.io/en/latest/index.html
 * [2] Solidity線上編輯器　https://ethereum.github.io/browser-solidity/
 etherscan.io https://etherscan.io/
 ethstats.net https://ethstats.net/
+* [3] Truffle Framework http://truffleframework.com/
+* [4] Embark Framework https://github.com/iurimatias/embark-framework
+* [5] ENS也使用Truffle框架 https://github.com/ethereum/ens
+* [6] https://github.com/ethereumjs/testrpc
+* [7] https://github.com/ethereumjs/ethereumjs-vm
