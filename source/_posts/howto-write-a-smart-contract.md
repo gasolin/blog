@@ -7,7 +7,7 @@ tags:
 date: 2017-09-06 18:30:31
 ---
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
+[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約:ledger:是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
 
 ## 使用solidity語言撰寫智能合約
 
@@ -18,13 +18,15 @@ Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。雖然還有
 
 ## 開發前的準備
 
-本文將使用當前最活躍的智能合約開發框架truffle[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有embark[^4]。
+本文將使用當前最活躍的智能合約開發框架truffle[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有embark[^4]等。
 
-就像一般網站或App開發一樣，在提供公開服務之前，開發者會在自己用於寫程式的電腦(又稱作本機)或透過測試網路來測試程式執行的效果，測試完成後，才會部署到公開的網路上提供服務。
-開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有寫入或讀取計算結果的操作都需要真金白銀(虛擬代幣)，而且根據網路狀況，每個公開鏈上的操作都需要要一小段反應時間(15秒 ~ 數分鐘)，這些等待頗浪費寶貴的開發時間。
+就像一般網站或App開發一樣，在提供公開服務之前，開發者會在自己用於寫程式的電腦(又稱作本機):computer:或透過測試網路:spider_web:來測試程式執行的效果，測試完成後，才會部署到公開的網路上提供服務。
+開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有寫入或讀取計算結果的操作都需要真金白銀(虛擬代幣):money_with_wings:，而且根據網路狀況，每個公開鏈上的操作都需要要一小段反應時間(15秒 ~ 數分鐘)，這些等待頗浪費寶貴的開發時間:hourglass_flowing_sand:。
 因此在開發的過程中，我們將使用testrpc[^6]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
 
-testrpc中也包含了Javascript版本的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約。
+testrpc中也包含了Javascript版本的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約:innocent:。
+
+此外，開發前還需準備一個合手的編輯器。我目前是使用[Visual Studio Code](https://code.visualstudio.com)搭配[solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)插件來開發，其他編輯器應該也有類似的插件可選擇。
 
 ### 安裝所需工具
 
@@ -72,7 +74,7 @@ Mnemonic:      addict cherry medal cupboard bless reduce oven beauty egg gift pl
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 ```
 
-可以看到testrpc啟動後自動建立了10個帳號(Accounts)，與每個帳號對應的私鑰(Private Key)。
+可以看到testrpc啟動後自動建立了10個帳號(Accounts)，與每個帳號對應的私鑰(Private Key):key:。
 
 一切準備就緒，我們可以開始建立第一份智能合約專案了。
 
@@ -90,7 +92,7 @@ $ truffle init
 
 在`demo`資料夾下，可以看到`contracts`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts`資料夾中額外建立一個`HelloWorld.sol`檔案。（或者也可以用`truffle create contract HelloWorld`命令來建立）
 
-HelloWorld.sol檔案內容如下：
+`HelloWorld.sol`檔案內容如下：
 ```
 pragma solidity ^0.4.4;
 
@@ -123,7 +125,7 @@ function sayHello() returns (string) {
 }
 ```
 
-函式的結構與其他程式類似，但如果有傳入的參數或回傳值，需要指定參數或回傳值的型別(type)。
+函式的結構與其他程式類似，但如果有傳入的參數或回傳值，需要指定參數或回傳值的型別(type)。所有支援的型別可以查看參考資料[^10]。
 
 ### 編譯
 
@@ -137,7 +139,7 @@ $ truffle compile
 
 ### 部署
 
-truffle框架中提供了部署的腳本，打開`/migrations/2_deploy_contracts.js`檔案，將內容修改如下
+truffle框架中提供了方便部署合約的腳本。打開`/migrations/2_deploy_contracts.js`檔案(腳本使用Javascript撰寫)，將內容修改如下
 
 ```
 var HelloWorld = artifacts.require("./HelloWorld.sol");
@@ -167,6 +169,7 @@ Saving artifacts...
 ```
 
 如此一來合約已經部署到testrpc中。切換到testrpc視窗，可以看到testrpc有反應了。
+
 ### 與合約互動
 
 truffle提供命令行工具，執行`truffle console`命令後，可用Javascript來和剛剛部署的合約互動。
@@ -199,14 +202,16 @@ HelloWorld.deployed().then(function(deployed) {
 
 ### 加入新方法
 
-我們在`HelloWorld.sol`中再加入一個`echo`方法，回傳傳送的參數。
+我們在`HelloWorld.sol`中再加入一個`echo`方法，`echo`方法接受輸入一個參數，並回傳傳送的參數。
+
 ```
 function echo(string name) returns (string) {
   return name;
 }
 ```
 
-新的echo方法中傳入了一個`name`參數。由於更新了合約內容，我們重新新編譯一次並部署到testrpc上，再透過`truffle console`執行看看結果。
+新的echo方法中傳入了一個`name`參數。
+由於更新了合約內容，我們需要先重新新編譯一次，將編譯結果部署到testrpc上，再透過`truffle console`執行看看結果。
 
 ```sh
 $ truffle compile
@@ -220,7 +225,7 @@ $ truffle console
 'yo man'
 ```
 
-`echo`方法確實將我們輸入的內容回傳了。另一點需要注意的，是這次如果還是用`truffle migrate`，我們會得到如下訊息：
+`echo`方法確實將我們輸入的內容回傳了。另一點需要注意的，是這次如果還是用`truffle migrate`命令，我們會得到如下訊息：
 
 ```sh
 $ truffle migrate
@@ -229,11 +234,11 @@ Using network 'development'.
 Network up to date.
 ```
 
-Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛剛程式中新增的方法並沒有更新到區塊鏈上。要更新區塊鏈上已部署的程式，需要改寫`migrations`中的腳本。但現在還不到介紹migration的時候，我們可以使用`truffle migrate --reset`命令直接重新在testrpc上部署一次。
+Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛剛程式中新增的方法並沒有更新到區塊鏈上。要更新區塊鏈上已部署的程式，需要改寫`migrations`中的腳本，但現在還不到介紹migration的時候。還好我們開發用的區塊鏈是怎麼修改都沒關係的testrpc，可以使用`truffle migrate --reset`命令直接重新在testrpc上部署一次:tada:。
 
 ## 結語
 
-本篇設計的範例[^8]相當簡單，但已達到完整地帶大家快速走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example]( http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
+本篇設計的範例[^8]相當簡單，但已達到完整地帶大家快速:zap:走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example]( http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
 
 下一篇會接著介紹如何建立一個可以放到乙太幣錢包的加密代幣。
 
@@ -248,4 +253,5 @@ Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛�
 * [7] https://github.com/ethereumjs/ethereumjs-vm
 * [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
 * [9]  Truffle issue on windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
-* [10] 本篇也已分享到medium上的Taipei Ethereum Meetup文集中　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b
+* [10] Solidity支援的型別(Type) https://solidity.readthedocs.io/en/develop/types.html
+* [11] 本篇也已分享到medium上的Taipei Ethereum Meetup文集中　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b
