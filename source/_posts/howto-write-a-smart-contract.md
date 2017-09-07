@@ -177,7 +177,7 @@ truffle提供命令行工具，執行`truffle console`命令後，可用Javascri
 ```
 $ truffle console
 > let contract
-> HelloWorld.deployed().then(deployed => contract = deployed)
+> HelloWorld.deployed().then(addr => contract = addr)
 > contract.sayHello.call()
 'Hello World'
 ```
@@ -193,8 +193,8 @@ $ truffle console
 上面用的是Javascript ES6+的語法，這句也可以寫成
 
 ```js
-HelloWorld.deployed().then(function(deployed) {
-  hello = deployed;
+HelloWorld.deployed().then(function(addr) {
+  hello = addr;
 });
 ```
 
