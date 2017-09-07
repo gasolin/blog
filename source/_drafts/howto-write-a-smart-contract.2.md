@@ -93,3 +93,6 @@ ethstats.net https://ethstats.net/
 * [6] https://github.com/ethereumjs/testrpc
 * [7] https://github.com/ethereumjs/ethereumjs-vm
 * [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
+
+etherscan.io https://etherscan.io/
+ethstats.net https://ethstats.net/

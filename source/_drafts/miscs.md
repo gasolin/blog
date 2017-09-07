@@ -195,3 +195,46 @@ voting
 Auction
 DAO
 store data
+
+
+### 加入數值計算方法
+
+我們在`HelloWorld.sol`中再加入一個sum方法，將傳入的兩個數字加總並回傳。
+
+```
+function sum(uint8 a, uint8 b) returns (uint8) {
+  return (a + b);
+}
+```
+
+這邊用`uint8`表示支援輸入8bit整數。
+
+```sh
+$ truffle compile
+...
+$ truffle migrate --reset
+...
+$ truffle console
+> let contract
+> HelloWorld.deployed().then(deployed => contract = deployed)
+> contract.sum.call(1, 2)
+{ [String: '3'] s: 1, e: 0, c: [ 3 ] }
+```
+
+看來結果正確。
+
+### ...真的正確嗎?
+
+我們接續前面開著的`truffle console`繼續輸入
+```
+> contract.sum.call(255, 23)
+{ [String: '22'] s: 1, e: 1, c: [ 22 ] }
+> contract.sum.call(1, -3)
+{ [String: '255'] s: 1, e: 2, c: [ 255 ] }
+> contract.add.call("a", -2)
+BigNumber Error: new BigNumber() not a number: a
+...
+```
+剛剛寫的sum方法其實不堪一擊。
+
+https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/
