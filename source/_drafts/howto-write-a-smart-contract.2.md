@@ -6,21 +6,32 @@ tags:
 
 [上一篇]中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包的加密代幣。
 
-## 建立一個代幣合約
+## 開發前的準備
 
 ```
 $ npm install zeppelin-solidity
 ```
+
+在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
+
+
+啟動testrpc
+
+```
+$ testrpc
+```
+
+## 建立一個代幣合約
 
 ```
 pragma solidity ^0.4.4;
 import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 
 contract HelloToken is StandardToken {
-  string public name = 'TutorialToken';
-  string public symbol = 'TT';
+  string public name = 'HelloToken';
+  string public symbol = 'HT';
   uint public decimals = 2;
-  uint public INITIAL_SUPPLY = 12000;
+  uint public INITIAL_SUPPLY = 88888;
 
   unction HelloToken() {
     totalSupply = INITIAL_SUPPLY;
@@ -96,3 +107,8 @@ ethstats.net https://ethstats.net/
 
 etherscan.io https://etherscan.io/
 ethstats.net https://ethstats.net/
+
+* An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
+* http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
+
+* What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE

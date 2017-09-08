@@ -237,4 +237,4 @@ BigNumber Error: new BigNumber() not a number: a
 ```
 剛剛寫的sum方法其實不堪一擊。
 
-https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/
+

@@ -74,7 +74,7 @@ Mnemonic:      addict cherry medal cupboard bless reduce oven beauty egg gift pl
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 ```
 
-可以看到testrpc啟動後自動建立了10個帳號(Accounts)，與每個帳號對應的私鑰(Private Key):key:。
+可以看到testrpc啟動後自動建立了10個帳號(Accounts)，與每個帳號對應的私鑰(Private Key):key:。每個帳號中都有100個測試用的以太幣(Ether):dollar:。要注意testrpc僅運行在記憶體中，因此每次重開時都會回到全新的狀態。
 
 一切準備就緒，我們可以開始建立第一份智能合約專案了。
 
