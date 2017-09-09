@@ -30,7 +30,7 @@ date: 2017-08-12 20:46:30
 
 但是交易所的錢包畢竟是交易所的錢包。在轉出比特幣/以太幣時，交易所會動態選用自己轄下的某個錢包帳號出帳。你所參與的代幣眾籌，它的智能合約收到的是交易所的錢包帳號而不是你的錢包帳號，所以智能合約發代幣的對象也變成交易所了。
 
-比較建議的方式是使用[MyEtherWallet](https://www.myetherwallet.com/)[^5]或硬體錢包參與以太坊相關的ICO。
+比較建議的方式是使用[MyEtherWallet](https://www.myetherwallet.com/)[^5]或硬體錢包參與以太坊相關的ICO。其他可使用的錢包可查看參考資料[^7]。
 
 ## 3. 用到假錢包
 
@@ -76,3 +76,4 @@ date: 2017-08-12 20:46:30
 * [4] https://registrar.ens.domains/
 * [5] [Myetherwallet介紹](http://blockcast.it/2017/05/27/eth-and-eth-token-wallet-series-myetherwallet/)
 * [6] https://tokenmarket.net/ico-calendar
+* [7] Token compatible Ethereum wallet list https://tokenmarket.net/what-is/ethereum-token-wallets/

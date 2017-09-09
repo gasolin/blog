@@ -6,7 +6,6 @@ tags:
 ---
 
 
-
 Traditional computer architecture
 
 {% mermaid %}
@@ -68,22 +67,6 @@ https://learnxinyminutes.com/docs/solidity/
 首先，早上要先想好打算吃什麼早餐，哪家早餐有提供想吃的早餐種類（訊息），選好早餐店與點餐後（信任），完成付帳並拿到餐點（價值）。
 
 那麼，如果我們打算把這個過程搬上網，把實體物品換成虛擬物品呢？
-
-## 區塊鏈
-
-一籃子技術的組合
-P2P、加密、智能合約
-
-
-## 區塊鏈有哪些類型?
-
-做生意 訊息 - 信任 - 價值
-
-信任 -> 資產清算和帳本的確認
-
-多個交易主體且互不信任
-
-使用工程的手段，結合數學加密與金融激勵。
 
 
 # write web extension
@@ -238,3 +221,47 @@ BigNumber Error: new BigNumber() not a number: a
 剛剛寫的sum方法其實不堪一擊。
 
 
+繼續看 http://truffleframework.com/tutorials/pet-shop 範例
+
+// It is a good guideline to structure functions that interact
+// with other contracts (i.e. they call functions or send Ether)
+// into three phases:
+// 1. checking conditions
+// 2. performing actions (potentially changing conditions)
+// 3. interacting with other contracts
+
+// If these phases are mixed up, the other contract could call
+// back into the current contract and modify the state or cause
+// effects (ether payout) to be performed multiple times.
+// If functions called internally include interaction with external
+// contracts, they also have to be considered interaction with
+// external contracts.
+
+* The Hitchhiker’s Guide to Smart Contracts in Ethereum https://blog.zeppelin.solutions/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05
+* https://amisamity.github.io/contract-training/
+* Robust Smart Contracts with OpenZeppelin http://truffleframework.com/tutorials/robust-smart-contracts-with-openzeppelin
+* http://zeppelin-solidity.readthedocs.io/en/latest/getting-started.html
+
+Mist Browser
+
+Mist-installer-x.x.x
+https://github.com/ethereum/mist/releases
+
+or Parity
+https://parity.io/parity.html
+
+https://geth.ethereum.org/downloads/
+
+truffle + webpack
+http://truffleframework.com/tutorials/bundling-with-webpack
+
+testnet
+
+// $ truffle migrate --network production
+$ geth attach
+> personal.unlockAccount(eth.coinbase)
+
+etherscan.io https://etherscan.io/
+ethstats.net https://ethstats.net/
+
+在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。

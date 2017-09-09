@@ -8,30 +8,38 @@ tags:
 
 ## 開發前的準備
 
-```
-$ npm install zeppelin-solidity
-```
-
-在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
-
-
 啟動testrpc
 
 ```
 $ testrpc
 ```
 
+使用 OpenZeppelin 
+
+```
+$ npm install zeppelin-solidity
+```
+
+
 ## 建立一個代幣合約
+
+在`contracts/`目錄下建立一個`HelloToken.sol`檔案。也可以使用以下命令來產生檔案：
+
+```sh
+$ truffle create contract HelloToken
+```
+
+
 
 ```
 pragma solidity ^0.4.4;
-import 'zeppelin-solidity/contracts/token/StandardToken.sol';
+import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 contract HelloToken is StandardToken {
-  string public name = 'HelloToken';
-  string public symbol = 'HT';
-  uint public decimals = 2;
-  uint public INITIAL_SUPPLY = 88888;
+  string public name = "HelloToken";
+  string public symbol = "HT";
+  uint8 public decimals = 2;
+  uint256 public INITIAL_SUPPLY = 88888;
 
   unction HelloToken() {
     totalSupply = INITIAL_SUPPLY;
@@ -43,72 +51,63 @@ contract HelloToken is StandardToken {
 把全域變數設為public時，就會新增一個讀取public變數的ABI接口。
 
 
+在`migrations/`目錄下建立一個`3_deploy_token.js`檔案，
+
 ```
-var HelloToken = artifacts.require("./HelloToken.sol");
+var HelloToken = artifacts.require("HelloToken");
 
 module.exports = function(deployer) {
   deployer.deploy(HelloToken);
 };
 ```
 
-繼續看 http://truffleframework.com/tutorials/pet-shop 範例
+```sh
+$ truffle compile
+...
+$ truffle migrate
+Using network 'development'.
 
-// It is a good guideline to structure functions that interact
-// with other contracts (i.e. they call functions or send Ether)
-// into three phases:
-// 1. checking conditions
-// 2. performing actions (potentially changing conditions)
-// 3. interacting with other contracts
+Running migration: 3_deploy_token.js
+  Deploying HelloToken...
+  ... 0x2c4659528c68b4e43d1edff6c989fba05e8e7e56cc4085d408426d339b4e9ba4
+  HelloToken: 0x352fa9aa18106f269d944935503afe57a00a9a0d
+Saving successful migration to network...
+  ... 0x1434c1b61e9719f410fc6090ce37c0ec141a1738aba278dd320738e4a5d229fa
+Saving artifacts...
+```
 
-// If these phases are mixed up, the other contract could call
-// back into the current contract and modify the state or cause
-// effects (ether payout) to be performed multiple times.
-// If functions called internally include interaction with external
-// contracts, they also have to be considered interaction with
-// external contracts.
+```sh
+$ truffle console
+> let account1 = web3.eth.accounts[0]
+> let account2 = web3.eth.accounts[1]
+> account1
+'0xa4d7ce9137e6f8de4fb1311595b33230be15be50'
+> account2
+'0x26c231bdd7c8a7304983b04694c3437b30331019'
+> let contract
+> HelloToken.deployed().then(instance => contract = instance)
+> contract.address
+'0x352fa9aa18106f269d944935503afe57a00a9a0d'
+> contract.balanceOf.call(account1)
+{ [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
+> contract.balanceOf.call(account1).then(val => val.toString())
+'88888'
+> contract.balanceOf.call(account2)
+{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+> contract.transfer.transaction(account2, 123)
+true
+```
 
-* The Hitchhiker’s Guide to Smart Contracts in Ethereum https://blog.zeppelin.solutions/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05
-* https://amisamity.github.io/contract-training/
-* Robust Smart Contracts with OpenZeppelin http://truffleframework.com/tutorials/robust-smart-contracts-with-openzeppelin
-* http://zeppelin-solidity.readthedocs.io/en/latest/getting-started.html
-
-Mist Browser
-
-Mist-installer-x.x.x
-https://github.com/ethereum/mist/releases
-
-or Parity
-https://parity.io/parity.html
-
-https://geth.ethereum.org/downloads/
-
-truffle + webpack
-http://truffleframework.com/tutorials/bundling-with-webpack
-
-testnet
-
-// $ truffle migrate --network production
-$ geth attach
-> personal.unlockAccount(eth.coinbase)
 
 
 ## 參考資料
 
 * [1] Solidity http://solidity.readthedocs.io/en/latest/index.html
-* [2] Solidity線上編輯器　https://ethereum.github.io/browser-solidity/
-etherscan.io https://etherscan.io/
-ethstats.net https://ethstats.net/
-* [3] Truffle Framework http://truffleframework.com/
-* [4] Embark Framework https://github.com/iurimatias/embark-framework
-* [5] ENS也使用Truffle框架 https://github.com/ethereum/ens
-* [6] https://github.com/ethereumjs/testrpc
-* [7] https://github.com/ethereumjs/ethereumjs-vm
-* [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
-
-etherscan.io https://etherscan.io/
-ethstats.net https://ethstats.net/
-
+* [2] Truffle Framework http://truffleframework.com/
+* [3] https://github.com/ethereumjs/testrpc
+* [4] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
 * An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
 * http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
-
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
+
+* https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6

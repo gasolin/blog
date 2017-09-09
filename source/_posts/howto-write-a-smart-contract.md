@@ -11,22 +11,22 @@ date: 2017-09-06 18:30:31
 
 ## 使用solidity語言撰寫智能合約
 
-Ethereum上的智能合約需要使用solidity[^1]語言來撰寫。雖然還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。
+Ethereum上的智能合約需要使用`solidity`[^1]語言來撰寫。雖然還有其他能用來撰寫智能合約的語言如`Serpent`(類Python)、`lll`(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。
 
 宣傳上說，solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈，都是使用屬於Javascript生態系的npm來提供的。但我覺得solidity還是比較像Java或C#。
 因為和Javascript不同，solidity與Java或C#同屬於強型別(Strong Type，在定義變數時需要指定型別)語言、在定義函式(function)時同樣需指定回傳的型別(type)、同樣也需要先編譯才能執行。這些特性都是Javascript所不具備的。
 
 ## 開發前的準備
 
-本文將使用當前最活躍的智能合約開發框架truffle[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有embark[^4]等。
+本文將使用當前最活躍的智能合約開發框架`truffle`[^3]為基礎來開發。之前提到過的ENS(Ethereum Name Service)[^5]也是採用truffle框架。其他選擇還有`embark`[^4]等。
 
 就像一般網站或App開發一樣，在提供公開服務之前，開發者會在自己用於寫程式的電腦(又稱作本機):computer:或透過測試網路:spider_web:來測試程式執行的效果，測試完成後，才會部署到公開的網路上提供服務。
 開發區塊鏈智能合約(程式)的過程也是如此。特別是公開鏈上所有寫入或讀取計算結果的操作都需要真金白銀(虛擬代幣):money_with_wings:，而且根據網路狀況，每個公開鏈上的操作都需要要一小段反應時間(15秒 ~ 數分鐘)，這些等待頗浪費寶貴的開發時間:hourglass_flowing_sand:。
-因此在開發的過程中，我們將使用testrpc[^6]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
+因此在開發的過程中，我們將使用`testrpc`[^6]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
 
 testrpc中也包含了Javascript版本的Ethereum虛擬機(Ethereum Virtual Machine)[^7]，因此可以完整地執行智能合約:innocent:。
 
-此外，開發前還需準備一個合手的編輯器。我目前是使用[Visual Studio Code](https://code.visualstudio.com)搭配[solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)插件來開發，其他編輯器應該也有類似的插件可選擇。
+此外，開發前還需準備一個合手的編輯器。我目前是使用[Visual Studio Code](https://code.visualstudio.com)搭配[solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)插件來開發。solidity插件除了支援語法高亮之外，也會透過Solium[^11]檢查並提示基本的語法錯誤，相當方便。其他編輯器應該也有類似的插件可選擇。
 
 ### 安裝所需工具
 
@@ -90,7 +90,7 @@ $ truffle init
 
 如此一來，我們已建立好第一份智能合約專案了。
 
-在`demo`資料夾下，可以看到`contracts`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts`資料夾中額外建立一個`HelloWorld.sol`檔案。（或者也可以用`truffle create contract HelloWorld`命令來建立）
+在`demo/`資料夾下，可以看到`contracts/`資料夾，裡面放的是這個專案所包含的所有solidity程式。我們在`contracts/`資料夾中額外建立一個`HelloWorld.sol`檔案。（或者也可以用`truffle create contract HelloWorld`命令來建立）
 
 `HelloWorld.sol`檔案內容如下：
 ```
@@ -135,21 +135,21 @@ function sayHello() returns (string) {
 $ truffle compile
 ```
 
-編譯成功的話，在`build/contracts`目錄下會多出`HelloWorld.json`這個檔案。（在Windows平台上執行truffle compile若遇到問題，可以查看參考資料[^9]來解決。）
+編譯成功的話，在`build/contracts/`目錄下會多出`HelloWorld.json`這個檔案。（在Windows平台上執行truffle compile若遇到問題，可以查看參考資料[^9]來解決。）
 
 ### 部署
 
-truffle框架中提供了方便部署合約的腳本。打開`/migrations/2_deploy_contracts.js`檔案(腳本使用Javascript撰寫)，將內容修改如下
+truffle框架中提供了方便部署合約的腳本。打開`migrations/2_deploy_contracts.js`檔案(腳本使用Javascript撰寫)，將內容修改如下
 
-```
-var HelloWorld = artifacts.require("./HelloWorld.sol");
+```js
+var HelloWorld = artifacts.require("HelloWorld");
 
 module.exports = function(deployer) {
   deployer.deploy(HelloWorld);
 };
 ```
 
-使用`artifacts.require`語句來取得準備部署的合約，使用`deployer.deploy`語句將合約部署到區塊鏈上。
+使用`artifacts.require`語句來取得準備部署的合約。使用`deployer.deploy`語句將合約部署到區塊鏈上。這邊`HelloWorld`是contract的名稱而不是檔名。因此可以用此語法讀入任一`.sol`檔案中的任一合約。
 
 現在執行`truffle migrate`命令，
 
@@ -174,10 +174,10 @@ Saving artifacts...
 
 truffle提供命令行工具，執行`truffle console`命令後，可用Javascript來和剛剛部署的合約互動。
 
-```
+```sh
 $ truffle console
 > let contract
-> HelloWorld.deployed().then(addr => contract = addr)
+> HelloWorld.deployed().then(instance => contract = instance)
 > contract.sayHello.call()
 'Hello World'
 ```
@@ -185,18 +185,27 @@ $ truffle console
 #### 講解
 
 ```js
-> HelloWorld.deployed().then(addr => contract = addr)
+> HelloWorld.deployed().then(instance => contract = instance)
 ```
 
-這邊使用`HelloWorld.deployed().then`語句來取得HelloWorld合約的Address Object，並存到`contract`變數中，以方便後續的呼叫。
+`truffle console`中預載了`truffle-contract`[^12]函式庫，以方便操作部署到區塊鏈上的合約。
+
+這邊使用`HelloWorld.deployed().then`語句來取得HelloWorld合約的Instance(實例)，並存到`contract`變數中，以方便後續的呼叫。
 
 上面用的是Javascript ES6+的語法，這句也可以寫成
 
 ```js
-HelloWorld.deployed().then(function(addr) {
-  hello = addr;
+HelloWorld.deployed().then(function(instance) {
+  hello = instance;
 });
 ```
+
+```sh
+> contract.sayHello.call()
+'Hello World'
+```
+
+這邊直接呼叫`contract.sayHello()`也會得到一樣的結果。`truffle-contract`提供使用`call()`來讀取唯讀(read only)的資料，這樣就不需提供gas。因此如果遇到的操作需要向區塊鏈寫入資料，我們就不能用`call`語句了。
 
 如此一來我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。
 
@@ -205,12 +214,13 @@ HelloWorld.deployed().then(function(addr) {
 我們在`HelloWorld.sol`中再加入一個`echo`方法，`echo`方法接受輸入一個參數，並回傳傳送的參數。
 
 ```
-function echo(string name) returns (string) {
+constant function echo(string name) returns (string) {
   return name;
 }
 ```
 
-新的echo方法中傳入了一個`name`參數。
+新的`echo`方法中傳入了一個`name`參數。我們也為`echo`方法加入一個`constant`宣告，表示呼叫這個方法並不會改變區塊鏈的狀態。如此一來，透過`truffle-contract`來呼叫此方法時，會自動選用`call`來呼叫，也不需要額外提供gas。
+
 由於更新了合約內容，我們需要先重新新編譯一次，將編譯結果部署到testrpc上，再透過`truffle console`執行看看結果。
 
 ```sh
@@ -220,12 +230,14 @@ $ truffle migrate --reset
 ...
 $ truffle console
 > let contract
-> HelloWorld.deployed().then(addr => contract = addr)
-> contract.echo.call("yo man")
+> HelloWorld.deployed().then(instance => contract = instance)
+> contract.echo("yo man")
 'yo man'
 ```
 
-`echo`方法確實將我們輸入的內容回傳了。另一點需要注意的，是這次如果還是用`truffle migrate`命令，我們會得到如下訊息：
+`echo`方法確實將我們輸入的內容回傳了。同時因為宣告了`constant`，我們不需要直接呼叫`call()`方法，`truffle`會自動選用call來呼叫。
+
+另一點需要注意的，是這次如果還是用`truffle migrate`命令，我們會得到如下訊息：
 
 ```sh
 $ truffle migrate
@@ -254,4 +266,6 @@ Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛�
 * [8] HelloWorld範例修改自 https://app.pluralsight.com/library/courses/blockchain-fundamentals/
 * [9]  Truffle issue on windows http://truffleframework.com/docs/advanced/configuration#resolving-naming-conflicts-on-windows
 * [10] Solidity支援的型別(Type) https://solidity.readthedocs.io/en/develop/types.html
-* [11] 本篇也已分享到medium上的Taipei Ethereum Meetup文集中　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b
+* [11] Solium syntax check https://github.com/duaraghav8/Solium
+* [12] http://truffleframework.com/docs/getting_started/contracts
+* [13] 本篇也已分享到medium上的Taipei Ethereum Meetup台灣以太坊社群專欄　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b

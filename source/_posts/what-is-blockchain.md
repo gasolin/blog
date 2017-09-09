@@ -59,3 +59,4 @@ P2P --- 網際網路
 * [13] TED [How the blockchain will radically transform the economy](https://www.youtube.com/watch?v=RplnSVTzvnU)
 * [14] [Blockchain 101 - A Visual Demo](https://youtu.be/_160oMzblY8)
 * [15] [Block Chain Demo網站](https://anders.com/blockchain/)
+* [16] What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
