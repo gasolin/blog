@@ -8,22 +8,25 @@ tags:
 
 ## 開發前的準備
 
-延續上一篇的內容，在開發的過程中，我們將繼續使用`testrpc`[^3]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
+延續上一篇的內容，在開發的過程中，我們將繼續使用`testrpc`[^1]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
 
-啟動testrpc
+首先確保已啟動testrpc，若尚未啟動，可以使用以下命令啟動
 
 ```
 $ testrpc
+...
 ```
 
-此外，本篇將使用OpenZeppelin[^2]函式庫來簡化。
-
-建立的代幣若要能放到乙太幣錢包，必須相容ERC20標準。
+除了運行testrpc之外，本篇建立的代幣若要能透過乙太幣錢包:purse:收送，必須相容ERC20標準。
+本篇將使用OpenZeppelin[^2]函式庫來簡化建立加密代幣🔒💵的過程。
 
 ```
 $ npm install zeppelin-solidity
 ```
 
+`OpenZeppelin`是一套協助撰寫安全的加密合約的函式庫，裡面也提供了相容ERC20標準的智能合約。可以透過npm工具安裝到專案目錄`node_modules/zeppelin-solodity/`中。
+
+我們可以開始建立加密代幣智能合約專案了。
 
 ## 建立一個代幣合約
 
@@ -33,37 +36,93 @@ $ npm install zeppelin-solidity
 $ truffle create contract HelloToken
 ```
 
-
+`HelloToken.sol`檔案內容如下：
 
 ```
 pragma solidity ^0.4.11;
 import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 contract HelloToken is StandardToken {
-  string public name = "HelloToken";
-  string public symbol = "HT";
+  string public name = "HelloCoin";
+  string public symbol = "HC";
   uint8 public decimals = 2;
   uint256 public INITIAL_SUPPLY = 88888;
 
-  unction HelloToken() {
+  function HelloToken() {
     totalSupply = INITIAL_SUPPLY;
     balances[msg.sender] = INITIAL_SUPPLY;
   }
 }
 ```
 
-把全域變數設為public時，就會新增一個讀取public變數的ABI接口。
-
-
-在`migrations/`目錄下建立一個`3_deploy_token.js`檔案，
+### 講解
 
 ```
+pragma solidity ^0.4.11;
+```
+
+第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。
+
+```
+import "zeppelin-solidity/contracts/token/StandardToken.sol";
+```
+
+接著我們使用`import`語句，來讀入`zeppelin-solidity`提供的`StandardToken`合約。
+
+```
+contract HelloToken is StandardToken {
+}
+```
+
+建立`HelloToken`合約時，使用`is`語句繼承了[StandardToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/StandardToken.sol)合約。因此`HelloToken`合約繼承了`StandardToken`合約所包含的資料與呼叫方法。
+
+```
+string public name = "HelloCoin";
+string public symbol = "H@";
+uint8 public decimals = 2;
+uint256 public INITIAL_SUPPLY = 88888;
+```
+
+只要把全域變數設為`public`(公開)，編譯時就會自動新增一個讀取公開變數的ABI接口。
+
+這邊設定參數的目的是指定這個代幣的一些特性。以美金來說，美金的名字叫`dollar`，代號為`$`，最小交易單位為2。2代表一塊錢最小可分割到小數點後2位交易，即最小交易單位為0.01元，也就是一美分cent)，供給量是某個極大的數字；這邊我為這個加密代幣取的名字(name)是`HelloCoin`(哈囉幣)，代幣的代號(symbol)為`H@`，最小分割單位亦為2(0.01)。
+
+以下為美金，比特幣，以太幣，HelloCoin的對照表供參考：
+
+Name | Symbol | decimals
+------------ | ------------- | -------------
+Dollar | $ | 2
+Bitcoin | BTC | 8
+Ethereum | ETH | 18
+HelloCoin | H@ | 2
+
+最後還定義了初始代幣數目`INITIAL_SUPPLY`。這邊隨意選擇了一個吉祥數字`88888`。
+
+```
+function HelloToken() {
+  totalSupply = INITIAL_SUPPLY;
+  balances[msg.sender] = INITIAL_SUPPLY;
+}
+```
+
+和合約同名的`HelloToken`方法，就是`HelloToken`合約的建構函式(constructor)。
+在建構式裡指定了`totalSupply`數目，並將所有的初始代幣`INITIAL_SUPPLY`都指定給`msg.sender`帳號，也就是用來部署這個合約的帳號。‵`totalSupply`定義於[ERC20Basic.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/ERC20Basic.sol#L10)中，`balances`定義於[BasicToken.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/BasicToken.sol#L15)中。
+
+如此一來我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。
+
+### 編譯與部署
+
+在`migrations/`目錄下建立一個`3_deploy_token.js`檔案，內容如下：
+
+```js
 var HelloToken = artifacts.require("HelloToken");
 
 module.exports = function(deployer) {
   deployer.deploy(HelloToken);
 };
 ```
+
+現在執行compile與migrate命令
 
 ```sh
 $ truffle compile
@@ -79,6 +138,10 @@ Saving successful migration to network...
   ... 0x1434c1b61e9719f410fc6090ce37c0ec141a1738aba278dd320738e4a5d229fa
 Saving artifacts...
 ```
+
+如此一來我們已將HelloCoin代幣合約部署到testrpc上。
+
+## 驗證
 
 ```sh
 $ truffle console
@@ -116,9 +179,9 @@ web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
 ## 參考資料
 
 * [1] https://github.com/ethereumjs/testrpc
-* [2] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
+* [2] ERC20 https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+* [3] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
 * An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
 * http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
-
 * https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6
