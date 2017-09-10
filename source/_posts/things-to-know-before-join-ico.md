@@ -77,3 +77,5 @@ date: 2017-08-12 20:46:30
 * [5] [Myetherwallet介紹](http://blockcast.it/2017/05/27/eth-and-eth-token-wallet-series-myetherwallet/)
 * [6] https://tokenmarket.net/ico-calendar
 * [7] Token compatible Ethereum wallet list https://tokenmarket.net/what-is/ethereum-token-wallets/
+* [8] Protecting Yourself and Your Funds https://myetherwallet.groovehq.com/knowledge_base/topics/protecting-yourself-and-your-funds
+* [9] 如果你打算發行ICO，可以看看這篇介紹ICO過程中各種花式被駭的經驗 https://medium.com/@kickico/how-they-tried-to-hack-our-ico-d348659dc4

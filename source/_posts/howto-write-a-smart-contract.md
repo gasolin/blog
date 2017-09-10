@@ -94,7 +94,7 @@ $ truffle init
 
 `HelloWorld.sol`檔案內容如下：
 ```
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.11;
 
 contract HelloWorld {
   function sayHello() returns (string) {
@@ -106,7 +106,7 @@ contract HelloWorld {
 ### 講解
 
 ```
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.11;
 ```
 
 第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。
@@ -180,6 +180,7 @@ $ truffle console
 > HelloWorld.deployed().then(instance => contract = instance)
 > contract.sayHello.call()
 'Hello World'
+>
 ```
 
 #### 講解
@@ -207,14 +208,14 @@ HelloWorld.deployed().then(function(instance) {
 
 這邊直接呼叫`contract.sayHello()`也會得到一樣的結果。`truffle-contract`提供使用`call()`來讀取唯讀(read only)的資料，這樣就不需提供gas。因此如果遇到的操作需要向區塊鏈寫入資料，我們就不能用`call`語句了。
 
-如此一來我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。
+如此一來，我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。
 
 ### 加入新方法
 
 我們在`HelloWorld.sol`中再加入一個`echo`方法，`echo`方法接受輸入一個參數，並回傳傳送的參數。
 
 ```
-constant function echo(string name) returns (string) {
+function echo(string name) constant returns (string) {
   return name;
 }
 ```
@@ -233,6 +234,7 @@ $ truffle console
 > HelloWorld.deployed().then(instance => contract = instance)
 > contract.echo("yo man")
 'yo man'
+>
 ```
 
 `echo`方法確實將我們輸入的內容回傳了。同時因為宣告了`constant`，我們不需要直接呼叫`call()`方法，`truffle`會自動選用call來呼叫。

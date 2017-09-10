@@ -1,12 +1,14 @@
 ---
-title: 如何撰寫智能合約(Smart Contract)?(II)
+title: 如何撰寫智能合約(Smart Contract)?(II)建立加密代幣
 tags:
   - ethereum
 ---
 
-[上一篇]中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包的加密代幣。
+[上一篇]中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
 
 ## 開發前的準備
+
+延續上一篇的內容，在開發的過程中，我們將繼續使用`testrpc`[^3]工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。
 
 啟動testrpc
 
@@ -14,7 +16,9 @@ tags:
 $ testrpc
 ```
 
-使用 OpenZeppelin 
+此外，本篇將使用OpenZeppelin[^2]函式庫來簡化。
+
+建立的代幣若要能放到乙太幣錢包，必須相容ERC20標準。
 
 ```
 $ npm install zeppelin-solidity
@@ -32,7 +36,7 @@ $ truffle create contract HelloToken
 
 
 ```
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.11;
 import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 contract HelloToken is StandardToken {
@@ -94,18 +98,25 @@ $ truffle console
 '88888'
 > contract.balanceOf.call(account2)
 { [String: '0'] s: 1, e: 0, c: [ 0 ] }
-> contract.transfer.transaction(account2, 123)
-true
+> contract.transfer(account2, 123)
+...
+> contract.balanceOf.call(address1)
+{ [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
+> contract.balanceOf.call(address2)
+{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+>
 ```
 
+web3.eth.accounts[0]
+web3.eth.coinbase
+"web3.eth.coinbase" is the default account for your console session
 
+web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
 
 ## 參考資料
 
-* [1] Solidity http://solidity.readthedocs.io/en/latest/index.html
-* [2] Truffle Framework http://truffleframework.com/
-* [3] https://github.com/ethereumjs/testrpc
-* [4] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
+* [1] https://github.com/ethereumjs/testrpc
+* [2] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
 * An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
 * http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
