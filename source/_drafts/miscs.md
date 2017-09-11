@@ -265,3 +265,7 @@ etherscan.io https://etherscan.io/
 ethstats.net https://ethstats.net/
 
 在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
+
+CrowdSale
+
+* What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE

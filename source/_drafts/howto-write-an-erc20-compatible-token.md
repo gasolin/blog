@@ -1,10 +1,10 @@
 ---
-title: 如何撰寫智能合約(Smart Contract)?(II)建立加密代幣
+title: 如何撰寫智能合約(Smart Contract)?(III)建立標準代幣
 tags:
   - ethereum
 ---
 
-[上一篇]中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
+[上一篇]中我們已寫好並部署完成了簡單的加密代幣🔒💵合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
 
 ## 開發前的準備
 
@@ -27,8 +27,7 @@ $ npm install zeppelin-solidity
 `OpenZeppelin`是一套協助撰寫安全的加密合約的函式庫，裡面也提供了相容ERC20標準的智能合約。可以透過npm工具安裝到專案目錄`node_modules/zeppelin-solodity/`中。
 
 我們可以開始建立加密代幣智能合約專案了。
-
-## 建立一個代幣合約
+## 建立一個標準代幣合約
 
 在`contracts/`目錄下建立一個`HelloToken.sol`檔案。也可以使用以下命令來產生檔案：
 
@@ -155,17 +154,17 @@ $ truffle console
 > HelloToken.deployed().then(instance => contract = instance)
 > contract.address
 '0x352fa9aa18106f269d944935503afe57a00a9a0d'
-> contract.balanceOf.call(account1)
+> contract.balanceOf(account1)
 { [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
-> contract.balanceOf.call(account1).then(val => val.toString())
+> contract.balanceOf(account1).then(val => val.toString())
 '88888'
-> contract.balanceOf.call(account2)
+> contract.balanceOf(account2)
 { [String: '0'] s: 1, e: 0, c: [ 0 ] }
 > contract.transfer(account2, 123)
 ...
-> contract.balanceOf.call(address1)
+> contract.balanceOf(address1)
 { [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
-> contract.balanceOf.call(address2)
+> contract.balanceOf(address2)
 { [String: '123'] s: 1, e: 2, c: [ 123 ] }
 >
 ```
