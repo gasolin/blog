@@ -254,7 +254,7 @@ Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛�
 
 本篇設計的範例[^8]相當簡單，但已達到完整地帶大家快速:zap:走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example]( http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
 
-下一篇會接著介紹如何建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
+下一篇會接著介紹如何建立一份簡單的加密代幣🔒💵合約。
 
 ## 參考資料
 

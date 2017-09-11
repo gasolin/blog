@@ -107,7 +107,7 @@ function HelloToken() {
 和合約同名的`HelloToken`方法，就是`HelloToken`合約的建構函式(constructor)。
 在建構式裡指定了`totalSupply`數目，並將所有的初始代幣`INITIAL_SUPPLY`都指定給`msg.sender`帳號，也就是用來部署這個合約的帳號。‵`totalSupply`定義於[ERC20Basic.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/ERC20Basic.sol#L10)中，`balances`定義於[BasicToken.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/BasicToken.sol#L15)中。
 
-如此一來我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。
+如此一來我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。這個合約一經部署，就可以一直存在於以太坊區塊鏈上，世界上也就多了一種新的加密代幣。只要你能找到人想擁有這種代幣，這種代幣就有交易的價值。
 
 ### 編譯與部署
 
@@ -126,7 +126,7 @@ module.exports = function(deployer) {
 ```sh
 $ truffle compile
 ...
-$ truffle migrate
+$ truffle migrate --reset
 Using network 'development'.
 
 Running migration: 3_deploy_token.js
@@ -184,3 +184,4 @@ web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
 * http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
 * https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6
+* https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol
