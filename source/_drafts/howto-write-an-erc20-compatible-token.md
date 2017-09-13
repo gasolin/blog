@@ -17,7 +17,7 @@ $ testrpc
 ...
 ```
 
-除了運行testrpc之外，本篇建立的代幣若要能透過乙太幣錢包:purse:收送，必須相容ERC20標準。
+除了運行testrpc之外，本篇建立的代幣若要能透過乙太幣錢包:purse:收送，必須相容ERC20標準[^2]。ERC20標準定義了所有支援錢包必須的合約介面。
 本篇將使用OpenZeppelin[^2]函式庫來簡化建立加密代幣🔒💵的過程。
 
 ```
@@ -27,6 +27,7 @@ $ npm install zeppelin-solidity
 `OpenZeppelin`是一套協助撰寫安全的加密合約的函式庫，裡面也提供了相容ERC20標準的智能合約。可以透過npm工具安裝到專案目錄`node_modules/zeppelin-solodity/`中。
 
 我們可以開始建立加密代幣智能合約專案了。
+
 ## 建立一個標準代幣合約
 
 在`contracts/`目錄下建立一個`HelloToken.sol`檔案。也可以使用以下命令來產生檔案：
@@ -144,36 +145,61 @@ Saving artifacts...
 
 ```sh
 $ truffle console
-> let account1 = web3.eth.accounts[0]
-> let account2 = web3.eth.accounts[1]
-> account1
-'0xa4d7ce9137e6f8de4fb1311595b33230be15be50'
-> account2
-'0x26c231bdd7c8a7304983b04694c3437b30331019'
 > let contract
 > HelloToken.deployed().then(instance => contract = instance)
 > contract.address
 '0x352fa9aa18106f269d944935503afe57a00a9a0d'
-> contract.balanceOf(account1)
+> contract.balanceOf(web3.eth.coinbase)
 { [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
-> contract.balanceOf(account1).then(val => val.toString())
-'88888'
-> contract.balanceOf(account2)
+> contract.balanceOf(web3.eth.accounts[1])
 { [String: '0'] s: 1, e: 0, c: [ 0 ] }
-> contract.transfer(account2, 123)
+> contract.transfer(web3.eth.accounts[1], 123)
 ...
-> contract.balanceOf(address1)
+> contract.balanceOf(web3.eth.accounts[0])
 { [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
-> contract.balanceOf(address2)
+> contract.balanceOf(web3.eth.accounts[1])
 { [String: '123'] s: 1, e: 2, c: [ 123 ] }
 >
 ```
 
-web3.eth.accounts[0]
-web3.eth.coinbase
-"web3.eth.coinbase" is the default account for your console session
+### 講解
 
-web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
+```sh
+> let contract
+> SimpleToken.deployed().then(instance => contract = instance)
+```
+
+這邊使用`HelloToken.deployed().then`語句來取得HelloToken合約的Instance(實例)，並存到`contract`變數中，以方便後續的呼叫。
+
+```sh
+> contract.balanceOf(web3.eth.coinbase)
+{ [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
+> contract.balanceOf(web3.eth.accounts[1])
+{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+```
+
+`web3.eth.coinbase` 代表操作者預設的帳號，即testrpc所提供的10個帳號中的第一個帳號，也可以透過`web3.eth.accounts[0]`取得。
+這兩句的目的是在進行轉帳操作前，先查詢前兩個帳號所擁有的代幣餘額。透過呼叫`balanceOf`函式，可以看到第一個帳號(部署合約的帳號)裡存著所有的代幣。
+
+```
+> contract.transfer(web3.eth.accounts[1], 123)
+...
+```
+
+接著使用`transfer`函式來傳送`123`個代幣到第二個帳號`web3.eth.accounts[1]`。如果轉帳成功，傳送者預設帳號中會減少123個代幣，接收者帳號中會增加123個代幣。
+
+```
+> contract.balanceOf(web3.eth.coinbase)
+{ [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
+> contract.balanceOf.call(web3.eth.accounts[1])
+{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+>
+```
+
+我們再次透過呼叫`balanceOf`函式，查詢傳送者帳號和接收者帳號各自剩下的SimpleToken數目。發現轉帳真的成功了。
+
+## 放到以太幣錢包
+
 
 ## 參考資料
 
