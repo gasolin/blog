@@ -19,7 +19,7 @@ date: 2017-08-12 20:46:30
 就算發起人說得天花亂墜，到時參與ICO換得的代幣也只能當紀念用了。
 
 
-## 2.用交易所錢包轉帳
+## 2. 別用交易所錢包轉帳
 
 **交易所的錢包並不能換回其他代幣，**
 **交易所的錢包並不能換回其他代幣，**
@@ -36,12 +36,14 @@ date: 2017-08-12 20:46:30
 
 無論是網路上或是手機應用程式商店中，有許多宣稱有比特幣/以太幣錢包功能的網站/App。其中依然有些是假錢包。當你使用這些錢包轉幣時，可能會被騙走。因此盡量選擇自己常用，有信譽的網站/應用，或硬體錢包來操作ICO。
 
-## 4.轉帳時填錯地址
+網站應該加入書籤，以後都使用書籤中的網站存取。不要盲目信任搜尋引擎搜到的連結(原因在下一條)，或透過slack等社交網站，那些看起來像官方訊息提供的連結或地址[10]。
+
+## 4.轉帳時填錯地址或轉到假地址
 
 比特幣跟以太幣所謂的`錢包`地址，跟IPv6地址一樣，就是一串16進位數字(而且是頗長的一串。有人算過總共幾位數嗎?)。要投資時需要照著網站上提供的指示，將錢包地址複製到自己的錢包接收地址欄中。
 要是很不幸地複製錯了，你轉出的資金就被轉到不知是誰的錢包裡去了。由於以太坊上沒有銀行，一旦轉錯了，也沒有申訴的地方喔。
 
-對於釣魚網站來說，這種根本就是亂碼的錢包地址真是個福音，因為只要將網站複製一下，錢包地址換成自己的，就可以開張來詐騙了!
+對於釣魚網站來說，這種根本就是亂碼的錢包地址真是個福音，因為只要將網站複製一下，錢包地址換成自己的，弄個前面網址一模一樣，但並非`.com`的假官方網域，再下個Google搜尋廣告，就可以開張來詐騙了!
 
 但幸好最近ENS(Ethereum Name Service)[^4] 地址網域開始投入使用，可以將以太坊(Ethereum)錢包地址以類似網址的方式表示。
 例如我(gasolin)若發起一個ICO，就可以請投資者將以太幣轉到`gasolin.eth`這網址。
@@ -79,3 +81,4 @@ date: 2017-08-12 20:46:30
 * [7] Token compatible Ethereum wallet list https://tokenmarket.net/what-is/ethereum-token-wallets/
 * [8] Protecting Yourself and Your Funds https://myetherwallet.groovehq.com/knowledge_base/topics/protecting-yourself-and-your-funds
 * [9] 如果你打算發行ICO，可以看看這篇介紹ICO過程中各種花式被駭的經驗 https://medium.com/@kickico/how-they-tried-to-hack-our-ico-d348659dc4
+* [10] How to scam Ethereum in 24 hrs with Slack https://hackernoon.com/how-to-scam-102-860-usd-worth-of-ethereum-in-24-hrs-with-slack-63ce1032219c

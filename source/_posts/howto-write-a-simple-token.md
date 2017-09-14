@@ -48,9 +48,10 @@ contract SimpleToken {
   }
 
   // transfer token for a specified address
-  function transfer(address _to, uint256 _value) {
-    balances[msg.sender] -= _value;
-    balances[_to] += _value;
+  function transfer(address _to, uint256 _amount) {
+    if (balances[msg.sender] < _amount) throw;
+    balances[msg.sender] -= _amount;
+    balances[_to] += _amount;
   }
 
   // Gets the balance of the specified address
@@ -90,10 +91,10 @@ contract SimpleToken {
 `msg`是一個全域(Global)物件[^2]，`msg.sender`表示用作呼叫當前函式的帳號。由於建構函式只有在合約部署時會被執行，因此這邊用到的`msg.sender`，也就代表著用來部署這個合約的帳號。
 
 ```
-function transfer(address _to, uint256 _value) {
-  if (balances[msg.sender] < _value) throw;
-  balances[msg.sender] -= _value;
-  balances[_to] += _value;
+function transfer(address _to, uint256 _amount) {
+  if (balances[msg.sender] < _amount) throw;
+  balances[msg.sender] -= _amount;
+  balances[_to] += _amount;
 }
 ```
 
@@ -105,7 +106,7 @@ graph LR
 代幣合約 -.-> 修改傳送者和接收者餘額
 {% endmermaid %}
 
-`if (balances[msg.sender] < _value) throw;`語句判斷帳戶中是否還有足夠轉出的餘額，若存款小於想轉出的數目，就丟出(throw)錯誤。這函式這麼寫當然還是過度簡化了，若要能實際使用，需要檢查更多可能的狀況。但就先這樣吧。
+`if (balances[msg.sender] < _amount) throw;`語句判斷帳戶中是否還有足夠轉出的餘額，若存款小於想轉出的數目，就丟出(throw)錯誤。這函式這麼寫當然還是過度簡化了，若要能實際使用，需要檢查更多可能的狀況。但就先這樣吧。
 
 ```
 function balanceOf(address _owner) constant returns (uint256) {
@@ -221,6 +222,9 @@ $ truffle console
 
 有興趣可以查看參考資料[^4]了解智能合約當前的一些最佳實現。
 
+## 結語
+
+看完這篇除了學到本篇講解的`SimpleToken`外，應該也可以大致看得懂truffle預設的`MetaCoin.sol`合約了。不同的細節可以查看solidity相關語法[^2]。
 下一篇會接著介紹如何使用經過驗證的函式庫，來建立一份可以放到乙太幣錢包:purse:的加密代幣🔒💵合約。
 
 ## 參考資料

@@ -201,11 +201,16 @@ $ truffle console
 ## 放到以太幣錢包
 
 
+## 結語
+
+我們用到OpenZeppelin提供的函式庫來簡化代幣的工作。實際使用前還是建議將用到的程式碼都再審查幾遍。如何審查可以從 OpenZeppelin 自己提供的Audit開始看[^4]，可以學到一些觀念。
+
 ## 參考資料
 
 * [1] https://github.com/ethereumjs/testrpc
 * [2] ERC20 https://theethereum.wiki/w/index.php/ERC20_Token_Standard
 * [3] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
+* [4] OpenZeppelin Audit https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/audit/ZeppelinAudit.md
 * An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
 * http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
