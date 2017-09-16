@@ -216,11 +216,11 @@ $ truffle console
 
 寫智能合約看起來並不困難吧？但因為智能合約的運作是透明公開的，而且其中牽涉了代幣或金錢的流動，這提供了駭客很強的挑戰動機。
 
-因此如果要妥善處理智能合約，會遇到的諸多安全問題。即使單純如本篇中的`SimpleToken`，也至少會遇到`transfer`函式中沒有禁止傳入負數金額等等的問題。
+因此如果要妥善處理智能合約，會遇到的諸多安全問題。即使單純如本篇中的`SimpleToken`，也至少會遇到`transfer`函式中沒有禁止傳入負數金額，沒有檢查接收者帳號是否合法等等的問題。
 
-有著一堆安全漏洞的合約，輕則執行失敗白花交易費用，嚴重則影響到合約中的代幣或以太幣。已有多起因為代幣或以太幣被駭客轉走，造成ICO失敗的案例。
+有著一堆安全漏洞的合約，輕則執行失敗白花交易費用，嚴重則影響到合約中的代幣或以太幣。已有多起因為合約的漏洞，造成儲存在合約中的代幣或以太幣被駭客轉走，使得ICO失敗的案例。
 
-有興趣可以查看參考資料[^4]了解智能合約當前的一些最佳實現。
+有興趣可以查看參考資料[^4]和[^5]了解智能合約當前的一些最佳實現。
 
 ## 結語
 
@@ -233,3 +233,4 @@ $ truffle console
 * [2] Units and Globally Available Variables http://solidity.readthedocs.io/en/develop/units-and-global-variables.html
 * [3] An Ethereum Hello World Smart Contract for Beginners [part 1](http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/), [part 2](http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/)
 * [4] Onward with Ethereum Smart Contract Security https://blog.zeppelin.solutions/onward-with-ethereum-smart-contract-security-97a827e47702
+* [5] Ethereum Contract Security Techniques and Tips https://github.com/ConsenSys/smart-contract-best-practices

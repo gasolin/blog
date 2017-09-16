@@ -267,3 +267,9 @@ $ geth attach
 CrowdSale
 
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
+
+## 放到以太幣錢包
+
+TBD
+
+https://drive.google.com/file/d/0ByMtMw2hul0EN3NCaVFHSFdxRzA/view

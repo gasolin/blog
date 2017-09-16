@@ -12,3 +12,10 @@ web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
 * https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6
 
 * How do I get the balance of an account in Ethereum? https://stackoverflow.com/questions/32312884/how-do-i-get-the-balance-of-an-account-in-ethereum
+
+## 結語
+
+
+## 參考資料
+
+* What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
