@@ -79,7 +79,7 @@ contract HelloToken is StandardToken {
 
 建立`HelloToken`合約時，使用`is`語句繼承了[StandardToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/StandardToken.sol)合約。因此`HelloToken`合約繼承了`StandardToken`合約所包含的資料與呼叫方法。
 
-當我們繼承了`StandardToken`，也就支援了以下 [ERC-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md) 規定的函式
+當我們繼承了`StandardToken`，也就支援了以下 ERC-20 標準中[^2]規定的函式
 
 | 函式 | 描述 |
 | ------------- | ------------- |
@@ -125,6 +125,16 @@ function HelloToken() {
 
 和合約同名的`HelloToken`方法，就是`HelloToken`合約的建構函式(constructor)。
 在建構式裡指定了`totalSupply`數目，並將所有的初始代幣`INITIAL_SUPPLY`都指定給`msg.sender`帳號，也就是用來部署這個合約的帳號。‵`totalSupply`定義於[ERC20Basic.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/ERC20Basic.sol#L10)中，`balances`定義於[BasicToken.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/BasicToken.sol#L15)中。
+
+```
+import '../math/SafeMath.sol';
+...
+using SafeMath for uint256;
+...
+balances[msg.sender] = balances[msg.sender].sub(_value);
+```
+
+進一步追蹤[BasicToken.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/BasicToken.sol)合約內容，可以發現`BasicToken.sol`合約中匯入了`SafeMath.sol`合約[^8]。`SafeMath`對各種數值運算加入了必要的驗證，讓合約中的數字計算更安全。
 
 如此一來，我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。這個合約一經部署，就可以一直存在於以太坊區塊鏈上，世界上從此也就多了一種新的加密代幣。只要你能找到人想擁有這種代幣，這種代幣就有交易的價值。
 
@@ -216,18 +226,17 @@ $ truffle console
 
 我們再次透過呼叫`balanceOf`函式，查詢傳送者帳號和接收者帳號各自剩下的HelloToken數目。發現轉帳真的成功了。
 
-
 ## 結語
 
-我們用到 `OpenZeppelin`提供的函式庫來簡化撰寫加密代幣合約的工作。要實際投入使用前，還是建議將呼叫到的程式碼都再審查幾遍。可以從 OpenZeppelin 自己提供的Audit開始看[^4]，可以學到一些觀念。x
+我們用到 `OpenZeppelin`提供的函式庫來簡化撰寫加密代幣合約的工作。要實際投入使用前，還是建議將呼叫到的程式碼都再審查幾遍。可以從 OpenZeppelin 自己提供的Audit開始看[^4]，可以學到一些觀念。
 
 ## 參考資料
 
 * [1] https://github.com/ethereumjs/testrpc
-* [2] ERC20 https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+* [2] ERC20 https://theethereum.wiki/w/index.php/ERC20_Token_Standard 或 https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
 * [3] OpenZeppelin https://github.com/OpenZeppelin/zeppelin-solidity
 * [4] OpenZeppelin Audit https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/audit/ZeppelinAudit.md
-* An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
-* http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
-* https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6
-* https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol
+* [5] An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
+* [6] http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
+* [7] https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6
+* [8] https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol
