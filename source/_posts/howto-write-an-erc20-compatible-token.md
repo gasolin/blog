@@ -2,6 +2,9 @@
 title: 如何撰寫智能合約(Smart Contract)?(III)建立標準代幣
 tags:
   - ethereum
+  - solidity
+  - javascript
+date: 2017-09-16 17:35:31
 ---
 
 [上一篇]中我們已寫好並部署完成了簡單的加密代幣🔒💵合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
