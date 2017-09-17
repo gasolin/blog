@@ -19,3 +19,4 @@ web3.fromWei(web3.eth.getBalance(web3.eth.coinbase));
 ## 參考資料
 
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
+* [7] https://blog.zeppelin.solutions/how-to-create-token-and-initial-coin-offering-contracts-using-truffle-openzeppelin-1b7a5dae99b6

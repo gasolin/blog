@@ -262,7 +262,6 @@ $ geth attach
 > personal.unlockAccount(eth.coinbase)
 
 
-在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
 
 CrowdSale
 
@@ -270,6 +269,7 @@ CrowdSale
 
 ## 放到以太幣錢包
 
-TBD
+在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
+
 
 https://drive.google.com/file/d/0ByMtMw2hul0EN3NCaVFHSFdxRzA/view
