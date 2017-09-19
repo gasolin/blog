@@ -74,3 +74,4 @@ P2P --- 網際網路
 * 以太坊、以太幣是什麼？ETH電腦挖礦圖文教程http://www.gooread.com/article/20122396003/
 * https://github.com/vinsgo/awesome-ethereum
 * Ethereum Overview http://truffleframework.com/tutorials/ethereum-overview
+* [A Prehistory of the Ethereum Protocol](http://vitalik.ca/general/2017/09/14/prehistory.html)

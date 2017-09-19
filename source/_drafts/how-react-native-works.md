@@ -4,3 +4,6 @@ tags:
   - web
   - mobile
 ---
+
+Main Thread -> UI
+Another Thread -> JSCore
