@@ -47,6 +47,7 @@ date: 2017-9-1 00:01:00
 ### 設計
 
 * Mockup：[Balsmiq Mockups](http://www.balsamiq.com/products/mockups)
+* 錄螢幕動畫：[Recordit](http://www.recordit.co/)
 
 ### 開發
 
@@ -60,10 +61,9 @@ date: 2017-9-1 00:01:00
 Browser
 * Emoji cheatsheet
 VSCode
+* Git Blame
 * Document This
 * EditorConfig for VS Code
-* ESLint
-* Git Blame
 * WakaTime
 * solidity
 JS
