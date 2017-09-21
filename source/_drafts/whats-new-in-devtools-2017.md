@@ -27,11 +27,11 @@ p3
 
 p4
 
-Devtools 的前身叫做 Firebug。在2006年時Firefox 的創始者之一Joe Hewitt寫了Firebug。
-Firebug 是一個 Firefox 的addon，他是一個網頁開發工具，使用者可以利用它除錯、編輯、刪改任何網站的CSS、HTML、DOM與JavaScript。也可以透過addon再次擴展它的功能。可以說，現在各家瀏覽器的網頁開發者工具都有參考Firebug功能。
+Devtools 的前身叫做 Firebug。在2006年時Firefox 的創始者之一Joe Hewitt寫了Firebug這個Firefox 的網頁開發工具addon。
+使用者可以利用它除錯、編輯、刪改任何網站的CSS、HTML、DOM與JavaScript。也可以透過addon再次擴展它的功能。可以說，現在各家瀏覽器的網頁開發者工具都有參考Firebug功能。
 (http://www.drdobbs.com/tools/ajax-debugging-with-firebug/196802787)
 
-因為原有的addon架構無法支援FIrefox新的e10s multiple process架構，因此在去年，Firebug開發團隊決定將Firebug直接整合進Devtools中。
+因為原有的addon架構無法支援FIrefox新的e10s，也就是multiple process架構，因此在去年，Firebug開發團隊決定將Firebug直接整合進Devtools中。
 
 (Modern web sites are a product of several distinct technologies, and web developers must be proficient in all of them—HTML, CSS, JavaScript, and the DOM, among others)
 
