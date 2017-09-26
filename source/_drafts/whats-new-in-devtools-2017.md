@@ -40,12 +40,12 @@ Devtools 的前身叫做 Firebug。在2006年時Firefox 的創始者之一Joe He
 
 (The reason for this huge change is Electrolysis multiple process architecture)
 
+https://medium.com/mozilla-tech/a-quick-history-of-firefox-devtools-620d3074b510
+
 p5
 （過去的Web相關技術遠遠沒有今天成熟，Mozilla發明了一些特有的技術來製作瀏覽器的介面與呼叫特殊的API來和作業系統互動。）
 
-Devtools繼承Firebug的開發目標，也就是協助網頁開發者更有效率的製作網站。
-
-同時作為網頁開發者工具，我們希望開發者工具工具本身，也能用和網頁開發者使用的排版與框架來撰寫。
+Devtools繼承Firebug的開發目標，也就是協助網頁開發者更有效率的製作網站。同時作為網頁開發者工具，我們希望開發者工具工具本身，也能用和網頁開發者使用的排版與框架來撰寫。
 
 於是今天，大家可以看到我們的成果。我們已經在使用HTML和Web Standard API來製作Devtools開發者工具！
 
