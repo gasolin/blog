@@ -1,15 +1,14 @@
 ---
-title: Devtools的近期進展和新功能
+title: Devtools的近期進展和新功能(2017)
 tags:
   - web
   - devtools
 ---
 
-p1
-大家好我是gasolin, 我和Ricky是Mozilla的前端工程師。今天我們一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
+上週五我和Ricky在台灣第一次舉辦的Mozilla Developer Conference中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
 
-p2
-我們在這張gif上可以看到在Firefox 57新版的介面上如何開啟Firefox Developer Tool，可以看到開啟後的各種工具分頁Panel(分頁)。
+
+上圖中我們可以看到在Firefox 57新版的介面上如何開啟Firefox Developer Tool。可以看到開啟後的各種工具分頁Panel(分頁)。
 
 Ｄevtools簡單來說，就是各式各樣網頁開發者工具的集合。這些工具以一個個分頁（Panel）的形式組織在開發者工具區域中，我們稱這個區域為`Toolbox`，也就是`工具箱`。
 
