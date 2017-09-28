@@ -15,9 +15,9 @@ date: 2017-9-1 00:01:00
 * :computer:Macbook Air 13", 2012年版
 * :iphone:[One Plus 3](https://oneplus.net/global/3), Android, 6GB RAM, 5.5" AMOLED
 * :computer:Dell XPS 13 (4943), Windows 10, i7 2.4GHz x2, 8GB RAM, 13" LCD
-* Kindle Voyage 
+* :orange_book:Kindle Voyage 
 * :desktop_computer:Desktop PC, [Elementary OS](https://elementary.io/), Intel i7 3770 3.40GHz x8, 16GB RAM, GeForce GT 630, 23" LCD x2
-* Synology NAS: 電影，影集，照片，資料備份
+* :package:Synology NAS: 電影，影集，照片，資料備份
 
 和年初相比的改變：
 
@@ -32,14 +32,14 @@ date: 2017-9-1 00:01:00
 * :email:[GMail](http://mail.google.com/), Inbox
 * :calendar:[Google日曆](http://www.google.com/calendar)
 * :memo:Google Doc, [Google keep](http://keep.google.com/) 記事
-* 個人網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片，
+* :floppy_disk:個人網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片，
 * 🔑密碼管理：[Lasspass](https://www.lastpass.com/)
 * 📒記帳: [Toshl](https://toshl.com) (付費)
 * :newspaper:新聞聚合：[Feedly](https://feedly.com/)
 * [Readmoo分享書](https://share.readmoo.com/)
 * [豆瓣](http://www.douban.com/) 看電影記錄
-* 個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
-* 個人履歷：Linkedin
+* :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
+* :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
 * :link:IFTTT [自動化生活紀錄2017](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
 * :tv:[Youtube](https://www.youtube.com/)
 * :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/)
