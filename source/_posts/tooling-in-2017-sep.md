@@ -19,12 +19,12 @@ date: 2017-9-1 00:01:00
 * :desktop_computer:Desktop PC, [Elementary OS](https://elementary.io/), Intel i7 3770 3.40GHz x8, 16GB RAM, GeForce GT 630, 23" LCD x2
 * Synology NAS: 電影，影集，照片，資料備份
 
-用回Macbook Air的主因，是因為目前工作中一定得用到的mozreview預期年底會淘汰，懶得為每台機器重新做設定。而且在Windows上編譯工作用的東西還是不太順手。
+和年初相比的改變：
 
+主力用Macbook Air，用回Macbook Air的主因，是因為目前工作中一定得用到的mozreview預期年底會淘汰，懶得為每台機器重新做設定。而且在Windows上編譯工作用的東西還是不太順手。
 桌機多擺了一台螢幕，雙螢幕工作。
 
 ### :spider_web:網站工具
-使用多年的Anobii已經漸漸缺乏維護，嘗試使用[Readmoo分享書](https://share.readmoo.com/)替代，但就我繁，簡，英文書交換著看的情況，Readmoo分享書能掃到的書實在有限，因此今年到目前已看的書漏記了不少:sweat:。
 
 * :spider_web:主要瀏覽器：[Firefox Nightly](https://www.mozilla.org/en-US/firefox/products/)
 * :busts_in_silhouette:主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
@@ -44,6 +44,12 @@ date: 2017-9-1 00:01:00
 * :tv:[Youtube](https://www.youtube.com/)
 * :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/)
 
+和年初相比的改變：
+
+使用多年的Anobii已經漸漸缺乏維護，嘗試使用[Readmoo分享書](https://share.readmoo.com/)替代，但就我繁，簡，英文書交換著看的情況，Readmoo分享書能掃到的書實在有限，因此今年到目前已看的書漏記了不少:sweat:。
+
+此外也付費訂閱[Todoist](https://todoist.com/)和[Toshl](https://toshl.com)兩種工具服務。
+
 ### 設計
 
 * Mockup：[Balsmiq Mockups](http://www.balsamiq.com/products/mockups)
@@ -54,28 +60,38 @@ date: 2017-9-1 00:01:00
 * 編輯器：Visual Studio Code
 * 版本控制：git, git-cinnabar
 * 套件管理：apt, [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
-* Shell: zsh, Ubuntu bash on windows不是很穩定，目前在Windows上盡量能用Chocolatey處理的就用Chocolatey處理。
+* Shell: zsh
+
+Ubuntu bash on windows用起來還不夠穩定，目前在Windows上盡量能用Chocolatey處理的就用Chocolatey處理。
 
 ### 常用插件
 
 Browser
 * Emoji cheatsheet
+* A Weel translation
+* Context Plus
+* Grammarly (付費)
+
+Grammarly 可以自動找出英文語法錯誤，相當方便。
+
 VSCode
 * Git Blame
 * Document This
 * EditorConfig for VS Code
 * WakaTime
 * solidity
+
 JS
 * Babel
 * ESlint
+
 
 ### 娛樂
 
 * 🎮Nintendo Switch
 * 🎮Steam / vlc
 
-因為攜帶便利，現在主要只玩NS上的遊戲。Steam上的遊戲也等NS上出再買了。
+因為攜帶便利，現在主要只玩NS上的遊戲。Steam上看到喜歡的遊戲，也盡量等NS上出了再買。
 
 ## :iphone:Android 手機
 * 瀏覽器：Firefox for Android (Nightly)
@@ -104,6 +120,7 @@ JS
 * 線上學習：Udemy, Pluralsight
 * IFTTT
 * 💳街口支付
+* 拼字訂正：Grammarly
 
 ## Reference
 
