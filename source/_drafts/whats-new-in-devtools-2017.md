@@ -5,13 +5,12 @@ tags:
   - devtools
 ---
 
-9/22我和Ricky在台灣第一次舉辦的Mozilla Developer Conference中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
+9/22我和Ricky Chien在台灣第一次舉辦的Mozilla Developer Conference中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
 
 ![](http://g.recordit.co/RN5AVhnpGX.gif)
 
-在Firefox 57新版的介面上，可以看到開啟Developer Tool後的各種工具分頁（Panel）。
-
-Ｄevtools簡單來說，就是各式各樣網頁開發者工具的集合。這些工具以一個個分頁（Panel）的形式組織在開發者工具區域中，我們稱這個區域為`Toolbox`，也就是`工具箱`。
+透過在Firefox 57新版的統一選單介面上開啟Web Developer Tool，我們可以開啟Devtools的各種工具分頁Panel(分頁)。
+Devtools簡單來說，就是各式各樣網頁開發者工具的集合。這些工具以一個個分頁（Panel）的形式組織在開發者工具區域中，我們稱這個區域為`Toolbox`，也就是`工具箱`。
 
 今天的講題中，我們可以看到Devtools如何持續改進，並提供各種新的工具，讓開發網頁的過程，變得更有效率。
 
@@ -168,3 +167,5 @@ p35
 接下來請Ricky繼續介紹Debugger，Network，與其他Devtools新特性。
 
 (If you’d like to become a contributor to Firefox Dev Tools hit us up on GitHub or Slack or #devtools on irc.mozilla.com. Here you will find all the resources you need to get started. https://github.com/devtools-html/devtools-html.github.com)
+
+https://hacks.mozilla.org/2017/09/developer-edition-devtools-update-now-with-photon-ui/
