@@ -234,14 +234,11 @@ $ geth attach
 > personal.unlockAccount(eth.coinbase)
 
 
-
 CrowdSale
 
 * What is an Initial Coin Offering? https://www.youtube.com/watch?v=iyuZ_bCQeIE
 
-## 放到以太幣錢包
-
-在瀏覽器上安裝MetaMask插件，讓你可以用瀏覽器存取。有[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)版本。
-
 
 https://drive.google.com/file/d/0ByMtMw2hul0EN3NCaVFHSFdxRzA/view
+
+https://cdn-images-1.medium.com/max/1600/1*wOcHbpZ25WbtWWsGI2b1Kw.png
