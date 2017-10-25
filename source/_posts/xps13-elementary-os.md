@@ -5,9 +5,13 @@ tags:
 date: 2017-10-25 14:40:48
 ---
 
-I just successfully install Elementary OS Luna (0.4.1) along side with Windows 10.
+I just successfully install Elementary OS Luna (0.4.1) along side with Windows 10 on my Dell XPS 9360 machine.
 
-Several settings are tricky but the wireless works well (which I was encountered some issues in xps 13 9343).
+Comparing XPS 9343(5th Gen i7) & 9360 (8th Gen i7), besides the CPU does faster, the wireless works well and the signal is stronger in 9360 (which I was encountered some issues in XPS 13 9343).
+
+Several settings are trickyer than early days when I try to install *nux on Notebook.
+
+Here's the self reference guide and hope it could help others.
 
 ## Settings on Windows
 
