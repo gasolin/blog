@@ -116,7 +116,7 @@ $ git remote update
 Then merge recent updates into current repo with
 
 ```
-$ git rebase inbound/default
+$ git rebase central/default
 ```
 
 Checkout a new bug and then rebuild the stack
