@@ -7,15 +7,13 @@ date: 2017-10-25 14:40:48
 
 I just successfully install Elementary OS Luna (0.4.1) along side with Windows 10 on my Dell XPS 9360 machine.
 
-Comparing XPS 9343(5th Gen i7) & 9360 (8th Gen i7), besides the CPU does faster, the wireless works well and the signal is stronger in 9360 (which I was encountered some issues in XPS 13 9343).
+Comparing XPS 13 `9360 (8th Gen i7)` with my previous model `9343 (5th Gen i7)`, the CPU does faster, the wireless works well and the signal is stronger(which I was encountered some issues in XPS 13 9343), and the battery life did last longer in 9360.
 
-Several settings are trickyer than early days when I try to install *nux on Notebook.
-
-Here's the self reference guide and hope it could help others.
+Several settings are trickyer than early days when I try to install *nux on Notebook. Here's the self reference guide and hope it could help others.
 
 ## Settings on Windows
 
-### Login to microsoft account
+### Login to Microsoft account
 
 It's necessary to bind your account with the device, so you can get recovery key later.
 
@@ -28,15 +26,15 @@ I download the OS image from [Elementary OS web site](http://elementary.io/) and
 I have the 256GB SSD, I use [Partition Wizard](https://www.partitionwizard.com/) to slice ~100GB for Elementary OS. 
 
 I have 8GB RAM so I [reference](https://askubuntu.com/questions/49109/i-have-16gb-ram-do-i-need-32gb-swap
-) and left ~8GB for swap.
+) the recommend swap size and left ~8GB for swap.
 
 ### Disable fast startup
 
-I also need to follow the instructions to [disable the fast startup](https://www.tenforums.com/tutorials/4189-turn-off-fast-startup-windows-10-a.html).
+I also need to follow the instructions to [disable the fast startup] on Windows.(https://www.tenforums.com/tutorials/4189-turn-off-fast-startup-windows-10-a.html).
 
 ### Switch SATA operation mode from RAID to AHCI
 
-Here's the most tricky part. It takes me a while to figure out how to switch the SATA storage from RAID to AHCI. The trick is [doing this procedure with Windows safe mode](http://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/).
+Here's the most tricky part. It takes me a while to figure out how to switch the SATA storage from RAID to AHCI. The trick is doing this procedure with [Windows safe mode](http://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/).
 
 ## Settings on BIOS
 
@@ -44,7 +42,7 @@ Press `F12` during booting.
 
 * Don't need to turn off the security boot.
 * Follow above link's instructions to config SATA storage.
-* save the configureation
+* Save the configureation before exit.
 
 Reboot to windows and make sure windows runs nicely in safemode. Then follow above link's instructions to jump out of safemode.
 
