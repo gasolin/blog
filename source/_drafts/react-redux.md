@@ -35,6 +35,8 @@ https://benchling.engineering/performance-engineering-with-react-e03013e53285)
 It’s very easy to end up shooting in the dark if you’re not disciplined
 Focus on building things and only invest time on fixing the key performance bottlenecks
 
+[Highlighting Component Updates](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)
+
 * react-addons-perf
 Perf.start() / Perf.stop()
 * https://github.com/crysislinux/chrome-react-perf

@@ -60,6 +60,8 @@ export PATH=$PATH:absolute_path_to/git-cinnabar
 $ . ~/.bashrc
 ```
 
+And do `git cinnarbar download` to get the faster helper.
+
 Then follow `[Mozilla: A git workflow for Gecko development](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development) to checkout gecko via git.
 
 Make sure you follow the Firefox build guide [https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Simple_Firefox_build](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Simple_Firefox_build) to setup Firefox build environment.
@@ -88,9 +90,9 @@ export PATH=$PATH:absolute_path_to/git-cinnabar:/path/to/.mozbuild/version-contr
 
 ```sh
 $ . ~/.bashrc
-$ git config --global bz.username someone@example.com
+$ git config --global bz.username gasolin@example.com
 $ git config --global bz.apikey [your bugzilla key]
-$ git config --global mozreview.nickname mynick
+$ git config --global mozreview.nickname gasolin
 $ git mozreview configure
 ```
 
