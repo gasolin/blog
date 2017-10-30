@@ -107,7 +107,7 @@ Then, **the most time-saving advice**: setup mozconfig for [artifact builds](htt
 
 ## Weekly workflow
 
-Because of build takes more time, I usually do the following command only twice a week if necessary.
+Previously build takes more time, I usually do the following command only twice a week if necessary. But now we can use artifact build, which is pretty fast and can be done several time a day.
 
 We need update Gecko repository regularly:
 
@@ -135,13 +135,13 @@ The command will compile the whole gecko.
 When I work on a new bug, I'll checkout a new branch (on mac)
 
 ```sh
-$ git checkout -b bugxxxxxxx inbound/branches/default/tip
+$ git checkout -b bugxxxxxxx central/branches/default/tip
 ```
 
 or (on Ubuntu)
 
 ```sh
-$ git checkout -b bugxxxxxxx inbound/default
+$ git checkout -b bugxxxxxxx mozilla/central
 ```
 
 Usually, the bug is focused on a component of gecko, such as `browser/components/customizableui`. To make .js/.jsm changes work, we don't need to rebuild gecko. But to make some C++ code or new test code works, we need to rebuild this part of source via
@@ -156,6 +156,12 @@ Once we have some progress for the patch, we can test code via the command:
 $ ./mach test browser/components/customizableui/test
 ```
 
+You need to make sure you've followed the JS code style [https://wiki.mozilla.org/DevTools/CodingStandards#Code_style ](https://wiki.mozilla.org/DevTools/CodingStandards#Code_style)and CSS code style [https://wiki.mozilla.org/Firefox/CSS_Tips](https://wiki.mozilla.org/Firefox/CSS_Tips). Do the eslint test before commit to make sure the patch does not contain some obvious syntax error.
+
+```sh
+$ ./mach eslint browser/components/customizableui/test
+```
+
 Once the patch is ready, commit it as normal git commit, with a [structured syntax](http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/commits.html#mozreview-commits):
 `Bug xxxxxxx - description. ;r=?reviewer_bugzilla_alias`.
 
@@ -164,8 +170,6 @@ Then, use git mozreview command to push the commit onto Bugzilla for review.
 ```sh
 $ git mozreview push
 ```
-
-Oh, you also need to make sure you've followed the JS code style [https://wiki.mozilla.org/DevTools/CodingStandards#Code_style ](https://wiki.mozilla.org/DevTools/CodingStandards#Code_style)and CSS code style [https://wiki.mozilla.org/Firefox/CSS_Tips](https://wiki.mozilla.org/Firefox/CSS_Tips)
 
 You can use try chooser[ http://trychooser.pub.build.mozilla.org/](http://trychooser.pub.build.mozilla.org/) to select test suites that run automatically on the test server. Treeherder is Mozilla's test server hosted on AWS (Amazon Web Service). Push code there and everyone will have the same base to validate if your code works well on anyone's computer.
 

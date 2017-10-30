@@ -43,6 +43,15 @@ Perf.start() / Perf.stop()
 
 do `Perf.printWasted()` tells you how much time was wasted doing render tree construction and virtual DOM comparisons that did not result in a DOM modification.
 
+During component investigate, add following code in component
+
+https://blog.logrocket.com/make-react-fast-again-part-2-why-did-you-update-dd1faf79399f
+
+```js
+const {whyDidYouUpdate} = require("why-did-you-update")
+whyDidYouUpdate(React);
+```
+
 Measure -> improve
 
 1. get comfortable with profiling
