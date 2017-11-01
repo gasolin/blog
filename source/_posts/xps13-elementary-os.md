@@ -5,11 +5,11 @@ tags:
 date: 2017-10-25 14:40:48
 ---
 
-I just successfully install Elementary OS Luna (0.4.1) along side with Windows 10 on my Dell XPS 9360 machine.
+I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my Dell XPS 9360 machine.
 
-Comparing XPS 13 `9360 (8th Gen i7)` with my previous model `9343 (5th Gen i7)`, the CPU does faster, the wireless works well and the signal is stronger(which I was encountered some issues in XPS 13 9343), and the battery life did last longer in 9360.
+Comparing XPS 13 `9360 (8th Gen i7)` with my previous model `9343 (5th Gen i7)`, the CPU way faster(like 3 times faster), the wireless works well and the signal is stronger (which I was encountered some issues in XPS 13 9343), and the battery life did last longer in 9360.
 
-Several settings are trickyer than early days when I try to install *nux on Notebook. Here's the self reference guide and hope it could help others.
+Several settings are trickier than early days when I try to install *nux on Notebook. Here's the self reference guide and hope it could help others.
 
 ## Settings on Windows
 
@@ -30,7 +30,7 @@ I have 8GB RAM so I [reference](https://askubuntu.com/questions/49109/i-have-16g
 
 ### Disable fast startup
 
-I also need to follow the instructions to [disable the fast startup] on Windows.(https://www.tenforums.com/tutorials/4189-turn-off-fast-startup-windows-10-a.html).
+I also need to follow the instructions to [disable the fast startup](https://www.tenforums.com/tutorials/4189-turn-off-fast-startup-windows-10-a.html) on Windows.
 
 ### Switch SATA operation mode from RAID to AHCI
 
@@ -64,9 +64,11 @@ Now I have a clean Elementary OS.
 
 After restart I can see an option menu with Elementary OS and Windows Boot Manager.
 
-I can boot to Elementary OS without issue.
+I can boot to Elementary OS without major issue.
 
-(Well, I met the problem that AppCenter can't start correctly, so I do `sudo apt update && sudo apt upgrade` then `sudo apt purge appcenter && sudo apt purge packagekit` then restart and run `sudo apt install appcenter && sudo apt install packagekit` to make it work normally)
+Well, I met the problem that AppCenter can't start correctly, so I do `sudo apt update && sudo apt upgrade` then `sudo apt purge appcenter && sudo apt purge packagekit` then restart and run `sudo apt install appcenter && sudo apt install packagekit` to make it work normally.
+
+The input method and bluetooth pairing seems not work out of box, but I can live with that.
 
 Then when I boot to Windows, I need to enter the BitLocker recovery keys. That could be solved by [following the FAQ from microsoft](https://support.microsoft.com/en-us/help/17133/windows-8-bitlocker-recovery-keys-frequently-asked-questions
 ). I need to login to Microsoft Account and find the recovery key.

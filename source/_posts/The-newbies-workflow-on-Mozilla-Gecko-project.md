@@ -1,15 +1,15 @@
 ---
-title: The newbies workflow on Mozilla Gecko project
+title: The newbie's workflow on Mozilla Gecko project
 tags:
   - Mozilla
 date: 2016-08-09 06:35:24
 ---
 
-As our recent development focus shifting from Firefox OS to Firefox, we need to contribute to gecko repository directly instead of contributing to Gaia repository on github.
-The most of the works are related to Javascript. The main change is the workflow and API difference.&nbsp; In Gaia we work between Bugzilla and github; In gecko, we have Bugzilla and mozReview.
+As our recent development focus shifting from Firefox OS to Firefox, we need to contribute to gecko repository directly instead of contributing to Gaia repository on Github.
+The most of the works are related to Javascript. The main change is the workflow and API difference.&nbsp; In Gaia we work between Bugzilla and Github; In gecko, we have Bugzilla and mozReview.
 
 Once you have setup the environment, the workflow could also be based on git(or hg), and most things are dealt automatically. 
-Mozilla is a pretty open workplace, so I can share my workflow with the world. Here is a reference to how I did for per patch/weekly/per setup/one-time workflow.
+Mozilla is a pretty open workplace so that I can share my workflow with the world. Here is a reference to how I did for per patch/weekly/per setup/one-time workflow.
 
 ## Do it One time
 
@@ -36,16 +36,16 @@ $ sudo apt-get update
 $ sudo apt-get install git
 ```
 
-### 2. Install git-cinnarbar
+### 2. Install git-cinnabar
 
-Gecko itself managed via mercurial, we need install [git-cinnarbar](https://github.com/glandium/git-cinnabar) to help us deal with mercurial codebase via git.Check [http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git](http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git)&nbsp;`[](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development)
+Gecko itself managed via mercurial, we need install [git-cinnabar](https://github.com/glandium/git-cinnabar) to help us deal with mercurial codebase via git.Check [http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git](http://mozilla-version-control-tools.readthedocs.org/en/latest/mozreview/install-git.html#mozreview-install-git)&nbsp;`[](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development)
 
 ```sh
 $ sudo apt-get install mercurial
 $ git clone https://github.com/glandium/git-cinnabar.git
 ```
 
-Then set git-cinnabar into system PATH
+Then set git-cinnabar into system PATH,
 
 ```sh
 $ gedit ~/.bashrc
@@ -60,7 +60,7 @@ export PATH=$PATH:absolute_path_to/git-cinnabar
 $ . ~/.bashrc
 ```
 
-And do `git cinnarbar download` to get the faster helper.
+And do `git cinnabar download` to get the faster helper.
 
 Then follow `[Mozilla: A git workflow for Gecko development](https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development) to checkout gecko via git.
 
@@ -96,7 +96,7 @@ $ git config --global mozreview.nickname gasolin
 $ git mozreview configure
 ```
 
-Then, run bootstrap script to install required build environment
+Then, run bootstrap script to install required build environment,
 
 ```sh
 $ ./mach bootstrap
@@ -107,7 +107,7 @@ Then, **the most time-saving advice**: setup mozconfig for [artifact builds](htt
 
 ## Weekly workflow
 
-Previously build takes more time, I usually do the following command only twice a week if necessary. But now we can use artifact build, which is pretty fast and can be done several time a day.
+Previously build takes more time, I usually do the following command only twice a week if necessary. But now we can use artifact build, which is pretty fast and can be done many times a day.
 
 We need update Gecko repository regularly:
 
@@ -121,7 +121,7 @@ Then merge recent updates into current repo with
 $ git rebase central/default
 ```
 
-Checkout a new bug and then rebuild the stack
+Checkout a new bug and then rebuild the stack,
 
 ```sh
 $ ./mach build
@@ -180,6 +180,10 @@ try: -b od -t none -p win32,win64,macosx64,linux,linux64,linux64-asan -u mochite
 ```
 
 You can manipulate the script based on what you need to test.
+
+## If you like to file a bug
+
+* Assign priorities when filing new bugs that you're going to work on in the component.
 
 ## Reference
 
