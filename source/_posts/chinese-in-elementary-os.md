@@ -45,7 +45,7 @@ $ sudo apt install ibus-chewing
 $ ibus-setup
 ```
 
-在設定畫面中可以看到我們剛安裝的新酷音輸入法。
+在設定畫面中可以看到剛安裝的新酷音輸入法。
 
 ![Imgur](https://i.imgur.com/vhkdfvKm.png)
 

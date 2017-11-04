@@ -5,9 +5,9 @@ tags:
 date: 2017-10-25 14:40:48
 ---
 
-I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my Dell XPS 9360 machine.
+I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my new Dell XPS 9360 machine.
 
-Comparing XPS 13 `9360 (8th Gen i7)` with my previous model `9343 (5th Gen i7)`, the CPU way faster(like 3 times faster), the wireless works well and the signal is stronger (which I was encountered some issues in XPS 13 9343), and the battery life did last longer in 9360.
+Comparing this XPS 13 `9360 (8th Gen i7)` with my previous model `9343 (5th Gen i7)`, the CPU is way faster(feels like 3 times faster), the wireless works well and the signal is stronger (which I was encountered some issues in XPS 13 9343), and the battery life did last longer in 9360.
 
 Several settings are trickier than early days when I try to install *nux on Notebook. Here's the self reference guide and hope it could help others.
 
