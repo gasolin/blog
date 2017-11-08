@@ -39,7 +39,10 @@ Focus on building things and only invest time on fixing the key performance bott
 
 * react-addons-perf
 Perf.start() / Perf.stop()
-* https://github.com/crysislinux/chrome-react-perf
+
+import Perf from 'react-addons-perf'
+
+componentDidMount() { window.Perf = Perf; }
 
 do `Perf.printWasted()` tells you how much time was wasted doing render tree construction and virtual DOM comparisons that did not result in a DOM modification.
 
