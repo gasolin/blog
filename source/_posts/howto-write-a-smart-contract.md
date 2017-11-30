@@ -7,6 +7,8 @@ tags:
 date: 2017-09-06 18:30:31
 ---
 
+Update: 11/30/2017 更新教程，使用[Truffle 4.0.1](https://github.com/trufflesuite/truffle/releases/tag/v4.0.0)。
+
 [上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約:ledger:是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
 
 ## 使用solidity語言撰寫智能合約
@@ -83,8 +85,8 @@ Base HD Path:  m/44'/60'/0'/0/{account_index}
 開啟另一個命令列視窗，輸入以下命令以建立專案：
 
 ```sh
-$ mkdir demo
-$ cd demo
+$ mkdir hello
+$ cd hello
 $ truffle init
 ```
 
@@ -111,6 +113,14 @@ pragma solidity ^0.4.11;
 
 第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。
 
+想要知道當前的solidity版本，也可以用 `truffle version` 命令來查看當前使用的truffle與solidity版本：
+
+```sh
+$ truffle version
+Truffle v4.0.1 (core: 4.0.1)
+Solidity v0.4.18 (solc-js)
+```
+
 ```
 contract HelloWorld {
   ...
@@ -127,7 +137,7 @@ function sayHello() returns (string) {
 
 函式的結構與其他程式類似，但如果有傳入的參數或回傳值，需要指定參數或回傳值的型別(type)。所有支援的型別可以查看參考資料[^10]。
 
-### 編譯
+## 編譯
 
 現在執行`truffle compile`命令，我們可以將`HelloWorld.sol`原始碼編譯成Ethereum bytecode。
 
@@ -137,9 +147,13 @@ $ truffle compile
 
 編譯成功的話，在`build/contracts/`目錄下會多出`HelloWorld.json`這個檔案。（在Windows平台上執行truffle compile若遇到問題，可以查看參考資料[^9]來解決。）
 
-### 部署
+## 部署
 
-truffle框架中提供了方便部署合約的腳本。打開`migrations/2_deploy_contracts.js`檔案(腳本使用Javascript撰寫)，將內容修改如下
+為了將寫好的solidity程式碼部署到區塊鍊上，我們需要做一些相應的設定。
+
+### 遷移
+
+truffle框架中提供了方便部署合約的腳本。我們可以在`migrations/`目錄下維護這些腳本。這些腳本除了能部署合約，也可以用來遷移合約中的資料。建立`migrations/2_deploy_contracts.js`檔案(這些腳本使用Javascript撰寫)，將內容修改如下
 
 ```js
 var HelloWorld = artifacts.require("HelloWorld");
@@ -149,9 +163,33 @@ module.exports = function(deployer) {
 };
 ```
 
-使用`artifacts.require`語句來取得準備部署的合約。使用`deployer.deploy`語句將合約部署到區塊鏈上。這邊`HelloWorld`是contract的名稱而不是檔名。因此可以用此語法讀入任一`.sol`檔案中的任一合約。
+這些migration檔案會依照檔案的`編號`來執行。例如`2_`就會在`1_`之後執行。檔案後面的文字只為協助開發者理解之用。
 
-現在執行`truffle migrate`命令，
+在檔案中可使用`artifacts.require`語句來取得準備部署的合約。使用`deployer.deploy`語句將合約部署到區塊鏈上。這邊`HelloWorld`是`contract`的名稱而不是檔名。因此可以用此語法讀入任一`.sol`檔案中的任一合約。
+
+### 區塊網路設定
+
+為了與`testrpc`連線，需要打開`truffle.js`並加入以下設定：
+
+```js
+module.exports = {
+  // See <http://truffleframework.com/docs/advanced/configuration>
+  // to customize your Truffle configuration!
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    }
+  }
+};
+```
+
+truffle 使用 Javascript 的 Object 格式來定義設定。這邊定義了`development`網路為`localhost:8545`，即testrpc所提供的網路位址。
+
+### 部署
+
+現在執行`truffle migrate`命令
 
 ```sh
 $ truffle migrate
@@ -250,9 +288,54 @@ Network up to date.
 
 Truffle會告訴你現在網路上的合約都已是最新的，但事實上剛剛程式中新增的方法並沒有更新到區塊鏈上。要更新區塊鏈上已部署的程式，需要改寫`migrations`中的腳本，但現在還不到介紹migration的時候。還好我們開發用的區塊鏈是怎麼修改都沒關係的testrpc，可以使用`truffle migrate --reset`命令直接重新在testrpc上部署一次:tada:。
 
+
+## 使用truffle develop命令
+
+truffle 4.0.0 版本之後加入了`truffle develop`命令。這個命令讓我們不需要另外安裝testrpc等環境，就能直接上手開發。
+
+例如
+
+```sh
+truffle develop
+Truffle Develop started at http://localhost:9545/
+
+Accounts:
+(0) 0x627306090abab3a6e1400e9345bc60c78a8bef57
+(1) 0xf17f52151ebef6c7334fad080c5704d77216b732
+(2) 0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef
+(3) 0x821aea9a577a9b44299b9c15c88cf3087f3b5544
+(4) 0x0d1d4e623d10f9fba5db95830f7d3839406c6af2
+(5) 0x2932b7a2355d6fecc4b5c0b6bd44cc31df247a2e
+(6) 0x2191ef87e392377ec08e7c08eb105ef5448eced5
+(7) 0x0f4f2ac550a1b4e2280d04c21cea7ebd822934b5
+(8) 0x6330a553fc93768f612722bb8c2ec78ac90b3bbc
+(9) 0x5aeda56215b167893e80b4fe645ba6d5bab767de
+
+Mnemonic: candy maple cake sugar pudding cream honey rich smooth crumble sweet treat
+
+truffle(develop)> compile
+truffle(develop)> migrate
+Using network 'develop'.
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+...
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying HelloWorld...
+...
+Saving artifacts...
+truffle(develop)> let contract
+truffle(develop)> HelloWorld.deployed().then(instance =>contract = instance)
+...
+truffle(develop)> contract.sayHello.call()
+'Hello World'
+```
+
+可以看到，在命令行中輸入`truffle develop`命令，可以直接在裡面執行`compile`，`migrate`指令，還可以直接使用`console`命令所提供的與區塊鍊互動等功能。
+
 ## 結語
 
-本篇設計的範例[^8]相當簡單，但已達到完整地帶大家快速:zap:走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example]( http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
+本篇設計的範例[^8]相當簡單，但已達到完整地帶大家快速:zap:走一遍智能合約開發流程的目的。要透過智能合約實現各種功能，可以參考[Solidity by example](http://solidity.readthedocs.io/en/latest/solidity-by-example.html) 和 [Truffle getting started](http://truffleframework.com/docs/getting_started/) 網站學習更多的內容。也歡迎讀者留言，分享學習資源或提供建議。
 
 下一篇會接著介紹如何建立一份簡單的加密代幣🔒💵合約。
 
