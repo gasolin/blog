@@ -18,6 +18,8 @@ date: 2017-11-27 16:30:18
 點擊導覽頁面右下方的按鈕的話，會聚焦到瀏覽器對應的功能區塊上，使用者可以快速嘗試這些功能。
 ![Imgur](https://i.imgur.com/JhNp2K4h.png)
 
+我們也加入了Web assessibility，使用者可以只用鍵盤來瀏覽整個使用者導覽頁面。
+
 ## Firefox Quantum (57)
 
 經過使用者研究(User research)，在Firefox Quantum(57)版上我們針對Onboarding的體驗又做了不小的修改。

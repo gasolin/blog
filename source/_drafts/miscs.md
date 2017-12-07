@@ -242,3 +242,9 @@ CrowdSale
 https://drive.google.com/file/d/0ByMtMw2hul0EN3NCaVFHSFdxRzA/view
 
 https://cdn-images-1.medium.com/max/1600/1*wOcHbpZ25WbtWWsGI2b1Kw.png
+
+Solidity CRUD
+https://medium.com/@robhitchens/solidity-crud-part-1-824ffa69509a
+
+Solidity CRUD 2
+https://medium.com/@robhitchens/solidity-crud-part-2-ed8d8b4f74ec

@@ -129,6 +129,8 @@ contract HelloWorld {
 
 `contract`關鍵字類似於其他語言中較常見的`class`。因為solidity是專為智能合約(Contact)設計的語言，宣告`contract`後即內建了開發智能合約所需的功能。也可以把這句理解為`class HelloWorld extends Contract`。
 
+雖然一個.sol檔案中可以定義多個Contract，但建議一個.sol檔案中只定義一個Contract以便於後續的維護。
+
 ```
 function sayHello() returns (string) {
   return ("Hello World");
