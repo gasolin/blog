@@ -23,8 +23,27 @@ DAPP ---> Javascript
 智能合約 ---> Solidity
 {% endmermaid %}
 
+## Mist + testrpc
 
-Mist + testrpc
+## Mist + geth
+
+get Mist-linux64-0-9-3.deb from github(not Ethereum-Wallet) and install it
+https://github.com/ethereum/mist/releases/
+
+$ geth --datadir=./chaindata init ./genesis.json
+$ geth --datadir=./chaindata
+
+$ ethereumwallet --args --rpc /home/gasolin/Documents/idv/geth/chaindata/geth.ipc
+
+creaete account
+
+$ geth attach <path to ipc>.ipc
+
+> miner.start(1)
+// wait until DAG generated
+> miner.stop()
+
+https://github.com/ethereum/mist/wiki#bind-address-already-in-use
 
 truffle-builder
 https://github.com/trufflesuite/truffle-default-builder

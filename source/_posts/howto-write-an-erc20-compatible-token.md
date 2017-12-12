@@ -20,6 +20,15 @@ $ testrpc
 ...
 ```
 
+這邊有個小技巧，在啟動testrpc時加上`--seed`參數，例如
+```
+testrpc --seed apple banana cherry
+```
+
+這樣之後重新啟動testrpc時可以產生一樣的帳號(accounts)和私鑰(private key)。
+
+## ERC20標準
+
 建立的代幣若要能透過乙太幣錢包:purse:來收送，必須相容於以太坊的ERC20標準[^2]。ERC20標準定義了支援錢包所必須的合約介面。
 
 本篇將使用`OpenZeppelin`[^2]函式庫來簡化建立加密代幣🔒💵的過程。`OpenZeppelin`是一套協助撰寫安全的加密合約的函式庫，裡面也提供了相容ERC20標準的智能合約。可以透過npm工具安裝到專案目錄`node_modules/zeppelin-solodity/`中：
@@ -134,7 +143,7 @@ balances[msg.sender] = balances[msg.sender].sub(_value);
 
 進一步追去看[BasicToken.sol](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/BasicToken.sol)合約的內容，可以發現`BasicToken.sol`合約中匯入了`SafeMath.sol`合約[^7]。`SafeMath`對各種數值運算加入了必要的驗證，讓合約中的數字計算更安全。
 
-如此一來，我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。這個合約一經部署，就可以一直存在於以太坊區塊鏈上，世界上從此也就多了一種新的加密代幣。只要你能找到人想擁有這種代幣，這種代幣就有交易的價值。
+如此一來，我們已寫好一個可透過以太幣錢包交易的新加密代幣🔒💵合約。如果將這個合約部署到乙太坊公開區塊鍊上，這個代幣合約就會一直存在，世界上從此也就多了一種新的加密代幣。只要你能找到人想擁有這種代幣，這種代幣就有交易的價值。
 
 ### 編譯與部署
 
