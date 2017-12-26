@@ -6,15 +6,17 @@ tags:
 date: 2017-12-26 23:10:30
 ---
 
-今天已把前陣子買到的 Ledget Nano S 硬體錢包在Elementary OS(/Ubuntu 16.04)上設定好，正式開始使用。在Linux上設定Ledget Nano S，雖然剛開始時需要多做一些步驟，才能順利使用，一旦設定好後，使用時和在其他平台上沒兩樣。
+今天已把前陣子買到的 Ledget Nano S 硬體錢包在Windows 10/Elementary OS(/Ubuntu 16.04)上設定好，正式開始使用。和預期一樣，雖然在Linux上剛開始設定時需要多做一些步驟，一旦設定好後，使用過程和在其他平台上並沒區別。
 
-## 硬體錢包
+# 硬體錢包
 
 過去透過NAS，外接硬碟等方式來保護自己的相片，作品等「數位資產」，以防哪天檔案遺失或外流。現在要守護的範圍更要擴及「加密代幣」，即保護自己的「數位財產」。
 
-MyEtherWallet網站[推薦](https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html)任何擁有超過「2周的薪資」數位財產的人都使用「硬體錢包」來保管自己的「加密代幣」。
+MyEtherWallet網站[推薦](https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html)任何擁有超過「2周的薪資」數位財產的人，使用「硬體錢包」來保管自己的「加密代幣」，以避免可能的財產損失。
 
-目前Ledget Nano S和TREZOR是兩款較多人使用的硬體錢包。硬體錢包從產生錢包帳號開始，錢包帳號的私鑰就一直保存在硬體設備中。只有在發送代幣時需要解鎖錢包帳號。解鎖錢包帳號時需要輸入PIN碼，這個解鎖的過程也是透過硬體錢包上的按鍵完成，避免了使用線上交易所的帳號被盜，或所使用的電腦可能已被入侵者安裝鍵盤側錄軟體而造成的財產上的風險。
+目前Ledget Nano S和TREZOR是兩款較多人使用的硬體錢包。硬體錢包的安全性從產生錢包帳號開始。硬體錢包帳號的私鑰一直保存在硬體設備中，只要保存好「recovery phase」，不會發生使用線上交易所時帳號或帳戶中的代幣可能被盜的風險。只有在發送代幣時需要解鎖錢包帳號。解鎖錢包帳號時，輸入PIN碼解鎖的過程，也是透過硬體錢包上的按鍵完成，從而避免了所使用的電腦可能已被入侵者安裝鍵盤側錄軟體而造成的財產上的風險。
+
+＃ 設定流程
 
 ## 1. 設定 Ledget Nano S 硬體
 
@@ -22,7 +24,7 @@ MyEtherWallet網站[推薦](https://myetherwallet.github.io/knowledge-base/hardw
 
 ## 2. 在電腦上安裝 Chrome 或 Chromium
 
-因為目前 Ledget Nano S 使用Chrome App技術來提供桌面應用程式，Chrome也是唯一支援[WebUSB API](https://wicg.github.io/webusb/)的瀏覽器...
+因為目前 Ledger Nano S 使用Chrome App技術來提供桌面應用程式，Chrome也是唯一支援[WebUSB API](https://wicg.github.io/webusb/)的瀏覽器...Google近期公告Chrome App即將被Progressive Web App取代，我們拭目以待Ledger公司將拿出什麼方案來應對。
 
 ## 3. 安裝 Ledger Manager
 
