@@ -13,7 +13,7 @@ tags:
 
 `MetaMask`同時提供支援[Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)與[Firefox](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)的版本。
 
-## switch network
+## Switch network
 
 
 ## Get some Ether for test
@@ -32,3 +32,5 @@ light
 交易所錢包
 
 ## 設定
+
+## 參考資料

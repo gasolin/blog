@@ -99,9 +99,9 @@ $ truffle init
 pragma solidity ^0.4.11;
 
 contract HelloWorld {
-  function sayHello() returns (string) {
-    return ("Hello World");
-  }
+    function sayHello() public returns (string) {
+        return ("Hello World");
+    }
 }
 ```
 
@@ -132,12 +132,14 @@ contract HelloWorld {
 雖然一個.sol檔案中可以定義多個Contract，但建議一個.sol檔案中只定義一個Contract以便於後續的維護。
 
 ```
-function sayHello() returns (string) {
-  return ("Hello World");
+function sayHello() public returns (string) {
+    return ("Hello World");
 }
 ```
 
 函式的結構與其他程式類似，但如果有傳入的參數或回傳值，需要指定參數或回傳值的型別(type)。所有支援的型別可以查看參考資料[^10]。
+
+solidity官方推薦的縮排風格為4個空格[^13]。
 
 ## 編譯
 
@@ -355,4 +357,5 @@ truffle(develop)> contract.sayHello.call()
 * [10] Solidity支援的型別(Type) https://solidity.readthedocs.io/en/develop/types.html
 * [11] Solium syntax check https://github.com/duaraghav8/Solium
 * [12] http://truffleframework.com/docs/getting_started/contracts
-* [13] 本篇也已分享到medium上的Taipei Ethereum Meetup台灣以太坊社群專欄　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b
+* [13] Coding Style http://solidity.readthedocs.io/en/develop/style-guide.html
+* [14] 本篇也已分享到medium上的Taipei Ethereum Meetup台灣以太坊社群專欄　https://medium.com/taipei-ethereum-meetup/%E5%A6%82%E4%BD%95%E6%92%B0%E5%AF%AB%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-smart-contract-i-363d06b1965b
