@@ -5,59 +5,36 @@ tags:
   - devtools
 ---
 
-9/22我和Ricky Chien在台灣第一次舉辦的Mozilla Developer Conference中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
+2017/9/22我和Ricky Chien在台灣第一次舉辦的Mozilla Developer Conference中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
+
+Devtools架構的大幅改進，是過去一年中所有Devtools貢獻者共同努力的成果。在這講題中，我們可以看到Devtools如何持續改進，並提供各種新的工具，讓開發網頁的過程變得更有效率。
 
 ![](http://g.recordit.co/RN5AVhnpGX.gif)
 
-透過在Firefox 57新版的統一選單介面上開啟Web Developer Tool，我們可以開啟Devtools的各種工具分頁Panel(分頁)。
+透過在Firefox 57新版的統一選單介面上開啟Web Developer Tool，我們可以開啟Devtools的各種工具分頁分頁(Panel)。
+
 Devtools簡單來說，就是各式各樣網頁開發者工具的集合。這些工具以一個個分頁（Panel）的形式組織在開發者工具區域中，我們稱這個區域為`Toolbox`，也就是`工具箱`。
 
-今天的講題中，我們可以看到Devtools如何持續改進，並提供各種新的工具，讓開發網頁的過程，變得更有效率。
+## Devtools 的過去
 
-今天的演講大致分為四個部分，
-第一部分將介紹devtools架構的大幅改進。
-那我們在第二部分，會介紹visual refresh, 和 web 開發者較熟悉的inspector, web console, perfiler等工具的新功能. 
-第三部分Ricky會接著介紹 debugger, network monitor, 還有其他的工具，並會demo很酷的launchpad 
-最後呢，我們會介紹devtools未來的規劃。
+Devtools 的前身叫做 [Firebug]((http://www.drdobbs.com/tools/ajax-debugging-with-firebug/196802787)。在2006年時，Firefox 的創始者之一Joe Hewitt[寫出了Firebug這個Firefox 的網頁開發工具addon](https://medium.com/mozilla-tech/a-quick-history-of-firefox-devtools-620d3074b510)。
+使用者可以利用它除錯、編輯、刪改任何網站的CSS、HTML、DOM與JavaScript。也可以透過addon再次擴展它的功能。現在各家瀏覽器的網頁開發者工具都參考了Firebug功能。
 
-首先，我先和大家介紹Devtools架構的大幅改進。
-這是過去一年中所有Devtools貢獻者共同努力的成果。
+過去的Web相關技術遠遠沒有今天成熟，Mozilla發明了一些特有的技術(XUL, XBL)來製作瀏覽器的介面與呼叫特殊的API(Addon API)來和作業系統互動。因為原有的addon架構無法支援FIrefox新的多執行緒(multiple process)架構，因此去年Firebug開發團隊決定[將Firebug直接整合進Devtools中](https://hacks.mozilla.org/2016/12/firebug-lives-on-in-firefox-devtools/)。
 
-介紹現在的改進之前，我們先一起回到早一些的時間點。
-Devtools 的前身叫做 Firebug。在2006年時Firefox 的創始者之一Joe Hewitt寫了Firebug這個Firefox 的網頁開發工具addon。
-使用者可以利用它除錯、編輯、刪改任何網站的CSS、HTML、DOM與JavaScript。也可以透過addon再次擴展它的功能。可以說，現在各家瀏覽器的網頁開發者工具都有參考Firebug功能。
-(http://www.drdobbs.com/tools/ajax-debugging-with-firebug/196802787)
-
-因為原有的addon架構無法支援FIrefox新的e10s，也就是multiple process架構，因此在去年，Firebug開發團隊決定將Firebug直接整合進Devtools中。
-
-(Modern web sites are a product of several distinct technologies, and web developers must be proficient in all of them—HTML, CSS, JavaScript, and the DOM, among others)
-
-[Firebug](https://hacks.mozilla.org/2016/12/firebug-lives-on-in-firefox-devtools/)
-
-(The reason for this huge change is Electrolysis multiple process architecture)
-
-https://medium.com/mozilla-tech/a-quick-history-of-firefox-devtools-620d3074b510
-
-p5
-（過去的Web相關技術遠遠沒有今天成熟，Mozilla發明了一些特有的技術來製作瀏覽器的介面與呼叫特殊的API來和作業系統互動。）
+## Devtools 的現在
 
 Devtools繼承Firebug的開發目標，也就是協助網頁開發者更有效率的製作網站。同時作為網頁開發者工具，我們希望開發者工具工具本身，也能用和網頁開發者使用的排版與框架來撰寫。
 
 於是今天，大家可以看到我們的成果。我們已經在使用HTML和Web Standard API來製作Devtools開發者工具！
 
-(a lot easier for the community to understand and contribute, https://mzl.la/2lZO3Nt
-https://addons.mozilla.org/en-US/firefox/collections/mozilla/framework-devtools)
-
 使用HTML與Web Standard API只是第一步。我們進一步評估，選用了React和Redux作為前端UI介面與狀態管理框架。經過react改寫後，我們有了可在不同工具間中重用的元件庫。透過redux，每個工具也都有了清晰的App狀態管理機制。
 
-我們將許多Devtools核心的專案放到Github上以方便開發者。
+我們將許多Devtools核心的專案放到Github上以方便開發者，並且將可以重用的元件，放到 [Devtools-Core](https://github.com/devtools-html/devtools-core) 專案中，將可以獨立運作的[Debugger.html](https://github.com/devtools-html/debugger.html)，[Perf.html](https://github.com/devtools-html/perf.html)專案也放到Github上，讓參與專案變得更容易。
 
-我們將可以重用的元件，放到 Devtools-Core 專案中，將可以獨立運作的Debugger，Profiler專案也放到Github上。
+如果想開發自己所需的的開發者工具。現在也可以使用Web Extension API來製作新的開發者工具面板。面板中也可以重用`Devtools-Core`專案提供的React介面元件，更快地打造自己的開發者工具。
 
-如果想開發自己所需的的開發者工具。現在也可以使用Web Extension API來製作新的開發者工具面板。
-panel中也可以重用`Devtools-Core`中提供的介面元件，更快地打造自己的開發者工具。
 
-以上是Devtools架構改進的部分。
 接下來，將先和大家介紹使用者介面的改進。
 
 我們可以看到 Firefox 57上的 Devtools 分頁變得更美觀了。當然這些都已包成React component，喜歡還可以拿去用。

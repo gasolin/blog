@@ -59,7 +59,7 @@ contract HelloToken is StandardToken {
   uint8 public decimals = 2;
   uint256 public INITIAL_SUPPLY = 88888;
 
-  function HelloToken() {
+  function HelloToken() public {
     totalSupply = INITIAL_SUPPLY;
     balances[msg.sender] = INITIAL_SUPPLY;
   }
@@ -104,7 +104,7 @@ contract HelloToken is StandardToken {
 string public name = "HelloCoin";
 string public symbol = "H@";
 uint8 public decimals = 2;
-uint256 public INITIAL_SUPPLY = 88888888;
+uint256 public INITIAL_SUPPLY = 100000;
 ```
 
 這邊設定參數的目的是指定這個代幣的一些特性。以美元為例，美元的名稱(`name`)是`dollar`，美元的代號為`$`，拿一美元去找零最小可以拿到零錢是一美分(cent)，也就是0.01元。因為一美元最小可分割到小數點後2位(0.01)，因此最小交易單位(decimals)為2。
@@ -120,11 +120,10 @@ uint256 public INITIAL_SUPPLY = 88888888;
 | Ethereum | ETH | 18 |
 | HelloCoin | H@ | 2 |
 
-最後也定義了初始代幣數目`INITIAL_SUPPLY`。這邊一樣選擇了一個吉祥數字`88888888`。
-另外，當我們把全域變數設為`public`(公開)，編譯時就會自動新增一個讀取公開變數的ABI接口，我們在`truffle console`中也可以讀取這些變數。
+最後也定義了初始代幣數目`INITIAL_SUPPLY`為`100000`。當我們把全域變數設為`public`(公開)，編譯時就會自動新增一個讀取公開變數的ABI接口，我們在`truffle console`中也可以讀取這些變數。
 
 ```
-function HelloToken() {
+function HelloToken() public {
   totalSupply = INITIAL_SUPPLY;
   balances[msg.sender] = INITIAL_SUPPLY;
 }
@@ -155,6 +154,7 @@ var HelloToken = artifacts.require("HelloToken");
 module.exports = function(deployer) {
   deployer.deploy(HelloToken);
 };
+
 ```
 
 現在執行compile與migrate命令
@@ -178,6 +178,8 @@ Saving artifacts...
 
 ## 驗證
 
+我們一樣可以透過`truffle console`來驗證`HelloToken`是否部署成功。
+
 ```sh
 $ truffle console
 > let contract
@@ -185,15 +187,15 @@ $ truffle console
 > contract.address
 '0x352fa9aa18106f269d944935503afe57a00a9a0d'
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88888888'] s: 1, e: 4, c: [ 88888888 ] }
+BigNumber { s: 1, e: 5, c: [ 100000 ] }
 > contract.balanceOf(web3.eth.accounts[1])
-{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+BigNumber { s: 1, e: 0, c: [ 0 ] }
 > contract.transfer(web3.eth.accounts[1], 123)
 ...
 > contract.balanceOf(web3.eth.accounts[0])
-{ [String: '88888765'] s: 1, e: 4, c: [ 88888765 ] }
+BigNumber { s: 1, e: 4, c: [ 99877 ] }
 > contract.balanceOf(web3.eth.accounts[1])
-{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+BigNumber { s: 1, e: 2, c: [ 123 ] }
 >
 ```
 
@@ -208,9 +210,9 @@ $ truffle console
 
 ```sh
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88888888'] s: 1, e: 4, c: [ 88888888 ] }
+BigNumber { s: 1, e: 5, c: [ 100000 ] }
 > contract.balanceOf(web3.eth.accounts[1])
-{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+BigNumber { s: 1, e: 0, c: [ 0 ] }
 ```
 
 `web3.eth.coinbase` 代表操作者預設的帳號，即testrpc所提供的10個帳號中的第一個帳號，也可以透過`web3.eth.accounts[0]`取得。
@@ -224,10 +226,10 @@ $ truffle console
 接著使用`transfer`函式來傳送`123`個代幣到第二個帳號`web3.eth.accounts[1]`。如果轉帳成功，傳送者預設帳號中會減少`123`個代幣，接收者帳號中會增加`123`個代幣。
 
 ```
-> contract.balanceOf(web3.eth.coinbase)
-{ [String: '88888765'] s: 1, e: 4, c: [ 88888765 ] }
-> contract.balanceOf.call(web3.eth.accounts[1])
-{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+> contract.balanceOf(web3.eth.accounts[0])
+BigNumber { s: 1, e: 4, c: [ 99877 ] }
+> contract.balanceOf(web3.eth.accounts[1])
+BigNumber { s: 1, e: 2, c: [ 123 ] }
 >
 ```
 

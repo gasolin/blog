@@ -25,7 +25,7 @@ NAS --> 數位資產
 
 MyEtherWallet網站[推薦](https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html)任何擁有超過「2周的薪資」數位財產的人，使用「硬體錢包」來保管自己的「加密代幣」，以避免可能的財產損失。
 
-目前Ledget Nano S和TREZOR是兩款較多人使用的硬體錢包。硬體錢包的安全性從產生錢包帳號開始。硬體錢包帳號的私鑰一直保存在硬體設備中，只要保存好「recovery phase」，不會發生使用線上交易所時帳號或帳戶中的代幣可能被盜的風險。只有在發送代幣時需要解鎖錢包帳號。解鎖錢包帳號時，輸入PIN碼解鎖的過程，也是透過硬體錢包上的按鍵完成，從而避免了所使用的電腦可能已被入侵者安裝鍵盤側錄軟體而造成的財產上的風險。
+目前Ledget Nano S和TREZOR是兩款較多人使用的硬體錢包。硬體錢包的安全性從產生錢包帳號開始。硬體錢包帳號的私鑰一直保存在硬體設備中，只要保存好「recovery phase」(Mnemonic Seed)，不會發生使用線上交易所時帳號或帳戶中的代幣可能被盜的風險。只有在發送代幣時需要解鎖錢包帳號。解鎖錢包帳號時，輸入PIN碼解鎖的過程，也是透過硬體錢包上的按鍵完成，從而避免了所使用的電腦可能已被入侵者安裝鍵盤側錄軟體而造成的財產上的風險。
 
 # 設定流程
 
@@ -80,3 +80,7 @@ Ethereum > Settings > Browser Support > Yes
 ```
 
 透過Chrome瀏覽器，在MyEtherWallet中看到`How would you like to access your wallet`選項時，選擇`Ledger Wallet`並在硬體上解鎖即可。
+
+# 參考資料
+
+* BIP39 Mnemonic Code Converter https://iancoleman.io/bip39/

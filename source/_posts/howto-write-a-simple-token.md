@@ -7,6 +7,8 @@ tags:
 date: 2017-09-12 00:47:31
 ---
 
+Update: 12/28/2017 更新教程，使用require取代throw。
+
 [上一篇](https://blog.gasolin.idv.tw/2017/09/06/howto-write-a-smart-contract/)中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本篇後，你將學會建立一個簡易的加密代幣🔒💵。本篇目的並非為了寫出一個安全可用的加密代幣，而是以介紹代幣合約的相關概念為主， 是以對合約做了適當地簡化，好更易於理解。
 
 ## 開發前的準備
@@ -40,22 +42,22 @@ $ truffle create contract SimpleToken
 pragma solidity ^0.4.11;
 
 contract SimpleToken {
-  uint256 INITIAL_SUPPLY = 88888;
+  uint256 INITIAL_SUPPLY = 10000;
   mapping(address => uint256) balances;
 
-  function SimpleToken() {
+  function SimpleToken() public {
     balances[msg.sender] = INITIAL_SUPPLY;
   }
 
   // transfer token for a specified address
-  function transfer(address _to, uint256 _amount) {
-    if (balances[msg.sender] < _amount) throw;
+  function transfer(address _to, uint256 _amount) public {
+    require(balances[msg.sender] > _amount);
     balances[msg.sender] -= _amount;
     balances[_to] += _amount;
   }
 
   // Gets the balance of the specified address
-  function balanceOf(address _owner) constant returns (uint256) {
+  function balanceOf(address _owner) public constant returns (uint256) {
     return balances[_owner];
   }
 }
@@ -71,17 +73,17 @@ pragma solidity ^0.4.11;
 第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。
 
 ```
-uint256 INITIAL_SUPPLY = 88888;
+uint256 INITIAL_SUPPLY = 10000;
 mapping(address => unit256) balances;
 ```
 
-我們定義了初始代幣數目`INITIAL_SUPPLY`。這邊隨意選擇了一個吉祥數字`88888`。
+我們定義了初始代幣數目`INITIAL_SUPPLY`。這邊隨意選擇了一個數字`10000`。
 
 我們用`mapping`來定義一個可以儲存鍵值對(key-value pair)的資料結構(類似Javascript中的`{"0xaabbccddeeff": 888}`)，同時也需要分別指定`address`作為鍵的型別，指定`uint256`作為值的型別。和Javascript不同，型別定義好後不能隨時更改要儲存的型別。
 
 ```
 contract SimpleToken {
-  function SimpleToken() {
+  function SimpleToken() public {
     balances[msg.sender] = INITIAL_SUPPLY;
   }
 }
@@ -91,8 +93,8 @@ contract SimpleToken {
 `msg`是一個全域(Global)物件[^2]，`msg.sender`表示用作呼叫當前函式的帳號。由於建構函式只有在合約部署時會被執行，因此這邊用到的`msg.sender`，也就代表著用來部署這個合約的帳號。
 
 ```
-function transfer(address _to, uint256 _amount) {
-  if (balances[msg.sender] < _amount) throw;
+function transfer(address _to, uint256 _amount) public {
+  require(balances[msg.sender] > _amount);
   balances[msg.sender] -= _amount;
   balances[_to] += _amount;
 }
@@ -106,10 +108,12 @@ graph LR
 代幣合約 -.-> 修改傳送者和接收者餘額
 {% endmermaid %}
 
-`if (balances[msg.sender] < _amount) throw;`語句判斷帳戶中是否還有足夠轉出的餘額，若存款小於想轉出的數目，就丟出(throw)錯誤。這函式這麼寫當然還是過度簡化了，若要能實際使用，需要檢查更多可能的狀況。但就先這樣吧。
+`require(balances[msg.sender] > _amount);`語句判斷帳戶中是否還有足夠轉出的餘額，若存款小於想轉出的數目，就丟出錯誤。
+
+這個函式這麼寫當然還是過度簡化了，若要能實際使用，需要檢查更多可能的狀況。但就先這樣吧。
 
 ```
-function balanceOf(address _owner) constant returns (uint256) {
+function balanceOf(address _owner) public constant returns (uint256) {
   return balances[_owner];
 }
 ```
@@ -164,15 +168,15 @@ $ truffle console
 > let contract
 > SimpleToken.deployed().then(instance => contract = instance)
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
+BigNumber { s: 1, e: 4, c: [ 10000 ] }
 > contract.balanceOf(web3.eth.accounts[1])
-{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+BigNumber { s: 1, e: 0, c: [ 0 ] }
 > contract.transfer(web3.eth.accounts[1], 123)
 ...
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
+BigNumber { s: 1, e: 3, c: [ 9877 ] }
 > contract.balanceOf.call(web3.eth.accounts[1])
-{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+BigNumber { s: 1, e: 2, c: [ 123 ] }
 >
 ```
 
@@ -187,26 +191,32 @@ $ truffle console
 
 ```sh
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88888'] s: 1, e: 4, c: [ 88888 ] }
+BigNumber { s: 1, e: 4, c: [ 10000 ] }
 > contract.balanceOf(web3.eth.accounts[1])
-{ [String: '0'] s: 1, e: 0, c: [ 0 ] }
+BigNumber { s: 1, e: 0, c: [ 0 ] }
 ```
 
-還記得啟動testrpc後預設會產生10個帳號(Accounts)嗎?。`web3.eth.coinbase` 代表操作者預設的帳號，即10個帳號中的第一個帳號`web3.eth.accounts[0]`。
+還記得啟動testrpc後預設會產生10個帳號(Accounts)嗎?。`web3.eth.coinbase` 代表操作者預設的帳號，即10個帳號中的第一個帳號`web3.eth.accounts[0]`，所以這邊呼叫`web3.eth.coinbase`或`web3.eth.accounts[0]`結果是一樣的。
+
+```sh
+> contract.balanceOf(web3.eth.accounts[0])
+BigNumber { s: 1, e: 4, c: [ 10000 ] }
+```
+
 這兩句的目的是在進行轉帳操作前，先查詢前兩個帳號所擁有的代幣餘額。透過呼叫`balanceOf`函式，可以看到第一個帳號(部署合約的帳號)裡存著所有的代幣。
 
-```
+```sh
 > contract.transfer(web3.eth.accounts[1], 123)
 ...
 ```
 
 接著使用`transfer`函式來傳送`123`個代幣到第二個帳號`web3.eth.accounts[1]`。如果轉帳成功，傳送者預設帳號中會減少123個代幣，接收者帳號中會增加123個代幣。
 
-```
+```sh
 > contract.balanceOf(web3.eth.coinbase)
-{ [String: '88765'] s: 1, e: 4, c: [ 88765 ] }
+BigNumber { s: 1, e: 3, c: [ 9877 ] }
 > contract.balanceOf.call(web3.eth.accounts[1])
-{ [String: '123'] s: 1, e: 2, c: [ 123 ] }
+BigNumber { s: 1, e: 2, c: [ 123 ] }
 >
 ```
 
