@@ -250,4 +250,67 @@ Solidity CRUD 2
 https://medium.com/@robhitchens/solidity-crud-part-2-ed8d8b4f74ec
 
 
+## 調校
 
+Top 10 Best Things To Do After Installing Elementary OS 0.4.1 Loki
+https://www.ubuntupit.com/top-10-best-things-installing-elementary-os/
+
+## 套件安裝器
+
+```sh
+sudo apt install gdebi
+```
+
+## 設定系統字型
+
+列出系統支援的字型
+
+```sh
+fc-list | cut -f2 -d: | sort -u
+```
+
+設定字型
+
+```sh
+gsettings set org.pantheon.terminal.settings font 'Roboto Mono'
+gsettings set org.gnome.desktop.interface font-name 'Open Sans 9'
+gsettings set org.gnome.desktop.interface document-font-name 'Open Sans 10'
+```
+
+https://adam.merrifield.ca/2016/11/12/tweaking-fonts-in-elementary-os/
+
+## 電源管理 TLP
+
+http://refugeeks.com/use-tlp-to-optimize-the-power-consumption-in-ubuntu/
+
+```
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt-get update 
+sudo apt-get install tlp
+sudo tlp start
+```
+
+https://elementaryos.stackexchange.com/questions/1090/how-to-optimize-elementary-os-for-maximal-battery-life-time-on-laptops
+
+## Docker
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
+
+## Peek
+
+錄製螢幕 gif
+
+Web3.js
+
+http://truffleframework.com/boxes/webpack
+
+```
+mkdir helloweb3
+cd helloweb3
+truffle unbox webpack
+```
