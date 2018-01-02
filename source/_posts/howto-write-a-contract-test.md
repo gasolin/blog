@@ -43,6 +43,8 @@ contract('HelloToken', function(accounts) {
 ```sh
 Contract: HelloToken
     ✓ should met initial supply
+
+1 passing (11ms)
 ```
 
 ### 講解
@@ -116,6 +118,8 @@ contract('HelloToken', function(accounts) {
 ```sh
 Contract: HelloToken
     ✓ should met initial supply
+
+1 passing (11ms)
 ```
 
 ### 講解
@@ -165,6 +169,8 @@ let senderBalance = await contract.balanceOf(accounts[0]);
 Contract: HelloToken
     ✓ should met initial supply
     ✓ should have right balance after transfer (92ms)
+
+2 passing (151ms)
 ```
 
 ### 講解
