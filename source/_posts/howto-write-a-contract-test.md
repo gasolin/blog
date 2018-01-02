@@ -91,7 +91,9 @@ assert.equal(_totalSupply.toNumber(), senderBalance.toNumber());
 
 要理解這樣的promise chain需要一些練習。但其實上面的測試用例中，我們只想做好最後的兩個assert驗證。有沒有比較直覺的測試方法呢？
 
-有的！2017下半年，Javascript 語言支援了 async/await 語句，可以用更直覺的方式撰寫如智能合約測試這樣非同步的程式碼。只要安裝Node 7.6版以上即可使用。使用 async/await 語句改寫後的測試程式碼如下：
+有的！2017下半年，Javascript 語言支援了 async/await 語句[2]（只要安裝Node 7.6版以上即可使用），可以用更直覺的方式撰寫非同步的程式碼。
+
+智能合約測試剛好也使用大量的非同步程式碼。使用 async/await 語句改寫後的智能合約測試程式碼如下：
 
 ```js
 var HelloToken = artifacts.require('HelloToken');
@@ -199,3 +201,4 @@ async/await 語句相當適合拿來寫非同步的程式，這特性太適合�
 # 參考資料
 
 [1] Writing Tests in Javascript http://truffleframework.com/docs/getting_started/javascript-tests
+[2] 6 Reasons Why JavaScript’s Async/Await Blows Promises Away (Tutorial)https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9
