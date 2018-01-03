@@ -9,7 +9,7 @@ date: 2018-01-02 15:00:05
 
 因為智能合約一旦部署就難以修改，因此合約的安全性極其重要，要避免合約中出現一些基礎錯誤，除了透過第三方驗證外，完整地單元測試(unit test)也是必需的。
 
-目前最成熟的智能合約單元測試方式，還是透過`Truffle`開發框架來達成。有趣的是 truffle 可以用 solidity 或 Javascript 來撰寫單元測試。
+目前最成熟的智能合約單元測試方式，還是透過`Truffle`開發框架來達成。有趣的是 truffle 主要使用 Javascript 來撰寫智能合約的單元測試（也可以用 solidity來寫）。
 
 ## 加入測試
 
@@ -61,9 +61,9 @@ contract('HelloToken', function(accounts) {
 });
 ```
 
-Truffle是使用Javascript開發中常見的[Mocha](https://mochajs.org/)測試框架和[Chai](http://chaijs.com/)斷言庫來做單元測試。差別只是把Mocha test中的 `describe`換成`contract`。根據官方文件[^1]，`contact`執行前會自動重新部署到testrpc(或乙太坊測試網路)上，所以智能合約會是剛部署好乾淨的狀態。
+Truffle是使用Javascript開發中常見的[Mocha](https://mochajs.org/)測試框架和[Chai](http://chaijs.com/)斷言庫來做單元測試。差別只是把Mocha test中的 `describe`換成`contract`。根據官方文件[^1]，`contact`執行前會自動重新部署到testrpc(或測試網路)上，所以智能合約會是剛部署好乾淨的狀態。
 
-此外，`contract`也會帶入`accounts`變數，裡面儲存了testrpc或其他你運行的測試網路所提供的帳號，開發者可以直接使用這些帳號來測試。
+此外，`contract`也會帶入`accounts`變數，裡面儲存了testrpc或其他你運行的測試網路所提供的帳號，開發者可以直接使用這些帳號來測試合約。
 
 第一個測試是來測部署合約後預設的代幣數目是否正確。
 
