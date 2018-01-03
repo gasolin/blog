@@ -9,7 +9,7 @@ date: 2018-01-02 15:00:05
 
 因為智能合約一旦部署就難以修改，因此合約的安全性極其重要，要避免合約中出現一些基礎錯誤，除了透過第三方驗證外，完整地單元測試(unit test)也是必需的。
 
-目前最成熟的智能合約單元測試方式，還是透過`Truffle`開發框架來達成。有趣的是 truffle 主要使用 Javascript 來撰寫智能合約的單元測試（也可以用 solidity來寫）。
+目前最成熟的智能合約單元測試方式，還是透過`Truffle`開發框架來達成。有趣的是Truffle主要使用Javascript來撰寫智能合約的單元測試（也可以用 solidity來寫）。
 
 ## 加入測試
 
@@ -77,7 +77,7 @@ HelloToken.deployed().then((instance) => {
 });
 ```
 
-這邊內容和在`truffle console`中輸入的測試內容雷同，使用 Promise 來確定每個非同步的操作都在上一個操作完成後才繼續執行。
+這邊內容和在`truffle console`中輸入的測試內容雷同，使用`Promise`來確定每個非同步的操作都在上一個操作完成後才繼續執行。
 
 上一個操作可以透過 `return` 語句回傳下個操作需要的參數。例如這邊`then`裡面傳入的`totalSupply`參數，是來自上一行`return contract.totalSupply.call()`的結果。
 
@@ -87,15 +87,15 @@ assert.equal(totalSupply.toNumber(), INITIAL_SUPPLY);
 assert.equal(_totalSupply.toNumber(), senderBalance.toNumber());
 ```
 
-這邊我們透過`assert.equal`語句驗證了`HelloToken`合約中的初始代幣總額與`INITIAL_SUPPLY`參數的值相符，且與合約部署者(accounts[0])帳戶中擁有的總額相符。
+這邊我們透過`assert.equal`語句驗證了`HelloToken`合約中的初始代幣總額與`INITIAL_SUPPLY`參數的值相符，且與合約部署者(`accounts[0]`)帳戶中擁有的總額相符。
 
 ## 使用 async/await 簡化測試
 
 要理解這樣的promise chain需要一些練習。但其實上面的測試用例中，我們只想做好最後的兩個assert驗證。有沒有比較直覺的測試方法呢？
 
-有的！2017下半年，Javascript 語言支援了 async/await 語句[2]（只要安裝Node 7.6版以上即可使用），可以用更直覺的方式撰寫非同步的程式碼。
+有的！2017下半年，Javascript 語言支援了`async/await`語句[2]（只要安裝Node 7.6版以上即可使用），可以用更直覺的方式撰寫非同步的程式碼。
 
-智能合約測試剛好也使用大量的非同步程式碼。使用 async/await 語句改寫後的智能合約測試程式碼如下：
+智能合約測試剛好也使用大量的非同步程式碼。使用`async/await`語句改寫後的智能合約測試程式碼如下：
 
 ```js
 var HelloToken = artifacts.require('HelloToken');
@@ -129,7 +129,7 @@ it('should met initial supply', async function() {
 });
 ```
 
-要在程式碼中使用 async/await，需要在函式前加入`async`宣告，這樣解譯器才會解析函式中的await語法。
+要在程式碼中使用async/await，需要在函式前加入`async`宣告，這樣解譯器才會解析函式中的`await`語法。
 
 ```js
 let contract = await HelloToken.deployed();
@@ -143,7 +143,7 @@ let senderBalance = await contract.balanceOf(accounts[0]);
 
 ## 加入轉帳測試
 
-再透過 async/await 語句試著加入轉帳測試：
+再透過`async/await`語句試著加入轉帳測試：
 
 ```js
   it('should have right balance after transfer', async function() {
@@ -202,7 +202,7 @@ assert.equal(account1Balance.toNumber(), AMOUNT);
 
 ## 結語
 
-async/await 語句相當適合拿來寫非同步的程式，這特性太適合用來寫智能合約的測試了。但因為這語法太新，所以大部分的參考資料都還在用Promise來撰寫。我建議當你看到相關的智能合約測試時，可以用async/await改寫看看，會有不一樣的感受。
+`async/await`語句相當適合拿來寫非同步的程式，這特性太適合用來寫智能合約的測試了。因為`async/await`這語法太新，所以大部分的參考資料都還在用`Promise`來撰寫。我建議當你看到相關的智能合約測試時，可以用async/await改寫看看，會有很不一樣的感受。
 
 # 參考資料
 
