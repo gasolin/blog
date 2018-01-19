@@ -305,12 +305,8 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 
 錄製螢幕 gif
 
-Web3.js
 
-http://truffleframework.com/boxes/webpack
+## App Center
+download
+ubuntu software center
 
-```
-mkdir helloweb3
-cd helloweb3
-truffle unbox webpack
-```

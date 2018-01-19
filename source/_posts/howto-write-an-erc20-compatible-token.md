@@ -20,7 +20,7 @@ $ testrpc
 ...
 ```
 
-這邊有個小技巧，在啟動testrpc時加上`--seed`參數，例如
+這邊有個值得一學的小技巧：在啟動testrpc時加上`--seed`參數，例如
 ```
 testrpc --seed apple banana cherry
 ```
