@@ -310,3 +310,9 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 download
 ubuntu software center
 
+
+## Node Red Bot
+$ sudo npm install -g --unsafe-perm node-red
+$ cd ~/.node-red
+$ npm install node-red-contrib-chatbot
+$ node-red
