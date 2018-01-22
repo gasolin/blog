@@ -316,3 +316,18 @@ $ sudo npm install -g --unsafe-perm node-red
 $ cd ~/.node-red
 $ npm install node-red-contrib-chatbot
 $ node-red
+
+```
+Bugs filed 	631
+Comments made 	7584
+Assigned to 	509
+Commented on 	2049
+Patches submitted 	461
+Patches reviewed 	256
+Bugs poked 	2605
+ 
+Statuses changed 	RESOLVED (964), FIXED (436), VERIFIED (0), INVALID (36)
+
+Activity by product
+Firefox OS (12969), Firefox (6408), Toolkit (243), Core (154), Invalid Bugs (100), Testing (30), Firefox for Android (19), L20n (18), www.mozilla.org (12), mozilla.org (11), Mozilla Localizations (9), Release Engineering (9), B2GDroid Graveyard (7), mozilla.org Graveyard (6), bugzilla.mozilla.org (6), Marketplace (4), Other (75)
+```
