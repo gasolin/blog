@@ -16,5 +16,6 @@ $ hexo generate --deploy --debug
 ## Upgrade theme
 
 ```sh
+$ rm -Rf theme/next
 $ git submodule update --remote
 ```
