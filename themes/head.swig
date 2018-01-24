@@ -4,6 +4,15 @@
 <meta name="theme-color" content="{{ theme.android_chrome_color }}">
 
 
+{% if theme.needmoreshare2.enable %}
+  {% set needmoreshare2_css = url_for(theme.vendors._internal + '/needsharebutton/needsharebutton.css') %}
+  {% if theme.vendors.needmoreshare2 %}
+    {% set needmoreshare2_css = theme.vendors.needmoreshare2_css %}
+  {% endif %}
+  <link rel="stylesheet" href="{{ needmoreshare2_css }}">
+{% endif %}
+
+
 {% if theme.pace %}
   {% set pace_css_uri = url_for(theme.vendors._internal + '/pace/'+ theme.pace_theme +'.min.css?v=1.0.2') %}
   {% set pace_js_uri = url_for(theme.vendors._internal + '/pace/pace.min.js?v=1.0.2') %}
@@ -63,7 +72,7 @@
   <link href="{{ fancybox_css_uri }}" rel="stylesheet" type="text/css" />
 {% endif %}
 
-{% include "./head/external-fonts.swig" %}
+{% include "./external-fonts.swig" %}
 
 {% set font_awesome_uri = url_for(theme.vendors._internal + '/font-awesome/css/font-awesome.min.css?v=4.6.2') %}
 {% if theme.vendors.fontawesome %}
@@ -108,7 +117,6 @@
   <link rel="alternate" href="{{ url_for(theme.rss) }}" title="{{ config.title }}" type="application/atom+xml" />
 {% endif %}
 
-
 {% if theme.facebook_sdk.enable and theme.facebook_sdk.webmaster %}
   <meta property="fb:admins" content="{{ theme.facebook_sdk.fb_admin }}" />
   <meta property="fb:app_id" content="{{ theme.facebook_sdk.app_id }}" />
@@ -136,12 +144,10 @@
     version: '{{ theme.version }}',
     sidebar: {{ theme.sidebar | json_encode }},
     fancybox: {{ theme.fancybox }},
+    fastclick: {{ theme.fastclick }},
+    lazyload: {{ theme.lazyload }},
     tabs: {{ theme.tabs.enable }},
     motion: {{ theme.motion | json_encode }},
-    duoshuo: {
-      userId: '{{ theme.duoshuo_info.user_id | default() }}',
-      author: '{{ theme.duoshuo_info.admin_nickname | default(__('author'))}}'
-    },
     algolia: {
       applicationID: '{{ theme.algolia.applicationID }}',
       apiKey: '{{ theme.algolia.apiKey }}',
@@ -152,9 +158,9 @@
   };
 </script>
 
-{# Canonical, good for google search engine (SEO) : https://support.google.com/webmasters/answer/139066 #}
-{% if theme.canonical %}
-  <link rel="canonical" href="{{ config.url }}/{{ page.canonical_path.replace('index.html', '') }}"/>
+{% if theme.custom_file_path.head %}
+  {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
+{% else %}
+  {% set custom_head = '../../_custom/head.swig' %}
 {% endif %}
-
-{% include 'head/custom-head.swig' %}
+{% include custom_head %}
