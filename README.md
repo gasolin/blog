@@ -4,11 +4,17 @@ My personal Blog source, follow [Creative Common Attribution-NonCommercial-Share
 
 ## Manual Setup
 
-```
+```sh
 $ npm install -g hexo
 $ git clone https://github.com/gasolin/blog.git
 $ cd blog
 $ git submodule update --init
 $ npm install
 $ hexo generate --deploy --debug
+```
+
+## Upgrade theme
+
+```sh
+$ git submodule update --remote
 ```

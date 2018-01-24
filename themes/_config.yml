@@ -36,6 +36,7 @@ menu:
   #about: /about
   archives: /archives
   tags: /tags
+  #sitemap: /sitemap.xml
   #commonweal: /404.html
 
 
@@ -155,7 +156,7 @@ social_icons:
   Watch: film
   Slideshare: slideshare
   Visited: map-marker
-  Tip Me: money
+  Tip Me: bolt
 
 
 # Sidebar Avatar
@@ -200,7 +201,7 @@ sidebar:
 #links_layout: block
 #links_layout: inline
 #links:
-  #Title: http://blog.gasolin.idv.tw/
+  #Title: http://example.com/
 
 
 # ---------------------------------------------------------------
@@ -351,8 +352,10 @@ busuanzi_count:
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer:
 
+
 # Tencent analytics ID
 # tencent_analytics:
+
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false
@@ -403,40 +406,41 @@ fancybox: true
 # For example
 #    jquery: https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 # Be aware that you should use the same version as internal ones to avoid potential problems.
+# Please use the https protocol of CDN files when you enable https on your site.
 vendors:
   # Internal path prefix. Please do not edit it.
-  _internal: lib
+  _internal: vendors
 
   # Internal version: 2.1.3
   jquery:
 
   # Internal version: 2.1.5
-  # http://fancyapps.com/fancybox/
+  # See: http://fancyapps.com/fancybox/
   fancybox:
   fancybox_css:
 
   # Internal version: 1.0.6
-  # https://github.com/ftlabs/fastclick
+  # See: https://github.com/ftlabs/fastclick
   fastclick:
 
   # Internal version: 1.9.7
-  # https://github.com/tuupola/jquery_lazyload
+  # See: https://github.com/tuupola/jquery_lazyload
   lazyload:
 
   # Internal version: 1.2.1
-  # http://VelocityJS.org
+  # See: http://VelocityJS.org
   velocity:
 
   # Internal version: 1.2.1
-  # http://VelocityJS.org
+  # See: http://VelocityJS.org
   velocity_ui:
 
   # Internal version: 0.7.9
-  # https://faisalman.github.io/ua-parser-js/
+  # See: https://faisalman.github.io/ua-parser-js/
   ua_parser:
 
   # Internal version: 4.6.2
-  # http://fontawesome.io/
+  # See: http://fontawesome.io/
   fontawesome:
 
 # Internal version: 1
