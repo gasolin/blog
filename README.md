@@ -18,4 +18,6 @@ $ hexo generate --deploy --debug
 ```sh
 $ rm -Rf theme/next
 $ git submodule update --remote
+# overwrite with local patch
+$ npm install
 ```
