@@ -7,12 +7,12 @@ date: 2018-1-25 15:23:00
 
 `先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。`
 
-2011[^1]年時紀錄了一次當時的個人工具箱，2016年開始再次紀錄自己手邊工具箱的改變[^2][^3][^4]🤹。
+2011[^1]年時紀錄了一次當時的個人工具箱，2016年開始再次紀錄自己手邊工具箱的改變[^2] [^3] [^4]🤹。
 今年初工作上有了變化，也將家中的環境包含進配置列表中。
 
 ## 主要裝備
 
-* :computer:Dell XPS 13 (8550), Windows 10, i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：Elementary OS + Windows
+* :computer:Dell XPS 13 (8550), Windows 10, i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/)
 * :iphone:[One Plus 3](https://oneplus.net/global/3), Android, 6GB RAM, 5.5" AMOLED
 * :headphones:Sony WI-1000 降噪耳機
 
@@ -31,16 +31,16 @@ date: 2018-1-25 15:23:00
 
 ### 和去年相比的改變：
 
-主力用Dell XPS 13"，家中添購了一台24" LCD接筆電，搭配3轉1 HDMI Hub，接Nintendo Switch, Chromecast, Respberry Pi，可滿足影音相關需求。HDMI設備通電時會自動切換到對應的設備。
+主力用:computer:Dell XPS 13"，家中添購了一台:desktop_computer:24" LCD接筆電，搭配3轉1 HDMI Hub，接🎮Nintendo Switch, Chromecast, Respberry Pi，可滿足影音相關需求。HDMI設備通電時會自動切換到對應的設備。
 
-<% mermaid %>
+{% mermaid %}
 graph LR
-LCD - HDMI -> hub(HDMI Hub)
-hub --> ns[Nintendo Switch]
-hub --> Chromecast
-hub --> Respberry Pi
-LCD - DVI -> Notebook
-<% endmermaid %>
+LCD -- HDMI -- hub(HDMI Hub)
+hub -- ns[Nintendo Switch]
+hub -- Chromecast
+hub -- Respberry Pi
+LCD -- DVI -- Notebook
+{% endmermaid %}
 
 上次記錄前即開始使用的:keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
 
@@ -73,7 +73,7 @@ LCD - DVI -> Notebook
 
 ### 開發
 
-* 編輯器：Visual Studio Code
+* 編輯器：VS Code
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
 
@@ -87,7 +87,7 @@ Browser
 * 拼字訂正：Grammarly
 * 密碼管理：Bitwarden
 
-VSCode
+VS Code
 * Git Blame
 * EditorConfig for VS Code
 * solidity
