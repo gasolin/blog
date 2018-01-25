@@ -130,7 +130,7 @@
 
           <!--custom reading time-->
           &nbsp; | &nbsp;
-          <span class="post-words">{{ wordcount(post.content) }} words,</span> <span class="post-count">{{ min2read(page.content) }} min. read</span>
+          <span class="post-words">{{ wordcount(post.content) }} words,</span> <span class="post-count">{{ min2read(page.content, {cn: 200, en: 160}) }} min. read</span>
 
           {% if post.comments %}
             {% if theme.facebook_comments_plugin.enable %}
