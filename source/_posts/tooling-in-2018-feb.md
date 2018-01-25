@@ -35,11 +35,11 @@ date: 2018-1-25 15:23:00
 
 {% mermaid %}
 graph LR
-LCD-- HDMI --- hub{HDMI Hub}
-hub--- ns[Nintendo Switch]
-hub--- Chromecast
-hub--- rpi[Respberry Pi]
 LCD -- DVI --- Notebook
+LCD -- HDMI --- hub{HDMI Hub}
+hub --- ns[Nintendo Switch]
+hub --- Chromecast
+hub --- rpi[Respberry Pi]
 {% endmermaid %}
 
 上次記錄前即開始使用的:keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
