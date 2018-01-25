@@ -24,8 +24,8 @@ date: 2018-1-25 15:23:00
 * :package:Synology NAS: 電影，影集，照片，資料備份
 * :bulb:Yeelight LED燈泡
 * 備用 :computer:Macbook Air 13", 2012年版
-* 備用 Chromecast 一代
-* 備用 Echodot
+* 備用 :tv:Chromecast 一代
+* 備用 :speaker:Echodot
 * 備用 Respberry Pi 3
 * 備用 :orange_book:Kindle Voyage
 
@@ -47,17 +47,21 @@ hub --- rpi[Respberry Pi]
 ### :spider_web:網站工具
 
 * :spider_web:主要瀏覽器：[Firefox](https://www.mozilla.org/en-US/firefox/products/)
+  - 顏文字查詢：Emoji cheatsheet
+  - 翻譯：ImTranslator
+  - 拼字訂正：Grammarly
+  - 密碼管理：Bitwarden
 * :busts_in_silhouette:主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
-* ✅[Todoist](https://todoist.com/) (付費)
+* ✅待辦事項：[Todoist](https://todoist.com/) (付費)
 * :email:[GMail](http://mail.google.com/), Inbox
 * :calendar:[Google日曆](http://www.google.com/calendar)
-* :memo:Google Doc, [Google keep](http://keep.google.com/) 記事
-* :floppy_disk:個人網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片
+* :memo:記事：[Google keep](http://keep.google.com/), Google Doc
+* :floppy_disk:網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片
 * 🔑密碼管理：[Bitwarden](https://www.bitwarden.com/)
 * 📒記帳: [Toshl](https://toshl.com) (付費)
 * :newspaper:新聞聚合：[Feedly](https://feedly.com/)
-* :blue_book:[Readmoo分享書](https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/read) 看書紀錄
-* :movie_camera:[豆瓣](http://www.douban.com/) 看電影記錄
+* :blue_book:閱讀紀錄：[Readmoo分享書](https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/read)
+* :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
 * :link:IFTTT [自動化生活紀錄2017](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
@@ -65,63 +69,51 @@ hub --- rpi[Respberry Pi]
 * :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](https://blog.gasolin.idv.tw/2017/12/26/setup_ledger_nano_on_linux/)
 
 
-### 設計
+### 設計工具
 
 * Mockup：[Balsmiq Mockups](http://www.balsamiq.com/products/mockups)
 * 螢幕動畫錄製： [Peek](https://github.com/phw/peek)(Linux), [Recordit](http://www.recordit.co/)(Mac)
 * 心智圖：XMind
 
-### 開發
+### 開發工具
 
 * 編輯器：VS Code
+  - solidity
+  - Python
+  - Go
+  - Diff Tool
+  - Git Lens
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
 
-目前在Windows上盡量能用Chocolatey處理的就用Chocolatey處理。
+若需要在Windows上開發，能用Chocolatey處理的就用Chocolatey處理。
 
-### 常用插件
-
-Browser
-* 顏文字查詢：Emoji cheatsheet
-* 翻譯：ImTranslator
-* 拼字訂正：Grammarly
-* 密碼管理：Bitwarden
-
-VS Code
-* Git Blame
-* EditorConfig for VS Code
-* solidity
-* Python
-* Go
-* Diff Tool
-
-
-### 娛樂
+### 娛樂工具
 
 * 🎮Nintendo Switch
-* 🎮Steam / vlc
 * :tv:Chromecast
+* 🎮Steam / vlc
 
 因為攜帶便利，現在主要只玩NS上的遊戲。Steam上看到喜歡的遊戲，也盡量等NS上出了再買。
 
-## :iphone:Android 手機
+## :iphone:Android 手機應用
 * 瀏覽器：Firefox for Android
 * 網頁更新通知：Web Alert
-* 閱讀：Palabre (feedly), Readmoo
+* 閱讀：Feedly, Readmoo
 * 稍候閱讀：Pocket
-* 信箱：Gmail, Inbox
+* 信箱：Inbox, Gmail
 * 地圖：Google地圖
 * 記事：Keep
 * 內建相機, 內建時鐘
-* 相簿：Dropbox, Google相簿
-* 社交：Facebook, LINE, Twitter, WeChat
+* 相簿：內建相簿, Google相簿, Dropbox
+* 社交：Facebook, LINE, Twitter
 * 待辦事項：[Todoist](https://play.google.com/store/apps/details?id=com.todoist)
-* 密碼管理：[Bitwarden]
+* 密碼管理：Bitwarden
 * 記帳: [Toshl](https://play.google.com/store/apps/details?id=com.thirdframestudios.android.expensoor)
 * 線上影片：Youtube
 * 有聲書：Audible
 * 音樂：豆瓣FM
-* 健康：小米運動, Pokemon Go
+* 健康：小米運動, Pokemon Go, 7M workout
 
 工具
 
@@ -129,7 +121,7 @@ VS Code
 * 旅遊：Google翻譯, TripAdvisor
 * 影片播放：MX Player, DS video
 * 記錄看書狀況：Readmoo分享書
-* 線上學習：Udemy, EggHead
+* 線上學習：Udemy, EggHead.io
 * IFTTT
 * 💳街口支付
 
