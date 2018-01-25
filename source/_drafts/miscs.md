@@ -41,8 +41,6 @@ https://learnxinyminutes.com/docs/solidity/
 那麼，如果我們打算把這個過程搬上網，把實體物品換成虛擬物品呢？
 
 
-# write web extension
-
 
 # port web extension
 
@@ -305,6 +303,8 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 
 錄製螢幕 gif
 
+& obs
+open boradcast 
 
 ## App Center
 download
@@ -331,3 +331,4 @@ Statuses changed 	RESOLVED (964), FIXED (436), VERIFIED (0), INVALID (36)
 Activity by product
 Firefox OS (12969), Firefox (6408), Toolkit (243), Core (154), Invalid Bugs (100), Testing (30), Firefox for Android (19), L20n (18), www.mozilla.org (12), mozilla.org (11), Mozilla Localizations (9), Release Engineering (9), B2GDroid Graveyard (7), mozilla.org Graveyard (6), bugzilla.mozilla.org (6), Marketplace (4), Other (75)
 ```
+
