@@ -35,10 +35,10 @@ date: 2018-1-25 15:23:00
 
 {% mermaid %}
 graph LR
-LCD -- HDMI --- hub(HDMI Hub)
-hub --- ns[Nintendo Switch]
-hub --- Chromecast
-hub --- Respberry Pi
+LCD-- HDMI --- hub{HDMI Hub}
+hub--- ns[Nintendo Switch]
+hub--- Chromecast
+hub--- rpi[Respberry Pi]
 LCD -- DVI --- Notebook
 {% endmermaid %}
 
