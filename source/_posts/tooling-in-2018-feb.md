@@ -35,11 +35,11 @@ date: 2018-1-25 15:23:00
 
 {% mermaid %}
 graph LR
-LCD -- HDMI -- hub(HDMI Hub)
-hub -- ns[Nintendo Switch]
-hub -- Chromecast
-hub -- Respberry Pi
-LCD -- DVI -- Notebook
+LCD -- HDMI --- hub(HDMI Hub)
+hub --- ns[Nintendo Switch]
+hub --- Chromecast
+hub --- Respberry Pi
+LCD -- DVI --- Notebook
 {% endmermaid %}
 
 上次記錄前即開始使用的:keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
@@ -56,7 +56,7 @@ LCD -- DVI -- Notebook
 * 🔑密碼管理：[Bitwarden](https://www.bitwarden.com/)
 * 📒記帳: [Toshl](https://toshl.com) (付費)
 * :newspaper:新聞聚合：[Feedly](https://feedly.com/)
-* :bluebook:[Readmoo分享書](https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/read) 看書紀錄
+* :blue_book:[Readmoo分享書](https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/read) 看書紀錄
 * :movie_camera:[豆瓣](http://www.douban.com/) 看電影記錄
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
