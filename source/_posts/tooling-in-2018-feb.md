@@ -47,18 +47,20 @@ hub --- rpi[Respberry Pi]
 ### :spider_web:網站工具
 
 * :spider_web:主要瀏覽器：[Firefox](https://www.mozilla.org/en-US/firefox/products/)
+* 瀏覽器插件
   - 顏文字查詢：Emoji cheatsheet
   - 翻譯：ImTranslator
   - 拼字訂正：Grammarly
   - 密碼管理：Bitwarden
+* 瀏覽器常駐分頁
+  - :email:[GMail](http://mail.google.com/), Inbox
+  - :calendar:[Google日曆](http://www.google.com/calendar)
+  - 📒記帳: [Toshl](https://toshl.com) (付費)
+  - ✅待辦事項：[Todoist](https://todoist.com/) (付費)
 * :busts_in_silhouette:主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
-* ✅待辦事項：[Todoist](https://todoist.com/) (付費)
-* :email:[GMail](http://mail.google.com/), Inbox
-* :calendar:[Google日曆](http://www.google.com/calendar)
 * :memo:記事：[Google keep](http://keep.google.com/), Google Doc
 * :floppy_disk:網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片
 * 🔑密碼管理：[Bitwarden](https://www.bitwarden.com/)
-* 📒記帳: [Toshl](https://toshl.com) (付費)
 * :newspaper:新聞聚合：[Feedly](https://feedly.com/)
 * :blue_book:閱讀紀錄：[Readmoo分享書](https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/read)
 * :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
