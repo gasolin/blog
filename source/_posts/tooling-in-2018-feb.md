@@ -66,7 +66,7 @@ hub --- rpi[Respberry Pi]
 * :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :link:IFTTT [自動化生活紀錄2017](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
+* :link:IFTTT [自動化生活紀錄2018](https://blog.gasolin.idv.tw/2018/01/26/personal-automation-in-2018/)
 * :tv:[Youtube](https://www.youtube.com/)
 * :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](https://blog.gasolin.idv.tw/2017/12/26/setup_ledger_nano_on_linux/)
 
