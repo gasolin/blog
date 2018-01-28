@@ -9,11 +9,11 @@ date: 2018-01-28 13:30:30
 
 把過去半年本部落格上關於區塊鏈的文章整理放到Gitbook。命名為[Ethereum區塊鏈！智能合約(Smart Contract)與分散式網頁應用(DApp)入門](https://www.gitbook.com/book/gasolin/learn-ethereum-dapp/details)，對區塊鏈，智能合約，分散式應用(DApp)感興趣的讀者不妨前往一觀。
 
-這不是我寫的第一本電子書[^1]，也不是我第一本用Markdown寫的電子書(以前用Leanpub出版過[Firefox OS 開發書](https://leanpub.com/gaiafromabove))，但絕對是我寫得最快的一本書（雖然還未完成 XD）。
+這不是我寫的第一本電子書[^1]，也不是我第一本用Markdown寫的電子書(以前用Leanpub出版過[Firefox OS 開發書](https://leanpub.com/gaiafromabove))，但絕對是我編輯過程最順暢的一本書（雖然還未完成 XD）。
 
 ## 一路Markdown
 
-寫得快不是因為對主題很熟悉或灌水，而是因為從部落格文章初稿到Gitbook，在寫作的過程中可以一路使用Markdown。而且由於原本部落格圖片皆使用外連，因此引用圖片時也不用像以前編書時需要重新導入的過程。由於gitbook也支援mermaid.js插件，支援我常常使用的flowchart語法，因此這些流程圖也不需要重新截圖或繪製，節省了大量時間。
+編輯過程最順暢不是因為對主題很熟悉或寫得快，而是因為從部落格文章初稿到Gitbook，在寫作的過程中可以一路使用Markdown。而且由於原本部落格圖片皆使用外連，因此引用圖片時也不用像以前編書時需要重新導入的過程。由於gitbook也支援`mermaid.js`插件，支援我常常使用的flowchart語法，因此這些流程圖也不需要重新截圖或繪製，節省了大量時間。
 
 ## 所見即所得編輯器...
 
@@ -29,4 +29,6 @@ gitbook在同步收到新的改動後，會自動編譯並發布新版本，相�
 ## 參考資料
 
 * [1] 我的著作 https://gasolin.idv.tw/portfolio#books
-* [2] http://mdengli.com/gitbook_cmd_study/
+* [2] 利用gitbook命令行工具创建和编译书籍 http://mdengli.com/gitbook_cmd_study/
+* [3] 深入淺出 GitBook 寫作與自助出版，電子書也能多人協作 http://www.codedata.com.tw/social-coding/gitbook-self-publishing
+* [4] 用 GitBook 來寫本書吧！http://www.oxxostudio.tw/articles/201502/gitbook.html
