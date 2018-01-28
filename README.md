@@ -21,3 +21,5 @@ $ git submodule update --remote
 # overwrite with local patch
 $ npm install
 ```
+
+Always patch `themes/next` via npm script, do not modify `themes/next` directly.

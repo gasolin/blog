@@ -15,13 +15,14 @@ date: 2017-09-16 17:35:31
 
 首先確保已啟動testrpc。若尚未啟動，可以使用以下命令啟動：
 
-```
+```sh
 $ testrpc
 ...
 ```
 
 這邊有個值得一學的小技巧：在啟動testrpc時加上`--seed`參數，例如
-```
+
+```sh
 testrpc --seed apple banana cherry
 ```
 
@@ -33,7 +34,7 @@ testrpc --seed apple banana cherry
 
 本篇將使用`OpenZeppelin`[^2]函式庫來簡化建立加密代幣🔒💵的過程。`OpenZeppelin`是一套協助撰寫安全的加密合約的函式庫，裡面也提供了相容ERC20標準的智能合約。可以透過npm工具安裝到專案目錄`node_modules/zeppelin-solodity/`中：
 
-```
+```sh
 $ npm install zeppelin-solidity
 ```
 
@@ -247,4 +248,4 @@ BigNumber { s: 1, e: 2, c: [ 123 ] }
 * [4] OpenZeppelin Audit https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/audit/ZeppelinAudit.md
 * [5] An Ethereum Hello World Smart Contract for Beginners part 1 http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/
 * [6] http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/
-* [7] OpenZeppelin [SafeMath 合約](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol) 
+* [7] OpenZeppelin [SafeMath 合約](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol)
