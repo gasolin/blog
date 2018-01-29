@@ -21,7 +21,7 @@ Devtools簡單來說，就是各式各樣網頁開發者工具的集合。這些
 Devtools 的前身叫做 Firebug[^1]。在2006年時，Firefox 的創始者之一Joe Hewitt 寫出了Firebug這個Firefox 的網頁開發工具addon[^2]。
 使用者可以利用它除錯、編輯、刪改任何網站的CSS、HTML、DOM與JavaScript。也可以透過addon再次擴展它的功能。現在各家瀏覽器的網頁開發者工具都參考了Firebug功能。
 
-過去的Web相關技術遠遠沒有今天成熟，Mozilla發明了一些特有的技術(XUL, XBL)來製作瀏覽器的介面與呼叫特殊的API(Addon API)來和作業系統互動。因為原有的addon架構無法支援FIrefox新的多執行緒(multiple process)架構，因此2016年Firebug開發團隊決定**將Firebug直接整合進Devtools中**[^3]，原有的Firebug開發團隊也大多加入了Firefox Devtools團隊繼續貢獻，也因此我和Ricky有了和原Firebug維護者Honza直接共事的機會。
+過去的Web相關技術遠遠沒有今天成熟，Mozilla發明了一些特有的技術(XUL, XBL)來製作瀏覽器的介面與呼叫特殊的API(Addon API)來和作業系統互動。因為原有的addon架構無法支援FIrefox新的多執行緒(multiple process)架構，因此2016年Firebug開發團隊決定**將Firebug直接整合進Devtools中**[^3]，原有的Firebug開發團隊也大多加入了Firefox Devtools團隊繼續貢獻，也因此我和Ricky有了和原Firebug維護者Honza直接共事的機會，在過去半年中我們合作開發Network Monitor，透過Daily Meeting同步進度，也在合作的過程中得到許多難得的經驗。
 
 ## Devtools 的現在
 
@@ -38,7 +38,7 @@ Devtools繼承Firebug的開發目標，也就是協助網頁開發者更有效�
 
 ## 使用者介面的改進
 
-我們可以看到 Firefox 57上的 Devtools 分頁變得更美觀了。當然這些都已包成React component，喜歡還可以拿去用。
+Firefox 57上的 Devtools 分頁變得更美觀了。當然這些都已包成React component，喜歡還可以拿去用。
 
 對於新配色的選擇，我們的UX團隊有做過可用性(Assessibility)測試[^5]。即使是辨色有障礙的人，也可以容易地分辨不同色塊的差異。
 
@@ -59,7 +59,7 @@ Firefox Devtools 也是最先支援 Grid Layout [^4]的開發者工具。我們�
 
 在Layout Side panel上會列出了頁面上所有的Grid Layout。右側則可以選擇要顯示輔助線號碼，區塊名稱，或是要不要延長Grid格線以便排版。
 
-https://www.youtube.com/watch?v=EinJPX86XCE
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EinJPX86XCE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 不僅如此，在畫面上也可以見到，開發者也可以在 Layout Side panel中快速的查看對應的網格。我們可以透過這些選項更好地查看頁面上的Grid Layout。
 
