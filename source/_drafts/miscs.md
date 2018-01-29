@@ -332,3 +332,23 @@ Activity by product
 Firefox OS (12969), Firefox (6408), Toolkit (243), Core (154), Invalid Bugs (100), Testing (30), Firefox for Android (19), L20n (18), www.mozilla.org (12), mozilla.org (11), Mozilla Localizations (9), Release Engineering (9), B2GDroid Graveyard (7), mozilla.org Graveyard (6), bugzilla.mozilla.org (6), Marketplace (4), Other (75)
 ```
 
+## 錢包分類
+
+網頁版錢包
+瀏覽器插件版錢包
+手機版錢包
+硬體錢包
+
+Node
+light
+交易所錢包
+
+## 切換到公開測試網路
+
+## 取得測試用 Ether
+
+The easiest way to get some testnet ether is via https://faucet.metamask.io/
+
+npm install -g solium
+solium --init
+solium -d contract/
