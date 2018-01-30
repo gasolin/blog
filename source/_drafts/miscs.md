@@ -96,7 +96,6 @@ https://github.com/ConsenSys/smart-contract-best-practices
 
 當前端合約需要呼叫後端合約時，改透過註冊合約取得後端合約的位址。
 
-
 或將邏輯寫在library中並透過DELEGATECALL/CALLCODE呼叫，這樣資料都還是存在合約中。缺點是ABI(程式公開介面)不能改
 
 ETH ERC-20
@@ -104,9 +103,6 @@ ETH ERC-20
 [How to create a Token Factory with Ethereum — Part 1](https://hackernoon.com/how-to-create-a-token-factory-with-ethereum-part-1-85e84d1f38fc)
 
 # Getting Start your first smart contract
-
-How to install Truffle & TestRPC on Windows for Blockchain development
-https://davidburela.wordpress.com/2016/11/18/how-to-install-truffle-testrpc-on-windows-for-blockchain-development/
 
 <!-- $ npm install -g embark ethereumjs-testrpc
 $ embark sample
@@ -349,6 +345,37 @@ light
 
 The easiest way to get some testnet ether is via https://faucet.metamask.io/
 
+```
 npm install -g solium
 solium --init
 solium -d contract/
+```
+
+## Mist + geth
+
+get Mist-linux64-0-9-3.deb from github(not Ethereum-Wallet) and install it
+https://github.com/ethereum/mist/releases/
+
+$ geth --datadir=./chaindata init ./genesis.json
+$ geth --datadir=./chaindata
+
+$ ethereumwallet --args --rpc /home/gasolin/Documents/idv/geth/chaindata/geth.ipc
+
+creaete account
+
+$ geth attach <path to ipc>.ipc
+
+> miner.start(1)
+// wait until DAG generated
+> miner.stop()
+
+https://github.com/ethereum/mist/wiki#bind-address-already-in-use
+
+truffle-builder
+https://github.com/trufflesuite/truffle-default-builder
+http://truffleframework.com/docs/advanced/build_processes
+
+var DefaultBuilder = require("truffle-default-builder");
+module.exports = {
+  build: new DefaultBuilder(...) // specify the default builder configuration here.
+}

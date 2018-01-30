@@ -46,7 +46,7 @@ Firefox 57上的 Devtools 分頁變得更美觀了。當然這些都已包成Rea
 
 Inspector 工具是最常被使用的開發者工具。透過Inspector，可以查看或修改HTML。選到任一個Element時，可以查看並修改這個Element目前所有套用的Style。
 
-Inspector 透過refactor，把原本使用的XUL與addon SDK替換為HTML和web API。並使用React + Redux來組織程式的內部架構。
+透過重構Inspector，我們把原本使用的XUL與addon SDK替換為HTML和web API。並使用React + Redux來組織程式的內部架構。
 
 在整理所有devtools新增功能的時候，我最先注意到的就是"Find Useless Rules"這個超實用的功能。
 
