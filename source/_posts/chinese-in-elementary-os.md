@@ -35,7 +35,7 @@ date: 2017-11-04 19:19:48
 在命令列中輸入以下命令以安裝新酷音輸入法
 
 ```sh
-$ sudo apt get update
+$ sudo apt update
 $ sudo apt install ibus-chewing
 ```
 
@@ -58,3 +58,17 @@ $ ibus-setup
 ![Imgur](https://i.imgur.com/S4TZ1iRm.png)
 
 如此一來，就可以在Elementary OS上輸入中文啦！這篇文章就是從截圖到文章編輯/上傳，全程在已照上述方式安裝好Elmentary OS基礎中文環境的筆電上完成的。
+
+### fcitx 版
+
+我也試了安裝fcitx版本的新酷音
+
+```sh
+$ sudo apt install fcitx fcitx-chewing
+```
+
+安裝好後使用`im-config`命令將預設輸入法框架切換成`fcitx`，重新開機後就可以看到輸入法圖示了。
+
+## 參考資料
+
+* Ubuntu fcitx + chewing 新酷音輸入法 https://gist.github.com/tanyuan/c0d4ee15cf0c9c93da28cc1cf0ff87b3 
