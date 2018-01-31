@@ -45,11 +45,11 @@ $ sudo apt install ibus-chewing
 $ ibus-setup
 ```
 
-在設定畫面中
+在 「輸入法」 分頁底下的 「漢語」 子選單當中可以加入剛安裝的新酷音輸入法。
 
 ![Imgur](https://i.imgur.com/5EBSmC6.png)
 
-可以看到剛安裝的新酷音輸入法。
+按「確定」，在設定畫面中可以看到的新酷音輸入法。
 
 ![Imgur](https://i.imgur.com/vhkdfvKm.png)
 
