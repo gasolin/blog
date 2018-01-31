@@ -303,6 +303,15 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 & obs
 open boradcast 
 
+## redshift
+
+http://jonls.dk/redshift/
+
+$ sudo apt-get install redshift redshift-gtk
+$ redshift-gtk
+
+set as auto start
+
 ## App Center
 download ubuntu software center
 
@@ -312,6 +321,8 @@ $ sudo npm install -g --unsafe-perm node-red
 $ cd ~/.node-red
 $ npm install node-red-contrib-chatbot
 $ node-red
+
+https://gist.github.com/murrion/c428696635b535e68747
 
 ```
 Bugs filed 	631
