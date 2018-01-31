@@ -312,6 +312,8 @@ $ redshift-gtk
 
 set as auto start
 
+https://itsfoss.com/night-shift-flux-ubuntu-linux/
+
 ## App Center
 download ubuntu software center
 
