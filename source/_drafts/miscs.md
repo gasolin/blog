@@ -253,6 +253,7 @@ https://www.ubuntupit.com/top-10-best-things-installing-elementary-os/
 
 ```sh
 sudo apt install gdebi
+sudo apt install software-properties-common
 ```
 
 ## 設定系統字型
@@ -303,8 +304,7 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 open boradcast 
 
 ## App Center
-download
-ubuntu software center
+download ubuntu software center
 
 
 ## Node Red Bot
