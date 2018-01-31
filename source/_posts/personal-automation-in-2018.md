@@ -19,8 +19,8 @@ date: 2018-01-26 9:57:29
 
 * 360CAM所拍的相片一律備份到手機
 * [Dropbox](http://www.dropbox.com/), 自動從手機上傳照片
-* Google相簿, 自動從手機上傳照片
-* NAS (Synnalogy), 從Dropbox同步照片. 由於Dropbox空間有限，會不定期將Dropbox上的照片手動整理備份到NAS上.
+* Google相簿, 充電時自動從手機備份照片到Google雲端
+* NAS (Synnalogy), 透過`Cloud Sync`從Dropbox同步照片。
 
 {% mermaid %}
 graph LR
@@ -32,12 +32,6 @@ Phone -.-> Dropbox
 Phone -.-> gphoto[Google Photo]
 Dropbox -.-> NAS
 {% endmermaid %}
-照片備份規則
-
-我的照片並不算多，但若有出遊的月份通常照片會暴增。所以我的基本備份規則是依年份，並以雙月份命名資料夾,若是當月有重大活動則直接在檔名中標注。
-例如2016年的照片資料夾裡會有`2016_1011`，或是`2016_06倫敦`這樣的命名。
-
-在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
 
 ## 運動自動化紀錄 :walking:
 
@@ -111,24 +105,30 @@ If task completed in Todoist, Then log into Google Calendar
 
 ### 紀錄看過或待看的網頁 :globe_with_meridians:
 
-因為我唯一的收件夾是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
-在手機上就直接使用Todoist和Facebook等App達到一樣的效果。
+我會將待看的文章搜集到Pocket。
+
+除了瀏覽Facebook或Twitter上的文章，我也使用Feedly訂閱一些自己挑選過的網站。並將Feedly設定成當我做標記時，就將本篇文章轉存到Pocket稍候閱讀列表，我可以掃過Feedly列表，標記感興趣的新聞，稍後再到Pocket閱讀。
+
+這樣讓我在看到文章連結當下不需急著看完整篇文章，而是在有空閒的時候才閱讀這些文章。
+
+我唯一的待辦事項收件夾是Todoist，若看到值得閱讀(紀錄)的網頁，桌面上我使用瀏覽器的`Pocket`外掛插件(Firefox瀏覽器內建)，將待看網頁記錄到Pocket中。
+
+若這個網頁非看不可，我會在按下插件時填入一個自訂標籤`fox`，然後透過IFTTT，若發現Pocket中新增了一筆含`fox`標籤的網頁，就新建一筆Todoist代辦事項。
+
+在手機上就直接使用Todoist和Pocket等App達到一樣的效果。
 
 {% mermaid %}
 graph LR
-User -- tap --> Browser[Browser addon]
-Browser -.-> IFTTT[IFTTT Maker Channel]
+Feedly --> Pocket
+Browser --> addon[Pocket addon + tag]
+addon --> Pocket
+pocket -.-> IFTTT
 IFTTT -.-> Todoist
-IFTTT -.-> Facebook
-IFTTT -.-> Twitter
 {% endmermaid %}
-If new task then create new Todoist item, If share then share to Facebook and Twitter.
 
 ### 文章更新時自動提醒 :alarm_clock:
 
-除了瀏覽Facebook或Twitter上的文章，我也使用Feedly訂閱一些自己挑選過的網站。
-然而有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
-搭配Pocket稍候閱讀列表，我可以不在看到文章連結當下急著消費，而是在有空閒的時候才閱讀這些文章。
+有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
 
 {% mermaid %}
 graph LR
@@ -165,6 +165,26 @@ travis -.  auto deploy .-> ghpages
 Auto website deploy flow
 
 一些可以直接運作在瀏覽器的專案(如BlocklyDuino和Saihubot)，我會直接將gh-pages設為預設分支，所有改動直接push到這分支中。這樣一有改動即可在網頁上看到更新成果。
+
+## 定期整理
+
+撰寫本文的目的之一，也是讓我有回顧我的自動化運作的機會。
+
+### 照片備份規則
+
+由於Dropbox空間有限，會不定期將Dropbox上的照片移動到到NAS上按年月份分類的`photo/`資料夾.
+
+我的照片並不算多，但若有出遊的月份通常照片會暴增。所以我的基本備份規則是依年份，並以雙月份命名資料夾,若是當月有重大活動則直接在檔名中標注。
+例如2016年的照片資料夾裡會有`2016_10_11`，或是`2016_06_london`這樣的命名。
+
+在整理照片的時候，每當遇到特別喜歡的，我會另存到Dropbox中的一個依年份歸檔的資料夾，例如2017年的精彩照片我會另存到 `dropbox/spot/2017`資料夾中，這樣隨時可以找出來欣賞。
+
+另外每年累積的一些螢幕截圖，也放在當年度的`screenshots`資料夾裡。
+
+### 清理RSS Feed
+
+透過Feedly訂閱RSS Feed太容易，但是不小心每天收到的新聞量就遠高於自己能吸收的量，這時可以到
+https://feedly.com/i/organize/my 把那些失效的連結清掉，並快速檢視一下現在仍在訂閱的網站，是否還對這些主題感興趣。
 
 ## 參考資料
 * [我如何做個人自動化紀錄-2017版](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
