@@ -280,7 +280,7 @@ http://refugeeks.com/use-tlp-to-optimize-the-power-consumption-in-ubuntu/
 
 ```
 sudo add-apt-repository ppa:linrunner/tlp
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get install tlp
 sudo tlp start
 ```
@@ -301,7 +301,12 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 錄製螢幕 gif
 
 & obs
-open boradcast 
+open boradcast
+
+
+## pair bluetooth mouse
+
+https://askubuntu.com/questions/839014/ubuntu-16-04-lts-cant-get-bluetooth-mouse-to-work?rq=1
 
 ## redshift
 
@@ -317,6 +322,28 @@ https://itsfoss.com/night-shift-flux-ubuntu-linux/
 ## App Center
 download ubuntu software center
 
+## Dropbox
+http://sandeepbhardwaj.github.io/2016/11/13/missing-dropbox-icons-on-elementary-loki.html
+
+## Ubuntu Make
+
+https://www.jianshu.com/p/58cbf56b4a55
+
+## NVM
+
+https://github.com/creationix/nvm
+
+# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+## Touchpad indicator
+
+```sh
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt-get update
+sudo apt-get install touchpad-indicator
+```
+
+Toggle `Disable Touchpad on typing`
 
 ## Node Red Bot
 $ sudo npm install -g --unsafe-perm node-red
@@ -334,7 +361,7 @@ Commented on 	2049
 Patches submitted 	461
 Patches reviewed 	256
 Bugs poked 	2605
- 
+
 Statuses changed 	RESOLVED (964), FIXED (436), VERIFIED (0), INVALID (36)
 
 Activity by product
@@ -344,13 +371,24 @@ Firefox OS (12969), Firefox (6408), Toolkit (243), Core (154), Invalid Bugs (100
 ## 錢包分類
 
 網頁版錢包
-瀏覽器插件版錢包
+- MyEtherWallet
+瀏覽器/插件錢包
+ - Mist
+ - Parity
+ - Ethereum Wallet
+ - MetaMask
 手機版錢包
+ - imToken
+ - toshl
+ - status.im (alpha)
 硬體錢包
+- ledger nano S
+- trezor
+交易所錢包
+
 
 Node
 light
-交易所錢包
 
 ## 切換到公開測試網路
 
@@ -392,3 +430,166 @@ var DefaultBuilder = require("truffle-default-builder");
 module.exports = {
   build: new DefaultBuilder(...) // specify the default builder configuration here.
 }
+
+
+# Android on Linux via Ubuntu Make
+
+umake (Ubuntu Make)
+
+
+```
+code ~/.bashrc
+```
+
+```
+export ANDROID_HOME=$HOME/.local/share/umake/android/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+## 參考資料
+
+* ubuntu-make | Ubuntu Linux一键安装开发环境 https://www.jianshu.com/p/58cbf56b4a55
+
+
+* 2 Ways to Install Android Studio in Ubuntu 16.04 and Ubuntu 17.10  https://www.linuxbabe.com/ubuntu/install-android-studio-ubuntu-16-04
+
+
+> truffle(development)> web3.eth.accounts
+
+debug <transaction id>
+
+> web3.eth.sendTransaction({to: web3.eth.accounts[1], from: web3.eth.accounts[0], value: web3.toWei(3, "ether")})
+
+Send to account or contract
+
+## handle ether in contract
+
+payable
+
+https://programtheblockchain.com/posts/2017/12/15/writing-a-contract-that-handles-ether/
+
+https://programtheblockchain.com/posts/2017/12/26/checking-the-sender-in-a-smart-contract/
+
+
+Emoji Chart of Life
+
+Yearly Emoji Chart
+
+
+Life
+
+```
+ 0 👶 👧 🍼 🍼 🚚 🔸 🔸 🚚 🤧 ✈️
+10 🔸 🔸 🔸 🎒 🔸 🔸 🎒 🔸 🔸 🎒
+20 🌐 🔸 🎓 🔸 🎓 👔 🗣 🗣 📗 👔
+30 ☁️ 👔 📙 📱 🛠 🦊 📘 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸https://askubuntu.com/questions/839014/ubuntu-16-04-lts-cant-get-bluetooth-mouse-to-work?rq=1 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+```
+
+Career
+
+```
+ 0 👶 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+10 🔸 🔸 🔸 🎒 🔸 🔸 🎒 🔸 🔸 🎒
+20 🌐 🔸 🎓 🔸 🎓 👔 🗣 🗣 📗 👔
+30 ☁️ 👔 📙 📱 🛠 🦊 📘 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+```
+
+Family
+
+```
+ 0 👶 👧 🍼 🍼 🚚 🔸 🔸 🚚 🤧 ✈️
+10 🔸 🔸 🔸 🎒 🔸 🔸 🎒 🔸 🔸 🚋
+20 👻 🔸 🎓 🔸 🚚 🔸 🔸 🤢 🔸 👰
+30 👦 👦 🔸 🔸 🚚 🔸 👻 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
+```
+
+Simple:
+
+* any markdown editor can create well crafted emoji of life chart, ex: http://jbt.github.io/markdown-editor/
+
+
+
+yearly
+
+Create emojiof.life website to promote the idea
+
+
+# bullet-journal
+
+https://www.pinkoi.com/magz/hETcQRFg
+
+https://www.buzzfeed.com/nicolenguyen/genius-ways-you-can-customize-your-bullet-journal
+
+https://www.dropbox.com/s/7jdaj1rw6utnt6g/Bullet%20Journal%20Reference%20Guide%E4%B8%AD%E5%9B%BD%E8%AA%9E.pdf?dl=0
+
+
+var instance
+Payback.deployed().then((ins) => instance = ins);
+instance.validDeposit(web3.eth.coinbase, web3.toWei(2, 'ether'), {from: web3.eth.coinbase, to: instance.address, value: web3.toWei(2, 'ether')})
+
+
+var SapienTokenAddress = "0x9857D34e0a3Ea34518E6BC54eA32cfF544BA54b7"
+
+var SapienTokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},...]
+
+var SapienTokenBytecode = "6060604...."
+
+var spnCoinContract = web3.eth.contract(SapienTokenABI).at(SapienTokenAddress);
+
+資訊就在網上，只要上網，隨時可以找出來用 -->
+所以重要的是，了解找資料或關鍵字的方式。
+
+--> 只要記住搜尋方法，想要的資訊隨時能到手。
+而對自己是絕對必要的資訊，則必須「當作知識加以記憶」
+
+
+整理想法的意義
+
+人生要過得快樂且有所收穫，就無法盡做自己喜歡的事情。
+人應設法去接納，喜歡那些為了生活，工作而不得不去做的事。
+
+不是將不得不做的事視為「義務」，視為「為了實現夢想必要的過程 」--> 先將自己的夢想與想法，條列式的寫出來
+
+
+## emoji changelog
+
+commitzen
+https://github.com/commitizen/cz-cli
+
+Commitizen adapter for gitmoji
+https://www.npmjs.com/package/cz-gitmoji
+
+or 
+
+https://github.com/wldcordeiro/cz-gitmoji-changelog
+
+standard version
+https://github.com/conventional-changelog/standard-version
+
+git cz + npm run release
+
+"config": {
+  "commitizen": {
+    "path": "cz-gitmoji-changelog"
+  }
+},
+
+commitizen init cz-gitmoji-changelog --save-dev
+
+https://egghead.io/series/how-to-write-an-open-source-javascript-library
