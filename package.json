@@ -28,5 +28,13 @@
   },
   "scripts": {
     "postinstall": "cp themes/_config.yml themes/next/_config.yml && cp themes/base.styl themes/next/source/css/_variables/base.styl && cp themes/head.swig themes/next/layout/_partials/head/head.swig && cp themes/post.swig themes/next/layout/_macro/post.swig"
+  },
+  "devDependencies": {
+    "cz-gitmoji-changelog": "^1.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-gitmoji-changelog"
+    }
   }
 }
