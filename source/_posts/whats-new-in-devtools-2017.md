@@ -6,7 +6,7 @@ tags:
 date: 2018-01-29 17:25:46
 ---
 
-2017/9/22我和Ricky Chien在台灣第一次舉辦的[Mozilla Developer Conference](https://twitter.com/hashtag/mozilladevtw2017?src=hash)中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能。
+2017/9/22我和Ricky Chien在台灣第一次舉辦的[Mozilla Developer Conference](https://twitter.com/hashtag/mozilladevtw2017?src=hash)中，一起為大家介紹Firefox開發者工具, 也就是Devtools的近期進展和新功能[^7]。
 
 Devtools架構的大幅改進，是過去一年中所有Devtools貢獻者共同努力的成果。在這講題中，我們可以看到Devtools如何持續改進，並提供各種新的工具，讓開發網頁的過程變得更有效率。
 
@@ -112,3 +112,4 @@ perf.html最棒的點是，量測好的profile可以透過addon直接上傳到�
 * [4] Grid Layout https://hacks.mozilla.org/2017/06/new-css-grid-layout-panel-in-firefox-nightly/
 * [5] colors with accessible contrast in concern https://blog.nightly.mozilla.org/2017/09/11/developer-tools-visual-refresh-coming-to-nightly/
 * [6] Devtools Photon UI https://hacks.mozilla.org/2017/09/developer-edition-devtools-update-now-with-photon-ui/
+* [7] 簡報檔位於[Google Doc](https://docs.google.com/presentation/d/1mUoXy97Uv4FqkTiPBqMAw5AlgRz3VCrHpzShS1bl9Jc/edit?usp=sharing)
