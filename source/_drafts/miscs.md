@@ -244,106 +244,6 @@ Solidity CRUD 2
 https://medium.com/@robhitchens/solidity-crud-part-2-ed8d8b4f74ec
 
 
-## 調校
-
-Top 10 Best Things To Do After Installing Elementary OS 0.4.1 Loki
-https://www.ubuntupit.com/top-10-best-things-installing-elementary-os/
-
-## 套件安裝器
-
-```sh
-sudo apt install gdebi
-sudo apt install software-properties-common
-```
-
-## 設定系統字型
-
-列出系統支援的字型
-
-```sh
-fc-list | cut -f2 -d: | sort -u
-```
-
-設定字型
-
-```sh
-gsettings set org.pantheon.terminal.settings font 'Roboto Mono'
-gsettings set org.gnome.desktop.interface font-name 'Open Sans 9'
-gsettings set org.gnome.desktop.interface document-font-name 'Open Sans 10'
-```
-
-https://adam.merrifield.ca/2016/11/12/tweaking-fonts-in-elementary-os/
-
-## 電源管理 TLP
-
-http://refugeeks.com/use-tlp-to-optimize-the-power-consumption-in-ubuntu/
-
-```
-sudo add-apt-repository ppa:linrunner/tlp
-sudo apt-get update
-sudo apt-get install tlp
-sudo tlp start
-```
-
-https://elementaryos.stackexchange.com/questions/1090/how-to-optimize-elementary-os-for-maximal-battery-life-time-on-laptops
-
-## Docker
-
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
-
-https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
-
-https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
-
-## Peek
-
-錄製螢幕 gif
-
-& obs
-open boradcast
-
-
-## pair bluetooth mouse
-
-https://askubuntu.com/questions/839014/ubuntu-16-04-lts-cant-get-bluetooth-mouse-to-work?rq=1
-
-## redshift
-
-http://jonls.dk/redshift/
-
-$ sudo apt-get install redshift redshift-gtk
-$ redshift-gtk
-
-set as auto start
-
-https://itsfoss.com/night-shift-flux-ubuntu-linux/
-
-## App Center
-download ubuntu software center
-
-## Dropbox
-http://sandeepbhardwaj.github.io/2016/11/13/missing-dropbox-icons-on-elementary-loki.html
-
-## Ubuntu Make
-
-https://www.jianshu.com/p/58cbf56b4a55
-
-## NVM
-
-https://github.com/creationix/nvm
-
-# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-
-## Touchpad indicator
-
-```sh
-sudo add-apt-repository ppa:atareao/atareao
-sudo apt-get update
-sudo apt-get install touchpad-indicator
-```
-
-Toggle `Disable Touchpad on typing`
 
 ## Node Red Bot
 $ sudo npm install -g --unsafe-perm node-red
@@ -432,29 +332,6 @@ module.exports = {
 }
 
 
-# Android on Linux via Ubuntu Make
-
-umake (Ubuntu Make)
-
-
-```
-code ~/.bashrc
-```
-
-```
-export ANDROID_HOME=$HOME/.local/share/umake/android/android-sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-```
-
-## 參考資料
-
-* ubuntu-make | Ubuntu Linux一键安装开发环境 https://www.jianshu.com/p/58cbf56b4a55
-
-
-* 2 Ways to Install Android Studio in Ubuntu 16.04 and Ubuntu 17.10  https://www.linuxbabe.com/ubuntu/install-android-studio-ubuntu-16-04
-
-
 > truffle(development)> web3.eth.accounts
 
 debug <transaction id>
@@ -484,7 +361,7 @@ Life
 10 🔸 🔸 🔸 🎒 🔸 🔸 🎒 🔸 🔸 🎒
 20 🌐 🔸 🎓 🔸 🎓 👔 🗣 🗣 📗 👔
 30 ☁️ 👔 📙 📱 🛠 🦊 📘 🔸 🔸 🔸
-   🔸 🔸 🔸 🔸https://askubuntu.com/questions/839014/ubuntu-16-04-lts-cant-get-bluetooth-mouse-to-work?rq=1 🔸 🔸 🔸 🔸 🔸 🔸
+   🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
    🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
    🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
    🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸 🔸
@@ -593,3 +470,53 @@ git cz + npm run release
 commitizen init cz-gitmoji-changelog --save-dev
 
 https://egghead.io/series/how-to-write-an-open-source-javascript-library
+
+
+## Developer tools
+
+## Record the screen
+
+Peek & obs
+open boradcast
+
+### Ubuntu Make
+
+https://www.jianshu.com/p/58cbf56b4a55
+
+### NVM
+
+https://github.com/creationix/nvm
+
+# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+
+# Android on Linux via Ubuntu Make
+
+umake (Ubuntu Make)
+
+
+```
+code ~/.bashrc
+```
+
+```
+export ANDROID_HOME=$HOME/.local/share/umake/android/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+
+## Docker
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
+
+
+## 參考資料
+
+* ubuntu-make | Ubuntu Linux一键安装开发环境 https://www.jianshu.com/p/58cbf56b4a55
+* 2 Ways to Install Android Studio in Ubuntu 16.04 and Ubuntu 17.10 https://www.linuxbabe.com/ubuntu/install-android-studio-ubuntu-16-04
