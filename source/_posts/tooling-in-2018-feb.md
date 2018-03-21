@@ -80,11 +80,16 @@ hub --- rpi[Respberry Pi]
 ### 開發工具
 
 * 編輯器：VS Code
-  - solidity
-  - Python
-  - Go
+  - Blank Line at the End
   - Diff Tool
-  - Git Lens
+  - EditorConfig for VSCode
+  - Go
+  - Guides: more guide line
+  - GitLens: more git info
+  - Python
+  - Settings Sync
+  - solidity
+  - Trailing Spaces
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
 
@@ -93,8 +98,8 @@ hub --- rpi[Respberry Pi]
 ### 娛樂工具
 
 * 🎮Nintendo Switch
-* :tv:Chromecast
-* 🎮Steam / vlc
+* :tv:Chromecast (少用)
+* 🎮Steam / vlc (少用)
 
 因為攜帶便利，現在主要只玩NS上的遊戲。Steam上看到喜歡的遊戲，也盡量等NS上出了再買。
 
@@ -115,7 +120,7 @@ hub --- rpi[Respberry Pi]
 * 線上影片：Youtube
 * 有聲書：Audible
 * 音樂：豆瓣FM
-* 健康：小米運動, Pokemon Go, 7M workout
+* 健康：小米運動, Pokemon Go, 7Min workout
 
 工具
 

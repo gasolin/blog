@@ -511,6 +511,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
 
 https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
 
 https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
@@ -520,3 +521,151 @@ https://blog.gtwang.org/virtualization/ubuntu-linux-install-docker-tutorial/
 
 * ubuntu-make | Ubuntu Linux一键安装开发环境 https://www.jianshu.com/p/58cbf56b4a55
 * 2 Ways to Install Android Studio in Ubuntu 16.04 and Ubuntu 17.10 https://www.linuxbabe.com/ubuntu/install-android-studio-ubuntu-16-04
+
+
+Jest snapshot testing
+https://facebook.github.io/jest/docs/en/snapshot-testing.html
+
+Redux action & reducer unit testing
+
+
+[Redux unit testing with Jest](https://hackernoon.com/redux-unit-testing-with-jest-f3a18f387f75)
+not cover reducer with state test
+
+[Unit Testing Redux Connected Components](https://hackernoon.com/unit-testing-redux-connected-components-692fa3c4441c)
+
+[Redux Writing Tests](https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md) with redux-thunk (function)
+
+https://medium.com/@bezgachev/6-simple-steps-to-automatically-test-and-deploy-your-javascript-app-to-github-pages-c4c32a34bcb1
+
+
+yarn test --coverage
+
+jest mock observable
+https://facebook.github.io/jest/docs/en/es6-class-mocks.html#replacing-the-mock-using-mockimplementation-jest-docs-en-mock-function-apihtml-mockfnmockimplementationfn-or-mockimplementationonce-jest-docs-en-mock-function-apihtml-mockfnmockimplementationoncefn
+
+
+## Deploy create-react-app to github page via Travis CI
+
+[Building and Deploying a React Create App to GitHub Pages Using TravisCI](http://rants.broonix.ca/building-and-deploying-a-react-create-app-to-github-pages-using-travisci/)
+[6 simple steps to automatically test and deploy your JavaScript app to GitHub Pages](https://medium.com/@bezgachev/6-simple-steps-to-automatically-test-and-deploy-your-javascript-app-to-github-pages-c4c32a34bcb1)
+
+test (node_module) import fix https://github.com/babel/babel/issues/5593
+
+
+smooth scrolling
+https://css-tricks.com/snippets/jquery/smooth-scrolling/
+
+# 我的筆記工具
+
+* 附夾鍊袋的 25k 筆記本 - 雙手帳夾鍊書衣
+
+夾鍊袋中裝的東西：
+* Pilot Fuxion 魔擦筆 (藍)
+* Pilot Fuxion 魔擦筆 (螢光藍)
+* Pilot HI-TEC-C 雙色 (紅/綠)
+* 五彩索引片
+* 模板尺
+
+書籤
+
+https://world.taobao.com/item/529101943764.htm?spm=a312a.7700714.0.0.2bd44fb7j2AfDX#detail
+
+* 立可得 快印
+
+
+ethjs
+mascara https://github.com/sulliwane/mascara
+
+QRCode https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=123
+
+Plotting Libraries
+https://medium.com/@mtiller/open-source-plotting-libraries-primarily-for-react-c43cfa4dc90f
+
+## React storybook
+https://storybook.js.org/basics/guide-react/
+
+Cross Platform Web/Mobile service expert. Open source contributor.
+
+I'd like to leverage my ability to do good for people.
+Make people in my range of influence living better and happy.
+
+Specialties: Web development
+Tech writing and presentation
+Architect and develop Cross Platform (Web server-mobile) integration Service
+Network Protocols
+Android mobile development
+I *can* do Firmware integration but prefer not to
+
+
+https://stackoverflow.com/questions/13855463/bash-mkvirtualenv-command-not-found
+
+sudo apt-get install python-pip
+sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+set .bashrc
+
+
+sudo pip install "docker<3.0" docker-py docker-compose
+
+## web extension with create-react-app
+https://codepen.io/supernova_at/post/creating-a-browser-extension-with-create-react-app
+
+
+## ABI
+
+https://medium.com/taipei-ethereum-meetup/ethereum-%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84%E9%96%8B%E7%99%BC%E7%AD%86%E8%A8%98-%E6%B7%B1%E5%85%A5%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84-abi-268ececb70ae
+
+
+
+
+Web engineer and open source contributor with 10+ years of experience. Consistently explore web/mobile technologies and improvement of every aspect of <a href="http://gasolin.idv.tw/portfolio">bootstrapping</a> and <a href="http://gasolin.idv.tw/present">onboarding</a> process.
+    In doing so, I can encourage developers and users by providing a user engaging interface, well-documented project or crafted presentation.</p>
+    <p>12+ years in Internet industry as frontend, mobile app, backend, network system integration engineer helps me put myself in other's shoes and make cross-functional cooperation smoothly 🌐.
+    The multi-position experience also helps me crossing the border to come out some integration projects and bring innovation 💡 into involved projects.</p>
+    <p>Previously worked in Mozilla as a <a href="https://wiki.mozilla.org/index.php?title=Modules%2FFirefox&diff=1177818&oldid=1163663"> Firefox</a>  🔥🦊 and <a href="http://firefox-dev.tools/">Devtools</a> 👨‍💻 module peer for 5 years, be a volunteer organizer in <a href="https://www.facebook.com/groups/1614248835348810/?fref=ts">GDG Taipei</a> for 8 years, and published <a href="portfolio#books">a best selling Android development book 📗</a> in 2011.</p>
+    <p>The most popular open source project I created is <a href="https://github.com/BlocklyDuino/BlocklyDuino">BlocklyDuino</a>,
+    which has been used by several <a href="https://github.com/MediaTek-Labs/BlocklyDuino-for-LinkIt">Arduino-compatible boards</a> and STEM projects.
+    Currently I'm working on an eBook 📘 about <a href="https://gasolin.gitbooks.io/learn-ethereum-dapp/">programming Smart Contract and DApp</a>.</p>
+
+Develop Firefox Desktop frontend & Devtools
+
+Achievements:
+.Firefox module peer, Devtools module peer
+.Deliver photon onboarding tours at newtab page
+.Planned and Rewrote Network Monitor(Devtools) with React and Redux
+
+Development of Firefox OS Build-in Apps (Gaia)
+Evangelize 'web as platform' to mobile developers.
+
+Achievements:
+.Gaia::Settings peer
+.Solving issues to bring first Firefox OS device on Market.
+.Implement first Firefox OS  runtime customization for each region/carriers
+.COSCUP hands on for offline web app development
+.Make Firefox OS tablet from demo to developer build
+
+* Design&Implement modern web user interface and related API for the cloud storage system. With Django, Twitter Bootstrap, jQuery and OpenStack.
+* Bring Continue Integration (unit test, daily-build) into existing development environment. With Jenkins and VirtualBox.
+* Facilitate the collaboration among UX designer, Web developer and software developer
+
+Paperless environment related research and development
+. Architect and implement education related services, include cross platform UX, web frontend, Database, API, and mobile clients.<br/>
+. Architect and Lead 2~7 members to develop Web and Mobile integration service.
+. Designed, coded and tested e-publish system with digital right management (DRM) support.
+. Develop multiple DRM clients (with Java/C/Qt) applicable for win/mac/linux/embedded OS.
+. Trained and submitted an Intellectual Property(IP) claim.
+
+
+Designed, coded, ported and tested on linux-based home networking ODM products for JP and US customers.
+Made wire and wireless router firmware development from backend to frontend (system build/porting, iptable routing, user space application, web GUI).
+Researched and ported emerging network protocols (such as IPv6 6to4, Tunnel Broker(OCN), DTCP(Feel6), Microsoft LLTD and some private protocols) onto embedded CPE devices.
+
+
+使用 npx
+
+
+最近有段難得的空閒時刻，我為自己立下了兩個目標：一方面是一邊嘗試各種新技術，一邊將過去想做的一些想法一一完成。另一方面則是透過運動或改善飲食，讓身體更健康。
+
+為了達成「更健康」的目標，除了嘗試7-min Workout運動外，我還報名參加了甩脂班。
+也因此了解到，
