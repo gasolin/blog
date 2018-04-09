@@ -665,7 +665,20 @@ Researched and ported emerging network protocols (such as IPv6 6to4, Tunnel Brok
 使用 npx
 
 
-最近有段難得的空閒時刻，我為自己立下了兩個目標：一方面是一邊嘗試各種新技術，一邊將過去想做的一些想法一一完成。另一方面則是透過運動或改善飲食，讓身體更健康。
+get rinkeby testnet ether from
+https://faucet.rinkeby.io/
 
-為了達成「更健康」的目標，除了嘗試7-min Workout運動外，我還報名參加了甩脂班。
-也因此了解到，
+play with
+http://aragon.aragonpm.com/#/
+
+multiseg
+http://aragon.aragonpm.com/#/gastest.aragonid.eth
+
+democrocy
+
+
+http://truffleframework.com/tutorials/using-infura-custom-provider
+
+共通點為 JSON ABI file
+
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Chrome_incompatibilities

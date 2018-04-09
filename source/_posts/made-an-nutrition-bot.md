@@ -7,6 +7,12 @@ date: 2018-03-21 17:40:00
 
 ![Imgur](https://i.imgur.com/nDA5cBml.jpg)
 
+可以透過QRCode或點選以下連結加入營養成份LINE bot。
+
+<img src="http://qr-official.line.me/L/CaXG-Odyoh.png">
+
+<a href="https://line.me/R/ti/p/%40aif7181b"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+
 ## 食物，運動，與身體平衡
 
 最近在看代謝型態飲食全書，裡面提到`吃下的東西`與`運動`，與體內的平衡和慢性病的產生有相當密切的關係。要讓身體重新回復到平衡的健康狀態，需要選擇適合自己的食物（營養素的比例）並搭配適當運動（有氧 + 無氧）與充足睡眠。
@@ -78,7 +84,12 @@ ngrok-cli --> bottender
 
 ## 我可以加這個Bot嗎?
 
-目前雖然自用OK，但還沒做好公開的準備。有需求的歡迎留言。
+可以透過QRCode或點選以下連結加入營養成份LINE bot。
+
+<img src="http://qr-official.line.me/L/CaXG-Odyoh.png">
+
+<a href="https://line.me/R/ti/p/%40aif7181b"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+
 
 ## 會不會 Open Source
 
