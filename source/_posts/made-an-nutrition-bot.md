@@ -5,11 +5,14 @@ tags:
 date: 2018-03-21 17:40:00
 ---
 
-![Imgur](https://i.imgur.com/nDA5cBml.jpg)
+![Imgur](http://qr-official.line.me/L/WzwZJDSLWY.png)
 
 可以透過QRCode加入營養成份LINE bot。
 
-<img src="http://qr-official.line.me/L/CaXG-Odyoh.png">
+Update: 謝謝大家熱烈試用「營養成份bot」,因為測試帳號已達50人的上限，所以將遷移到新的無人數上限的「營養成份2 bot」，請點選新的「營養成份bot」邀請連結 https://line.me/R/ti/p/%40hoz2085q
+
+歡迎分享新連結給可能需要的朋友，讓大家隨手查營養，吃得更健康。
+(目前的bot仍然可以使用，但不再更新維護)
 
 
 ## 食物，運動，與身體平衡
@@ -85,11 +88,11 @@ ngrok-cli --> bottender
 
 可以透過QRCode加入營養成份LINE bot。
 
-<img src="http://qr-official.line.me/L/CaXG-Odyoh.png">
+<img src="http://qr-official.line.me/L/WzwZJDSLWY.png">
 
 或點選以下連結
 
-<a href="https://line.me/R/ti/p/%40aif7181b"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+<a href="https://line.me/R/ti/p/%40hoz2085q"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
 
 因為使用免費的Host，不能保證bot永遠在線，若第一次沒回應，可以稍等半分鐘後再試。
 

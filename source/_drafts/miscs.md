@@ -682,3 +682,39 @@ http://truffleframework.com/tutorials/using-infura-custom-provider
 共通點為 JSON ABI file
 
 https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Chrome_incompatibilities
+
+
+Gitcoin
+MetaMask
+Ethfinex (Netcar): developing a fully scalable and community owned decentralised exchange
+Aragon (DNT): Decentralize Org
+Polkadot/tindermint multi-chain
+
+Giveth https://giveth.io/
+reward DAO https://wiki.giveth.io/dac/contributors-guide/
+Communities (DACs), Campaigns and Milestones
+ https://medium.com/giveth/what-is-the-future-of-giving-d50446b0a0e4
+
+MiniMe + ERC223 -> Yoga token
+
+
+giveth-dapp:
+
+web3 1.x + bignumberjs
+react-input-token
+
+
+User1 -- MyUSD token --> Contract
+Contract add func
+User2 -- ETH --> Contract
+func called
+oracle call to fetch rate
+
+eth with fetched rate to User1
+MyUSD + remaining ETH to User2
+
+
+MyUSD
+
+Contract flattener
+https://github.com/poanetwork/solidity-flattener
