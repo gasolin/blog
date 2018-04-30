@@ -55,13 +55,11 @@ graph LR
 [{"食品分類":"魚貝類"},{"資料類別":"樣品基本資料"},{"整合編號":"J11101"},{"樣品名稱":"鮸魚"},{"俗名":"鮸仔,敏魚,鮸,敏仔魚"},{"樣品英文名稱":"Brown croaker; Mi-iuy croaker"}
 ```
 
-...對於這種JSON存法只能呵呵。
+...對於這種JSON存法只能...呵呵。
 
-重新下載了csv檔，這次總算正常了點。
+重新下載了csv檔，這次看到的格式總算正常了點，但解開後的csv檔案有接近50MB大小。寫了個腳本過濾掉不需要的資料，並轉換成需要的格式後，輸出總共不到500KB，這樣的大小就算放到App裡也還合適。
 
-解開後的csv檔案有接近50MB大小。寫了個腳本過濾掉不需要的資料，並轉換成需要的格式後，輸出總共不到500KB，就算放到App裡也還合適。
-
-這次使用[bottender](http://bottender.js.org/)框架來連接到LINE。由於LINE需要HTTPS連線，開發的過程中使用了[ngrok](https://ngrok.com/)來讓LINE可以連到開發中的電腦，免去另外架設公開網站的麻煩。
+這次使用[bottender](http://bottender.js.org/)框架來連接到LINE[^1]。由於LINE需要HTTPS連線，開發的過程中使用了[ngrok](https://ngrok.com/)來讓LINE可以連到開發中的電腦，免去另外架設公開網站的麻煩。
 
 此外還使用了[Fuse.js](http://fusejs.io/)這個模糊搜尋函式庫，在搜尋的時候只要打部份內容，就可以搜出相關的條目。
 
@@ -84,9 +82,21 @@ LINE --> ngrok
 ngrok-cli --> bottender
 {% endmermaid %}
 
+## 開發中遇到的小坑
+
+* developer channel or free channel
+
+剛開始申請用 [developer channel](https://developers.line.me/console/) ，因為所有API都可以使用，開發起來會比較順暢。但稍後就遇到了Bot只能加50人好友的限制。
+
+* Push Message vs Reply Message
+
+developer channel可以用Push Message API(也就是bottender範例中接的sendText)。free channel的話不能使用Push Message API(context.sendText)，只能用Reply Message API。也就是不能推送訊息，但可以回覆使用者訊息（至多五筆）。查了一下文件[^2]，雖然需要稍微改變一點寫法(context.reply)，但還算容易解決。
+
+現在上線讓大家使用的已是改用Reply Message API的版本。
+
 ## 我可以加這個Bot嗎?
 
-可以透過QRCode加入營養成份LINE bot。
+可以透過掃描QRCode加入營養成份LINE bot。
 
 <img src="http://qr-official.line.me/L/WzwZJDSLWY.png">
 
@@ -100,3 +110,8 @@ ngrok-cli --> bottender
 ## 會不會 Open Source
 
 目前程式還沒有好好整理，尚不打算開源。
+
+## 參考資料
+
+* [1] https://bottender.js.org/docs/Platforms-LINE
+* [2] https://bottender.js.org/docs/APIReference-LineContext#reply-api---official-docs
