@@ -718,3 +718,46 @@ MyUSD
 
 Contract flattener
 https://github.com/poanetwork/solidity-flattener
+
+
+境外所得
+https://www.cmoney.tw/notes/note-detail.aspx?nid=29806
+
+個人海外所得課稅說明
+http://www1.jihsun.com.tw/Office/overseas.htm
+
+英文戶籍謄本
+http://hclovenote.blogspot.tw/2016/03/2016-03-15.html
+
+公會
+http://nettech.23213799.com.tw/joinus.php
+
+Bitfinex 介紹
+https://www.blocktempo.com/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BA%A4%E6%98%93%E6%89%80%E5%85%A5%E9%87%91-bitfinex%E5%85%A8%E6%94%BB%E7%95%A5%E6%95%99%E5%AD%B8%EF%BC%81part-01/
+
+
+tradding bot: 24hr market
+- gecko
+- not a high-frequency trading bot (> 1min)
+Market data -> candles (OHLC, VWP, amount of trades)
+Strategies -> candles + indicator values go in => signals come out
+
+Bitfinex從註冊到入金
+https://www.blocktempo.com/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BA%A4%E6%98%93%E6%89%80%E5%85%A5%E9%87%91-bitfinex%E5%85%A8%E6%94%BB%E7%95%A5%E6%95%99%E5%AD%B8%EF%BC%81part-01/
+
+在家辦公沒你想得那麼簡單
+https://cn.nytimes.com/education/20170927/work-at-home-tips-advice/zh-hant/
+
+今天找不到借書證所以沒拿到書:(
+忿而寫了個圖書證號小工具。這樣以後用手機打開書籤網頁就可以刷，不怕忘了帶借書證了。
+(只測過台北市的，歡迎其他地方的朋友回報能不能用)
+
+1. 連到 https://gasolin.github.io/librarycard?id=圖書證號 (把網址列中`?id=`後的`圖書證號`改成自己真的圖書證號碼，通常是身份證號後再加2位序號)
+2. 將此網址設為書籤，以便之後再次使用
+3. 如果你覺得這樣很方便，請將以上網址和使用方式分享給你的朋友。
+4. 本工具完全開源，且不會紀錄使用者資訊。歡迎前往https://github.com/gasolin/librarycard 專案查看。
+
+
+* 醒醒吧，帶台電腦就能闖天下的「數位遊民」只是神話一場
+數位遊民 != 遠端工作
+https://www.inside.com.tw/2017/03/31/digital-nomad-is-just-a-myth
