@@ -19,7 +19,7 @@ date: 2018-10-02 15:49:00
 graph LR
 Reducer{Reducer} -.-> State(State)
 Disptch>Dispatch] -.-> |Action| Reducer
-{% mermaidend %}
+{% endmermaid %}
 
 基本的Redux僅支援同步的操作。若想支援非同步操作（promise, async, API等）需要透過加裝`Middleware`來處理。Middleware的功用，是改變收到`Action`後的處理流程。`Redux Saga`即是其中一種功能強大的Middleware。
 
@@ -36,7 +36,7 @@ Saga -->|call| API
 State -->|select| Saga
 Put>Put] -.-> |Action| Reducer
 Saga --> Put
-{% mermaidend %}
+{% endmermaid %}
 
 一段簡單的範例：
 
@@ -56,3 +56,8 @@ export default function* rootSaga() {
 ```
 
 當然`Redux-saga`還有提供一些其他的功能，但其實`Redux-saga`就是這麼簡單。使用`Redux-saga`可以很好地運用原有的非同步處理觀念，要將React Component中相應的非同步函式搬出來也不像`Redux-observable`那樣需要全部改寫。
+
+## 參考資料
+
+- https://redux-saga.js.org/ 或 https://redux-saga-in-chinese.js.org (中文)
+- [Polling with redux](https://bigbitecreative.com/polling-with-redux/) 比較使用Redux-saga和Redux-observable寫polling的差異
