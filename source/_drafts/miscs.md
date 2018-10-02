@@ -761,3 +761,16 @@ https://cn.nytimes.com/education/20170927/work-at-home-tips-advice/zh-hant/
 * 醒醒吧，帶台電腦就能闖天下的「數位遊民」只是神話一場
 數位遊民 != 遠端工作
 https://www.inside.com.tw/2017/03/31/digital-nomad-is-just-a-myth
+
+NIST Blockchain Technology Overview
+https://csrc.nist.gov/CSRC/media/Publications/nistir/8202/draft/documents/nistir8202-draft.pdf
+
+
+web extension
+
+https://medium.com/@gilfink/building-a-chrome-extension-using-react-c5bfe45aaf36
+
+fox: https://www.techiediaries.com/developing-firefox-extensions-with-webextension/
+
+CSS perf advice
+http://johnotander.com/css/2015/06/10/css-performance/
