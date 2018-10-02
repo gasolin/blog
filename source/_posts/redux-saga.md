@@ -9,7 +9,7 @@ date: 2018-10-02 15:49:00
 
 最近相當常使用[Redux Saga](https://redux-saga.js.org/)，簡單紀錄一下。
 
-比較常見的有`redux-thunk`, `redux-saga`, `redux-observable`等。之前參與的[Firefox Devtools](https://github.com/devtools-html)開發大多使用修改版的`redux-thunk`，`redux-observable`我在其中一個[個人專案](https://github.com/gasolin/transmonitor)中有試過。使用Rxjs的感覺是整個過去的開發觀念又被扭成另一個形狀，因為整套開發的觀念不同，當後續想要修改時常常遇到一些問題。目前則多使用`redux-saga`來處理非同步相關問題。
+比較常見用來處理Redux非同步操作的Middleware有`redux-thunk`, `redux-saga`, `redux-observable`等。之前參與開發的[Firefox Devtools](https://github.com/devtools-html)使用的是修改版的`redux-thunk`。我在其中一個[個人專案](https://github.com/gasolin/transmonitor)中也有試過`redux-observable`。使用Rxjs的感覺，是整個過去的開發觀念又被扭成另一個形狀:sweat_smile:。因為整套開發的觀念不同，當後續想要修改時常常遇到一些問題。目前則多使用`redux-saga`來處理非同步相關問題。
 
 ## 基本Redux State運作
 
