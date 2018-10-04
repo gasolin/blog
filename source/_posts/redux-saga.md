@@ -42,11 +42,11 @@ Saga --> Put
 
 ```js
 function* handleAction(action) {
-  // get state
+  // get state from state.auth
   const auth = yield select((state) => state.auth)
-  // async get data
+  // async get data. fetchData is the async function.
   const { result } = yield call((auth) => fetchData(auth))
-  // dispatch action
+  // dispatch action. saveData is the action creator.
   yield put(actions.saveData(result))
 }
 
