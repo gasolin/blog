@@ -142,7 +142,7 @@ scheme: Pisces
 # Posts / Categories / Tags in sidebar.
 site_state: true
 
- # Social Links.
+# Social Links.
 # Usage: `Key: permalink || icon`
 # Key is the link label showing to end users.
 # Value before `||` delimeter is the target permalink.
@@ -517,8 +517,8 @@ needmoreshare2:
       boxForm: horizontal
       position: middleRight
       networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
-      
-      # Google Webmaster tools verification setting
+
+# Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
 #google_site_verification:
 
@@ -840,7 +840,7 @@ vendors:
   # See: http://fontawesome.io/
   fontawesome:
 
-# Internal version: 1
+  # Internal version: 1
   # https://www.algolia.com
   algolia_instant_js:
   algolia_instant_css:
