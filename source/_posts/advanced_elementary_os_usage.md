@@ -34,6 +34,8 @@ gsettings set org.gnome.desktop.interface font-name 'Open Sans 9'
 gsettings set org.gnome.desktop.interface document-font-name 'Open Sans 10'
 ```
 
+If you like `Fira code` for coding font, you can follow https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager to install it.
+
 ## 3. Pairing Bluetooth Mouse
 
 I can't use GUI Bluetooth manager to pair with bluetooth device, but these commandline works well for me.
