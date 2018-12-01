@@ -7,4 +7,4 @@
 The next level of senior is `I know how others would solve the problem`
 
 `Anticipate how API choices and abstractions impact the way other people would solve the problem`
-- [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz) 
+- [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
