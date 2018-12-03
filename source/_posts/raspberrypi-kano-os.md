@@ -12,7 +12,7 @@ date: 2018-12-02 00:43:33
 
 我參考的BUILD（最近Switch上的暗黑破壞神3玩多了...）是[KANO Computer Kit Touch](https://kano.me/store/us/products/computer-kit-touch)套件，這是一套由專門售賣以Raspberry Pi為核心的教育用電腦提供商KANO製作的。現在整套特價在~$230左右，相較其他的STEM教具，整套的價格相當合理。如果你人在美國，家中沒有冗餘的電腦設備或想追求更好的使用體驗，相當建議直接購買一套。
 
-這邊是其他人的開箱影片，介紹了使用到的硬體與作業系統
+這邊是其他人的[開箱影片](https://www.youtube.com/watch?v=If-I1b-c-ZI)與[評測](https://www.laptopmag.com/reviews/laptops/kano-computer-kit)，介紹了使用到的硬體與作業系統
 <iframe width="560" height="315" src="https://www.youtube.com/embed/If-I1b-c-ZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 以下列出我有用到的設備列表，價格是當初印象裡購入各種設備時的價錢。
