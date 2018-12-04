@@ -84,3 +84,8 @@ KANO OS 除了提供 Raspbian 中也有附的 Minecraft 等遊戲和各種教育
 ## 其他心得
 
 如果和我一樣是羅技鍵盤/滑鼠，但是是分別購買的，其實有方法不需要在機器上插兩個Unifying接收器。只要到羅技網站下載[Unifying軟體](https://support.logitech.com/zh_tw/software/unifying)到你常用的作業系統上，安裝後即可設定鍵盤/滑鼠共用同個Unifying接收器，設定完成後，將這個Unifying接收器插到Raspberry Pi上後開機，Raspberry Pi也可以認得你的鍵盤/滑鼠。
+
+Raspberry Pi 3B所要求的2.5A USB電源其實並不容易找到，一般我用1.5A的充電頭也能運作。
+
+Raspberry Pi 也支援HDMI聲音輸出，但需要另行設定。切換過去後，可能是因為同時要傳輸畫面與聲音，得消耗更多電源，開機容易出現`Low Voltage Detected`訊息，並導致無法正常開機。可以在開機畫面中按`Shift`鍵進入`Recovery`模式，將`hdmi_drive=2`(強制使用HDMI輸出聲音)註解掉。
+
