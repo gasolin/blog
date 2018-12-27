@@ -90,6 +90,16 @@ and Toggle `Disable Touchpad on typing`.
 
 Install Dropbox from its website, then [configue to fix the missing icon](http://sandeepbhardwaj.github.io/2016/11/13/missing-dropbox-icons-on-elementary-loki.html).
 
+## 8. Backup
+
+Install Timeshift for system backup. Its pretty easy to use via GUI.
+
+```
+sudo apt-add-repository -y ppa:teejee2008/ppa
+sudo apt update
+sudo apt install timeshift
+```
+
 ## 參考資料
 
 * Tweaking fonts https://adam.merrifield.ca/2016/11/12/tweaking-fonts-in-elementary-os/
@@ -99,3 +109,4 @@ Install Dropbox from its website, then [configue to fix the missing icon](http:/
 * https://itsfoss.com/night-shift-flux-ubuntu-linux/
 * Top 10 Best Things To Do After Installing Elementary OS 0.4.1 Loki
 * https://www.ubuntupit.com/top-10-best-things-installing-elementary-os/
+* How To Backup And Restore Linux With Timeshift https://itsfoss.com/backup-restore-linux-timeshift/
