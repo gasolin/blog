@@ -13,7 +13,51 @@ Anticipate how API choices and abstractions impact the way other people would so
 ```
   - [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
 
-There are many ways to access Bitfinex API to get most of Bitfinex exchange functionalities. For example, you can access REST API, websocket API, or call the language specific API library to eaze the interaction efforts.
+There are many ways to access Bitfinex API to get most of Bitfinex exchange functionalities. For example, you can access REST API, websocket API, or call the language specific API library to eaze the interaction efforts. But in my opinion interact via Node-RED Bitfinex function block is the most easiest one.
+
+## Getting start with Node-RED and Bitfinex API
+
+To get start, you can install Node-RED `npm install -g node-red`. Start Node-RED via `node-red` command, then go `settings > Palette > Install` tab in node-red and search `bitfinex` to install this module.
+
+If you make something interesting with Bitfinex API and node-RED, please let me know! (You can share to https://github.com/gasolin/node-red-contrib-bitfinex/issues)
+
+## Interact with Node-RED
+
+Node-RED is a great way to interact with everything online, with a more intuitive interface.
+
+To simplify the interaction with Bitfinex, 
+I wrapped the [Bitfinex function block for Node-RED](https://www.npmjs.com/package/node-red-contrib-bitfinex), which makes bitfinex API very easy to access in Node-RED. You can visually show exchange data in node-red's dashboard, mashup with other services, or trade from weird objects around your house.
+
+For example, you can follow the screenshot to make below REST API work.
+
+![Imgur](https://i.imgur.com/ivFAJWH.gif)
+
+Access websocket API is very simple as well
+![Imgur](https://i.imgur.com/ecJV6Io.gif)
+
+You can use configuration block to put your apiKey and apiSecret.
+
+![Imgur](https://i.imgur.com/0eVeu4I.png)
+
+## Visualize data with Node-RED dashboard
+
+Once you got the data via bitfinex function block, it's pretty easy to visualize value and diagram with [Node-RED dashboard](https://flows.nodered.org/node/node-red-dashboard)
+
+![Imgur](https://i.imgur.com/mow1AUX.gif)
+
+![Imgur](https://i.imgur.com/1Y9ooGD.gif)
+
+
+## One more thing
+
+`You may not know` the [tickers api]((https://docs.bitfinex.com/v2/reference#rest-public-tickers`
+)) allow query multiple symbols at once, like `rest.tickers(['tETHUSD', 'tBTCUSD'])` and this functoin block supports multiple outputs as well!
+
+![Imgur](https://i.imgur.com/MLS7sCq.gif)
+
+
+
+For reference, You can learn more ways to access Bitfinex API below.
 
 ## Inreact with the REST API
 
@@ -91,45 +135,6 @@ const bfx = new BFX({
 
 The API call seems not hard but it did require some effort to make all works.
 
-## Interact with Node-RED
-
-Node-RED is a great way to interact with everything online, with a more intuitive interface.
-
-To simplify the interaction with Bitfinex, 
-I wrapped the [Bitfinex function block for Node-RED](https://www.npmjs.com/package/node-red-contrib-bitfinex), which makes bitfinex API very easy to access in Node-RED. You can visually show exchange data in node-red's dashboard, mashup with other services, or trade from weird objects around your house.
-
-For example, you can follow the screenshot to make above REST API work.
-
-![Imgur](https://i.imgur.com/ivFAJWH.gif)
-
-Access websocket API is very simple as well
-![Imgur](https://i.imgur.com/ecJV6Io.gif)
-
-You can use configuration block to put your apiKey and apiSecret.
-
-![Imgur](https://i.imgur.com/0eVeu4I.png)
-
-## Visualize data with Node-RED dashboard
-
-Once you got the data via bitfinex function block, it's pretty easy to visualize value and diagram with [Node-RED dashboard](https://flows.nodered.org/node/node-red-dashboard)
-
-![Imgur](https://i.imgur.com/mow1AUX.gif)
-
-![Imgur](https://i.imgur.com/1Y9ooGD.gif)
-
-
-## One more thing
-
-Another `You may not know` is the tickers api allow query multiple symbols at once, like `rest.tickers(['tETHUSD', 'tBTCUSD'])` and this functoin block supports multiple outputs as well!
-
-![Imgur](https://i.imgur.com/MLS7sCq.gif)
-
-
-## Getting start with Node-RED and Bitfinex API
-
-To get start, you can install Node-RED `npm install -g node-red`. Start Node-RED via `node-red` command, then go `settings > Palette > Install` tab in node-red and search `bitfinex` to install this module.
-
-If you make something interesting with Bitfinex API and node-RED, please let me know! (You can share to https://github.com/gasolin/node-red-contrib-bitfinex/issues)
 
 
 Disclosure: I am currently working on Bitfinex. [Node-red-contrib-bitfinex](https://github.com/gasolin/node-red-contrib-bitfinex) is the personal project though.
