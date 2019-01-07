@@ -5,6 +5,3 @@
 -自由工作者之自由 https://www.ithome.com.tw/node/82368
 
 The next level of senior is `I know how others would solve the problem`
-
-`Anticipate how API choices and abstractions impact the way other people would solve the problem`
-- [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
