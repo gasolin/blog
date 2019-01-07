@@ -1,5 +1,5 @@
 ---
-title: Interact with Bitfinex API with Node-RED
+title: Interact Bitfinex API with Node-RED
 tags:
   - bitfinex
   - nodered
@@ -8,15 +8,17 @@ date: 2019-01-07 14:33:42
 
 ![Imgur](https://i.imgur.com/BDWezQx.png)
 
+```
   Anticipate how API choices and abstractions impact the way other people would solve the problem
   - [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
+```
 
 There are many ways to access Bitfinex API to get most of Bitfinex exchange functionalities. For example, you can access REST API, websocket API, or call the language specific API library to eaze the interaction efforts.
 
 ## Inreact with the REST API
 
-For example, we could read the [API doc](https://docs.bitfinex.com/v2/reference#rest-public-tickers`
-) and find we can get recent ETH/USD pair states via open the browser and visit https://api.bitfinex.com/v2/tickers?symbols=tETHUSD
+We could read the [API doc](https://docs.bitfinex.com/v2/reference#rest-public-tickers`
+) and find we can get the recent ETH/USD pair states via open the browser and visit https://api.bitfinex.com/v2/tickers?symbols=tETHUSD
 
 We'll get an minimal array as the returned data. Refer to the doc we know each column means:
 
@@ -39,11 +41,11 @@ We'll get an minimal array as the returned data. Refer to the doc we know each c
 ]
 ```
 
-Then we can process the array to get what we want.
+Then we can process the array to get what we want. For example, to access the last price of ETH/USD, we could find the result from `array[0][7]` (The first item in returned array denotes ETH/USD result array, the 8th item(the array count from 0 so its 7) in ETH/USD result array is the LAST_PRICE)
 
 ## Interact with API library
 
-But for more complicated interaction, we generally prefer to call language specific library to simplify the process.
+But for more complicated interaction like place an order with authenticated API, we generally prefer to call language specific library to simplify the process.
 
 The [Bitfinex official doc](https://docs.bitfinex.com/v2/docs/open-source-libraries) listed several open source language specific libraries for developers.
 
@@ -123,7 +125,7 @@ Another `You may not know` is the tickers api allow query multiple symbols at on
 ![Imgur](https://i.imgur.com/MLS7sCq.gif)
 
 
-## Getting start
+## Getting start with Node-RED and Bitfinex API
 
 To get start, you can install Node-RED `npm install -g node-red`. Start Node-RED via `node-red` command, then go `settings > Palette > Install` tab in node-red and search `bitfinex` to install this module.
 
