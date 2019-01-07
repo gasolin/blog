@@ -9,9 +9,9 @@ date: 2019-01-07 14:33:42
 ![Imgur](https://i.imgur.com/BDWezQx.png)
 
 ```
-  Anticipate how API choices and abstractions impact the way other people would solve the problem
-  - [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
+Anticipate how API choices and abstractions impact the way other people would solve the problem
 ```
+  - [Designing very large (JavaScript) applications](http://bit.ly/2Fflnpz)
 
 There are many ways to access Bitfinex API to get most of Bitfinex exchange functionalities. For example, you can access REST API, websocket API, or call the language specific API library to eaze the interaction efforts.
 
