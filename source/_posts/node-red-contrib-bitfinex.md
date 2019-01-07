@@ -17,9 +17,11 @@ There are many ways to access Bitfinex API to get most of Bitfinex exchange func
 
 ## Getting start with Node-RED and Bitfinex API
 
-To get start, you can install Node-RED `npm install -g node-red`. Start Node-RED via `node-red` command, then go `settings > Palette > Install` tab in node-red and search `bitfinex` to install this module.
+To get start, you can 
 
-If you make something interesting with Bitfinex API and node-RED, please let me know! (You can share to https://github.com/gasolin/node-red-contrib-bitfinex/issues)
+1. install Node-RED `npm install -g node-red`.
+2. Start Node-RED via `node-red` command, then go `settings > Palette > Install` tab in node-red
+3. search `bitfinex` to install this module.
 
 ## Interact with Node-RED
 
@@ -33,6 +35,7 @@ For example, you can follow the screenshot to make below REST API work.
 ![Imgur](https://i.imgur.com/ivFAJWH.gif)
 
 Access websocket API is very simple as well
+
 ![Imgur](https://i.imgur.com/ecJV6Io.gif)
 
 You can use configuration block to put your apiKey and apiSecret.
@@ -55,11 +58,14 @@ Once you got the data via bitfinex function block, it's pretty easy to visualize
 
 ![Imgur](https://i.imgur.com/MLS7sCq.gif)
 
+If you make something interesting with Bitfinex API and node-RED, please let me know! (You can share to https://github.com/gasolin/node-red-contrib-bitfinex/issues)
 
 
-For reference, You can learn more ways to access Bitfinex API below.
+## Other way to interact with Bitfinex API
 
-## Inreact with the REST API
+For reference, You can learn more ways to access the Bitfinex API below.
+
+### Inreact with the REST API
 
 We could read the [API doc](https://docs.bitfinex.com/v2/reference#rest-public-tickers`
 ) and find we can get the recent ETH/USD pair states via open the browser and visit https://api.bitfinex.com/v2/tickers?symbols=tETHUSD
@@ -87,7 +93,7 @@ We'll get an minimal array as the returned data. Refer to the doc we know each c
 
 Then we can process the array to get what we want. For example, to access the last price of ETH/USD, we could find the result from `array[0][7]` (The first item in returned array denotes ETH/USD result array, the 8th item(the array count from 0 so its 7) in ETH/USD result array is the LAST_PRICE)
 
-## Interact with API library
+### Interact with API library
 
 But for more complicated interaction like place an order with authenticated API, we generally prefer to call language specific library to simplify the process.
 
@@ -137,4 +143,4 @@ The API call seems not hard but it did require some effort to make all works.
 
 
 
-Disclosure: I am currently working on Bitfinex. [Node-red-contrib-bitfinex](https://github.com/gasolin/node-red-contrib-bitfinex) is the personal project though.
+**Disclosure:** I am currently working on Bitfinex. [Node-red-contrib-bitfinex](https://github.com/gasolin/node-red-contrib-bitfinex) is the personal project though.
