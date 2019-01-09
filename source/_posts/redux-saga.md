@@ -1,5 +1,5 @@
 ---
-title: Redux Saga
+title: Redux Saga 真好用
 tags:
   - react
   - redux
@@ -33,7 +33,9 @@ Redux Saga的運作模型，起始自收到Action。Saga透過`takeLatest`或`ta
 graph LR
 TakeLatest>TakeLatest] -.-> |Action| Saga
 Saga -->|call| API
-State -->|select| Saga
+API --> |await|Saga
+State -.-> select>select]
+select --> Saga
 Put>Put] -.-> |Action| Reducer
 Saga --> Put
 {% endmermaid %}
@@ -55,7 +57,22 @@ export default function* rootSaga() {
 }
 ```
 
-當然`Redux-saga`還有提供一些其他的功能，但其實`Redux-saga`就是這麼簡單。使用`Redux-saga`可以很好地運用原有的非同步處理觀念，要將React Component中相應的非同步函式搬出來也不像`Redux-observable`那樣需要全部改寫。
+把兩張圖畫在一起的話，可以看到Redux state與Redux Saga之間整體的呼叫關係。使用Redux/Redux Saga能將「從UI呼叫 -> 參看現有狀態來與API溝通 -> 根據取回值更新狀態 -> 更新UI」這樣的複雜流程，整個簡化為單向的操作。
+
+{% mermaid %}
+graph LR
+Reducer{Reducer} -.-> State(State)
+Disptch>Dispatch] -.- |Action| TakeLatest>TakeLatest]
+TakeLatest -.-> |Action| Saga
+Saga -->|call| API
+API --> |await|Saga
+State -.-> select>select]
+select --> Saga
+Put>Put] -.-> |Action| Reducer
+Saga --> Put
+{% endmermaid %}
+
+當然`Redux-saga`還有提供一些其他的功能，但其實`Redux-saga`就是這麼簡單。使用`Redux-saga`可以很好地運用原有的非同步處理觀念，要將React Component中相應的非同步函式搬出來，也不像`Redux-observable`那樣需要全部改寫。
 
 ## 參考資料
 

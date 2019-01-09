@@ -5,6 +5,8 @@ tags:
   - mobile
 ---
 
+To interact with any web API in Node-RED, you can use `http request` block(node) to fetch or post data and process it in a function block.
+
 
 Traditional computer architecture
 
