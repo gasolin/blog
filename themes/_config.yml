@@ -483,7 +483,7 @@ pangu: false
 
 # Disqus
 disqus:
-  enable: false
+  enable: true
   shortname: blog-gasolin-idv-tw
   count: true
   lazyload: true
