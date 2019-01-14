@@ -1,0 +1,508 @@
+@@ -2428,24 +2428,122 @@
+ .xml%0A%0A# Set 
+-
++default keywords (Use a comma to separate)%0Akeywords: %22mobile, web, internet, android, iot%22%0A%0A# Set 
+ rss to false
+@@ -2756,16 +2756,41 @@
+ dy.%0Arss:
+-
++ /feeds/posts/default.xml
+ %0A%0Afooter
+@@ -2886,17 +2886,16 @@
+ used.%0A  
+-#
+ since: 2
+@@ -2895,17 +2895,17 @@
+ ince: 20
+-1
++0
+ 5%0A%0A  # I
+@@ -3323,16 +3323,21 @@
+ pyright:
+-
++ true
+ %0A  # ---
+@@ -5002,20 +5002,19 @@
+ n.%0Aseo: 
+-fals
++tru
+ e%0A%0A# If 
+@@ -5997,32 +5997,8 @@
+ ser%0A
+-  #tags: /tags/ %7C%7C tags%0A
+   #c
+@@ -6061,16 +6061,39 @@
+ archive%0A
++  tags: /tags/ %7C%7C tags%0A
+   #sched
+@@ -6442,16 +6442,17 @@
+ Schemes%0A
++#
+ scheme: 
+@@ -6470,17 +6470,16 @@
+ e: Mist%0A
+-#
+ scheme: 
+@@ -7006,17 +7006,16 @@
+ loaded.%0A
+-#
+ social:%0A
+@@ -7017,20 +7017,84 @@
+ ial:%0A  #
++LinkLabel: Link%0A  HomePage: http://www.gasolin.idv.tw %7C%7C home%0A  
+ Git
+-H
++h
+ ub: http
+@@ -7089,32 +7089,36 @@
+ Github: https://
++www.
+ github.com/yourn
+@@ -7108,32 +7108,31 @@
+ .github.com/
+-y
++gas
+ o
+-ur
++li
+ n
+-ame
+  %7C%7C github%0A 
+@@ -7136,63 +7136,77 @@
+ b%0A  
+-#E-M
++SlideSh
+ a
+-il
++re
+ : 
+-mail
++ht
+ t
+-o
++p
+ :
+-you
++//www.slidesha
+ r
++e.
+ n
+-am
+ e
+-@
++t/
+ g
+-m
+ a
+-il.c
++s
+ o
+-m
++lin
+  %7C%7C 
++slid
+ e
+-nvelop
++shar
+ e%0A  
+-#W
++Twitt
+ e
+-ibo
++r
+ : ht
+@@ -7216,44 +7216,48 @@
+ ://w
+-e
++ww.tw
+ i
+-bo
++tter
+ .com/
+-y
++gas
+ o
+-ur
++li
+ n
+-ame
+  %7C%7C 
++t
+ w
+-e
+ i
+-bo
++tter
+ %0A  
+-#Googl
++R
+ e
++ad
+ : ht
+@@ -7266,53 +7266,81 @@
+ s://
+-plu
+ s
++hare
+ .
+-g
++readm
+ oo
+-gle
+ .com/
+-y
++m
+ o
+-u
++oe
+ r
++/lifaicqb9/bookshelf/gasoli
+ n
++/tot
+ a
+-me
++l
+  %7C%7C 
+-g
++b
+ oo
+-gle
++k
+ %0A  
+-#Twit
++Wa
+ t
+-er
++ch
+ : ht
+@@ -7349,109 +7349,134 @@
+ s://
+-tw
++mov
+ i
+-tt
+ e
+-r
++.douban
+ .com/
+-y
++pe
+ o
+-urnam
++pl
+ e
++/gasolin/
+  %7C%7C 
+-tw
++f
+ i
+-tter
++lm
+ %0A  
+-#FB Pag
++Visit
+ e
++d
+ : http
+-s
+ ://www.
+-f
++mytr
+ a
+-c
++v
+ e
+-book.co
++l
+ m
++ap.tk
+ /
+-yo
+ u
+-rname
++/gg112695256249584453237
+  %7C%7C 
+-f
++m
+ a
+-ceboo
++p-mar
+ k
++er
+ %0A  
+-#VK Grou
++Ti
+ p
++ Me
+ : ht
+@@ -7485,46 +7485,58 @@
+ s://
+-vk
++gitcoin
+ .co
+-m
+ /
+-yo
++tip?
+ u
++se
+ rname
++=gasolin
+  %7C%7C 
+-vk
++bolt
+ %0A  #
+-St
++FB P
+ a
+-ckOv
++g
+ e
+-rflow
+ : ht
+@@ -7545,21 +7545,20 @@
+ s://
+-st
++www.f
+ ac
+-k
++eb
+ o
+-verfl
+ o
+-w
++k
+ .com
+@@ -7574,22 +7574,16 @@
+  %7C%7C 
+-st
++f
+ ac
+-k-ov
+ e
+-rfl
++bo
+ o
+-w
++k
+ %0A  #
+@@ -7635,110 +7635,281 @@
+ ube%0A
++%0A#
+  
++Social
+  
+-#
++Links 
+ I
++co
+ ns
+-t
++%0A# Icon M
+ a
++ppin
+ g
+-r
++:%0A#   M
+ a
++p a 
+ m
+-:
++enu
+  
+-h
++i
+ t
++em 
+ t
++o a s
+ p
++ecific FontAwe
+ s
+-://
++ome 
+ i
++co
+ n
++ name.%0A#   Key i
+ s
++ 
+ t
+-agr
++he n
+ am
+-.c
++e 
+ o
++f the ite
+ m
+-/yo
++ and val
+ u
+-r
++e is the 
+ name 
+-%7C%7C
++of FontAwsome icon. Key
+  i
++s case-se
+ nst
++ive.%0A#   When 
+ a
++n 
+ g
+-ra
++lobe 
+ m
+-%0A
++ask
+  
++icon
+  
+-#Sky
+ p
++r
+ e
+-: 
+ s
+-kyp
+ e
+-:your
++nti
+ n
+-a
++g up 
+ me
+-?c
+ a
+-ll%7Cc
++ns t
+ hat 
+-%7C%7C
++the item
+  
++ha
+ s
+-ky
++ no map
+ p
+-e%0A
++ing icon.
+ %0Asoc
+@@ -8567,15 +8567,15 @@
+ rl: 
+-#
+ /
+-im
++uplo
+ a
+-ge
++d
+ s/av
+@@ -8575,27 +8575,27 @@
+ oads/avatar.
++jp
+ g
+-if
+ %0A  # If true
+@@ -11459,10 +11459,10 @@
+ m: 2
+-75
++00
+ %0A%0Aco
+@@ -13823,16 +13823,18 @@
+ tings%0A# 
++- 
+ Find fon
+@@ -13885,16 +13885,18 @@
+ onts)%0A# 
++- 
+ All font
+@@ -13939,19 +13939,21 @@
+ tyles:%0A#
++ 
+    
++ 
+ light, l
+@@ -14007,16 +14007,18 @@
+ italic%0A#
++ -
+  Be awar
+@@ -14079,16 +14079,18 @@
+ slowly%0A#
++ -
+  Introdu
+@@ -16371,16 +16371,180 @@
+ AM_CHTML
++%0A    # For automatic detect latest version link to MathJax.js and get from Bootcss.%0A    #cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
+ %0A%0A    # 
+@@ -18569,28 +18569,27 @@
+ :%0A  enable: 
+-fals
++tru
+ e%0A  shortnam
+@@ -18590,16 +18590,36 @@
+ ortname:
++ blog-gasolin-idv-tw
+ %0A  count
+@@ -18633,28 +18633,27 @@
+   lazyload: 
+-fals
++tru
+ e%0A%0A# Changya
+@@ -20854,19 +20854,18 @@
+ junzhou.
+-top
++cn
+ /2018/8/
+@@ -20880,16 +20880,21 @@
+ k-error/
++#more
+ %0Agitalk:
+@@ -21287,16 +21287,21 @@
+  values:
+-
++%0A#   
+  button 
+@@ -21498,17 +21498,16 @@
+ r tools%0A
+-#
+ add_this
+@@ -21510,16 +21510,36 @@
+ this_id:
++ ra-57da69da7827f70b
+ %0A%0A# Need
+@@ -22601,17 +22601,16 @@
+ alytics%0A
+-#
+ google_a
+@@ -22614,24 +22614,37 @@
+ e_analytics:
++ UA-2833924-9
+ %0A%0A# Bing Web
+@@ -26757,36 +26757,35 @@
+ arch:%0A  enable: 
+-fals
++tru
+ e%0A  # if auto, t
+@@ -27187,16 +27187,17 @@
+ to%0A  #  
++ 
+ - save t
+@@ -27237,24 +27237,25 @@
+ the page%0A  #
++ 
+   - or click
+@@ -31692,16 +31692,17 @@
+ ple%0A#   
+-
++ 
+ jquery: 
+@@ -33240,18 +33240,18 @@
+ p://
+-v
++V
+ elocity
+-js
++JS
+ .org

@@ -6,6 +6,7 @@
     "version": "3.7.1"
   },
   "dependencies": {
+    "file-patch": "^0.1.1",
     "hexo": "3.8.0",
     "hexo-deployer-git": "0.3.1",
     "hexo-footnotes": "1.0.2",
@@ -27,7 +28,11 @@
     "markdown-it-emoji": "1.4.0"
   },
   "scripts": {
-    "postinstall": "cp themes/_config.yml themes/next/_config.yml && cp themes/base.styl themes/next/source/css/_variables/base.styl && cp themes/head.swig themes/next/layout/_partials/head/head.swig && cp themes/post.swig themes/next/layout/_macro/post.swig"
+    "patchConfig": "./node_modules/.bin/file-patch themes/_config.yml.diff themes/next/_config.yml",
+    "patchStyle": "./node_modules/.bin/file-patch themes/base.styl.diff themes/next/source/css/_variables/base.styl",
+    "patchHead": "./node_modules/.bin/file-patch themes/head.swig.diff themes/next/layout/_partials/head/head.swig",
+    "patchPost": "./node_modules/.bin/file-patch themes/post.swig.diff themes/next/layout/_macro/post.swig",
+    "postinstall": "npm run patchConfig && npm run patchStyle && npm run patchHead && npm run patchPost"
   },
   "devDependencies": {
     "cz-gitmoji-changelog": "1.1.0"
