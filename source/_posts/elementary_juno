@@ -29,7 +29,7 @@ $ apt instsall firacode
 
 The Bluetooth connectoin is basically stable
 
-To make right click works for Touchpad
+To [make right click works for Touchpad](https://elementaryos.stackexchange.com/questions/16548/touchpad-right-button-not-working-for-right-click-on-juno)
 
 Settings >　Mouse & TouchPad, select Physical Click from `MultiTouch` to `TouchPad`
 
