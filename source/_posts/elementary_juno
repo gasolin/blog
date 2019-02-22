@@ -1,0 +1,49 @@
+---
+title: Tuning for my daily Elementary OS Juno
+tags:
+  - linux
+date: 2019-02-22 14:30:46
+---
+
+I've been us Elementary OS as my primary laptop OS over a year and have been [wrote some posts](https://blog.gasolin.idv.tw/2018/02/25/advanced_elementary_os_usage/) for it.
+I Upgrade to Juno at December last year. Juno is based on Ubuntu 18.04, most things works fine and less things need for tweaking.
+
+Here's my setup for XPS 13-9360
+
+## 1. Package installer
+
+1. Insatll `Eddy` on AppCenter instead of `sudo apt install gdebi`
+2. essentials
+
+```sh
+sudo apt install software-properties-common git
+```
+
+##　2. Setup Fonts
+
+```sh
+$ apt instsall firacode
+```
+
+## 3. Pairing Bluetooth Mouse and Make right click works for Touchpad
+
+The Bluetooth connectoin is basically stable
+
+To make right click works for Touchpad
+
+Settings >　Mouse & TouchPad, select Physical Click from `MultiTouch` to `TouchPad`
+
+## 4. Saving Power
+
+tlp is a good tool for auto power management and now it can be installed through the default repo.
+
+```
+sudo apt-get install tlp
+sudo tlp start
+```
+
+5. Auto adjust color temperature
+
+It's build-in now.
+
+Go Settigns > Monitor > Night Light to toggle it on.
