@@ -5,19 +5,19 @@ tags:
 date: 2019-02-22 14:30:46
 ---
 
-I've been us Elementary OS as my primary laptop OS over a year and have been [wrote some posts](https://blog.gasolin.idv.tw/2018/02/25/advanced_elementary_os_usage/) for it.
-I Upgrade to Juno at December last year. Juno is based on Ubuntu 18.04, most things works fine and less things need for tweaking.
+I've been use Elementary OS as my primary laptop OS over a year and have been [written some posts](https://blog.gasolin.idv.tw/2018/02/25/advanced_elementary_os_usage/) for it.
+I Upgraded to Elementary OS Juno at December last year. Juno is based on Ubuntu 18.04, the experience is very positive. Most things works fine and not much things need to tune for daily usage.
 
-Here's my setup for XPS 13-9360
+Here's my setup for my Dell XPS 13-9360 laptop.
 
 ## 1. Package installer
 
 1. Insatll `Eddy` on AppCenter instead of `sudo apt install gdebi`
-2. essentials
+2. install essentials
 
-```sh
-sudo apt install software-properties-common git
-```
+  ```sh
+  sudo apt install software-properties-common git
+  ```
 
 ##　2. Setup Fonts
 
@@ -27,11 +27,9 @@ $ apt instsall firacode
 
 ## 3. Pairing Bluetooth Mouse and Make right click works for Touchpad
 
-The Bluetooth connectoin is basically stable
+The Bluetooth connectoin is basically stable. No need for extra setup.
 
-To [make right click works for Touchpad](https://elementaryos.stackexchange.com/questions/16548/touchpad-right-button-not-working-for-right-click-on-juno)
-
-Settings >　Mouse & TouchPad, select Physical Click from `MultiTouch` to `TouchPad`
+To [make right click works for Touchpad](https://elementaryos.stackexchange.com/questions/16548/touchpad-right-button-not-working-for-right-click-on-juno), go `Settings >　Mouse & TouchPad`, select from `MultiTouch` to `TouchPad` in `Physical Click` section.
 
 ## 4. Saving Power
 
@@ -46,7 +44,7 @@ sudo tlp start
 
 It's build-in now.
 
-Go Settigns > Monitor > Night Light to toggle it on.
+Go `Settigns > Monitor > Night Light` to toggle it on.
 
 ## 6. Chinese Input Method
 
