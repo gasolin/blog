@@ -42,8 +42,16 @@ sudo apt-get install tlp
 sudo tlp start
 ```
 
-5. Auto adjust color temperature
+## 5. Auto adjust color temperature
 
 It's build-in now.
 
 Go Settigns > Monitor > Night Light to toggle it on.
+
+## 6. Chinese Input Method
+
+Instead of [configure by yourself](https://blog.gasolin.idv.tw/2017/11/04/chinese-in-elementary-os/). It's build-in now.
+
+1. Select `Traditional Chinese` during install Elementary OS.
+2. Enter `System >　Language & Area > Keyboard Setting > Input Method Settings`.
+3. Remove all other IME except `新酷音` and it just works.
