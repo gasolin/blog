@@ -25,11 +25,21 @@ Here's my setup for my Dell XPS 13-9360 laptop.
 $ apt instsall firacode
 ```
 
-## 3. Pairing Bluetooth Mouse and Make right click works for Touchpad
+## 3. Bluetooth, Touchpad and Mouse
 
 The Bluetooth connectoin is basically stable. No need for extra setup.
 
 To [make right click works for Touchpad](https://elementaryos.stackexchange.com/questions/16548/touchpad-right-button-not-working-for-right-click-on-juno), go `Settings >　Mouse & TouchPad`, select from `MultiTouch` to `TouchPad` in `Physical Click` section.
+
+To use logitech mouse with unifying USB dongle, you can do `sudo apt install solaar solaar-gnome3` and there will be `solaar-cli` command line tool and the GUI tool available.
+
+To [customize the extra buttons in mouse](https://www.ralf-oechsner.de/opensource/page/logitech_performance_mx), install `xbindkeys`
+
+```
+sudo apt-get install xbindkeys xautomation x11-utils
+```
+
+Then create the config file using `xbindkeys --defaults > $HOME/.xbindkeysrc`.
 
 ## 4. Saving Power
 
