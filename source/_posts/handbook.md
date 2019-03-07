@@ -15,7 +15,7 @@ date: 2019-02-23 16:10:46
   * Pilot FRIXION BALL Slim 0.38藍色筆桿 + 0.5 魔擦筆筆芯
   * Pilot HI-TEC-C coleto 雙色筆桿 + 0.38 紅/綠筆芯
   * Pilot FRIXION light 水藍色魔擦螢光筆
-  * Pilot FRIXION COLORS 褐/黑色魔擦筆
+  * Pilot FRIXION COLORS 褐,黑色魔擦筆
 
 ## 頁面配置
 
@@ -44,11 +44,11 @@ date: 2019-02-23 16:10:46
 
 * 回顧頁
 
-每本筆記本的最後一頁是回顧頁。分成`Keep, Problem, Try`三個欄位。邊寫邊補
+  每本筆記本的最後一頁是回顧頁。分成`Keep, Problem, Try`三個欄位。邊寫邊補
 
-- Keep: 什麼習慣值得保持
-- Problem: 記筆記/生活的過程中遇到什麼問題
-- Try: 根據看到的問題，在下一本（或這一本）想嘗試的改善方法
+  - Keep: 什麼習慣值得保持
+  - Problem: 記筆記/生活的過程中遇到什麼問題
+  - Try: 根據看到的問題，在下一本（或這一本）想嘗試的改善方法
 
 ## 內容頁
 
