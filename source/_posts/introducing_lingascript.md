@@ -7,7 +7,7 @@ date: 2019-03-08 15:10:44
 
 前陣子過年，終於得以抽出的一些時間，可以來嘗試一些不同的東西。
 
-花了幾天查看 Typescript 程式碼，改寫了個可用繁/簡中文語法寫JS的轉譯器 [lingascript](https://github.com/gasolin/lingascript/tree/master/src/tw)
+花了幾天查看 Typescript 程式碼，改寫了個可用繁/簡中文語法寫JS的轉譯器 [LingaScript](https://github.com/gasolin/lingascript/tree/master/src/tw)
 
 使用它做了個「中文輸進去，程式出得來，開發者發大財」的中文程式影片範例，歡迎大家開心試用。
 
@@ -15,11 +15,11 @@ date: 2019-03-08 15:10:44
 
 ## 如何做到的
 
-這個專案脫胎自過去開發[周蟒](https://github.com/gasolin/zhpy)(Python + 中文語法)的經驗，並參考了 [CTS](https://github.com/program-in-chinese/CTS/)(Typescript + 中文語法)原始碼。
+這個專案脫胎自過去開發[周蟒](https://github.com/gasolin/zhpy)(Python + 中文語法)的經驗，並參考了 [CTS](https://github.com/program-in-chinese/CTS/) (Typescript + 中文語法)原始碼。
 
 微軟主導開發的 Typescript 提供了分析 Typescript 語法，並可輸出成 Javascript 的轉譯器(src/compiler)。更棒的是因為 Visual Studio的開發工具中整合了 Typescript，而微軟為了讓 Visual Studio 中的所有編譯結果都有本地化語言輸出，也在 Typescript 中支援了本地化語言的命令行工具和錯誤輸出。
 
-因此， ‵Lingascript‵ 目前所做的，是讓支援的中文語法可分析為對應的 symbol，並預設將命令行工具設成對應的本地化語言。如此一來就可以得到較完整的使用本地化語言的開發體驗。
+因此， ‵LingaScript‵ 目前所做的，是讓支援的中文語法可分析為對應的 symbol，並預設將命令行工具設成對應的本地化語言。如此一來就可以得到較完整的使用本地化語言的開發體驗。
 
 {% mermaid %}
 graph LR
@@ -28,7 +28,7 @@ graph LR
    TypeScript -- 本地化錯誤回報 --> LingaScript
 {% endmermaid %}
 
-因為看到 CTS 改版不易的問題，我使用自己開發，基於Google 提供的 diff-match-patch 包裝的[file-patch](https://www.npmjs.com/package/file-patch) 工具，來對修改後的程式碼和 Typescript 原始碼做 diff/patch。‵LingaScript‵ 專案中保存了修改後的 compiler 相關檔案和 diff 檔。透過 patch 的方式更容易相容版本升級時的改動。
+因為看到 CTS 改版不易的問題，我使用自己開發，基於Google 提供的 diff-match-patch 包裝的 [file-patch](https://www.npmjs.com/package/file-patch) 工具，來對修改後的程式碼和 Typescript 原始碼做 diff/patch。‵LingaScript‵ 專案中保存了修改後的 compiler 相關檔案和 diff 檔。透過 patch 的方式更容易相容版本升級時的改動。
 
 具體可以查看相關用到的命令 https://github.com/gasolin/lingascript/blob/master/package.json#L14
 

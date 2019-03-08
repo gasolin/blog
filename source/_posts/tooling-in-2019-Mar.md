@@ -7,17 +7,30 @@ date: 2019-3-7 16:30:00
 
 `先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。`
 
-2011[^1]年時紀錄了一次當時的個人工具箱，2016年開始再次紀錄自己手邊工具箱的改變[^2] [^3] [^4][^5][^6]🤹。
+2011[^1]年時紀錄了一次當時的個人工具箱，2016 年開始再次紀錄自己手邊工具箱的改變，後來漸漸變成了常規文章 [^2] [^3] [^4 ][^5 ][^6]🤹。
 
 ## 主要裝備
 
-* :computer:Dell XPS 13 (8550), Windows 10, i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](https://blog.gasolin.idv.tw/2019/02/22/elementary_juno/)
+* :computer:Dell XPS 13 (8550), i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](https://blog.gasolin.idv.tw/2019/02/22/elementary_juno/)
+
 * :iphone:[Zenfone 5](https://www.asus.com/tw/Phone/ZenFone-5-ZE620KL/Tech-Specs/), Android 9(Pie), Snapdragon 636, 6.2" Super IPS
-* :headphones: Jabra Elite 65t (備用：Sony WI-1000 降噪耳機)
+
+* :headphones: Jabra Elite 65t (備用：Sony WI-1000 降噪耳機):
+  
+
+## :walking_man:外出攜帶
+
+* :computer:Dell XPS 13 (8550)
+* :iphone:Zenfone 5
+* :electric_plug:小米45W電源
+* :computer_mouse:羅技M720滑鼠
+* :headphones: Jabra Elite 65t
+* USB C/Micro USB 雙頭轉接線
+
 
 ### :house:家
 
-* 小米45W電源
+* :electric_plug:小米45W電源
 * :computer_mouse:羅技M720滑鼠
 * :package:Synology NAS: 電影，影集，照片，資料備份
 * 備用：:desktop_computer:24" LCD
@@ -29,9 +42,9 @@ date: 2019-3-7 16:30:00
 
 ### 和上一季相比的改變：
 
-主力用:computer:Dell XPS 13"搭配:computer_mouse:羅技M720滑鼠。現在幾乎不坐在LCD前。
+主力用:computer:Dell XPS 13"搭配:computer_mouse:羅技M720滑鼠。現在幾乎不坐在LCD前。同時，因為筆電儲存256GB分作兩半其實不是很夠用的緣故，作業系統也只留下了 Elementary OS。
 
-現在的工作型態比較常外出工作，和上一季最大的改變就是使用小米45W電源來取代XPS的電源線和Switch的電源線。小米45W電源可為:computer:筆電與🎮Nintendo Switch供電，省下帶兩大塊電源線的麻煩。再加帶很久以前買的5000mAh小米電源和USB C/Micro USB雙頭轉接線，可解決大部分手機/耳機的充電問題。
+現在的工作型態比較常在家或外出到定點工作，和上一季最大的改變就是使用:electric_plug:小米45W電源來取代 XPS 的電源線和 Switch 的電源線。小米 45W 電源可為:computer:筆電與 🎮Nintendo Switch 供電，省下帶兩大塊電源線的麻煩。再加帶很久以前買的 5000mAh 小米電源和 USB C/Micro USB 雙頭轉接線，可解決大部分手機/耳機的充電問題。
 
 考慮買一顆紫米10 15000mAh，這樣一顆就可為筆電/遊戲機/手機/耳機，這樣平時出門都不用帶電源線了。(但其實平常也不會帶遊戲機，換15000mAh似乎要帶的更重 XD)
 
@@ -73,8 +86,8 @@ hub --- ns[Nintendo Switch]
 
 ### 設計工具
 
-* 螢幕動畫錄製： [Peek](https://github.com/phw/peek)(Linux), [Recordit](http://www.recordit.co/)(Mac)
-* 心智圖：XMind, Coggle
+* 螢幕動畫錄製： [Peek](https://github.com/phw/peek)(Linux), 備用 [Recordit](http://www.recordit.co/)(Mac)
+* 心智圖：Coggle, 備用 XMind
 
 ### 開發工具
 
@@ -90,7 +103,7 @@ hub --- ns[Nintendo Switch]
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
 
-若需要在Windows上開發，能用Chocolatey處理的就用Chocolatey處理。
+若需要在 Windows 上開發，能用 Chocolatey 處理的就用 Chocolatey 處理。
 
 ### 娛樂工具
 
@@ -98,7 +111,7 @@ hub --- ns[Nintendo Switch]
 * :dark_sunglasses:Oculus Go (少用)
 * 🎮Steam / vlc (少用)
 
-因為攜帶便利，現在主要只玩NS上的遊戲。Steam上看到喜歡的遊戲，也盡量等NS上出了再買。
+因為攜帶便利，現在主要只玩 NS 上的遊戲。Steam 上看到喜歡的遊戲，也盡量等 NS 上出了再買。
 
 ## :iphone:Android 手機應用
 * 瀏覽器：Brave
@@ -117,21 +130,17 @@ hub --- ns[Nintendo Switch]
 * 有聲書：Audible, Podcast Addict
 * 健康：小米運動, Pokemon Go, 7Min workout
 
-手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。
+手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
 
-其他工具
+### 其他工具
 
 * 2步驟認證：Duo Mobile
 * 旅遊：Google翻譯, TripAdvisor
 * 影片播放：MX Player, DS video
-* 記錄看書狀況：Readmoo分享書
+* 記錄看書狀況：Readmoo 分享書
 * 線上學習：Udemy, EggHead.io
 * IFTTT
 * 💳街口支付
-
-## 筆記工具
-
-[完整的筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
 
 ## Reference
 
