@@ -16,7 +16,7 @@ date: 2019-3-7 16:30:00
 * :iphone:[Zenfone 5](https://www.asus.com/tw/Phone/ZenFone-5-ZE620KL/Tech-Specs/), Android 9(Pie), Snapdragon 636, 6.2" Super IPS
 
 * :headphones: Jabra Elite 65t (備用：Sony WI-1000 降噪耳機):
-  
+
 
 ## :walking_man:外出攜帶
 
