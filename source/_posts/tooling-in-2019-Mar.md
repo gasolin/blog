@@ -102,6 +102,7 @@ hub --- ns[Nintendo Switch]
   - Trailing Spaces
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm), yarn, Chocolatey(windows)
+* :bellhop_bell: 專注工具：:tomato:Rush(蕃茄鐘)
 
 若需要在 Windows 上開發，能用 Chocolatey 處理的就用 Chocolatey 處理。
 
@@ -114,31 +115,31 @@ hub --- ns[Nintendo Switch]
 因為攜帶便利，現在主要只玩 NS 上的遊戲。Steam 上看到喜歡的遊戲，也盡量等 NS 上出了再買。
 
 ## :iphone:Android 手機應用
-* 瀏覽器：Brave
-* 網頁更新通知：Web Alert
-* 閱讀：Feedly, Readmoo, Pocket
-* 信箱：Inbox, Gmail
-* 地圖：Google地圖
+* :spider_web:瀏覽器：Brave
+* :bell:網頁更新通知：Web Alert
+* :newspaper:閱讀：Feedly, Readmoo, Pocket
+* :email:信箱：Inbox, Gmail
+* :world_map:地圖：Google地圖
 * 記事：Keep
 * 內建相機, 內建時鐘
 * 相簿：內建相簿, Google相簿, Dropbox
 * 社交：Facebook, LINE, Twitter(網頁版)
 * 待辦事項：[Todoist](https://play.google.com/store/apps/details?id=com.todoist)
-* 密碼管理：Bitwarden
-* 線上影片：Youtube
-* 音樂：豆瓣FM, Spotify
+* :closed_lock_with_key:密碼管理：Bitwarden，Duo Mobile（2步驟認證）
+* :tv:線上影片：Youtube
+* 音樂：Spotify
 * 有聲書：Audible, Podcast Addict
-* 健康：小米運動, Pokemon Go, 7Min workout
+* :walking_man:健康：小米運動, Pokemon Go, 7Min workout
+* :mantelpiece_clock:時間紀錄： SaveMyTime
 
 手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
 
 ### 其他工具
 
-* 2步驟認證：Duo Mobile
 * 旅遊：Google翻譯, TripAdvisor
 * 影片播放：MX Player, DS video
 * 記錄看書狀況：Readmoo 分享書
-* 線上學習：Udemy, EggHead.io
+* 線上學習：Udemy, EggHead.io(網頁版)
 * IFTTT
 * 💳街口支付
 
