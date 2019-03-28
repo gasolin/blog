@@ -63,3 +63,15 @@ Instead of [configure by yourself](https://blog.gasolin.idv.tw/2017/11/04/chines
 1. Select `Traditional Chinese` during install Elementary OS.
 2. Enter `System >　Language & Area > Keyboard Setting > Input Method Settings`.
 3. Remove all other IME except `新酷音` and it just works.
+
+## 7. Tweaks
+
+Can use elementary-tweaks to easily change system font to `Noto Sans CJK TC regular` instead of `Open Sans`
+
+```sh
+sudo add-apt-repository ppa:philip.scott/elementary-tweaks
+sudo apt update
+sudo apt install elementary-tweaks
+```
+
+Then open `Tweaks` in System Settigns panel.
