@@ -148,7 +148,7 @@
   };
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.2/mermaid.min.js"></script>
 <script type="text/javascript">mermaid.initialize({startOnLoad:true});</script>
 
 {% if theme.custom_file_path.head %}
