@@ -19,6 +19,15 @@ date: 2019-11-13 23:18:30
 
 先簡單這樣，試試看接下來這第二螢幕的開機率是否有提升吧。
 
+## 第二螢幕有沒有搞頭？
+
+Raspberry Pi 這樣的硬體，要拿來做主要電腦還是有些勉強。
+但如果手上有一台，作為 Chromecast 代替品還是堪用的。
+
+而除了替代 Chromecast 功能，作為工作環境中的第二塊螢幕的 OS，它還能透過安裝不同的軟體，為我帶來什麼幫助呢？
+
+如果要設計一套適合第二螢幕使用的 OS，應該具備什麼樣的功能哩？
+
 ## 參考資料
 
 - https://www.instructables.com/id/Raspberry-Pi-As-Chromecast-Alternative-Raspicast/
