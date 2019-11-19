@@ -1,0 +1,56 @@
+---
+title: Scratch3 擴充套件開發
+tags:
+  - scratch3
+  - extension
+date: 2019-11-19 10:55:30
+---
+
+## Scratch3 擴充套件開發
+
+最近應 s4a 社群許老師的邀請，在業餘時間研究了一下 Scratch 3，看看能做點什麼貢獻。
+
+Scratch 3 是一套由麻省理工學院（MIT）發起，以兒童學習程式為目的所設計的視覺化編程軟體。Scratch 3 可使用堆疊積木塊的方式，來完成一般程式語言能完成的事情。
+
+Scratch 3 除了程式語言的部分採用堆疊積木塊的方式，還提供了對應的整合的舞台，主角，並提供相對應的積木塊。你可以透過拖拉積木塊，直接控制這些主角在場景中的活動。
+
+Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://developers.google.com/blockly/) 很相似。實際上 [Blockly](https://developers.google.com/blockly/) / [AppInventor](https://appinventor.mit.edu/) 的靈感來源就是來自於 Scratch 3。
+
+在 Scratch 3 版本中，也已經將 Blockly 整合進去, 作為它提供程式積木的方式。
+
+我做了JSON抓取資料並解析，和空污LASS的擴充套件。透過這些積木，學生可以從網路上抓取最新的空氣污染狀況，然後用 Scratch 3 上場景可愛的人物口中說出來，或是視覺化的顯示結果。
+
+例如透過JSON積木，連線到`http://ifconfig.me/all.json`取得對外的 IP
+
+![Imgur](https://i.imgur.com/Ponon0r.png)
+
+或是透過填入設備代號，連到任一 LASS 設備，取得當地PM2.5，溫度等資訊
+
+![Imgur](https://i.imgur.com/XpV8YUJ.png)
+
+由於 Scratch 3 尚未完成第三方擴充套件的分享架構，因此這兩個擴充套件都放在 `scratch3-internet`[^2] 專案中，想嘗試的人也可以直接連到[^3]使用。
+
+`scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。擴充套件需修改的部分如下（可在[^2]中找到更詳細的文件）：
+
+{% mermaid %}
+graph TD
+Scratch3 --- |UI| GUI
+Scratch3 -.- |Blockly| blocks
+Scratch3 --- |core parser| VM
+VM --> src/extensions
+subgraph Extensions
+src/extensions -.- json[JSON blocks]
+src/extensions -.- lass[LASS blocks]
+end
+GUI --- |Define extension cards| x[src/lib/libraries/extensions/index.jsx]
+subgraph Extension Cards
+x -.- j[JSON card]
+x -.- l[LASS card]
+end
+{% endmermaid %}
+
+參考資料
+
+- [^1] 以前做的 Blockly + Arduino 專案 [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino)
+- [^2] https://github.com/gasolin/scratch3-internet
+- [^3] Scratch 3 editor http://gasolin.idv.tw/scratch3-internet/
