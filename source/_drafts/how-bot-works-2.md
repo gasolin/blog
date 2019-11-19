@@ -50,7 +50,8 @@ plugin to call API/NLP
 NLG 自然語言生成
 
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
   User[Human input]
   subgraph Instant Messenger
     messenger
@@ -75,7 +76,7 @@ NLG 自然語言生成
   LP --> router
   router --> processor
   processor --> dispatcher
-{% endmermaid %}
+```
 
 
 https://www.zixundingzhi.com/yidonghulianwang/a36bf975daebc732.html

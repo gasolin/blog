@@ -7,7 +7,8 @@ tags:
 ---
 
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 
 subgraph User
 Browser[DApp Compatible Browser]
@@ -25,13 +26,13 @@ web -->Wallet
 Wallet -- ABI --> Contract
 Contract -- ABI --> web
 web --- Browser
-{% endmermaid %}
+```
 
 
 How `truffle-react-redux` looks like:
 
-{% mermaid graph LR %}
-
+```mermaid
+graph LR
 subgraph User
 Browser
 Wallet
@@ -50,7 +51,7 @@ webapp --> Wallet
 Wallet -- ABI --> Contract
 Contract -- ABI --> webapp
 webapp --- Browser
-{% endmermaid %}
+```
 
 
 ```sh

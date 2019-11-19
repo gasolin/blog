@@ -48,11 +48,12 @@ date: 2019-3-7 16:30:00
 
 考慮買一顆紫米10 15000mAh，這樣一顆就可為筆電/遊戲機/手機/耳機，這樣平時出門都不用帶電源線了。(但其實平常也不會帶遊戲機，換15000mAh似乎要帶的更重 XD)
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 LCD -- DVI --- Notebook
 LCD -- HDMI --- hub{HDMI Hub}
 hub --- ns[Nintendo Switch]
-{% endmermaid %}
+```
 
 :keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
 

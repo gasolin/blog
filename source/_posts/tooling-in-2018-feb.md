@@ -33,13 +33,14 @@ date: 2018-1-25 15:23:00
 
 主力用:computer:Dell XPS 13"，家中添購了一台:desktop_computer:24" LCD接筆電，搭配3轉1 HDMI Hub，接🎮Nintendo Switch, Chromecast, Respberry Pi，可滿足影音相關需求。HDMI設備通電時會自動切換到對應的設備。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 LCD -- DVI --- Notebook
 LCD -- HDMI --- hub{HDMI Hub}
 hub --- ns[Nintendo Switch]
 hub --- Chromecast
 hub --- rpi[Respberry Pi]
-{% endmermaid %}
+```
 
 上次記錄前即開始使用的:keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
 

@@ -20,7 +20,8 @@ date: 2017-02-02 10:57:29
 * Google相簿, 自動從手機上傳照片
 * NAS (Synnalogy), 從Dropbox同步照片. 由於Dropbox空間有限，會不定期將Dropbox上的照片手動整理備份到NAS上.
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 cam[360 CAM]
 User -- take photo --> cam
 User -- take photo --> Phone
@@ -28,8 +29,9 @@ cam --> Phone
 Phone -.-> Dropbox
 Phone -.-> gphoto[Google Photo]
 Dropbox -.-> NAS
-{% endmermaid %}
-照片備份規則
+```
+
+### 照片備份規則
 
 我的照片並不算多，但若有出遊的月份通常照片會暴增。所以我的基本備份規則是依年份，並以雙月份命名資料夾,若是當月有重大活動則直接在檔名中標注。
 例如2016年的照片資料夾裡會有`2016_1011`，或是`2016_06倫敦`這樣的命名。
@@ -41,13 +43,14 @@ Dropbox -.-> NAS
 * 記步，睡眠紀錄：小米手環2
 * 體重：小米體重計
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -. 走路 .-> 小米手環2
 User -. 睡覺 .-> 小米手環2
 User -- 量體重 --> 小米體重計
 小米手環2 -.-> 小米運動App
 小米體重計 -.-> 小米運動App
-{% endmermaid %}
+```
 
 今年將每天預定的步數由3000步提高到`4000步`，略高於平常的活動數字，
 每天要達成這個目標的話，需要特意地多走幾步路。
@@ -66,7 +69,8 @@ update(9/1): 後來不再帶小米手環2，覺得記錄睡眠與步數意義不
 當我在Anobii或豆瓣上修改狀態，Anobii或豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google Calendar上。
 對於Youtube上like的影片，Facebook或Twitter上新貼的文章，也會透過IFTTT紀錄到Google Calendar上。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- update book --> Anobii
 User -- add movie --> Douban
 User -- post --> Blog
@@ -75,10 +79,12 @@ Anobii -.-> RSS
 Douban -.-> RSS
 RSS -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
+
 透過RSS轉IFTTT紀錄
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- like --> Youtube
 User -- post --> Facebook
 User -- post --> Twitter
@@ -86,7 +92,8 @@ Youtube -.-> IFTTT
 Facebook -.-> IFTTT
 Twitter -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
+
 直接透過IFTTT紀錄
 
 ### 自動紀錄每日完成的事項 :notebook:
@@ -94,11 +101,13 @@ IFTTT -.-> gcal[Google Calendar]
 這部份是自動紀錄的核心。使用 Todoist + IFTTT + Google Calendar 即可達成。
 我在Google Calendar上使用一個單獨的日曆(成功日記)來紀錄每日完成的事項。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- checked --> Todoist
 Todoist -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
+
 If task completed in Todoist, Then log into Google Calendar
 
 #### 從Email新增待辦事項 :email:
@@ -110,13 +119,15 @@ If task completed in Todoist, Then log into Google Calendar
 因為我唯一的收件夾是Todoist，所以若看到值得閱讀(紀錄)的網頁，桌面上我使用自己開發的瀏覽器Web Extension，搭配IFTTT去紀錄網頁到Todoist，或加個短評分享到Facebook或Twitter。
 在手機上就直接使用Todoist和Facebook等App達到一樣的效果。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- tap --> Browser[Browser addon]
 Browser -.-> IFTTT[IFTTT Maker Channel]
 IFTTT -.-> Todoist
 IFTTT -.-> Facebook
 IFTTT -.-> Twitter
-{% endmermaid %}
+```
+
 If new task then create new Todoist item, If share then share to Facebook and Twitter.
 
 ### 文章更新時自動提醒 :alarm_clock:
@@ -125,10 +136,11 @@ If new task then create new Todoist item, If share then share to Facebook and Tw
 然而有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
 搭配Todoist稍候閱讀列表，我可以不在看到文章連結當下急著消費，而是在有空閒的時候才閱讀這些文章。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 webalert[Web Alert] --> User
 User --> Browser
-{% endmermaid %}
+```
 
 ### 半自動工作紀錄 :briefcase:
 
@@ -143,14 +155,16 @@ User --> Browser
 
 如何做可參考 [Hello Hexo](https://blog.gasolin.idv.tw/2016/09/18/hello-world/) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](https://blog.gasolin.idv.tw/2017/01/03/ghpage-auto-deploy/)
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 master[Github:master]
 travis[Travis CI]
 ghpages[Github:gh-pages]
 User -- commit --> master
 master -. auto build .-> travis
 travis -.  auto deploy .-> ghpages
-{% endmermaid %}
+```
+
 Auto website deploy flow
 
 一些可以直接運作在瀏覽器的專案(如BlocklyDuino和Saihubot)，我會直接將gh-pages設為預設分支，所有改動直接push到這分支中。

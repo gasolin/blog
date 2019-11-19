@@ -22,7 +22,8 @@ date: 2018-01-26 9:57:29
 * Google相簿, 充電時自動從手機備份照片到Google雲端
 * NAS (Synnalogy), 透過`Cloud Sync`從Dropbox同步照片。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 cam[360 CAM]
 User -- take photo --> cam
 User -- take photo --> Phone
@@ -30,17 +31,18 @@ cam --> Phone
 Phone -.-> Dropbox
 Phone -.-> gphoto[Google Photo]
 Dropbox -.-> NAS
-{% endmermaid %}
+```
 
 ## 運動自動化紀錄 :walking:
 
 * ~~記步，睡眠紀錄：小米手環2~~
 * 體重：小米體重計
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- 量體重 --> 小米體重計
 小米體脂計 -.-> 小米運動App
-{% endmermaid %}
+```
 
 現已不再帶小米手環2，覺得記錄睡眠與步數，並無法改善健康狀況，意義不大。
 同時為了降低多走路所需要的意志力，把每日步數改成更容易達成的300步，只要開始走，通常都會超過需要的步數。
@@ -59,18 +61,20 @@ Update: 四月開始為了減重需要，又再戴起小米手環2。並將體�
 當我在豆瓣上修改狀態，豆瓣的RSS也跟著改變，這時IFTTT會將RSS中的新事項紀錄到Google 日曆上。
 對於Youtube上like的影片，Facebook或Twitter上新貼的文章，也會透過IFTTT紀錄到Google 日曆上。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- add movie --> Douban
 User -- post --> Blog
 Blog -.-> RSS
 Douban -.-> RSS
 RSS -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
 
 透過RSS轉IFTTT紀錄
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- like --> Youtube
 User -- post --> Facebook
 User -- post --> Twitter
@@ -78,7 +82,7 @@ Youtube -.-> IFTTT
 Facebook -.-> IFTTT
 Twitter -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
 
 直接透過IFTTT紀錄
 
@@ -87,11 +91,13 @@ IFTTT -.-> gcal[Google Calendar]
 這部份是自動紀錄的核心。使用 Todoist + IFTTT + Google Calendar 即可達成。
 我在Google Calendar上使用一個單獨的日曆(`成功日記`)來紀錄每日完成的事項。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User -- checked --> Todoist
 Todoist -.-> IFTTT
 IFTTT -.-> gcal[Google Calendar]
-{% endmermaid %}
+```
+
 If task completed in Todoist, Then log into Google Calendar
 
 #### 從Email新增待辦事項 :email:
@@ -117,22 +123,24 @@ If task completed in Todoist, Then log into Google Calendar
 
 在手機上就直接使用Todoist和Pocket等App達到一樣的效果。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 Feedly --> Pocket
 Browser --> addon[Pocket addon + tag]
 addon --> Pocket
 pocket -.-> IFTTT
 IFTTT -.-> Todoist
-{% endmermaid %}
+```
 
 ### 文章更新時自動提醒 :alarm_clock:
 
 有些網站並未提供RSS訂閱，手機上我會使用[Web Alert](https://play.google.com/store/apps/details?id=me.webalert)來取得網頁更新提醒。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 webalert[Web Alert] --> User
 User --> Browser
-{% endmermaid %}¨¨
+```
 
 ### 開發工具設定自動備份¨
 
@@ -146,14 +154,16 @@ User --> Browser
 
 如何做可參考 [Hello Hexo](https://blog.gasolin.idv.tw/2016/09/18/hello-world/) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](https://blog.gasolin.idv.tw/2017/01/03/ghpage-auto-deploy/)
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 master[Github:master]
 travis[Travis CI]
 ghpages[Github:gh-pages]
 User -- commit --> master
 master -. auto build .-> travis
 travis -.  auto deploy .-> ghpages
-{% endmermaid %}
+```
+
 Auto website deploy flow
 
 一些可以直接運作在瀏覽器的專案(如BlocklyDuino和Saihubot)，我會直接將gh-pages設為預設分支，所有改動直接push到這分支中。這樣一有改動即可在網頁上看到更新成果。

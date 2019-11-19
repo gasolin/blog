@@ -12,10 +12,11 @@ date: 2016-09-21 11:15:47
 
 網頁類型可以簡單分為兩類：靜態網頁和動態網頁[^1]。在上一篇文章中我們介紹了基本的網頁運作方式，即瀏覽器請求網頁，網站伺服器傳回網頁。
 
-{% mermaid sequenceDiagram %}
+```mermaid
+sequenceDiagram
   Browser ->> Server: 網站請求
   Server -->> Browser: 傳回網頁
-{% endmermaid %}
+```
 
 這個模式適用於所有的網頁。對於瀏覽器來說，靜態網頁和動態網頁並沒有差別，都是收到一份完整的網頁後開始解析。
 靜態網頁和動態網頁的區分，主要是發生在網站伺服器端。
@@ -32,12 +33,13 @@ date: 2016-09-21 11:15:47
 
 支援動態網頁的網站伺服器，在收到網頁或資源的請求後，會透過CGI[^2]或WSGI[^3]界面，交由佈署在伺服器裡的動態網頁腳本進行處理。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
   subgraph Web server
     request --> scripts
     scripts --> response
   end
-{% endmermaid %}
+```
 
 在動態網頁中，在請求（Request）網址與回應（response）網頁內容間，都是由程式腳本負責處理（script）。程式腳本需要解析請求（Request）訊息，根據提供的網址處理對應的行為並回應（response）對應的網頁。在處理過程中，程式腳本可能需要處理取得網址參數或表單參數等內容，存取資料庫，把對應的資料填入網頁樣板等等工作。
 

@@ -12,7 +12,8 @@ date: 2017-12-26 23:10:30
 
 過去透過NAS，外接硬碟等方式來保護自己的相片，作品等「數位資產」，以防哪天檔案遺失或外流。現在要守護的範圍更要擴及「加密代幣」，即保護自己的「數位財產」。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 作品 --> NAS
 相片 --> NAS
 相片 --> 線上備份
@@ -20,7 +21,7 @@ NAS --> 數位資產
 線上備份 --> 數位資產
 加密代幣 --> 硬體錢包
 硬體錢包 --> 數位資產
-{% endmermaid %}
+```
 
 MyEtherWallet網站[推薦](https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html)任何擁有超過「2周的薪資」數位財產的人，使用「硬體錢包」來保管自己的「加密代幣」，以避免可能的財產損失。
 

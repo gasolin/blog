@@ -15,10 +15,11 @@ date: 2018-10-02 15:49:00
 
 先簡單回顧一下基本的Redux State運作。Redux統一儲存所有網頁前端的狀態(`State`)。只能透過發送`Action`來通知狀態的改變，並透過`Reducer`修改當前的狀態。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 Reducer{Reducer} -.-> State(State)
 Disptch>Dispatch] -.-> |Action| Reducer
-{% endmermaid %}
+```
 
 基本的Redux僅支援同步的操作。若想支援非同步操作（promise, async, API等）需要透過加裝`Middleware`來處理。Middleware的功用，是改變收到`Action`後的處理流程。`Redux Saga`即是其中一種功能強大的Middleware。
 
@@ -28,7 +29,8 @@ Redux Saga的運作模型，起始自收到Action。Saga透過`takeLatest`或`ta
 
 例如使用`select`語句來從目前的`State`中取得資料，使用`call`語句來呼叫API，用`put`語句來將新的Action傳回Redux處理。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 TakeLatest>TakeLatest] -.-> |Action| Saga
 Saga -->|call| API
 API --> |await|Saga
@@ -36,7 +38,7 @@ State -.-> select>select]
 select --> Saga
 Put>Put] -.-> |Action| Reducer
 Saga --> Put
-{% endmermaid %}
+```
 
 一段簡單的範例：
 
@@ -57,7 +59,8 @@ export default function* rootSaga() {
 
 把兩張圖畫在一起的話，可以看到Redux state與Redux Saga之間整體的呼叫關係。使用Redux/Redux Saga能將「從UI呼叫 -> 參看現有狀態來與API溝通 -> 根據取回值更新狀態 -> 更新UI」這樣的複雜流程，整個簡化為單向的操作。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 Reducer{Reducer} -.-> State(State)
 Disptch>Dispatch] -.- |Action| TakeLatest>TakeLatest]
 TakeLatest -.-> |Action| Saga
@@ -67,7 +70,7 @@ State -.-> select>select]
 select --> Saga
 Put>Put] -.-> |Action| Reducer
 Saga --> Put
-{% endmermaid %}
+```
 
 當然`Redux-saga`還有提供一些其他的功能，但其實`Redux-saga`就是這麼簡單。使用`Redux-saga`可以很好地運用原有的非同步處理觀念，要將React Component中相應的非同步函式搬出來，也不像`Redux-observable`那樣需要全部改寫。
 

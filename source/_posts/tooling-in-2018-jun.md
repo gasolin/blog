@@ -36,13 +36,14 @@ date: 2018-5-24 12:23:00
 
 還是比較少坐在LCD前，因此Chromecast用很少，另購入Oculus Go看影片/Youtube。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 LCD -- DVI --- Notebook
 LCD -- HDMI --- hub{HDMI Hub}
 hub --- ns[Nintendo Switch]
 hub --- Chromecast
 hub --- rpi[Respberry Pi]
-{% endmermaid %}
+```
 
 :keyboard:羅技K375s鍵盤與:computer_mouse:羅技M720滑鼠，兩者特點都是同時支援使用USB或藍牙控制設備，讓我可以用一套鍵鼠控制多種設備。
 

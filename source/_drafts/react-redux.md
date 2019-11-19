@@ -4,20 +4,22 @@ tags:
   - web
 ---
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 Model --> App
 View --> App
-{% endmermaid %}
+```
 
 最近在開發Firefox Devtools - Network Monitor的過程中有使用到React與Redux相關技術。
 
 React 負責建立介面，並處理介面相關更新與操作(透過VDOM)，Redux 提供 React 所需的 state 與 event handler (action)。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 Immutable --> Reselect
 Reselect --> Redux
 Redux -->React
-{% endmermaid %}
+```
 
 
 Performance

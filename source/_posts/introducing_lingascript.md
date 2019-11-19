@@ -21,11 +21,12 @@ date: 2019-03-08 15:10:44
 
 因此， ‵LingaScript‵ 目前所做的，是讓支援的中文語法可分析為對應的 symbol，並預設將命令行工具設成對應的本地化語言。如此一來就可以得到較完整的使用本地化語言的開發體驗。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
    TypeScript -- 多語言關鍵字 --> LingaScript
    TypeScript -- 本地化命令行 --> LingaScript
    TypeScript -- 本地化錯誤回報 --> LingaScript
-{% endmermaid %}
+```
 
 因為看到 CTS 改版不易的問題，我使用自己開發，基於Google 提供的 diff-match-patch 包裝的 [file-patch](https://www.npmjs.com/package/file-patch) 工具，來對修改後的程式碼和 Typescript 原始碼做 diff/patch。‵LingaScript‵ 專案中保存了修改後的 compiler 相關檔案和 diff 檔。透過 patch 的方式更容易相容版本升級時的改動。
 

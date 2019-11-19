@@ -54,14 +54,15 @@ date: 2018-12-02 00:43:33
 
 最後連接好的架構大概是這樣：
 
-{% mermaid graph TD %}
+```mermaid
+graph TD
 pi[Raspberry Pi] --HDMI-->S[螢幕]
 K[鍵盤] -- USB --> pi
 M[滑鼠] -- USB --> pi
 p((電源)) -- MicroUSB --- pi
 pi --> v[喇叭]
 m[記憶卡] -.- pi
-{% endmermaid %}
+```
 
 ## 上手體驗
 

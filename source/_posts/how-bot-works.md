@@ -13,13 +13,15 @@ date: 2017-03-01 10:36:53
 當我們打電話到銀行免付費專線，會有語音提示我們輸入驗證資料，然後輸入對應的數字來得到銀行服務。
 只有在根據一串語音提示，輸入特定數字時才轉接到真人回應的專線。這個過程跟使用聊天機器人基本上是一樣的。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User[使用者] --> dial[撥號]
 dial -- 輸入 --> identify[身份驗證資料]
 identify -- 選擇 --> number[服務項目]
 number --> auto[1-8: 自動應答]
 number --> manual[9: 專人服務]
-{% endmermaid %}
+```
+
 銀行的語音服務流程
 
 
@@ -72,18 +74,22 @@ Slack平台上已有許多機器人，可以同步Github Bug，同步代辦事�
 
 聊天軟體原本的功用是讓使用者可以和「另一個使用者」或「一群使用者」交流。聊天機器人則是取代「另一個使用者」的角色[^3]，讓使用者和「聊天機器人」一對一交流，或是讓聊天機器人加入群組，和「一群使用者」交流。
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User --> bot[Chat Bot]
 bot --> User
-{% endmermaid %}
+```
+
 一對一
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
 User --> Group
 Group --> User
 Group --> bot[Chat Bot]
 bot --> Group
-{% endmermaid %}
+```
+
 群組（多對多）
 
 
@@ -96,21 +102,23 @@ bot --> Group
 通知型機器人會根據使用者「訂閱」的資訊，傳訊息通知使用者。例如明日天氣預報機器人可以定時告訴使用者明天氣象狀況與溫度，出門需不須要帶傘。
 使用者一般不需要輸入任何訊息與機器人對話。
 
-{% mermaid graph RL %}
+```mermaid
+graph RL
 bot[Chat Bot] -- notify --> User
-{% endmermaid %}
+```
 
 ### 模式型（Pattern Matching）
 
 模式型機器人會比對使用者送出的訊息，如果符合機器人設定好的一些模式，就做出對應的回應。
 
-{% mermaid graph RL %}
+```mermaid
+graph RL
 subgraph chatbot
 Matcher[Pattern Matching] --> Responder[Build Response]
 end
 User -- request --> Matcher
 Responder -- response --> User
-{% endmermaid %}
+```
 
 例如使用者可以透過天氣機器人，輸入"weather in Taipei"查詢當前台北的天氣。
 
@@ -126,7 +134,8 @@ Responder -- response --> User
 
 例如Google Assistant會根據你之前的查詢,去進一步找到你想听的音樂。
 
-{% mermaid graph RL %}
+```mermaid
+graph RL
 subgraph chatbot
 Parser -- Action --> Processor[Do actions]
 Processor --> contexture[Context Brain]
@@ -136,7 +145,7 @@ Processor --> Responder[Build Response]
 end
 User -- request --> Parser[Intent Parser]
 Responder -- response --> User
-{% endmermaid %}
+```
 
 能理解與使用者過去的對話,也是對話型人工智能的重要特徵。當使用者在聊天軟體中新加入一個bot服務，使用者與這個服務的對話都與和一般服務員的交談無異，那麼服務的後面是不是真人還重要嗎？
 

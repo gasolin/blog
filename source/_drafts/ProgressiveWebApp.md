@@ -22,7 +22,8 @@ Native App
 
 Web App
 
-{% mermaid graph LR %}
+```mermaid
+graph LR
    WebUI(Web)
    MobileUI(Mobile)
    DesktopUI(Desktop)
@@ -37,7 +38,7 @@ Web App
    IMUI --- APIs
    APIs --- service
    APIs --- device
-{% endmermaid %}
+```
 
 https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.x0i3qjtvr
 
