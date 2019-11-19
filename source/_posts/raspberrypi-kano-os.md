@@ -54,8 +54,7 @@ date: 2018-12-02 00:43:33
 
 最後連接好的架構大概是這樣：
 
-{% mermaid %}
-graph TD
+{% mermaid graph TD %}
 pi[Raspberry Pi] --HDMI-->S[螢幕]
 K[鍵盤] -- USB --> pi
 M[滑鼠] -- USB --> pi
@@ -88,4 +87,3 @@ KANO OS 除了提供 Raspbian 中也有附的 Minecraft 等遊戲和各種教育
 Raspberry Pi 3B所要求的2.5A USB電源其實並不容易找到，一般我用1.5A的充電頭也能運作。
 
 Raspberry Pi 也支援HDMI聲音輸出，但需要[另行設定](https://www.raspberrypi.org/documentation/configuration/audio-config.md)。切換過去後，可能是因為同時要傳輸畫面與聲音，得消耗更多電源，開機容易出現`Low Voltage Detected`訊息，並導致無法正常開機。可以在開機畫面中按`Shift`鍵進入`Recovery`模式，將`hdmi_drive=2`(強制使用HDMI輸出聲音)註解掉。
-

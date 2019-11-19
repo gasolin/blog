@@ -12,8 +12,7 @@ date: 2016-09-26 11:23:20
 
 在上一篇文章中我們介紹了動態網頁的運作方式：網站伺服器在收到網頁或資源的請求（Request）後，交由佈署在伺服器裡的動態網頁腳本，根據提供的網址處理並回應（response）對應的網頁。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph Web server
     request --> scripts
     scripts --> response
@@ -33,8 +32,7 @@ graph LR
 
 支援這些，可說就構成一個基本網頁框架了。如Python的[flask](http://flask.pocoo.org/)或Node(Javascript)的[express](http://expressjs.com/)。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph WSGI
     request
     response
@@ -59,8 +57,7 @@ graph LR
 
 光是「存取資料庫」一項，就有無數協助開發者簡化存取資料庫的方式，在此不一一細述。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph WSGI
     request
     response

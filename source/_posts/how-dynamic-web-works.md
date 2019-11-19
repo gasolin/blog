@@ -12,8 +12,7 @@ date: 2016-09-21 11:15:47
 
 網頁類型可以簡單分為兩類：靜態網頁和動態網頁[^1]。在上一篇文章中我們介紹了基本的網頁運作方式，即瀏覽器請求網頁，網站伺服器傳回網頁。
 
-{% mermaid %}
-sequenceDiagram
+{% mermaid sequenceDiagram %}
   Browser ->> Server: 網站請求
   Server -->> Browser: 傳回網頁
 {% endmermaid %}
@@ -33,8 +32,7 @@ sequenceDiagram
 
 支援動態網頁的網站伺服器，在收到網頁或資源的請求後，會透過CGI[^2]或WSGI[^3]界面，交由佈署在伺服器裡的動態網頁腳本進行處理。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph Web server
     request --> scripts
     scripts --> response

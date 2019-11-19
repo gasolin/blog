@@ -32,8 +32,7 @@ Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://de
 
 `scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。擴充套件需修改的部分如下（可在[^2]中找到更詳細的文件）：
 
-{% mermaid %}
-graph TD
+{% mermaid graph TD %}
 Scratch3 --- |UI| GUI
 Scratch3 -.- |Blockly| blocks
 Scratch3 --- |core parser| VM

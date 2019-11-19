@@ -36,8 +36,7 @@ date: 2018-5-24 12:23:00
 
 還是比較少坐在LCD前，因此Chromecast用很少，另購入Oculus Go看影片/Youtube。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 LCD -- DVI --- Notebook
 LCD -- HDMI --- hub{HDMI Hub}
 hub --- ns[Nintendo Switch]

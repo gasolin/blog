@@ -9,8 +9,7 @@ date: 2017-08-09 17:31:34
 
 [Electron](https://electron.atom.io/)是一套結合了Chromium瀏覽器與Node.js功能，能使用網頁相關技術撰寫桌面應用的框架。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 Node --> Electron
 Chromium --> Electron
 {% endmermaid %}

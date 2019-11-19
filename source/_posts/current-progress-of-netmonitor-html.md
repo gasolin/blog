@@ -19,8 +19,7 @@ In last year(2016), Firefox Devtools team's main goal is to convert the code bas
 
 [Debugger.html](https://github.com/devtools-html/debugger.html), [Perf.html]()(Performance) has their standalone repository hosted on Github. A developer could use `git clone` to get the repository, and then do `yarn install`, `yarn start`(similar to npm command) to debug the debugger.html/perf.html with any browser's devtools!🚅
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 clone[git clone] --> install[yarn install]
 install --> start[yarn start]
 {% endmermaid %}
@@ -29,8 +28,7 @@ install --> start[yarn start]
 
 `Run on the Browser tab` is a term versus `Run inside of the developer panel`. Traditionally Devtools are running inside of the browser's developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened in a browser tab by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve Firefox Devtools with any Browser's Devtools, its an unfair advantage.🚀
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 Firefox -- debugging --> netmonitor(Netmonitor.html)
 netmonitor -- mozilla-rdp --> Firefox
 Chrome -- debugging --> netmonitor
@@ -46,8 +44,7 @@ To replacing the jet engine while still flying is a challenging engineering work
 
 Here are the projects in progress and where they are hosted from:
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 debugger(Debugger.html) --> Nightly
 perf(Perf.html) --> Nightly
 webconsole(WebConsole.html) --> Nightly
@@ -86,8 +83,7 @@ Here they are:
 
 Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node.js!😮
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 Firefox -- debugging --> netmonitor(Netmonitor.html)
 netmonitor -- mozilla-rdp --> Firefox
 Chrome -- debugging --> netmonitor
@@ -99,8 +95,7 @@ Edge -- debugging --> netmonitor
 
 Since Debugger.html's pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!😇
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 debugger(Debugger.html) --> Firefox
 debugger --> browsertab[Browser Tab]
 debugger --> Editor

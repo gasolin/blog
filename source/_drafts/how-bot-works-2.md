@@ -50,8 +50,7 @@ plugin to call API/NLP
 NLG 自然語言生成
 
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   User[Human input]
   subgraph Instant Messenger
     messenger

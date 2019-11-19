@@ -23,8 +23,7 @@ date: 2016-10-04 14:48:50
 網頁服務則不然，使用者的大多數行為都直接在瀏覽器端運作，背後再透過AJAX（非同步請求）技術，從網頁服務器取得資料，然後將關聯的部份更新在當前的頁面上。
 相較於傳統網頁，使用者感覺不到明顯的延遲，在使用經驗上大為改善。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph Web Server
     backend[Web framework]
   end

@@ -15,8 +15,7 @@ date: 2018-10-02 15:49:00
 
 先簡單回顧一下基本的Redux State運作。Redux統一儲存所有網頁前端的狀態(`State`)。只能透過發送`Action`來通知狀態的改變，並透過`Reducer`修改當前的狀態。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 Reducer{Reducer} -.-> State(State)
 Disptch>Dispatch] -.-> |Action| Reducer
 {% endmermaid %}
@@ -29,8 +28,7 @@ Redux Saga的運作模型，起始自收到Action。Saga透過`takeLatest`或`ta
 
 例如使用`select`語句來從目前的`State`中取得資料，使用`call`語句來呼叫API，用`put`語句來將新的Action傳回Redux處理。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 TakeLatest>TakeLatest] -.-> |Action| Saga
 Saga -->|call| API
 API --> |await|Saga
@@ -59,8 +57,7 @@ export default function* rootSaga() {
 
 把兩張圖畫在一起的話，可以看到Redux state與Redux Saga之間整體的呼叫關係。使用Redux/Redux Saga能將「從UI呼叫 -> 參看現有狀態來與API溝通 -> 根據取回值更新狀態 -> 更新UI」這樣的複雜流程，整個簡化為單向的操作。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 Reducer{Reducer} -.-> State(State)
 Disptch>Dispatch] -.- |Action| TakeLatest>TakeLatest]
 TakeLatest -.-> |Action| Saga

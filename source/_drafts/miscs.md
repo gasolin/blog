@@ -10,8 +10,7 @@ To interact with any web API in Node-RED, you can use `http request` block(node)
 
 Traditional computer architecture
 
-{% mermaid %}
-graph TD
+{% mermaid graph TD %}
 Input --> CPU
 CPU --> Output
 CPU <--> Memory
@@ -20,8 +19,7 @@ CPU <--> Storage[Second Storage]
 
 IoT computing architecture [^1]
 
-{% mermaid %}
-graph TD
+{% mermaid graph TD %}
 Input[IoT Sensor] -> Computing[Cloud computing]
 Computing --> Output[IoT Trigger]
 Computing <--> Storage[Cloud Storage]

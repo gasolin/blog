@@ -22,8 +22,7 @@ Native App
 
 Web App
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
    WebUI(Web)
    MobileUI(Mobile)
    DesktopUI(Desktop)

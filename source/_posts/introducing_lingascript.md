@@ -21,8 +21,7 @@ date: 2019-03-08 15:10:44
 
 因此， ‵LingaScript‵ 目前所做的，是讓支援的中文語法可分析為對應的 symbol，並預設將命令行工具設成對應的本地化語言。如此一來就可以得到較完整的使用本地化語言的開發體驗。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
    TypeScript -- 多語言關鍵字 --> LingaScript
    TypeScript -- 本地化命令行 --> LingaScript
    TypeScript -- 本地化錯誤回報 --> LingaScript

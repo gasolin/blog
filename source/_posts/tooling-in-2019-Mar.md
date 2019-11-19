@@ -48,8 +48,7 @@ date: 2019-3-7 16:30:00
 
 考慮買一顆紫米10 15000mAh，這樣一顆就可為筆電/遊戲機/手機/耳機，這樣平時出門都不用帶電源線了。(但其實平常也不會帶遊戲機，換15000mAh似乎要帶的更重 XD)
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 LCD -- DVI --- Notebook
 LCD -- HDMI --- hub{HDMI Hub}
 hub --- ns[Nintendo Switch]

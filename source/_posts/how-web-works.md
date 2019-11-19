@@ -11,8 +11,7 @@ date: 2016-09-20 15:13:31
 
 當我們在瀏覽器上輸入網址，按下Enter鍵之後，瀏覽器會傳送一個訊息出去，向符合這個網址的網站伺服器發出請求。當網站伺服器收到請求後，就會傳回瀏覽器所請求的網頁。
 
-{% mermaid %}
-sequenceDiagram
+{% mermaid sequenceDiagram %}
   Browser ->> Server: 網站請求
   Server -->> Browser: 傳回網頁
 {% endmermaid %}
@@ -21,8 +20,7 @@ sequenceDiagram
 
 瀏覽器收到網頁後，瀏覽器會開始解析網頁內容。網頁使用一種稱為`HTML (HyperText Markup Language)`[^1]的文字格式來定義裡面內容。當瀏覽器看到一些特定標籤（諸如link或script）的時候，瀏覽器會根據標籤裡的網址，再次向符合這些網址的網站伺服器請求相關的資源。而這些網址所代表的網站伺服器，與原本提供網頁的網站伺服器並不一定是同一台。
 
-{% mermaid %}
-sequenceDiagram
+{% mermaid sequenceDiagram %}
   Browser ->> Server: 請求網頁中的資源
   Server -->> Browser: 傳回資源
   Browser ->> Server2: 請求網頁中的資源
@@ -37,8 +35,7 @@ sequenceDiagram
 
 網站伺服器的基本作用，就是接受網頁請求與各種相關資源請求，並回傳對應的網頁或資源。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
   subgraph Browser
     page
   end

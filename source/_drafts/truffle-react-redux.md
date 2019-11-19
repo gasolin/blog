@@ -7,8 +7,7 @@ tags:
 ---
 
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 
 subgraph User
 Browser[DApp Compatible Browser]
@@ -31,8 +30,7 @@ web --- Browser
 
 How `truffle-react-redux` looks like:
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 
 subgraph User
 Browser

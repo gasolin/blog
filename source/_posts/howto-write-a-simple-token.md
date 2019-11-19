@@ -102,8 +102,7 @@ function transfer(address _to, uint256 _amount) public {
 
 `transfer`函式定義了如何`轉帳`，只要指定要傳送的帳號與數目，就會從呼叫者手上把對應數目的代幣移轉到指定的帳號上。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 傳送者 -- 轉帳 --> 代幣合約
 代幣合約 -.-> 修改傳送者和接收者餘額
 {% endmermaid %}
@@ -120,8 +119,7 @@ function balanceOf(address _owner) public constant returns (uint256) {
 
 `balanceOf`函式的作用，是讓使用者可以查詢任一帳號的餘額。透過傳入`_owner`帳號，可以查詢`_owner`帳號儲存在`balances`對照表中的值。
 
-{% mermaid %}
-graph LR
+{% mermaid graph LR %}
 傳送者 --> 代幣合約
 代幣合約 -. 查詢結果 .-> 傳送者
 {% endmermaid %}

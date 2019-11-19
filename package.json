@@ -15,7 +15,7 @@
     "hexo-generator-cname": "0.3.0",
     "hexo-generator-feed": "2.1.1",
     "hexo-generator-index": "1.0.0",
-    "hexo-generator-search": "2.4.0",
+    "hexo-generator-searchdb": "1.1.0",
     "hexo-generator-seo-friendly-sitemap": "0.0.25",
     "hexo-generator-tag": "1.0.0",
     "hexo-new-post-pinyin": "0.0.3",
@@ -29,11 +29,9 @@
     "markdown-it-emoji": "1.4.0"
   },
   "scripts": {
-    "patchConfig": "./node_modules/.bin/file-patch themes/_config.yml.diff themes/next/_config.yml",
-    "patchStyle": "./node_modules/.bin/file-patch themes/base.styl.diff themes/next/source/css/_variables/base.styl",
-    "patchHead": "./node_modules/.bin/file-patch themes/head.swig.diff themes/next/layout/_partials/head/head.swig",
-    "patchPost": "./node_modules/.bin/file-patch themes/post.swig.diff themes/next/layout/_macro/post.swig",
-    "postinstall": "npm run patchConfig && npm run patchStyle && npm run patchHead && npm run patchPost"
+    "patchConfig": "cp themes/_config.yml themes/next/_config.yml",
+    "patchStyle": "cp themes/base.styl themes/next/source/css/_variables/base.styl",
+    "postinstall": "npm run patchConfig && npm run patchStyle"
   },
   "devDependencies": {
     "cz-gitmoji-changelog": "1.1.0"
