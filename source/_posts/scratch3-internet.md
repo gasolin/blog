@@ -54,3 +54,7 @@ end
 - [^1] 以前做的 Blockly + Arduino 專案 [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino)
 - [^2] https://github.com/gasolin/scratch3-internet
 - [^3] Scratch 3 editor http://gasolin.idv.tw/scratch3-internet/
+- [^4] Scratch 3 內建積木說明 https://en.scratch-wiki.info/wiki/Blocks
+- [^5] 如何定義 Blockly 積木 https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+- [^6] Scratch 3.0 学习笔记 https://github.com/Micircle/scratch3.0-note
+- [^7] How to Develop Your Own Block for Scratch 3.0 https://medium.com/@hiroyuki.osaki/how-to-develop-your-own-block-for-scratch-3-0-1b5892026421
