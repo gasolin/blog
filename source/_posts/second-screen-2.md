@@ -47,5 +47,5 @@ date: 2019-11-20 09:50:30
 ## 參考資料
 
 - [^1] Magic Mirror builder https://magicmirror.builders/
-- [^2] https://www.youtube.com/watch?v=OXpJylI3rGI&list=PL2vlFWOHEKMjkMZOSzIiIzN6qGb2pz2WJ
+- [^2] MagicMirror without the Mirror https://www.youtube.com/watch?v=OXpJylI3rGI&list=PL2vlFWOHEKMjkMZOSzIiIzN6qGb2pz2WJ
 - [^3] MMM-GooglePhotos https://github.com/eouia/MMM-GooglePhotos
