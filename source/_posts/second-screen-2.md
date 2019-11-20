@@ -1,5 +1,5 @@
 ---
-title: 我的第二螢幕(I)
+title: 我的第二螢幕(II)
 tags:
   - raspberrypi
   - magicmirror
@@ -19,7 +19,7 @@ date: 2019-11-20 09:50:30
 
 以下是實機畫面：
 
-![Imgur](https://i.imgur.com/WxSrtjJm.jpg)
+![Imgur](https://i.imgur.com/WxSrtjJl.jpg)
 
 想要自己建立類似的第二螢幕的人，可以照著這系列 Youtube 影片[^2] 做設定，說明的相當清楚。
 
