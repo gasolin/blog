@@ -58,7 +58,10 @@ end
 1. get and setup related projects `npm run setup`
 1. start the development server `npm run start`
 
-要部署到自己的 Github 專案網頁，只需輸入 `npm run deploy` 即可。
+要部署到自己的 Github 專案網頁，只需
+
+1. 編譯網站，`npm run build`，編譯好的檔案在 `scratch-gui/build`
+1. 部署到 Github 專案網站的 `gh-pages` 分支中 `npm run deploy`，即可透過 `https://[yourname].github.io` 存取。
 
 ## 參考資料
 
