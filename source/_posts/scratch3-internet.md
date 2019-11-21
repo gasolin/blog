@@ -30,7 +30,9 @@ Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://de
 
 由於 Scratch 3 尚未完成第三方擴充套件的分享架構，因此這兩個擴充套件都放在 `scratch3-internet`[^2] 專案中，想嘗試的人也可以直接連到[^3]使用。
 
-`scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。擴充套件需修改的部分如下（可在[^2]中找到更詳細的文件）：
+`scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。
+
+擴充套件需修改的部分如下（可在[^2]中找到更詳細的文件）：
 
 ```mermaid
 graph TD
@@ -49,12 +51,21 @@ x -.- l[LASS card]
 end
 ```
 
+要啟動一個適合擴充套件開發的 scratch3 專案，只要照以下步驟即可：
+
+```sh
+git clone https://github.com/gasolin/scratch3-internet.git
+npm run setup
+npm run start
+```
+
 ## 參考資料
 
-- [^1] 以前做的 Blockly + Arduino 專案 [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino)
-- [^2] https://github.com/gasolin/scratch3-internet
-- [^3] Scratch 3 editor http://gasolin.idv.tw/scratch3-internet/
-- [^4] Scratch 3 內建積木說明 https://en.scratch-wiki.info/wiki/Blocks
-- [^5] 如何定義 Blockly 積木 https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
-- [^6] Scratch 3.0 学习笔记 https://github.com/Micircle/scratch3.0-note
-- [^7] How to Develop Your Own Block for Scratch 3.0 https://medium.com/@hiroyuki.osaki/how-to-develop-your-own-block-for-scratch-3-0-1b5892026421
+- [1] 以前做的 Blockly + Arduino 專案 [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino)
+- [2] https://github.com/gasolin/scratch3-internet
+- [3] Scratch 3 editor http://gasolin.idv.tw/scratch3-internet/
+- [4] Scratch 3 內建積木說明 https://en.scratch-wiki.info/wiki/Blocks
+- [5] 如何定義 Blockly 積木 https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+- [6] Scratch 3.0 学习笔记 https://github.com/Micircle/scratch3.0-note
+- [7] How to Develop Your Own Block for Scratch 3.0 https://medium.com/@hiroyuki.osaki/how-to-develop-your-own-block-for-scratch-3-0-1b5892026421
+- [8] 开发一个 Scratch3 Extension https://wiki.huangyang.me/post/2019-03-13-scratch3-extension

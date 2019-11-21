@@ -30,5 +30,5 @@ Raspberry Pi 這樣的硬體，要拿來做主要電腦還是有些勉強。
 
 ## 參考資料
 
-- https://www.instructables.com/id/Raspberry-Pi-As-Chromecast-Alternative-Raspicast/
-- http://pcmac.biz/RaspberryPi_Chromecast.html
+- [1] https://www.instructables.com/id/Raspberry-Pi-As-Chromecast-Alternative-Raspicast/
+- [2] http://pcmac.biz/RaspberryPi_Chromecast.html
