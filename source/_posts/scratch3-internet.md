@@ -53,11 +53,12 @@ end
 
 要啟動一個適合擴充套件開發的 scratch3 專案，只要照以下步驟即可：
 
-```sh
-git clone https://github.com/gasolin/scratch3-internet.git
-npm run setup
-npm run start
-```
+1. fork scratch3-internet 專案
+1. clonse repo `git clone https://github.com/[your name]/scratch3-internet.git`
+1. get and setup related projects `npm run setup`
+1. start the development server `npm run start`
+
+要部署到自己的 Github 專案網頁，只需輸入 `npm run deploy` 即可。
 
 ## 參考資料
 
