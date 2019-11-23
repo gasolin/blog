@@ -30,7 +30,9 @@ Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://de
 
 由於 Scratch 3 尚未完成第三方擴充套件的分享架構，因此這兩個擴充套件都放在 `scratch3-internet`[^2] 專案中，想嘗試的人也可以直接連到[^3]使用。
 
-`scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。
+`scratch3-internet`[^2] 專案的特色，是簡化了擴充套件開發前的設定工作，並很容易部署到 Github 網頁上。
+
+技術上，`scratch3-internet`[^2] 專案用了 git submodule 來抓取 Scratch 3 的相關專案，並透過patch的方式將自行開發的擴充套件加入其中，最後包裝成自己的版本[^3]。透過這種方式最小化維護成本。
 
 擴充套件需修改的部分如下（可在[^2]中找到更詳細的文件）：
 
