@@ -23,7 +23,6 @@ date: 2019-11-30 16:30:00
 * :computer:Macbook Pro 15 (2018)
 * :iphone:Zenfone 5
 * :electric_plug:Innergie 60C 電源
-* :computer_mouse:羅技M720滑鼠
 * :headphones: Jabra Elite 65t
 * USB C/Micro USB 雙頭轉接線
 
@@ -44,6 +43,7 @@ date: 2019-11-30 16:30:00
 
 另外由於Ｍacbook Pro 吃 65W 電，因此外出改以:electric_plug:Innergie 60C 來取代 Ｍacbook Pro 的電源線和:electric_plug:小米 45W 電源。:electric_plug:Innergie 60C 電源可為:computer:筆電與 🎮Nintendo Switch 供電，省下帶兩大塊電源線的麻煩。再加帶 5000mAh 行動電源（可選）和 USB C/Micro USB 雙頭轉接線，可解決大部分手機/耳機的充電問題。
 
+另外我也採購了一些 USB C 轉標準 USB 接頭，方便接 Ｍacbook 使用那些仍使用標準 USB 接頭的設備（如接 Arduino 開發板，或轉接雙頭轉接線暫時幫其他裝置充電等）。
 
 ```mermaid
 graph LR
@@ -56,7 +56,7 @@ hub --- pi[Raspberry Pi]
 
 ### :spider_web:網站工具
 
-* :spider_web:主要瀏覽器：[Brave]()
+* :spider_web:主要瀏覽器：`Brave`
 * 瀏覽器插件
   - 拼字訂正：Grammarly
   - 密碼管理：Bitwarden
@@ -96,8 +96,9 @@ hub --- pi[Raspberry Pi]
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm)
 * :bellhop_bell: 專注工具：:tomato: 廚房計時器
+* Firefox Developer Edition / Chromium
 
-不在 Windows 上開發。
+不再在 Windows 上開發。
 
 ### 娛樂工具
 
@@ -123,14 +124,14 @@ hub --- pi[Raspberry Pi]
 * 有聲書：Audible, Podcast Addict
 * :walking_man:健康：小米運動
 
-手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
+手機瀏覽器改使用 `Brave` 瀏覽器。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
 
 ### 其他工具
 
 * 旅遊：Google翻譯, TripAdvisor(旅遊時才裝)
 * 影片播放：MX Player, DS video
 * 記錄看書狀況：Readmoo 分享書
-* 線上學習：Udemy, EggHead.io(網頁版)
+* 線上學習：PressPlay, Youtube, Udemy
 * IFTTT
 * 💳街口支付, Line Pay
 
