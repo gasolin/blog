@@ -95,7 +95,7 @@ hub --- pi[Raspberry Pi]
   - Trailing Spaces
 * 版本控制：git
 * 套件管理：apt (Linux), [nvm](https://github.com/creationix/nvm)
-* :bellhop_bell: 專注工具：:tomato: 廚房計時器
+* :bellhop_bell: 專注工具：:tomato: [Marinara](https://chrome.google.com/webstore/detail/marinara-pomodoro%C2%AE-assist/lojgmehidjdhhbmpjfamhpkpodfcodef) ~~廚房計時器~~
 * Firefox Developer Edition / Chromium
 
 不再在 Windows 上開發。

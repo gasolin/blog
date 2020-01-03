@@ -75,3 +75,4 @@ end
 - [6] Scratch 3.0 学习笔记 https://github.com/Micircle/scratch3.0-note
 - [7] How to Develop Your Own Block for Scratch 3.0 https://medium.com/@hiroyuki.osaki/how-to-develop-your-own-block-for-scratch-3-0-1b5892026421
 - [8] 开发一个 Scratch3 Extension https://wiki.huangyang.me/post/2019-03-13-scratch3-extension
+- [9] Scratch 3.0 Extensions https://github.com/LLK/scratch-vm/blob/develop/docs/extensions.md
