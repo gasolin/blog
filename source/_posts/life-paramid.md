@@ -1,5 +1,5 @@
 ---
-title: 量化人生課題
+title: 質化人生的課題
 tags:
   - life
   - gtd
