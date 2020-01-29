@@ -76,7 +76,8 @@ date: 2020-1-29 00:55:00
 
 ```mermaid
 graph LR
-    have(我有什麼)
+    me(我)
+    have[我有什麼]
     help[誰能幫我]
     do[我做什麼]
     provide(提供什麼)
@@ -85,13 +86,14 @@ graph LR
     user[使用者]
 
     subgraph 付出什麼
-	have --> do
-    help --> do
+	  have --> me
+    help --> me
+    me --> do
     end
     do --> provide
+    subgraph 得到什麼
     provide --> how
     provide --> channel
-    subgraph 得到什麼
     how --> user
     channel --> user
     end
