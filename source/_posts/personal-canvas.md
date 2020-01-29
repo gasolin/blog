@@ -74,6 +74,29 @@ date: 2020-1-29 00:55:00
 - 下面一邊是我在合作以及成為自己的過程中，「我要付出什麼」，另一邊是我在幫助別人的過程中「獲得了什麼」
 - 總的來說，我的左邊是輸入的過程，右邊是輸出的過程，輸入需要成本，而輸出產生收入。
 
+```mermaid
+graph LR
+    have(我有什麼)
+    help[誰能幫我]
+    do[我做什麼]
+    provide(提供什麼)
+    how[怎麼提供]
+    channel[途徑]
+    user[使用者]
+    
+    subgraph 付出什麼
+	have --> do
+    help --> do
+    end
+    do --> provide
+    provide --> how
+    provide --> channel
+    subgraph 得到什麼
+    how --> user
+    channel --> user
+    end
+```
+
 透過個人商業畫布，我們得到了可以在一張A4上展示的範本，只要照著填寫，就可以大致無遺漏地思考當前個人的重要課題。
 
 個人商業畫布的最終目的，是幫助你建立一個「得到 > 付出」的個人發展模式。
