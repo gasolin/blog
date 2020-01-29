@@ -23,11 +23,11 @@ date: 2020-1-29 00:55:00
 <table>
   <tr>
     <td rowspan="2">
-      <b>誰幫我</b>
+      <b>誰能幫我</b>
       <p>誰可以幫我？</p>
     </td>
     <td>
-      <b>做什麼</b>
+      <b>我做什麼</b>
       <p>我要做什麼？</p>
     </td>
     <td rowspan="2" colspan="2">
@@ -46,12 +46,12 @@ date: 2020-1-29 00:55:00
   </tr>
   <tr>
     <td>
-      <b>有什麼</b>
+      <b>我有什麼</b>
       <p>我是誰？<br/>
       我擁有什麼？</p>
     </td>
     <td>
-      <b>途徑</b>
+      <b>宣傳途徑</b>
       <p>怎樣宣傳自己/提供的服務？</p>
     </td>
   </tr>
@@ -81,9 +81,9 @@ graph LR
     do[我做什麼]
     provide(提供什麼)
     how[怎麼提供]
-    channel[途徑]
+    channel[宣傳途徑]
     user[使用者]
-    
+
     subgraph 付出什麼
 	have --> do
     help --> do
