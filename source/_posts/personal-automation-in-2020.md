@@ -57,8 +57,10 @@ Dropbox -.-> NAS
 
 ## 運動自動化紀錄 :walking:
 
-* ~~記步，睡眠紀錄：小米手環3~~
+* 記步，睡眠紀錄：小米手環3
 * 體重：小米體重計
+
+再透過小米運動 App 同步到 Google Fit
 
 ```mermaid
 graph LR
@@ -181,12 +183,12 @@ User -- commit --> master
 master -. auto build .-> travis
 travis -.  auto deploy .-> ghpages
 ```
-
-Auto website deploy flow
+| Auto website deploy flow
 
 一些可以直接運作在瀏覽器的專案(如BlocklyDuino和Saihubot)，我會直接將gh-pages設為預設分支，所有改動直接push到這分支中。這樣一有改動即可在網頁上看到更新成果。
 
 之後考慮使用 Github Action 取代 Travis。
+
 ---
 
 ## 半自動紀錄
