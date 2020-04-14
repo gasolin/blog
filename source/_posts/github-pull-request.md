@@ -1,7 +1,6 @@
 ---
 title: 如何抓別人的 Pull Request
 tags:
-  - coding
   - git
 date: 2020-04-14 22:10:46
 ---
