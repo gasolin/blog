@@ -13,8 +13,8 @@ install:
   - npm install
 
 script:
+  - export NODE_OPTIONS=--max_old_space_size=4096
   - hexo clean
-  - npx increase-memory-limit
   - hexo generate --deploy --quiet
 
 branches:
