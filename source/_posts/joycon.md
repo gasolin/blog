@@ -8,7 +8,9 @@ date: 2020-04-22 16:25:46
 
 這篇也可以叫「如何使用 JoyCon 作為鍵盤/滑鼠快捷鍵來輔助工作」。
 
-在看「[日本YouTuber的包裡面有什麼？](https://www.youtube.com/watch?v=f6B_jJRWung)」時發現這個Youtuber隨身背包裡竟然會放一個 JoyCon(L)，在剪片時當作快速鍵使用。
+[![](http://img.youtube.com/vi/f6B_jJRWung/0.jpg)](http://www.youtube.com/watch?v=f6B_jJRWung "")
+
+在看「[日本YouTuber的包裡面有什麼？](https://www.youtube.com/watch?v=f6B_jJRWung)」影片時，發現這個Youtuber隨身背包裡竟然會放一個 JoyCon(L)，在剪片時當作快速鍵使用。
 
 這真是有趣的想法。將大家手上都有Switch（？）手把，延伸做更多用途。
 數一數，單邊JoyCon就有共15個鍵(搖桿上下左右，壓下（L），方向鍵上下左右，截圖鍵，L1, L2兩個肩鍵，減號鍵，側邊2個小肩鍵)可用！
