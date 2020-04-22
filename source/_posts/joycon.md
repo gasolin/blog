@@ -1,10 +1,12 @@
 ---
-title: 如何使用 JoyCon 作為鍵盤/滑鼠快捷鍵
+title: 我用 JoyCon 手把，提升工作生產力
 tags:
   - devhack
   - lifehack
 date: 2020-04-22 16:25:46
 ---
+
+這篇也可以叫「如何使用 JoyCon 作為鍵盤/滑鼠快捷鍵來輔助工作」。
 
 在看「[日本YouTuber的包裡面有什麼？](https://www.youtube.com/watch?v=f6B_jJRWung)」時發現這個Youtuber隨身背包裡竟然會放一個 JoyCon(L)，在剪片時當作快速鍵使用。
 
