@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "file-patch": "0.3.0",
-    "hexo": "4.2.0",
+    "hexo": "^4.2.1",
     "hexo-deployer-git": "1.0.0",
     "hexo-filter-mermaid-diagrams": "1.0.5",
     "hexo-footnotes": "1.0.2",
@@ -25,6 +25,7 @@
     "hexo-renderer-markdown-it": "4.1.0",
     "hexo-renderer-stylus": "1.1.0",
     "hexo-server": "1.0.0",
+    "hexo-simple-mindmap": "^0.2.0",
     "hexo-tag-mermaid": "1.0.0",
     "hexo-wordcount": "6.0.1",
     "markdown-it-emoji": "1.4.0"
