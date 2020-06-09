@@ -5,8 +5,6 @@ tags:
 date: 2020-05-30 18:35:46
 ---
 
-開發 React Native App 的上手流程
-
 measure, avoid re-render, memoize
 
 

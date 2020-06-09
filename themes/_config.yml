@@ -68,7 +68,7 @@ footer:
     color: "#808080"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
-  copyright: true
+  copyright:
 
   # Powered by Hexo & NexT
   powered: true
