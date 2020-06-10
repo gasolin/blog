@@ -14,6 +14,7 @@ date: 2020-06-09 22:50:46
 - Browser
   - HTML
   - Javascript
+    - library (jquery)
   - CSS
 - Server
   - Frameworks (RoR, Django...)
@@ -24,18 +25,22 @@ date: 2020-06-09 22:50:46
 {% pullquote mindmap mindmap-md %}
 - Browser (Frontend)
   - HTML
+    - HTML5
   - Javascript
     - v8 engine
       - Node.js
         - Command Line
+          - Pacakge manager (npm)
+          - Build tool (grunt, gulp, webpack...)
         - Backend (Express...)
-    - ES6
   - CSS
 - Server (Backend)
   - Frameworks
+- Mobile
+  - Cordova
 {% endpullquote %}
 
-2019 年後
+2017 年後
 
 {% pullquote mindmap mindmap-lg %}
 - Browser (Frontend)
@@ -44,10 +49,15 @@ date: 2020-06-09 22:50:46
     - v8 engine
       - Node.js
         - Command Line
+          - Pacakge manager (npm, yarn)
+          - Build tool (webpack...)
+          - Linter (eslint)
         - Backend (Express...)
     - ES6
-    - WASM
+      - Transpiler (Babel)
+      - TypeScript
   - CSS
+  - Web Assembly
 - Server (Backend)
   - Frameworks
   - Serverless
