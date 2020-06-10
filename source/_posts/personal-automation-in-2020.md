@@ -64,10 +64,10 @@ Dropbox -.-> NAS
 
 ```mermaid
 graph LR
-User -- 記步 --> 小米運動App
+User -- 記步 --> mi[小米運動App]
 User -- 量體重 --> 小米體重計
-小米體脂計 -.-> 小米運動App
-小米運動App -.-> Google Fit
+小米體脂計 -.-> mi
+mi -.-> Google Fit
 ```
 
 行走目標為每天4000步。
