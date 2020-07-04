@@ -16,11 +16,11 @@ date: 2020-07-04 17:06:46
 ## 快速入門 (硬體需求)
 
 - 驗證節點需要 24 小時運作（可短時間離線）
-- Passmark cpu (x86, ARM) 分數至少 4000分
+- Passmark CPU Mark (x86, ARM) 分數至少 4000 分
 - 至少 512G 的 SSD
 - 運作期間會長期佔用 300k bps 左右的網路頻寬
 
-在[參考相關文章，並考慮整體成本](https://www.facebook.com/groups/taipei.ethereum.meetup/permalink/1435541646639005/)後，我選擇樹莓派4代 (Raspberry Pi 4) 4GB版當作主機，搭配 512G 的 USB 介面外接 SSD 來跑驗證節點(最高耗能 5V 1A 15W，一般能耗應該在5~9W之間)。
+在[參考相關文章，並考慮整體成本](https://www.facebook.com/groups/taipei.ethereum.meetup/permalink/1435541646639005/)後，我選擇樹莓派4代 (Raspberry Pi 4) 4GB版當作主機，搭配 512G 的 USB 介面外接 SSD 來跑驗證節點(總能耗 = 機器本身最高耗能 5V * 3A = 15W，再加上家用路由器要一直開著著的能耗。樹莓派4一般能耗應該在5~9W之間)。
 
 神奇的是，需要的硬體竟然在 PCHome 就可以一次買齊 😎
 ![Imgur](https://i.imgur.com/XvSUG8i.png)
