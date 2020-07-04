@@ -27,6 +27,8 @@ date: 2020-07-04 17:06:46
 
 (我已有 16G+ SD卡，SD卡讀卡機，HDMI外接螢幕，USB外接鍵盤)，林林總總必要成本大概在 7000 元內。
 
+參考 ETH 2 stacking 的即時回報率 https://beaconcha.in/calculator，這個配置大概只要跑3個月，硬體跟電費的部分就可以回本了。
+
 ## 快速入門 (軟體需求)
 
 驗證節點需要
@@ -48,7 +50,7 @@ graph LR
 
 ## 快速入門 (軟體設定)
 
-> 把 SD 卡燒好，路由器上開 13000/30303 port forwarding，接上網路，就自動裝好自動跑
+> 把 SD 卡燒好，路由器上開 13000/30303 port forwarding，接上網路，就自動裝好自動跑。
 
 ### 1. 燒 ROM
 
@@ -71,22 +73,21 @@ $ hostname -I
 
 這時就可以透過其他設備查看樹莓派4的狀態。
 
-開啟瀏覽器，輸入 http://[ip]:3000 ，使用 admin/ethereum 登入，可以看到以下的監視圖表
+開啟瀏覽器，輸入 http://[ip]:3000 ，使用 admin/ethereum 登入，可以看到以下的監視圖表：
 
 設備狀態
-
 ![Imgur](https://i.imgur.com/r7lRWTW.png)
 
 Ethereum 1.0
 ![Imgur](https://i.imgur.com/cllCJXK.png)
 
-Ethereum 2.0 的監視圖表在 Ethereum 1.0 區塊鏈同步完成前，都還不會正常顯示
+Ethereum 2.0 的監視圖表在 Ethereum 1.0 區塊鏈同步完成前，都還不會正常顯示。
 
 ### 4. 設定網路
 
 打開家用路由器的設定頁面，將樹莓派4分配到以上查到的固定內網IP (如上例就是 `192.168.1.123`)。
 
-在 WAN（外部網路）端設定頁面的`Port Forwarding`，或`虛擬伺服器`設定中，將以下 port 綁定到樹莓派4的內網IP
+在 WAN（外部網路）端設定頁面的`Port Forwarding`，或`虛擬伺服器`設定中，將以下 port 綁定到樹莓派4的內網IP：
 
 - 13000 (TCP)
 - 12000 (UDP)
@@ -148,6 +149,5 @@ ssh ethereum@192.168.1.123
 - EthereumOnARM 的 Github Repo https://github.com/diglos/pi-gen/tree/ethraspbian2.0/
 - 我第一次安裝的 ROM 版本
 https://www.reddit.com/r/ethereum/comments/gf3nhg/ethereum_on_arm_raspberry_pi_4_images_release/
-- ETH 2 stacking 的即時回報率可參考 https://beaconcha.in/calculator
 - 用 Windows 10 或 Mac OS 架 https://kb.beaconcha.in/tutorial-eth2-multiclient
 - Prysm 的 Issue Tracker https://github.com/prysmaticlabs/prysm/issues
