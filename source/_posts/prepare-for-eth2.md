@@ -30,9 +30,9 @@ date: 2020-07-04 17:06:46
 ## 快速入門 (軟體需求)
 
 驗證節點需要
-1. 參考 Ethereum 1.0的區塊鏈
-2. 同步 Ethereum 2.0 Beacon chain
-3. 運行 Ethereum 2.0 的 Validator
+1. 參考 Ethereum 1.0 的區塊鏈節點
+2. 同步 Ethereum 2.0 Beacon鏈
+3. 運行 Ethereum 2.0 的 Validator（驗證者節點）
 
 因此軟體中需要包含
 
@@ -86,7 +86,7 @@ Ethereum 2.0 的監視圖表在 Ethereum 1.0 區塊鏈同步完成前，都還�
 
 打開家用路由器的設定頁面，將樹莓派4分配到以上查到的固定內網IP (如上例就是 `192.168.1.123`)。
 
-在 WAN 端設定的 Port Forwarding 設定中，將以下 port 綁定樹莓派4的內網IP
+在 WAN（外部網路）端設定頁面的`Port Forwarding`，或`虛擬伺服器`設定中，將以下 port 綁定到樹莓派4的內網IP
 
 - 13000 (TCP)
 - 12000 (UDP)
@@ -108,9 +108,24 @@ ssh ethereum@192.168.1.123
 
 申請後如果 validator process 也順利啟動，可以在 Ethereum 2.0 監視圖表中看到 `Validator process started` 訊息。
 
+`Validator Main Info`的`Status`(狀態)欄位也會變成`DEPOSITED`(已存入)狀態。
+
 ![Imgur](https://i.imgur.com/IwHa9w7.png)
 
-## 其他軟體設定選擇
+## 運作之後
+
+恭喜你已經上車了！🤑
+
+你應該要知道，你放了 32ETH （現價7000+美金）在以太坊 2.0 的網路上，一兩年的時間內無法取回到以太坊 1.0 網路上使用。
+
+......😲😱😡🤬
+
+還好，現在跑的還只是測試網路，不用放真的 ETH 😜。
+
+這時候，是不是更應該仔細查看一下當前 Ethereum 2.0 的乘車規則 (Spec) 是不是合理？ 在過程中遇到各種問題時，Ethereum 2.0 網路會怎麼處理？
+https://github.com/ethereum/eth2.0-specs/tree/dev/specs/phase0
+
+### 其他軟體設定選擇
 
 可以參考已有一些手動安裝教學如
 
@@ -119,7 +134,15 @@ ssh ethereum@192.168.1.123
 
 教你從 Ubuntu 20.04 開始從頭裝。
 
-## 參考資料
+## 其他的硬體選擇
 
+可以參考 https://kb.beaconcha.in/community/staking-and-hardware
+
+
+## 參考資料
+- EthereumOnARM 的 Github Repo https://github.com/diglos/pi-gen/tree/ethraspbian2.0/
 - 我第一次安裝的 ROM 版本
 https://www.reddit.com/r/ethereum/comments/gf3nhg/ethereum_on_arm_raspberry_pi_4_images_release/
+- ETH 2 stacking 的即時回報率可參考 https://beaconcha.in/calculator
+- 用 Windows 10 或 Mac OS 架 https://kb.beaconcha.in/tutorial-eth2-multiclient
+- Prysm 的 Issue Tracker https://github.com/prysmaticlabs/prysm/issues
