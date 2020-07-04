@@ -38,13 +38,12 @@ date: 2020-07-04 17:06:46
 
 因此軟體中需要包含
 
-{% pullquote mindmap mindmap-sm %}
-- Ethereum 1
-  - Chain (不挖礦, Geth)
-- Ethereum 2
-  - Beacon Chain (Prysm)
-  - Validator (Prysm)
-{% endpullquote %}
+```mermaid
+graph TD
+	U[Ubuntu 20.04] --> C(Ethereum 1 Chain, 不挖礦, Geth)
+  U --> B(Ethereum 2 Beacon Chain, Prysm)
+  U --> V(Ethereum 2 Validator, Prysm)
+```
 
 硬體準備好後，若想要快速開始體驗，可以參考 [EthereumOnARM](https://github.com/diglos/pi-gen/tree/ethraspbian2.0/) 專案提供的 [ROM 版本](https://www.reddit.com/r/ethereum/comments/hhvi2r/ethereum_on_arm_new_eth20_raspberry_pi_4_image/)
 或是參考他的[腳本](https://github.com/diglos/pi-gen/tree/ethraspbian2.0/stage2)來設定（請留意使用他人包好的 ROM 的風險）。
