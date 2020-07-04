@@ -113,11 +113,17 @@ ssh ethereum@192.168.1.123
 
 ![Imgur](https://i.imgur.com/IwHa9w7.png)
 
+也可以根據你登記的 Validator pubkey，前往 https://beaconcha.in 查看 Validator 狀態
+
+例如 https://beaconcha.in/validator/afd3625f1e7c2fe4047b95fc641b8121b0b8cf77bb620c55a8e5999e4105e15d26c04ed97441ce51f2300cd283abe346
+
+經過實際安裝的過程，我們可以看到，以太坊 2.0 的相關工具生態已經初步搭建起來了。
+
 ## 運作之後
 
 恭喜你已經上車了！🤑
 
-你應該要知道，你放了 32ETH （現價7000+美金）在以太坊 2.0 的網路上，一兩年的時間內無法取回到以太坊 1.0 網路上使用。
+同時，你也應該要知道，你放了 32ETH （現價7000+美金）在以太坊 2.0 的網路上，一兩年的時間內無法取回到以太坊 1.0 網路上使用。
 
 ......😲😱😡🤬!!!
 
