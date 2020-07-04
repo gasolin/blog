@@ -118,12 +118,17 @@ ssh ethereum@192.168.1.123
 
 你應該要知道，你放了 32ETH （現價7000+美金）在以太坊 2.0 的網路上，一兩年的時間內無法取回到以太坊 1.0 網路上使用。
 
-......😲😱😡🤬
+......😲😱😡🤬!!!
 
-還好，現在跑的還只是測試網路，不用放真的 ETH 😜。
+還好，現在跑的還只是測試網路，放的不是真的 ETH 😜。
 
-這時候，是不是更應該仔細查看一下當前 Ethereum 2.0 的乘車規則 (Spec) 是不是合理？ 在過程中遇到各種問題時，Ethereum 2.0 網路會怎麼處理？
-https://github.com/ethereum/eth2.0-specs/tree/dev/specs/phase0
+這時候，是不是更應該仔細查看一下當前 [Ethereum 2.0 的說明書](https://github.com/ethereum/eth2.0-specs/tree/dev/specs/phase0) (Spec) 是不是合理？
+
+在驗證截短運作的過程中，一旦遇到網路、機器當機等各種斷線情況時，[Ethereum 2.0 網路會怎麼處理](https://github.com/ethereum/eth2.0-specs/blob/dev/specs/phase0/validator.md#how-to-avoid-slashing)？
+
+文末加註警語：
+
+**可以用文中建議的配置，用較低成本在測試網路體驗看看。但若為了投資而做，請詳閱說明書！**
 
 ### 其他軟體設定選擇
 
