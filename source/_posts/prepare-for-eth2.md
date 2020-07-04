@@ -38,7 +38,7 @@ date: 2020-07-04 17:06:46
 
 ```mermaid
 graph LR
-	U[Ubuntu 20.04] --> C(Ethereum 1 Chain, 不挖礦, Geth)
+  U[Ubuntu 20.04] --> C(Ethereum 1 Chain, 不挖礦, Geth)
   U --> B(Ethereum 2 Beacon Chain, Prysm)
   U --> V(Ethereum 2 Validator, Prysm)
 ```
