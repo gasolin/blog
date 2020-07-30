@@ -11,7 +11,7 @@ date: 2020-07-04 17:06:46
 
 這邊略過各種基礎介紹，直接從如何運行以太坊 (Ethereum) 2.0 的驗證節點開始。
 
-如果覺得這篇文章有用，歡迎傳送小費到 0xfDa995Eb398750319a2D5E8A4766c02e54db24b8 (或 gasolin.eth)
+如果覺得這篇文章有用，歡迎傳送小費到 0xfDa995Eb398750319a2D5E8A4766c02e54db24b8
 
 ## 快速入門 (硬體需求)
 
@@ -27,7 +27,7 @@ date: 2020-07-04 17:06:46
 
 (我已有 16G+ SD卡，SD卡讀卡機，HDMI外接螢幕，USB外接鍵盤)，林林總總必要成本大概在 7000 元內。
 
-參考 ETH 2 stacking 的即時回報率 https://beaconcha.in/calculator，這個配置大概只要跑3個月，硬體跟電費的部分就可以回本了。
+參考 ETH 2 stacking 的即時回報率 https://beaconcha.in/calculator ，這個配置大概只要跑3個月，硬體跟電費的部分就可以回本了。
 
 ## 快速入門 (軟體需求)
 
@@ -115,7 +115,7 @@ ssh ethereum@192.168.1.123
 
 也可以根據你登記的 Validator pubkey，前往 https://beaconcha.in 查看 Validator 狀態
 
-例如 https://beaconcha.in/validator/afd3625f1e7c2fe4047b95fc641b8121b0b8cf77bb620c55a8e5999e4105e15d26c04ed97441ce51f2300cd283abe346
+例如 https://beaconcha.in/validator/30078 或 https://beacon.etherscan.io/validator/30078
 
 經過實際安裝的過程，我們可以看到，以太坊 2.0 的相關工具生態已經初步搭建起來了。
 
@@ -148,10 +148,11 @@ ssh ethereum@192.168.1.123
 
 ## 其他的硬體選擇
 
-可以參考 https://kb.beaconcha.in/community/staking-and-hardware
+可以參考 https://www.reddit.com/r/ethstaker/comments/ggmbvd/a_comprehensive_look_at_hardware_for_staking/
 
 
 ## 參考資料
+- 可以前往 https://www.reddit.com/r/ethstaker/ 查看 Eth 2.0 Stacking 相關討論
 - EthereumOnARM 的 Github Repo https://github.com/diglos/pi-gen/tree/ethraspbian2.0/
 - 我第一次安裝的 ROM 版本
 https://www.reddit.com/r/ethereum/comments/gf3nhg/ethereum_on_arm_raspberry_pi_4_images_release/
