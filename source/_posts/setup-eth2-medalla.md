@@ -1,5 +1,5 @@
 ---
-title: 沒時間了，快上車！遷移到 Ethereum 2.0 測試網
+title: 沒時間了，快上車！遷移到 Ethereum 2.0 測試網 (Modalla)
 tags:
   - ethereum
 date: 2020-08-07 20:35:46
@@ -25,7 +25,7 @@ date: 2020-08-07 20:35:46
 
 ![Imgur](https://i.imgur.com/xl0VVgD.png)
 
-請及早準備好 32 ETH，移到 ETH 2 網路預計需要花8小時以上。
+請及早準備好 32 ETH，從存入到完成遷移 ETH 2 網路，預計需要花8小時以上。
 
 ## 2. 設定樹莓派
 
@@ -51,7 +51,7 @@ sudo ./deposit.sh install
 將產生的檔案(`/eth2.0-deposit-cli/validator_keys`)從樹莓派複製到本機[^4]
 
 ```sh
-scp ethereum@192.168.50.214://home/ethereum/misc/eth2.0-deposit-cli/validator_keys/deposit_data-1596511852.json deposit_data-1596511852.json
+scp ethereum@192.168.1.234://home/ethereum/eth2.0-deposit-cli/validator_keys/deposit_data-1596511852.json deposit_data-1596511852.json
 ```
 
 將檔案上傳到 Launchpad https://medalla.launchpad.ethereum.org/upload-validator
@@ -63,20 +63,23 @@ scp ethereum@192.168.50.214://home/ethereum/misc/eth2.0-deposit-cli/validator_ke
 在樹莓派上，將產生的驗證者檔案匯入 prysm
 
 ```sh
-$ /usr/bin/validator accounts-v2 import --keys-dir=$HOME/misc/eth2.0-deposit-cli/validator_keys
+$ /usr/bin/validator accounts-v2 import --keys-dir=$HOME//eth2.0-deposit-cli/validator_keys
 Enter a wallet directory (default: /home/ethereum/.eth2validators/prysm-wallet-v2):
 
 Directory where passwords will be stored (default: /home/ethereum/.eth2validators/prysm-wallet-v2-passwords):
 
 [2020-08-04 12:14:33]  INFO accounts-v2: Successfully created new wallet wallet-path=/home/ethereum/.eth2validators/prysm-wallet-v2
-Importing accounts: 0x945fc73b7547
+New wallet password:
+Confirm password:
+Enter the password for your imported accounts:
+Importing accounts, this may take a while...
+Importing accounts... 100% [===========================================================================================================================================]  [36s:0s]
+Successfully imported 1 accounts, view all of them by running accounts-v2 list
+```
 
-Enter the password for your imported accounts: Importing accounts, this may take a while...
-Finished importing 0x945fc73b7547
- 100% [=================================================================================================================================================================]  [2s:0s]Successfully imported 1 accounts, view all of them by running accounts-v2 list
- ```
+可以使用 `$ /usr/bin/validator accounts-v2 list` 命令查看是否成功匯入。
 
-## 5. 啟動 beacon 網路
+## 5. 啟動 beacon 服務
 
 如果你和我一樣有跑之前的測試網，需要先清空之前測試網的資料庫紀錄，才能順利啟動 beacon 服務。
 
@@ -90,7 +93,22 @@ Finished importing 0x945fc73b7547
 sudo systemctl start prysm-beacon
 ```
 
-運行順暢後，再啟動 validator 服務
+運行順暢後，再啟動 validator 服務。
+
+## 啟動 validator 服務
+
+先建立 password.txt 檔案，並將密碼寫入其中
+
+```sh
+touch ~/.eth2validators/prysm-wallet-v2/password.txt
+vi ~/.eth2validators/prysm-wallet-v2/password.txt
+```
+
+編輯 `/etc/ethereum/prysm-validator.conf` 檔案，將內容改為
+
+```sh
+ARGS="--wallet-dir /home/ethereum/.eth2validators/prysm-wallet-v2 --wallet-password-file /home/ethereum/.eth2validators/prysm-wallet-v2/password.txt"
+```
 
 ```
 sudo systemctl start prysm-validator
@@ -110,3 +128,4 @@ sudo systemctl status geth.service
 - [2] eth2 validator launchpad https://blog.ethereum.org/2020/07/27/eth2-validator-launchpad/
 - [3] https://github.com/metanull-operator/eth2-ubuntu#make-validator-deposits-and-install-keys
 - [4] scp 指令用法 https://blog.gtwang.org/linux/linux-scp-command-tutorial-examples/
+- [5] Guide to Staking on Ethereum 2.0 (Ubuntu/Medalla/Prysm) https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-medalla-prysm-4d2a86cc637b
