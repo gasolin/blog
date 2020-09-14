@@ -14,7 +14,7 @@ Scratch 3 是一套由麻省理工學院（MIT）發起，以兒童學習程式�
 
 Scratch 3 除了程式語言的部分採用堆疊積木塊的方式，還提供了對應的整合的舞台，主角，並提供相對應的積木塊。你可以透過拖拉積木塊，直接控制這些主角在場景中的活動。
 
-Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://developers.google.com/blockly/) 很相似。實際上 [Blockly](https://developers.google.com/blockly/) / [AppInventor](https://appinventor.mit.edu/) 的靈感來源就是來自於 Scratch 3。
+Scratch 3 的積木編程部分和我多年前玩過[^1]的 [Blockly](https://developers.google.com/blockly/) 很相似。實際上 [Blockly](https://developers.google.com/blockly/) / [AppInventor](https://appinventor.mit.edu/) 的靈感來源就是來自於 Scratch。
 
 在 Scratch 3 版本中，也已經將 Blockly 整合進去, 作為它提供程式積木的方式。
 

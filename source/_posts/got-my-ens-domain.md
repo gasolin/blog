@@ -6,6 +6,10 @@ tags:
 date: 2017-08-13 15:07:30
 ---
 
+```
+聲明：gasolin.eth 此 Domain 已過期，我並未繼續註冊
+```
+
 前幾天剛拿到[gasolin.eth](https://etherscan.io/enslookup?q=gasolin.eth)這個ENS網域。ENS (Ethereum Name Service)[^1] 的功能類似我們較熟悉的DNS(Domain Name Service)網域名稱服務，但提供的不是Internet網址，而是將以太坊(Ethereum)錢包地址和智能合約地址以`xxxxxxx.eth`網址的方式表示，可以用於轉帳或存取智能合約等地方。
 
 ## ENS網域的應用情境
