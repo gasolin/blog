@@ -30,6 +30,8 @@ date: 2020-04-04 15:00:29
 
 透過 Google SpreadSheet 和 Integromat，取得自己關注的資訊。
 
+10月: 重新部署了基於[saihubot](https://github.com/gasolin/saihubot/)的[小g網頁聊天機器人](http://gasolin.idv.tw/g)，將一些即時查詢類的動作寫成網頁可即時取得版。可以輸入`help`參考看看當下可以處理的命令。
+
 ### Integromat
 
 透過使用 LASS API ， 當附近 PM2.5 超過35.4(不良)時手機推送訊息給我。
