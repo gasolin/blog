@@ -3,7 +3,7 @@ title: Youtube 自動點選略過廣告按鈕 (Android)
 tags:
   - android
   - automation
-  - lifehack
+  - life
 date: 2020-02-06 23:04:50
 ---
 

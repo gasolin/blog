@@ -3,6 +3,7 @@ title: 完成 Habitica 待辦事項 -> 記錄到 Google 日曆
 tags:
   - ifttt
   - appscript
+  - life
 date: 2020-10-23 11:15:46
 ---
 
