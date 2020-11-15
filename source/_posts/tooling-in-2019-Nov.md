@@ -11,7 +11,7 @@ date: 2019-11-30 16:30:00
 
 ## 主要裝備
 
-* :computer:Apple Macbook Pro 15 (2018), i5 16GB RAM, 13.3" LCD，作業系統：10.14.6
+* :computer:Apple Macbook Pro 13 (2018), i5 16GB RAM，作業系統：10.14.6
 
 * :iphone:[Zenfone 5](https://www.asus.com/tw/Phone/ZenFone-5-ZE620KL/Tech-Specs/), Android 9(Pie), Snapdragon 636, 6.2" Super IPS
 
@@ -20,7 +20,7 @@ date: 2019-11-30 16:30:00
 
 ## :walking_man:外出攜帶
 
-* :computer:Macbook Pro 15 (2018)
+* :computer:Macbook Pro 13 (2018)
 * :iphone:Zenfone 5
 * :electric_plug:Innergie 60C 電源
 * :headphones: Jabra Elite 65t
