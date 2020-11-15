@@ -53,6 +53,9 @@ date: 2020-11-15 22:30:00
 * 瀏覽器常駐分頁
   - :email:[GMail](http://mail.google.com/),
   - ✅待辦事項：[Habitica](https://habitica.com/)
+  - Workona
+
+![Imgur](https://i.imgur.com/7goRNxj.png)
 
 * :busts_in_silhouette:主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
 * :memo:記事：[Google keep](http://keep.google.com/), Google Doc
