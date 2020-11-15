@@ -2,7 +2,7 @@
 title: 我用 JoyCon 手把，提升工作生產力
 tags:
   - devhack
-  - lifehack
+  - life
 date: 2020-04-22 16:25:46
 ---
 
