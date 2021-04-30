@@ -3,7 +3,7 @@ title: 這一年的投資 (2020)
 tags:
   - life
 date: 2021-04-30 16:50:31
-----
+---
 
 拖稿許久。趁勞動節有空，仿照朋友[這一年的投資](https://realoptimizer.com/my-investment-2020/)，寫一篇我的版本。
 
