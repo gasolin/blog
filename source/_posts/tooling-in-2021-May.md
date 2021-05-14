@@ -134,4 +134,4 @@ date: 2021-05-14 12:30:00
 * [^6] [個人工具箱2018六月](https://blog.gasolin.idv.tw/2018/05/24/tooling-in-2018-jun/)
 * [^7] [個人工具箱2019三月](https://blog.gasolin.idv.tw/2018/05/24/tooling-in-2019-Mar/)
 * [^8] [個人工具箱2019十一月](https://blog.gasolin.idv.tw/2019/11/30/tooling-in-2019-Nov/)
-* [^9] [個人工具箱2020十一月](https://blog.gasolin.idv.tw/2019/11/30/tooling-in-2020-Nov/)
+* [^9] [個人工具箱2020十一月](https://blog.gasolin.idv.tw/2020/11/15/tooling-in-2020-Nov/)
