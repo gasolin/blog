@@ -28,7 +28,7 @@
     "hexo-simple-mindmap": "^0.2.0",
     "hexo-tag-mermaid": "1.0.0",
     "hexo-wordcount": "6.0.1",
-    "markdown-it-emoji": "1.4.0"
+    "markdown-it-emoji": "2.0.0"
   },
   "scripts": {
     "patchConfig": "cp themes/_config.yml themes/next/_config.yml",
