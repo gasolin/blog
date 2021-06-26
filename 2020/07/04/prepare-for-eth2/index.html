@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="以太坊 (Ethereum)作為 2014 年才開始區塊鏈的專案，近年發展迅速，眾多在以太坊上的活動讓目前的每秒交易速度(~13 TPS)已不符所需。經過多年的實驗與討論，以太坊 (Ethereum) 的下一代 Ethereum 2.0 路線圖也已經越來越清晰。 目前以太坊 (Ethereum) 2.0 即將進展至 Phase 0 階段。在此階段以太坊 1.0 和 2.0 的網路將並存。直到發展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="沒時間了，快上車！在家跑 Ethereum 2.0 驗證節點">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="以太坊 (Ethereum)作為 2014 年才開始區塊鏈的專案，近年發展迅速，眾多在以太坊上的活動讓目前的每秒交易速度(~13 TPS)已不符所需。經過多年的實驗與討論，以太坊 (Ethereum) 的下一代 Ethereum 2.0 路線圖也已經越來越清晰。 目前以太坊 (Ethereum) 2.0 即將進展至 Phase 0 階段。在此階段以太坊 1.0 和 2.0 的網路將並存。直到發展">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/XvSUG8i.png">
+<meta property="og:image" content="https://i.imgur.com/r7lRWTW.png">
+<meta property="og:image" content="https://i.imgur.com/cllCJXK.png">
+<meta property="og:image" content="https://i.imgur.com/N7q32gk.png">
+<meta property="og:image" content="https://i.imgur.com/IwHa9w7.png">
+<meta property="article:published_time" content="2020-07-04T09:06:46.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.711Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="ethereum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/XvSUG8i.png">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>沒時間了，快上車！在家跑 Ethereum 2.0 驗證節點 | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          沒時間了，快上車！在家跑 Ethereum 2.0 驗證節點
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-04 17:06:46" itemprop="dateCreated datePublished" datetime="2020-07-04T17:06:46+08:00">2020-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/04/prepare-for-eth2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/04/prepare-for-eth2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://zh.wikipedia.org/zh-tw/%E4%BB%A5%E5%A4%AA%E5%9D%8A" target="_blank" rel="noopener">以太坊 (Ethereum)</a>作為 2014 年才開始區塊鏈的專案，近年發展迅速，眾多在以太坊上的活動讓目前的每秒交易速度(~13 TPS)已不符所需。經過多年的實驗與討論，以太坊 (Ethereum) 的下一代 <a href="https://www.blocktempo.com/the-state-of-eth2-june-2020/" target="_blank" rel="noopener">Ethereum 2.0 路線圖</a>也已經越來越清晰。</p>
+<p>目前以太坊 (Ethereum) 2.0 即將進展至 Phase 0 階段。在此階段以太坊 1.0 和 2.0 的網路將並存。直到發展到 Phase 1.5 階段，1.0 網路將會融合進 2.0網路。隨著時間接近，2.0 測試網路與多種驗證節點的測試版也陸續釋出，網路上已有許多經驗可參考，正是嘗試的好時機。</p>
+<p>這邊略過各種基礎介紹，直接從如何運行以太坊 (Ethereum) 2.0 的驗證節點開始。</p>
+<p>如果覺得這篇文章有用，歡迎傳送小費到 0xfDa995Eb398750319a2D5E8A4766c02e54db24b8</p>
+<h2 id="快速入門-硬體需求">快速入門 (硬體需求)</h2>
+<ul>
+<li>驗證節點需要 24 小時運作（可短時間離線）</li>
+<li>Passmark CPU Mark (x86, ARM) 分數至少 4000 分</li>
+<li>至少 512G 的 SSD</li>
+<li>運作期間會長期佔用 300k bps 左右的網路頻寬</li>
+</ul>
+<p>在<a href="https://www.facebook.com/groups/taipei.ethereum.meetup/permalink/1435541646639005/" target="_blank" rel="noopener">參考相關文章，並考慮整體成本</a>後，我選擇樹莓派4代 (Raspberry Pi 4) 4GB版當作主機，搭配 512G 的 USB 介面外接 SSD 來跑驗證節點(總能耗 = 機器本身最高耗能 5V * 3A = 15W，再加上家用路由器要一直開著著的能耗。樹莓派4一般能耗應該在5~9W之間)。</p>
+<p>神奇的是，需要的硬體竟然在 PCHome 就可以一次買齊 😎
+<img src="https://i.imgur.com/XvSUG8i.png" alt="Imgur"></p>
+<p>(我已有 16G+ SD卡，SD卡讀卡機，HDMI外接螢幕，USB外接鍵盤)，林林總總必要成本大概在 7000 元內。</p>
+<p>參考 ETH 2 stacking 的即時回報率 <a href="https://beaconcha.in/calculator" target="_blank" rel="noopener">https://beaconcha.in/calculator</a> ，這個配置大概只要跑3個月，硬體跟電費的部分就可以回本了。</p>
+<h2 id="快速入門-軟體需求">快速入門 (軟體需求)</h2>
+<p>驗證節點需要</p>
+<ol>
+<li>參考 Ethereum 1.0 的區塊鏈節點</li>
+<li>同步 Ethereum 2.0 Beacon鏈</li>
+<li>運行 Ethereum 2.0 的 Validator（驗證者節點）</li>
+</ol>
+<p>因此軟體中需要包含</p>
+<pre class="mermaid">graph LR
+  U[Ubuntu 20.04] --> C(Ethereum 1 Chain, 不挖礦, Geth)
+  U --> B(Ethereum 2 Beacon Chain, Prysm)
+  U --> V(Ethereum 2 Validator, Prysm)</pre>
+<p>硬體準備好後，若想要快速開始體驗，可以參考 <a href="https://github.com/diglos/pi-gen/tree/ethraspbian2.0/" target="_blank" rel="noopener">EthereumOnARM</a> 專案提供的 <a href="https://www.reddit.com/r/ethereum/comments/hhvi2r/ethereum_on_arm_new_eth20_raspberry_pi_4_image/" target="_blank" rel="noopener">ROM 版本</a>
+或是參考他的<a href="https://github.com/diglos/pi-gen/tree/ethraspbian2.0/stage2" target="_blank" rel="noopener">腳本</a>來設定（請留意使用他人包好的 ROM 的風險）。</p>
+<h2 id="快速入門-軟體設定">快速入門 (軟體設定)</h2>
+<blockquote>
+<p>把 SD 卡燒好，路由器上開 13000/30303 port forwarding，接上網路，就自動裝好自動跑。</p>
+</blockquote>
+<h3 id="1-燒-ROM">1. 燒 ROM</h3>
+<p>下載好 EthereumOnARM ROM 之後，在電腦上使用 balena Etcher 等燒錄軟體，將ROM燒錄到SD卡中。</p>
+<h3 id="2-設定機器">2. 設定機器</h3>
+<p>將網路線接到樹莓派4上，插入燒好ROM的SD卡，並將外接SSD插到藍色的USB接口上。
+通上電源後，即會自動開機並執行所有的設定（系統調整，格式化 SSD，安裝所需程式）。</p>
+<p>出現登入提示後以 ethereum/ethereum 登入。
+登入後可以使用命令 <code>hostname -I</code> 查看機器目前分配到的 IP。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ hostname -I</span><br><span class="line">192.168.1.123</span><br></pre></td></tr></table></figure>
+<h3 id="3-查看運作狀態">3. 查看運作狀態</h3>
+<p>這時就可以透過其他設備查看樹莓派4的狀態。</p>
+<p>開啟瀏覽器，輸入 http://[ip]:3000 ，使用 admin/ethereum 登入，可以看到以下的監視圖表：</p>
+<p>設備狀態
+<img src="https://i.imgur.com/r7lRWTW.png" alt="Imgur"></p>
+<p>Ethereum 1.0
+<img src="https://i.imgur.com/cllCJXK.png" alt="Imgur"></p>
+<p>Ethereum 2.0 的監視圖表在 Ethereum 1.0 區塊鏈同步完成前，都還不會正常顯示。</p>
+<h3 id="4-設定網路">4. 設定網路</h3>
+<p>打開家用路由器的設定頁面，將樹莓派4分配到以上查到的固定內網IP (如上例就是 <code>192.168.1.123</code>)。</p>
+<p>在 WAN（外部網路）端設定頁面的<code>Port Forwarding</code>，或<code>虛擬伺服器</code>設定中，將以下 port 綁定到樹莓派4的內網IP：</p>
+<ul>
+<li>13000 (TCP)</li>
+<li>12000 (UDP)</li>
+<li>30303 (TCP, UDP)</li>
+</ul>
+<p>這樣從外面傳入這些 port 的封包，就會自動轉傳到樹莓派4。</p>
+<h3 id="設定驗證者-Validator-資訊">設定驗證者 (Validator)資訊</h3>
+<p>在Ethereum 1.0 區塊鏈同步完後，可以透過遠端連線的方式來連線到樹莓派4</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh ethereum@192.168.1.123</span><br></pre></td></tr></table></figure>
+<p>並在瀏覽器上開啟 <a href="https://prylabs.net/participate" target="_blank" rel="noopener">https://prylabs.net/participate</a> 參照說明申請（需用以太坊錢包）。</p>
+<p><img src="https://i.imgur.com/N7q32gk.png" alt="Imgur"></p>
+<p>申請後如果 validator process 也順利啟動，可以在 Ethereum 2.0 監視圖表中看到 <code>Validator process started</code> 訊息。</p>
+<p><code>Validator Main Info</code>的<code>Status</code>(狀態)欄位也會變成<code>DEPOSITED</code>(已存入)狀態。</p>
+<p><img src="https://i.imgur.com/IwHa9w7.png" alt="Imgur"></p>
+<p>也可以根據你登記的 Validator pubkey，前往 <a href="https://beaconcha.in" target="_blank" rel="noopener">https://beaconcha.in</a> 查看 Validator 狀態</p>
+<p>例如 <a href="https://beaconcha.in/validator/30078" target="_blank" rel="noopener">https://beaconcha.in/validator/30078</a> 或 <a href="https://beacon.etherscan.io/validator/30078" target="_blank" rel="noopener">https://beacon.etherscan.io/validator/30078</a></p>
+<p>經過實際安裝的過程，我們可以看到，以太坊 2.0 的相關工具生態已經初步搭建起來了。</p>
+<h2 id="運作之後">運作之後</h2>
+<p>恭喜你已經上車了！🤑</p>
+<p>同時，你也應該要知道，你放了 32ETH （現價7000+美金）在以太坊 2.0 的網路上，一兩年的時間內無法取回到以太坊 1.0 網路上使用。</p>
+<p>…😲😱😡🤬!!!</p>
+<p>還好，現在跑的還只是測試網路，放的不是真的 ETH 😜。</p>
+<p>這時候，是不是更應該仔細查看一下當前 <a href="https://github.com/ethereum/eth2.0-specs/tree/dev/specs/phase0" target="_blank" rel="noopener">Ethereum 2.0 的說明書</a> (Spec) 是不是合理？</p>
+<p>在驗證截短運作的過程中，一旦遇到網路、機器當機等各種斷線情況時，<a href="https://github.com/ethereum/eth2.0-specs/blob/dev/specs/phase0/validator.md#how-to-avoid-slashing" target="_blank" rel="noopener">Ethereum 2.0 網路會怎麼處理</a>？</p>
+<p>文末加註警語：</p>
+<p><strong>可以用文中建議的配置，用較低成本在測試網路體驗看看。但若為了投資而做，請詳閱說明書！</strong></p>
+<h3 id="其他軟體設定選擇">其他軟體設定選擇</h3>
+<p>可以參考已有一些手動安裝教學如</p>
+<ul>
+<li><a href="https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-prysm-witti-2b972e697918" target="_blank" rel="noopener">https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-prysm-witti-2b972e697918</a></li>
+<li><a href="https://hive.blog/ethereum/@tarekadam/altona-test-net-validator-using-raspberry-pi4b-8-gb" target="_blank" rel="noopener">https://hive.blog/ethereum/@tarekadam/altona-test-net-validator-using-raspberry-pi4b-8-gb</a></li>
+</ul>
+<p>教你從 Ubuntu 20.04 開始從頭裝。</p>
+<h2 id="其他的硬體選擇">其他的硬體選擇</h2>
+<p>可以參考 <a href="https://www.reddit.com/r/ethstaker/comments/ggmbvd/a_comprehensive_look_at_hardware_for_staking/" target="_blank" rel="noopener">https://www.reddit.com/r/ethstaker/comments/ggmbvd/a_comprehensive_look_at_hardware_for_staking/</a></p>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li>可以前往 <a href="https://www.reddit.com/r/ethstaker/" target="_blank" rel="noopener">https://www.reddit.com/r/ethstaker/</a> 查看 Eth 2.0 Stacking 相關討論</li>
+<li>EthereumOnARM 的 Github Repo <a href="https://github.com/diglos/pi-gen/tree/ethraspbian2.0/" target="_blank" rel="noopener">https://github.com/diglos/pi-gen/tree/ethraspbian2.0/</a></li>
+<li>我第一次安裝的 ROM 版本
+<a href="https://www.reddit.com/r/ethereum/comments/gf3nhg/ethereum_on_arm_raspberry_pi_4_images_release/" target="_blank" rel="noopener">https://www.reddit.com/r/ethereum/comments/gf3nhg/ethereum_on_arm_raspberry_pi_4_images_release/</a></li>
+<li>用 Windows 10 或 Mac OS 架 <a href="https://kb.beaconcha.in/tutorial-eth2-multiclient" target="_blank" rel="noopener">https://kb.beaconcha.in/tutorial-eth2-multiclient</a></li>
+<li>Prysm 的 Issue Tracker <a href="https://github.com/prysmaticlabs/prysm/issues" target="_blank" rel="noopener">https://github.com/prysmaticlabs/prysm/issues</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/08/13/got-my-ens-domain/" rel="bookmark">收到我的ENS網域啦 gasolin.eth</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/01/02/howto-write-a-contract-test/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(IV)加入單元測試</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/12/howto-write-a-simple-token/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(II)建立加密代幣</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/06/howto-write-a-smart-contract/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(I)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/16/howto-write-an-erc20-compatible-token/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(III)建立標準代幣</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ethereum/" rel="tag"># ethereum</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/09/web-techtree/" rel="prev" title="大前端（網頁技術）的科技樹">
+      <i class="fa fa-chevron-left"></i> 大前端（網頁技術）的科技樹
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/07/setup-eth2-medalla/" rel="next" title="沒時間了，快上車！遷移到 Ethereum 2.0 測試網 (Modalla)">
+      沒時間了，快上車！遷移到 Ethereum 2.0 測試網 (Modalla) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入門-硬體需求"><span class="nav-number">1.</span> <span class="nav-text">快速入門 (硬體需求)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入門-軟體需求"><span class="nav-number">2.</span> <span class="nav-text">快速入門 (軟體需求)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入門-軟體設定"><span class="nav-number">3.</span> <span class="nav-text">快速入門 (軟體設定)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-燒-ROM"><span class="nav-number">3.1.</span> <span class="nav-text">1. 燒 ROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-設定機器"><span class="nav-number">3.2.</span> <span class="nav-text">2. 設定機器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-查看運作狀態"><span class="nav-number">3.3.</span> <span class="nav-text">3. 查看運作狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-設定網路"><span class="nav-number">3.4.</span> <span class="nav-text">4. 設定網路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#設定驗證者-Validator-資訊"><span class="nav-number">3.5.</span> <span class="nav-text">設定驗證者 (Validator)資訊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#運作之後"><span class="nav-number">4.</span> <span class="nav-text">運作之後</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他軟體設定選擇"><span class="nav-number">4.1.</span> <span class="nav-text">其他軟體設定選擇</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的硬體選擇"><span class="nav-number">5.</span> <span class="nav-text">其他的硬體選擇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">6.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/";
+    this.page.identifier = "2020/07/04/prepare-for-eth2/";
+    this.page.title = "沒時間了，快上車！在家跑 Ethereum 2.0 驗證節點";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

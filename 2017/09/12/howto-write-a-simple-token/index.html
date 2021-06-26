@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Update: 12&#x2F;28&#x2F;2017 更新教程，使用require取代throw。 上一篇中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本篇後，你將學會建立一個簡易的加密代幣🔒💵。本篇目的並非為了寫出一個安全可用的加密代幣，而是以介紹代幣合約的相關概念為主， 是以對合約做了適當地簡化，好更易於理解。 開發前的準備 延續上一篇的內容，在開發的過程中，我們將繼續使用te">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何撰寫智能合約(Smart Contract)?(II)建立加密代幣">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2017/09/12/howto-write-a-simple-token/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="Update: 12&#x2F;28&#x2F;2017 更新教程，使用require取代throw。 上一篇中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本篇後，你將學會建立一個簡易的加密代幣🔒💵。本篇目的並非為了寫出一個安全可用的加密代幣，而是以介紹代幣合約的相關概念為主， 是以對合約做了適當地簡化，好更易於理解。 開發前的準備 延續上一篇的內容，在開發的過程中，我們將繼續使用te">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-11T16:47:31.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.704Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="ethereum">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="solidity">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2017/09/12/howto-write-a-simple-token/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>如何撰寫智能合約(Smart Contract)?(II)建立加密代幣 | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2017/09/12/howto-write-a-simple-token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何撰寫智能合約(Smart Contract)?(II)建立加密代幣
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-09-12 00:47:31" itemprop="dateCreated datePublished" datetime="2017-09-12T00:47:31+08:00">2017-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/09/12/howto-write-a-simple-token/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/12/howto-write-a-simple-token/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Update: 12/28/2017 更新教程，使用require取代throw。</p>
+<p><a href="https://blog.gasolin.idv.tw/2017/09/06/howto-write-a-smart-contract/">上一篇</a>中我們已寫好並部署完成了第一個智能合約，也驗證了合約確實可以運作。在閱讀完本篇後，你將學會建立一個簡易的加密代幣🔒💵。本篇目的並非為了寫出一個安全可用的加密代幣，而是以介紹代幣合約的相關概念為主， 是以對合約做了適當地簡化，好更易於理解。</p>
+<h2 id="開發前的準備">開發前的準備</h2>
+<p>延續上一篇的內容，在開發的過程中，我們將繼續使用<code>testrpc</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>工具在電腦上模擬智能合約所需的乙太坊區塊鏈測試環境。</p>
+<p>首先確保已啟動testrpc，若尚未啟動，可以使用以下命令啟動</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ testrpc</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>這樣我們就可以開始建立加密代幣智能合約專案了。</p>
+<h2 id="代幣合約的基礎概念">代幣合約的基礎概念</h2>
+<p>代幣合約扮演像是銀行🏦的角色。使用者在代幣合約中，用自己的乙太幣帳戶地址當作銀行帳戶，可以透過代幣合約執行轉帳(transfer，將代幣由一個帳戶傳送到另一個帳戶)，查詢餘額(balanceOf，查詢指定帳戶中擁有的代幣)等原本由銀行負責的工作。因為合約部署在公開區塊鏈上，所有的交易都是公開透明，可供檢驗的。</p>
+<h2 id="建立一個代幣合約">建立一個代幣合約</h2>
+<p>在<code>contracts/</code>目錄下建立一個<code>SimpleToken.sol</code>檔案。也可以使用以下命令來產生檔案：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ truffle create contract SimpleToken</span><br></pre></td></tr></table></figure>
+<p><code>SimpleToken.sol</code>檔案內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.4.11;</span><br><span class="line"></span><br><span class="line">contract SimpleToken &#123;</span><br><span class="line">  uint256 INITIAL_SUPPLY &#x3D; 10000;</span><br><span class="line">  mapping(address &#x3D;&gt; uint256) balances;</span><br><span class="line"></span><br><span class="line">  function SimpleToken() public &#123;</span><br><span class="line">    balances[msg.sender] &#x3D; INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint256 _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -&#x3D; _amount;</span><br><span class="line">    balances[_to] +&#x3D; _amount;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; Gets the balance of the specified address</span><br><span class="line">  function balanceOf(address _owner) public constant returns (uint256) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="講解">講解</h3>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.4.11;</span><br></pre></td></tr></table></figure>
+<p>第一行指名目前使用的solidity版本，不同版本的solidity可能會編譯出不同的bytecode。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uint256 INITIAL_SUPPLY &#x3D; 10000;</span><br><span class="line">mapping(address &#x3D;&gt; unit256) balances;</span><br></pre></td></tr></table></figure>
+<p>我們定義了初始代幣數目<code>INITIAL_SUPPLY</code>。這邊隨意選擇了一個數字<code>10000</code>。</p>
+<p>我們用<code>mapping</code>來定義一個可以儲存鍵值對(key-value pair)的資料結構(類似Javascript中的<code>{&quot;0xaabbccddeeff&quot;: 888}</code>)，同時也需要分別指定<code>address</code>作為鍵的型別，指定<code>uint256</code>作為值的型別。和Javascript不同，型別定義好後不能隨時更改要儲存的型別。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">contract SimpleToken &#123;</span><br><span class="line">  function SimpleToken() public &#123;</span><br><span class="line">    balances[msg.sender] &#x3D; INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和合約同名的<code>SimpleToken</code>函式，就是<code>SimpleToken</code>這個合約的建構函式(constructor)。函式中我們拿<code>msg.sender</code>當作key，<code>INITIAL_SUPPLY</code>當作值，將所有的初始代幣<code>INITIAL_SUPPLY</code>都指定給<code>msg.sender</code>帳號。
+<code>msg</code>是一個全域(Global)物件<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，<code>msg.sender</code>表示用作呼叫當前函式的帳號。由於建構函式只有在合約部署時會被執行，因此這邊用到的<code>msg.sender</code>，也就代表著用來部署這個合約的帳號。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function transfer(address _to, uint256 _amount) public &#123;</span><br><span class="line">  require(balances[msg.sender] &gt; _amount);</span><br><span class="line">  balances[msg.sender] -&#x3D; _amount;</span><br><span class="line">  balances[_to] +&#x3D; _amount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>transfer</code>函式定義了如何<code>轉帳</code>，只要指定要傳送的帳號與數目，就會從呼叫者手上把對應數目的代幣移轉到指定的帳號上。</p>
+<pre class="mermaid">graph LR
+傳送者 -- 轉帳 --> 代幣合約
+代幣合約 -.-> 修改傳送者和接收者餘額</pre>
+<p><code>require(balances[msg.sender] &gt; _amount);</code>語句判斷帳戶中是否還有足夠轉出的餘額，若存款小於想轉出的數目，就丟出錯誤。</p>
+<p>這個函式這麼寫當然還是過度簡化了，若要能實際使用，需要檢查更多可能的狀況。但就先這樣吧。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function balanceOf(address _owner) public constant returns (uint256) &#123;</span><br><span class="line">  return balances[_owner];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>balanceOf</code>函式的作用，是讓使用者可以查詢任一帳號的餘額。透過傳入<code>_owner</code>帳號，可以查詢<code>_owner</code>帳號儲存在<code>balances</code>對照表中的值。</p>
+<pre class="mermaid">graph LR
+傳送者 --> 代幣合約
+代幣合約 -. 查詢結果 .-> 傳送者</pre>
+<p>如此一來，我們就寫好一個新加密代幣🔒💵合約囉！接下來將要編譯合約並部署到區塊鏈上。</p>
+<h3 id="編譯與部署">編譯與部署</h3>
+<p>在<code>migrations/</code>目錄下建立一個<code>3_deploy_token.js</code>檔案，內容如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> SimpleToken = artifacts.require(<span class="string">"SimpleToken"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">deployer</span>) </span>&#123;</span><br><span class="line">  deployer.deploy(SimpleToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>現在可執行compile與migrate命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ truffle compile</span><br><span class="line">...</span><br><span class="line">$ truffle migrate</span><br><span class="line">Using network <span class="string">'development'</span>.</span><br><span class="line"></span><br><span class="line">Running migration: 3_deploy_token.js</span><br><span class="line">  Deploying HelloToken...</span><br><span class="line">  ... 0x2c4659528c68b4e43d1edff6c989fba05e8e7e56cc4085d408426d339b4e9ba4</span><br><span class="line">  SimpleToken: 0x352fa9aa18106f269d944935503afe57a00a9a0d</span><br><span class="line">Saving successful migration to network...</span><br><span class="line">  ... 0x1434c1b61e9719f410fc6090ce37c0ec141a1738aba278dd320738e4a5d229fa</span><br><span class="line">Saving artifacts...</span><br></pre></td></tr></table></figure>
+<p>如此一來我們已將<code>SimpleToken</code>代幣合約部署到testrpc上。</p>
+<h2 id="驗證">驗證</h2>
+<p>合約部署完成後，我們可以使用<code>truffle console</code>命令開啟console，輸入以下命令來驗證合約是否能照我們設計的方式運作。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ truffle console</span><br><span class="line">&gt; <span class="built_in">let</span> contract</span><br><span class="line">&gt; SimpleToken.deployed().<span class="keyword">then</span>(instance =&gt; contract = instance)</span><br><span class="line">&gt; contract.balanceOf(web3.eth.coinbase)</span><br><span class="line">BigNumber &#123; s: 1, e: 4, c: [ 10000 ] &#125;</span><br><span class="line">&gt; contract.balanceOf(web3.eth.accounts[1])</span><br><span class="line">BigNumber &#123; s: 1, e: 0, c: [ 0 ] &#125;</span><br><span class="line">&gt; contract.transfer(web3.eth.accounts[1], 123)</span><br><span class="line">...</span><br><span class="line">&gt; contract.balanceOf(web3.eth.coinbase)</span><br><span class="line">BigNumber &#123; s: 1, e: 3, c: [ 9877 ] &#125;</span><br><span class="line">&gt; contract.balanceOf.call(web3.eth.accounts[1])</span><br><span class="line">BigNumber &#123; s: 1, e: 2, c: [ 123 ] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="講解-v2">講解</h3>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">let</span> contract</span><br><span class="line">&gt; SimpleToken.deployed().<span class="keyword">then</span>(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p>這邊使用<code>SimpleToken.deployed().then</code>語句來取得SimpleToken合約的Instance(實例)，並存到<code>contract</code>變數中，以方便後續的呼叫。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; contract.balanceOf(web3.eth.coinbase)</span><br><span class="line">BigNumber &#123; s: 1, e: 4, c: [ 10000 ] &#125;</span><br><span class="line">&gt; contract.balanceOf(web3.eth.accounts[1])</span><br><span class="line">BigNumber &#123; s: 1, e: 0, c: [ 0 ] &#125;</span><br></pre></td></tr></table></figure>
+<p>還記得啟動testrpc後預設會產生10個帳號(Accounts)嗎?。<code>web3.eth.coinbase</code> 代表操作者預設的帳號，即10個帳號中的第一個帳號<code>web3.eth.accounts[0]</code>，所以這邊呼叫<code>web3.eth.coinbase</code>或<code>web3.eth.accounts[0]</code>結果是一樣的。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; contract.balanceOf(web3.eth.accounts[0])</span><br><span class="line">BigNumber &#123; s: 1, e: 4, c: [ 10000 ] &#125;</span><br></pre></td></tr></table></figure>
+<p>這兩句的目的是在進行轉帳操作前，先查詢前兩個帳號所擁有的代幣餘額。透過呼叫<code>balanceOf</code>函式，可以看到第一個帳號(部署合約的帳號)裡存著所有的代幣。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; contract.transfer(web3.eth.accounts[1], 123)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>接著使用<code>transfer</code>函式來傳送<code>123</code>個代幣到第二個帳號<code>web3.eth.accounts[1]</code>。如果轉帳成功，傳送者預設帳號中會減少123個代幣，接收者帳號中會增加123個代幣。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; contract.balanceOf(web3.eth.coinbase)</span><br><span class="line">BigNumber &#123; s: 1, e: 3, c: [ 9877 ] &#125;</span><br><span class="line">&gt; contract.balanceOf.call(web3.eth.accounts[1])</span><br><span class="line">BigNumber &#123; s: 1, e: 2, c: [ 123 ] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>我們再次透過呼叫<code>balanceOf</code>函式，查詢傳送者帳號和接收者帳號各自剩下的SimpleToken數目。發現轉帳真的成功了。</p>
+<h2 id="你知道剛剛的程式碼裡有一堆安全漏洞💣嗎">你知道剛剛的程式碼裡有一堆安全漏洞💣嗎?</h2>
+<p>寫智能合約看起來並不困難吧？但因為智能合約的運作是透明公開的，而且其中牽涉了代幣或金錢的流動，這提供了駭客很強的挑戰動機。</p>
+<p>因此如果要妥善處理智能合約，會遇到的諸多安全問題。即使單純如本篇中的<code>SimpleToken</code>，也至少會遇到幾個問題：例如<code>transfer</code>函式中沒有禁止傳入負數金額，因此傳送者反過來可以從接收者那邊取得代幣。同時也沒有檢查接收者帳號是否合法，因此傳送者可能會傳送失敗或因為送到黑洞中，白白損失了代幣。</p>
+<p>有著一堆安全漏洞的合約，輕則執行失敗白花交易費用，嚴重則影響到合約中的代幣或以太幣。已有多起因為合約的漏洞，造成儲存在合約中的代幣或以太幣被駭客轉走，使得ICO失敗的案例。</p>
+<p>有興趣的人可以進一步查看參考資料<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>和<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>了解智能合約當前的一些最佳實現。</p>
+<h2 id="結語">結語</h2>
+<p>看完這篇除了學到本篇講解的<code>SimpleToken</code>外，應該也可以大致看得懂truffle預設的<code>MetaCoin.sol</code>合約了。不同的細節可以查看solidity相關語法<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。
+下一篇會接著介紹如何使用經過驗證的函式庫，來建立一份可以放到乙太幣錢包👛的加密代幣🔒💵合約。</p>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li>[1] <a href="https://github.com/ethereumjs/testrpc" target="_blank" rel="noopener">https://github.com/ethereumjs/testrpc</a></li>
+<li>[2] Units and Globally Available Variables <a href="http://solidity.readthedocs.io/en/develop/units-and-global-variables.html" target="_blank" rel="noopener">http://solidity.readthedocs.io/en/develop/units-and-global-variables.html</a></li>
+<li>[3] An Ethereum Hello World Smart Contract for Beginners <a href="http://www.talkcrypto.org/blog/2017/04/17/an-ethereum-hello-world-smart-contract-for-beginners-part-1/" target="_blank" rel="noopener">part 1</a>, <a href="http://www.talkcrypto.org/blog/2017/04/22/an-ethereum-hello-world-smart-contract-for-beginners-part-2/" target="_blank" rel="noopener">part 2</a></li>
+<li>[4] Onward with Ethereum Smart Contract Security <a href="https://blog.zeppelin.solutions/onward-with-ethereum-smart-contract-security-97a827e47702" target="_blank" rel="noopener">https://blog.zeppelin.solutions/onward-with-ethereum-smart-contract-security-97a827e47702</a></li>
+<li>[5] Ethereum Contract Security Techniques and Tips <a href="https://github.com/ConsenSys/smart-contract-best-practices" target="_blank" rel="noopener">https://github.com/ConsenSys/smart-contract-best-practices</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/01/02/howto-write-a-contract-test/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(IV)加入單元測試</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/06/howto-write-a-smart-contract/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(I)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/16/howto-write-an-erc20-compatible-token/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(III)建立標準代幣</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/08/13/got-my-ens-domain/" rel="bookmark">收到我的ENS網域啦 gasolin.eth</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2020/07/04/prepare-for-eth2/" rel="bookmark">沒時間了，快上車！在家跑 Ethereum 2.0 驗證節點</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ethereum/" rel="tag"># ethereum</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/solidity/" rel="tag"># solidity</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/06/howto-write-a-smart-contract/" rel="prev" title="如何撰寫智能合約(Smart Contract)?(I)">
+      <i class="fa fa-chevron-left"></i> 如何撰寫智能合約(Smart Contract)?(I)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/16/howto-write-an-erc20-compatible-token/" rel="next" title="如何撰寫智能合約(Smart Contract)?(III)建立標準代幣">
+      如何撰寫智能合約(Smart Contract)?(III)建立標準代幣 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開發前的準備"><span class="nav-number">1.</span> <span class="nav-text">開發前的準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代幣合約的基礎概念"><span class="nav-number">2.</span> <span class="nav-text">代幣合約的基礎概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立一個代幣合約"><span class="nav-number">3.</span> <span class="nav-text">建立一個代幣合約</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#講解"><span class="nav-number">3.1.</span> <span class="nav-text">講解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#編譯與部署"><span class="nav-number">3.2.</span> <span class="nav-text">編譯與部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#驗證"><span class="nav-number">4.</span> <span class="nav-text">驗證</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#講解-v2"><span class="nav-number">4.1.</span> <span class="nav-text">講解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你知道剛剛的程式碼裡有一堆安全漏洞💣嗎"><span class="nav-number">5.</span> <span class="nav-text">你知道剛剛的程式碼裡有一堆安全漏洞💣嗎?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結語"><span class="nav-number">6.</span> <span class="nav-text">結語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2017/09/12/howto-write-a-simple-token/";
+    this.page.identifier = "2017/09/12/howto-write-a-simple-token/";
+    this.page.title = "如何撰寫智能合約(Smart Contract)?(II)建立加密代幣";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

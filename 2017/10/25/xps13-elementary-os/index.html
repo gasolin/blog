@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my new Dell XPS 9360 machine. Comparing this XPS 13 9360 (8th Gen i7) with my previous model 9343 (5th Gen i7), t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dual boot Elementary OS &amp; Windows 10 on XPS 13 (9360)">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my new Dell XPS 9360 machine. Comparing this XPS 13 9360 (8th Gen i7) with my previous model 9343 (5th Gen i7), t">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-25T06:40:48.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.720Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Dual boot Elementary OS & Windows 10 on XPS 13 (9360) | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dual boot Elementary OS & Windows 10 on XPS 13 (9360)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-10-25 14:40:48" itemprop="dateCreated datePublished" datetime="2017-10-25T14:40:48+08:00">2017-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/10/25/xps13-elementary-os/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/25/xps13-elementary-os/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>I just successfully installed Elementary OS Luna (0.4.1) along side with Windows 10 on my new Dell XPS 9360 machine.</p>
+<p>Comparing this XPS 13 <code>9360 (8th Gen i7)</code> with my previous model <code>9343 (5th Gen i7)</code>, the CPU is way faster(feels like 3 times faster), the wireless works well and the signal is stronger (which I was encountered some issues in XPS 13 9343), the keyboard feedback is pleasent, and the battery life did last longer in 9360.</p>
+<p>Several settings are trickier than early days when I try to install *nux on Notebook. Here’s the self reference guide and hope it could help others.</p>
+<h2 id="Settings-on-Windows">Settings on Windows</h2>
+<h3 id="Login-to-Microsoft-account">Login to Microsoft account</h3>
+<p>It’s necessary to bind your account with the device, so you can get recovery key later.</p>
+<h3 id="Flash-Elementary-OS-to-the-USB-disk">Flash Elementary OS to the USB disk</h3>
+<p>I download the OS image from <a href="http://elementary.io/" target="_blank" rel="noopener">Elementary OS web site</a> and use <a href="https://unetbootin.github.io/" target="_blank" rel="noopener">Unetbootin</a> to flash the image into the disk.</p>
+<h3 id="Shrink-the-disk-space">Shrink the disk space</h3>
+<p>I have the 256GB SSD, I use <a href="https://www.partitionwizard.com/" target="_blank" rel="noopener">Partition Wizard</a> to slice ~100GB for Elementary OS.</p>
+<p>I have 8GB RAM so I <a href="https://askubuntu.com/questions/49109/i-have-16gb-ram-do-i-need-32gb-swap" target="_blank" rel="noopener">reference</a> the recommend swap size and left ~8GB for swap.</p>
+<h3 id="Disable-fast-startup">Disable fast startup</h3>
+<p>I also need to follow the instructions to <a href="https://www.tenforums.com/tutorials/4189-turn-off-fast-startup-windows-10-a.html" target="_blank" rel="noopener">disable the fast startup</a> on Windows.</p>
+<h3 id="Switch-SATA-operation-mode-from-RAID-to-AHCI">Switch SATA operation mode from RAID to AHCI</h3>
+<p>Here’s the most tricky part. It takes me a while to figure out how to switch the SATA storage from RAID to AHCI. The trick is doing this procedure with <a href="http://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/" target="_blank" rel="noopener">Windows safe mode</a>.</p>
+<h2 id="Settings-on-BIOS">Settings on BIOS</h2>
+<p>Press <code>F12</code> during booting.</p>
+<ul>
+<li>Don’t need to turn off the security boot.</li>
+<li>Follow above link’s instructions to config SATA storage.</li>
+<li>Save the configureation before exit.</li>
+</ul>
+<p>Reboot to windows and make sure windows runs nicely in safemode. Then follow above link’s instructions to jump out of safemode.</p>
+<p>Now I’m prepared and able to install Elementary OS.</p>
+<h2 id="Install-Elementary-OS-through-USB-disk">Install Elementary OS through USB disk</h2>
+<p>Install Elementary OS as usual Ubuntu distribution.</p>
+<p>First connect to wifi and allow install 3rd party softwares.</p>
+<p>Add the left space as <code>/</code>(root) with <code>Ext4</code> format. And set the left ~8GB as <code>SWAP</code> format.</p>
+<p>Then continue the auto install process.</p>
+<p>Now I have a clean Elementary OS.</p>
+<h2 id="Recover-Windows-with-BitLocker-recovery-keys">Recover Windows with BitLocker recovery keys</h2>
+<p>After restart I can see an option menu with Elementary OS and Windows Boot Manager.</p>
+<p>I can boot to Elementary OS without major issue.</p>
+<p>Well, I met the problem that AppCenter can’t start correctly, so I do <code>sudo apt update &amp;&amp; sudo apt upgrade</code> then <code>sudo apt purge appcenter &amp;&amp; sudo apt purge packagekit</code> then restart and run <code>sudo apt install appcenter &amp;&amp; sudo apt install packagekit</code> to make it work normally.</p>
+<p>The input method and bluetooth pairing seems not work out of box, but I can live with that.</p>
+<p>Then when I boot to Windows, I need to enter the BitLocker recovery keys. That could be solved by <a href="https://support.microsoft.com/en-us/help/17133/windows-8-bitlocker-recovery-keys-frequently-asked-questions" target="_blank" rel="noopener">following the FAQ from microsoft</a>. I need to login to Microsoft Account and find the recovery key.</p>
+<p>Enter the recovery key then everything works.</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/02/25/advanced_elementary_os_usage/" rel="bookmark">Advanced tuning for my daily Elementary OS usage</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/11/04/chinese-in-elementary-os/" rel="bookmark">為 Elementary OS 設定中文環境</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/02/22/elementary_juno/" rel="bookmark">Tuning for my daily Elementary OS Juno</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/12/26/setup_ledger_nano_on_linux/" rel="bookmark">在 Linux 上設定 Ledger Nano S 硬體錢包</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/16/howto-write-an-erc20-compatible-token/" rel="prev" title="如何撰寫智能合約(Smart Contract)?(III)建立標準代幣">
+      <i class="fa fa-chevron-left"></i> 如何撰寫智能合約(Smart Contract)?(III)建立標準代幣
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/04/chinese-in-elementary-os/" rel="next" title="為 Elementary OS 設定中文環境">
+      為 Elementary OS 設定中文環境 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Settings-on-Windows"><span class="nav-number">1.</span> <span class="nav-text">Settings on Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Login-to-Microsoft-account"><span class="nav-number">1.1.</span> <span class="nav-text">Login to Microsoft account</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flash-Elementary-OS-to-the-USB-disk"><span class="nav-number">1.2.</span> <span class="nav-text">Flash Elementary OS to the USB disk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shrink-the-disk-space"><span class="nav-number">1.3.</span> <span class="nav-text">Shrink the disk space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disable-fast-startup"><span class="nav-number">1.4.</span> <span class="nav-text">Disable fast startup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-SATA-operation-mode-from-RAID-to-AHCI"><span class="nav-number">1.5.</span> <span class="nav-text">Switch SATA operation mode from RAID to AHCI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Settings-on-BIOS"><span class="nav-number">2.</span> <span class="nav-text">Settings on BIOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Elementary-OS-through-USB-disk"><span class="nav-number">3.</span> <span class="nav-text">Install Elementary OS through USB disk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recover-Windows-with-BitLocker-recovery-keys"><span class="nav-number">4.</span> <span class="nav-text">Recover Windows with BitLocker recovery keys</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/";
+    this.page.identifier = "2017/10/25/xps13-elementary-os/";
+    this.page.title = "Dual boot Elementary OS & Windows 10 on XPS 13 (9360)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="我的第一個 Google 助理服務「歷史上的今天」上架了，已列在 Google 助理服務(中文)列表中。 https:&#x2F;&#x2F;assistant.google.com&#x2F;services&#x2F;a&#x2F;uid&#x2F;0000005a1a233d97 相對於 Google 助理服務(英文)列表，中文的 Google 助理服務還不多，簡單分享一下開發心得。 如何使用 這個Google 助理服務的功能很單純，即從維基百科中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我想問歷史上的今天- Google 助理服務上架心得">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2019/04/04/google_actions_today_in_history/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="我的第一個 Google 助理服務「歷史上的今天」上架了，已列在 Google 助理服務(中文)列表中。 https:&#x2F;&#x2F;assistant.google.com&#x2F;services&#x2F;a&#x2F;uid&#x2F;0000005a1a233d97 相對於 Google 助理服務(英文)列表，中文的 Google 助理服務還不多，簡單分享一下開發心得。 如何使用 這個Google 助理服務的功能很單純，即從維基百科中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/UwOC08Rh.png">
+<meta property="og:image" content="https://i.imgur.com/amIc9Foh.jpg">
+<meta property="article:published_time" content="2019-04-04T14:45:00.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.700Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="google actions">
+<meta property="article:tag" content="Google助理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/UwOC08Rh.png">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2019/04/04/google_actions_today_in_history/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>我想問歷史上的今天- Google 助理服務上架心得 | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2019/04/04/google_actions_today_in_history/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我想問歷史上的今天- Google 助理服務上架心得
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-04 22:45:00" itemprop="dateCreated datePublished" datetime="2019-04-04T22:45:00+08:00">2019-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/04/04/google_actions_today_in_history/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/04/google_actions_today_in_history/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://i.imgur.com/UwOC08Rh.png" alt="Imgur"></p>
+<p>我的第一個 Google 助理服務「<a href="https://assistant.google.com/services/a/uid/0000005a1a233d97" target="_blank" rel="noopener">歷史上的今天</a>」上架了，已列在 <a href="https://assistant.google.com/explore?hl=zh-TW" target="_blank" rel="noopener">Google 助理服務(中文)列表</a>中。</p>
+<p><a href="https://assistant.google.com/services/a/uid/0000005a1a233d97" target="_blank" rel="noopener">https://assistant.google.com/services/a/uid/0000005a1a233d97</a></p>
+<p>相對於 <a href="https://assistant.google.com/explore?hl=en" target="_blank" rel="noopener">Google 助理服務(英文)列表</a>，中文的 Google 助理服務還不多，簡單分享一下開發心得。</p>
+<h2 id="如何使用">如何使用</h2>
+<p>這個Google 助理服務的功能很單純，即從維基百科中隨機選出一條歷史上的今天所發生過的事。</p>
+<p>要使用這個Google 助理服務，可開啟Google助理，詢問「我想問歷史上的今天」，Google助理就會啟動「歷史上的今天」服務。</p>
+<p><img src="https://i.imgur.com/amIc9Foh.jpg" alt="Imgur"></p>
+<h2 id="怎麼做-Google-助理服務">怎麼做 Google 助理服務</h2>
+<p>「歷史上的今天」資料取自維基百科，也希望任何感興趣的人都能來參與維護，因此選擇開源。專案頁面在 <a href="https://github.com/gasolin/todayinhistory" target="_blank" rel="noopener">https://github.com/gasolin/todayinhistory</a></p>
+<p>我所說的 Google 助理服務其實英文叫「Google Action」，可以用在各種 Google 助理(Assistant) 支援的場景中，如手機，手錶，Chrome Book，Google Home 等。</p>
+<p><a href="https://assistant.google.com/services/a/uid/0000005a1a233d97" target="_blank" rel="noopener">歷史上的今天</a> 這個 Google 助理服務由 <a href="https://dialogflow.com/" target="_blank" rel="noopener">https://dialogflow.com/</a> 託管，使用<code>Cloud Function</code>來回應使用者。<code>Dialogflow</code>與<code>Cloud Function</code>都是 Google 旗下的服務。</p>
+<p><code>Dialogflow</code>提供了各種語音/文字聊天機器人 (Chat bot) 的一站式訓練/開發/部署環境。除了Google 助理服務，也可以在上面使用<code>Dialogflow</code> API 同時支援 LINE，Facebook Messenger 等聊天機器人。<code>Cloud Function</code>也被整合在 Dialogflow 中，讓開發者可以簡單地呼叫一段腳本執行命令，而不需要維護完整的網頁伺服器端程式。</p>
+<p>開發<a href="https://assistant.google.com/services/a/uid/0000005a1a233d97" target="_blank" rel="noopener">歷史上的今天</a>的過程中，只要在<code>Dialogflow</code>網站上開發，在 <a href="https://developers.google.com/actions/" target="_blank" rel="noopener">Actions on Google</a> 中測試與發佈即可，整個流程甚至不需要下載資料到電腦中。</p>
+<p>如果對程式本身，或對每天可能會收到的回應感興趣，專案頁面在 <a href="https://github.com/gasolin/todayinhistory" target="_blank" rel="noopener">https://github.com/gasolin/todayinhistory</a> ，歡迎造訪按 Star，也歡迎前往 <a href="https://assistant.google.com/services/a/uid/0000005a1a233d97" target="_blank" rel="noopener">https://assistant.google.com/services/a/uid/0000005a1a233d97</a> 留下好評。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/google-actions/" rel="tag"># google actions</a>
+              <a href="/tags/Google%E5%8A%A9%E7%90%86/" rel="tag"># Google助理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/08/introducing_lingascript/" rel="prev" title="中文輸進去，程式出得來，開發者發大財">
+      <i class="fa fa-chevron-left"></i> 中文輸進去，程式出得來，開發者發大財
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/13/second-screen/" rel="next" title="我的第二螢幕(I)">
+      我的第二螢幕(I) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用"><span class="nav-number">1.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎麼做-Google-助理服務"><span class="nav-number">2.</span> <span class="nav-text">怎麼做 Google 助理服務</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2019/04/04/google_actions_today_in_history/";
+    this.page.identifier = "2019/04/04/google_actions_today_in_history/";
+    this.page.title = "我想問歷史上的今天- Google 助理服務上架心得";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

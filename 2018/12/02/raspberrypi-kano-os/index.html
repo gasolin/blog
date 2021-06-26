@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="之前嘗試過組裝一些智能玩具，但能讓小朋友持續保持興趣遊玩的並不多。我發現這些玩具一旦需要編程時，多少還是需準備一台電腦。與大人共用電腦多有不便，因此不如就再利用每個人家中多出的Raspberry Pi(?)與生灰的電子設備，幫小朋友準備好所需的相關材料，協助他組一台精簡卻堪用的電腦吧。 使用的設備列表 我參考的BUILD（最近Switch上的暗黑破壞神3玩多了…）是KANO Computer Ki">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Raspberry Pi組裝一套小朋友使用的電腦">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2018/12/02/raspberrypi-kano-os/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="之前嘗試過組裝一些智能玩具，但能讓小朋友持續保持興趣遊玩的並不多。我發現這些玩具一旦需要編程時，多少還是需準備一台電腦。與大人共用電腦多有不便，因此不如就再利用每個人家中多出的Raspberry Pi(?)與生灰的電子設備，幫小朋友準備好所需的相關材料，協助他組一台精簡卻堪用的電腦吧。 使用的設備列表 我參考的BUILD（最近Switch上的暗黑破壞神3玩多了…）是KANO Computer Ki">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-01T16:43:33.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.712Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="kanoos">
+<meta property="article:tag" content="raspberrypi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2018/12/02/raspberrypi-kano-os/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>用Raspberry Pi組裝一套小朋友使用的電腦 | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2018/12/02/raspberrypi-kano-os/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用Raspberry Pi組裝一套小朋友使用的電腦
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-12-02 00:43:33" itemprop="dateCreated datePublished" datetime="2018-12-02T00:43:33+08:00">2018-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2018/12/02/raspberrypi-kano-os/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/02/raspberrypi-kano-os/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>之前嘗試過組裝一些智能玩具，但能讓小朋友持續保持興趣遊玩的並不多。我發現這些玩具一旦需要編程時，多少還是需準備一台電腦。與大人共用電腦多有不便，因此不如就再利用每個人家中多出的Raspberry Pi(?)與生灰的電子設備，幫小朋友準備好所需的相關材料，協助他組一台精簡卻堪用的電腦吧。</p>
+<h2 id="使用的設備列表">使用的設備列表</h2>
+<p>我參考的BUILD（最近Switch上的暗黑破壞神3玩多了…）是<a href="https://kano.me/store/us/products/computer-kit-touch" target="_blank" rel="noopener">KANO Computer Kit Touch</a>套件，這是一套由專門售賣以Raspberry Pi為核心的教育用電腦提供商KANO製作的。現在整套特價在~$230左右，相較其他的STEM教具，整套的價格相當合理。如果你人在美國，家中沒有冗餘的電腦設備或想追求更好的使用體驗，相當建議直接購買一套。</p>
+<p>這邊是其他人的<a href="https://www.youtube.com/watch?v=If-I1b-c-ZI" target="_blank" rel="noopener">開箱影片</a>與<a href="https://www.laptopmag.com/reviews/laptops/kano-computer-kit" target="_blank" rel="noopener">評測</a>，介紹了使用到的硬體與作業系統</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/If-I1b-c-ZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>以下列出我有用到的設備列表，價格是當初印象裡購入各種設備時的價錢。</p>
+<ul>
+<li>Raspberry Pi 主版
+<ul>
+<li>建議使用 3B 或 3B+，速度上才接近可用的電腦</li>
+<li>(Raspberry Pi 3B ~NT 1450)</li>
+</ul>
+</li>
+<li>支援HDMI的螢幕
+<ul>
+<li>(手邊現有的23吋桌面螢幕 ~NT 4300)</li>
+<li>(打算再購買10吋觸控螢幕 ~NT 3000)</li>
+</ul>
+</li>
+<li>播音設備
+<ul>
+<li>沒有喇叭的話，用手機附的耳機聽也行 (但為了小朋友聽力，要用耳機也建議用耳罩式或頭戴式)</li>
+<li>(手機附的耳機, ~NT 0)</li>
+<li>(考慮弄個手機喇叭來接 ~NT 100)</li>
+</ul>
+</li>
+<li>電源
+<ul>
+<li>可用舊手機的 Micro USB 充電線與充電頭，或任何手邊的行動電源</li>
+<li>(小米行動電源 5000 ~NT 300)</li>
+</ul>
+</li>
+<li>USB 鍵盤/滑鼠
+<ul>
+<li>重用任何現有的鍵鼠，如果有觸控螢幕就不用準備滑鼠</li>
+<li>(可以找到帶觸控版的鍵盤 ~NT600, 我是拿手邊羅技Unifying鍵盤/滑鼠。)</li>
+</ul>
+</li>
+<li>Micro SD卡 &gt;16GB
+<ul>
+<li>(32GB SD卡 ~NT400)</li>
+</ul>
+</li>
+</ul>
+<h2 id="準備記憶卡（作業系統）">準備記憶卡（作業系統）</h2>
+<p>作業系統我的選擇並非常見的<code>Raspbian</code>，而是刷上「KANO」公司為他們販賣的套件提供的 KANO OS。KANO OS作業系統與相關設備的說明書都有提供<a href="http://developers.kano.me/downloads/" target="_blank" rel="noopener">自由下載</a>使用。</p>
+<p>將zip檔下載下來後，將Micro SD卡放入轉接器並插入電腦，用任意映像檔燒錄軟體將系統燒錄進SD卡中備用。</p>
+<h2 id="組裝">組裝</h2>
+<p>由於Raspberry Pi把組裝電腦時複雜的部份都簡化了，組裝起來非常簡單，即使是國小小朋友也能順利完成。</p>
+<ul>
+<li>將Micro SD記憶卡插入Raspberry Pi (對低年級小朋友來說插卡的動作太精細了，可以先幫忙做)</li>
+<li>插上鍵盤/滑鼠用的USB接收器</li>
+<li>接上Micro USB與電源</li>
+<li>將HDMI線接到螢幕上</li>
+</ul>
+<p>最後連接好的架構大概是這樣：</p>
+<pre class="mermaid">graph TD
+pi[Raspberry Pi] --HDMI-->S[螢幕]
+K[鍵盤] -- USB --> pi
+M[滑鼠] -- USB --> pi
+p((電源)) -- MicroUSB --- pi
+pi --> v[喇叭]
+m[記憶卡] -.- pi</pre>
+<h2 id="上手體驗">上手體驗</h2>
+<p>雖然手邊還沒有合用的觸控螢幕可試，但即使用滑鼠鍵盤操作，感覺 KANO OS 介面也很親和。從插上記憶卡，接上 Micro USB 初次開機開始，KANO OS 將整個電腦的啟動流程，變成了一段難忘的遊戲過程。</p>
+<p>KANO OS 除了提供 Raspbian 中也有附的 Minecraft 等遊戲和各種教育應用，還提供了一套將電腦教學與各種小遊戲/程式整合成的像素RPG。</p>
+<p>使用者在電腦設備化成的地圖中行走，初次進入地點是在SD沙灘(SD Beach)，可前往向量村（Vector Village），網路港(Port Ether)，蟒蛇叢林(Python Jungle)等地，探索電腦世界的奧秘。</p>
+<p>在SD沙灘上，馬上可以玩到<code>PONG</code>這個在電子遊戲歷史中，也具有非凡意義的經典遊戲。</p>
+<p>走到向量村則是玩<code>Make Art</code>遊戲，可以用鍵盤輸入程式命令來繪圖。KANO近期特別活動是畫骷髏頭(Skull)等萬聖節相關圖案，整個過程都可照著一個步驟一個步驟輸入的提示進行，相當友善。</p>
+<p>到了蟒蛇叢林，則是從<code>使用命令行</code>開始玩起。透過輸入<code>python snake</code>命令來啟動文字版貪食蛇遊戲：過程中會提示使用者可以在輸入命令時加入一些參數，加入參數後遊戲的設定也會跟著調整，使用者可以在遊玩過程中學到命令行的用法，非常地高竿。</p>
+<p>我在整個陪伴孩子使用的過程中，感覺就算大人玩起來，KANO OS內容也相當豐富而有趣。KANO OS做到了讓使用電腦充滿樂趣。非常推薦刷來試試，比起Raspberry Pi常搭配的 Raspbian 作業系統，KANO OS 包含更多的教學與引導，更適合入門人群與日常使用（缺點是沒中文介面，但也讓小朋友更有動力學英文）</p>
+<h2 id="其他心得">其他心得</h2>
+<p>如果和我一樣是羅技鍵盤/滑鼠，但是是分別購買的，其實有方法不需要在機器上插兩個Unifying接收器。只要到羅技網站下載<a href="https://support.logitech.com/zh_tw/software/unifying" target="_blank" rel="noopener">Unifying軟體</a>到你常用的作業系統上，安裝後即可設定鍵盤/滑鼠共用同個Unifying接收器，設定完成後，將這個Unifying接收器插到Raspberry Pi上後開機，Raspberry Pi也可以認得你的鍵盤/滑鼠。</p>
+<p>Raspberry Pi 3B所要求的2.5A USB電源其實並不容易找到，一般我用1.5A的充電頭也能運作。</p>
+<p>Raspberry Pi 也支援HDMI聲音輸出，但需要<a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md" target="_blank" rel="noopener">另行設定</a>。切換過去後，可能是因為同時要傳輸畫面與聲音，得消耗更多電源，開機容易出現<code>Low Voltage Detected</code>訊息，並導致無法正常開機。可以在開機畫面中按<code>Shift</code>鍵進入<code>Recovery</code>模式，將<code>hdmi_drive=2</code>(強制使用HDMI輸出聲音)註解掉。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/11/20/second-screen-2/" rel="bookmark">我的第二螢幕(II)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/11/13/second-screen/" rel="bookmark">我的第二螢幕(I)</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/kanoos/" rel="tag"># kanoos</a>
+              <a href="/tags/raspberrypi/" rel="tag"># raspberrypi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/02/redux-saga/" rel="prev" title="Redux Saga 真好用">
+      <i class="fa fa-chevron-left"></i> Redux Saga 真好用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/07/node-red-contrib-bitfinex/" rel="next" title="Interact Bitfinex API with Node-RED">
+      Interact Bitfinex API with Node-RED <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用的設備列表"><span class="nav-number">1.</span> <span class="nav-text">使用的設備列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#準備記憶卡（作業系統）"><span class="nav-number">2.</span> <span class="nav-text">準備記憶卡（作業系統）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#組裝"><span class="nav-number">3.</span> <span class="nav-text">組裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上手體驗"><span class="nav-number">4.</span> <span class="nav-text">上手體驗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他心得"><span class="nav-number">5.</span> <span class="nav-text">其他心得</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2018/12/02/raspberrypi-kano-os/";
+    this.page.identifier = "2018/12/02/raspberrypi-kano-os/";
+    this.page.title = "用Raspberry Pi組裝一套小朋友使用的電腦";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/life/</loc>
+        <lastmod>2021-06-26T07:08:48.300Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/http/</loc>
+        <lastmod>2020-12-24T08:31:33.832Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Android/</loc>
+        <lastmod>2020-12-24T08:31:33.832Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/gadget/</loc>
+        <lastmod>2020-12-24T08:31:33.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/design/</loc>
+        <lastmod>2020-12-24T08:31:33.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/TurboGears/</loc>
+        <lastmod>2020-12-24T08:31:33.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/python/</loc>
+        <lastmod>2020-12-24T08:31:33.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/gamification/</loc>
+        <lastmod>2020-12-24T08:31:33.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Mozilla/</loc>
+        <lastmod>2020-12-24T08:31:33.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/hg/</loc>
+        <lastmod>2020-12-24T08:31:33.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/soft/</loc>
+        <lastmod>2020-12-24T08:31:33.829Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/GAE/</loc>
+        <lastmod>2020-12-24T08:31:33.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/webframework/</loc>
+        <lastmod>2020-12-24T08:31:33.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/FirefoxOS/</loc>
+        <lastmod>2020-12-24T08:31:33.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/rst/</loc>
+        <lastmod>2020-12-24T08:31:33.826Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/NS3/</loc>
+        <lastmod>2020-12-24T08:31:33.824Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Music/</loc>
+        <lastmod>2020-12-24T08:31:33.823Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/javascript/</loc>
+        <lastmod>2020-12-24T08:31:33.823Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Google-Developers/</loc>
+        <lastmod>2020-12-24T08:31:33.822Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/network/</loc>
+        <lastmod>2020-12-24T08:31:33.822Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/NS2/</loc>
+        <lastmod>2020-12-24T08:31:33.822Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/OMNET/</loc>
+        <lastmod>2020-12-24T08:31:33.822Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/game/</loc>
+        <lastmod>2020-12-24T08:31:33.821Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/digest/</loc>
+        <lastmod>2020-12-24T08:31:33.821Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/pygments/</loc>
+        <lastmod>2020-12-24T08:31:33.820Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/docutils/</loc>
+        <lastmod>2020-12-24T08:31:33.820Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/s5/</loc>
+        <lastmod>2020-12-24T08:31:33.820Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/pypy/</loc>
+        <lastmod>2020-12-24T08:31:33.819Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/fun/</loc>
+        <lastmod>2020-12-24T08:31:33.819Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/coding/</loc>
+        <lastmod>2020-12-24T08:31:33.818Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/IPv6/</loc>
+        <lastmod>2020-12-24T08:31:33.817Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/zen/</loc>
+        <lastmod>2020-12-24T08:31:33.816Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/GAEO/</loc>
+        <lastmod>2020-12-24T08:31:33.812Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/mobile/</loc>
+        <lastmod>2020-12-24T08:31:33.806Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/zhpy/</loc>
+        <lastmod>2020-12-24T08:31:33.804Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/aglie-test/</loc>
+        <lastmod>2020-12-24T08:31:33.804Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/django/</loc>
+        <lastmod>2020-12-24T08:31:33.799Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/cloud/</loc>
+        <lastmod>2020-12-24T08:31:33.786Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/webapp/</loc>
+        <lastmod>2020-12-24T08:31:33.725Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Ubiquity/</loc>
+        <lastmod>2020-12-24T08:31:33.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/linux/</loc>
+        <lastmod>2020-12-24T08:31:33.720Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/markdown/</loc>
+        <lastmod>2020-12-24T08:31:33.719Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/git/</loc>
+        <lastmod>2020-12-24T08:31:33.719Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/ethereum/</loc>
+        <lastmod>2020-12-24T08:31:33.719Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/blockchain/</loc>
+        <lastmod>2020-12-24T08:31:33.718Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/desktop/</loc>
+        <lastmod>2020-12-24T08:31:33.718Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/devtools/</loc>
+        <lastmod>2020-12-24T08:31:33.718Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/web/</loc>
+        <lastmod>2020-12-24T08:31:33.718Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/subversion/</loc>
+        <lastmod>2020-12-24T08:31:33.717Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/trac/</loc>
+        <lastmod>2020-12-24T08:31:33.717Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/360photo/</loc>
+        <lastmod>2020-12-24T08:31:33.717Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/ico/</loc>
+        <lastmod>2020-12-24T08:31:33.714Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/html/</loc>
+        <lastmod>2020-12-24T08:31:33.714Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/chromecast/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/magicmirror/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/extension/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/scratch3/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/raspberrypi/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/work/</loc>
+        <lastmod>2020-12-24T08:31:33.713Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/saga/</loc>
+        <lastmod>2020-12-24T08:31:33.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/redux/</loc>
+        <lastmod>2020-12-24T08:31:33.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/react/</loc>
+        <lastmod>2020-12-24T08:31:33.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/kanoos/</loc>
+        <lastmod>2020-12-24T08:31:33.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/grid/</loc>
+        <lastmod>2020-12-24T08:31:33.711Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/gtd/</loc>
+        <lastmod>2020-12-24T08:31:33.710Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/automation/</loc>
+        <lastmod>2020-12-24T08:31:33.710Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/oss/</loc>
+        <lastmod>2020-12-24T08:31:33.708Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/nodered/</loc>
+        <lastmod>2020-12-24T08:31:33.708Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/bitfinex/</loc>
+        <lastmod>2020-12-24T08:31:33.708Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/chatbot/</loc>
+        <lastmod>2020-12-24T08:31:33.707Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/devhack/</loc>
+        <lastmod>2020-12-24T08:31:33.706Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/lingascript/</loc>
+        <lastmod>2020-12-24T08:31:33.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/chocolatey/</loc>
+        <lastmod>2020-12-24T08:31:33.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/react-native/</loc>
+        <lastmod>2020-12-24T08:31:33.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/solidity/</loc>
+        <lastmod>2020-12-24T08:31:33.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/node/</loc>
+        <lastmod>2020-12-24T08:31:33.703Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/bot/</loc>
+        <lastmod>2020-12-24T08:31:33.702Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/tooling/</loc>
+        <lastmod>2020-12-24T08:31:33.701Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/appscript/</loc>
+        <lastmod>2020-12-24T08:31:33.701Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/ifttt/</loc>
+        <lastmod>2020-12-24T08:31:33.701Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/blog/</loc>
+        <lastmod>2020-12-24T08:31:33.701Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/ens/</loc>
+        <lastmod>2020-12-24T08:31:33.700Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Google%25E5%258A%25A9%25E7%2590%2586/</loc>
+        <lastmod>2020-12-24T08:31:33.700Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/google-actions/</loc>
+        <lastmod>2020-12-24T08:31:33.700Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/travis/</loc>
+        <lastmod>2020-12-24T08:31:33.699Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/gitbook/</loc>
+        <lastmod>2020-12-24T08:31:33.698Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/docusaurus/</loc>
+        <lastmod>2020-12-24T08:31:33.698Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/android/</loc>
+        <lastmod>2020-12-24T08:31:33.696Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/widgets/</loc>
+        <lastmod>2020-12-24T08:31:33.693Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/GTUG/</loc>
+        <lastmod>2020-12-24T08:31:33.687Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/pylons/</loc>
+        <lastmod>2020-12-24T08:31:33.682Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/OpenStack/</loc>
+        <lastmod>2020-12-24T08:31:33.681Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/olpc/</loc>
+        <lastmod>2020-12-24T08:31:33.680Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/nds/</loc>
+        <lastmod>2020-12-24T08:31:33.677Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/repo/</loc>
+        <lastmod>2020-12-24T08:31:33.658Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/reimaging/</loc>
+        <lastmod>2020-12-24T08:31:33.655Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/functional/</loc>
+        <lastmod>2020-12-24T08:31:33.645Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/chromeos/</loc>
+        <lastmod>2020-12-24T08:31:33.632Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/BlocklyDuino/</loc>
+        <lastmod>2020-12-24T08:31:33.630Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Blockly/</loc>
+        <lastmod>2020-12-24T08:31:33.630Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/Arduino/</loc>
+        <lastmod>2020-12-24T08:31:33.630Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/unicode/</loc>
+        <lastmod>2020-12-24T08:31:33.620Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/aframe/</loc>
+        <lastmod>2020-12-24T08:31:33.612Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.gasolin.idv.tw/tags/firebug/</loc>
+        <lastmod>2020-12-24T08:31:33.612Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="&#x2F;&#x2F;1.1.1 03&#x2F;06&#x2F;05 Doc is Included in INET6 Project &#x2F;&#x2F;1.1 01&#x2F;05&#x2F;05 &#x2F;&#x2F;1.0 12&#x2F;31&#x2F;04 &#x2F;&#x2F;0.9 12&#x2F;28&#x2F;04 &#x2F;&#x2F;0.5 12&#x2F;26&#x2F;04 init Install and Using OMNET++ on Windows 對開發者來說, 儘管在 Linux 環境下編譯 OMNET++ 模擬套件也是個好選擇, 但是也有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Windows 上安裝與使用 OMNET++">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2005/03/06/%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8-OMNET/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="&#x2F;&#x2F;1.1.1 03&#x2F;06&#x2F;05 Doc is Included in INET6 Project &#x2F;&#x2F;1.1 01&#x2F;05&#x2F;05 &#x2F;&#x2F;1.0 12&#x2F;31&#x2F;04 &#x2F;&#x2F;0.9 12&#x2F;28&#x2F;04 &#x2F;&#x2F;0.5 12&#x2F;26&#x2F;04 init Install and Using OMNET++ on Windows 對開發者來說, 儘管在 Linux 環境下編譯 OMNET++ 模擬套件也是個好選擇, 但是也有">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2005-03-06T00:52:08.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.780Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="OMNET++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2005/03/06/%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8-OMNET/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>在 Windows 上安裝與使用 OMNET++ | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2005/03/06/%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8-OMNET/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 Windows 上安裝與使用 OMNET++
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2005-03-06 08:52:08" itemprop="dateCreated datePublished" datetime="2005-03-06T08:52:08+08:00">2005-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2005/03/06/%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8-OMNET/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2005/03/06/在-Windows-上安裝與使用-OMNET/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="//1.1.1" target="_blank" rel="noopener">//1.1.1</a> 03/06/05 Doc is Included in INET6 Project
+<a href="//1.1" target="_blank" rel="noopener">//1.1</a> 01/05/05
+<a href="//1.0" target="_blank" rel="noopener">//1.0</a> 12/31/04
+<a href="//0.9" target="_blank" rel="noopener">//0.9</a> 12/28/04
+<a href="//0.5" target="_blank" rel="noopener">//0.5</a> 12/26/04 init</p>
+<p>Install and Using OMNET++ on Windows
+對開發者來說, 儘管在 Linux 環境下編譯 OMNET++ 模擬套件也是個好選擇,
+但是也有不少人希望能在 Windows 環境下順利利用 OMNET++ 編譯模擬套件.
+而目前相關文件仍然極少.
+本文總結了作者如何在 Windows 環境下利用 Microsoft Visual C++ 6 (MSVC6) 編譯 OMNET++ 模擬套件的經驗</p>
+<p><strong>1. 安裝 MSVC6 &amp; MSVC Service Pack 6</strong>
+安裝 MSVC6 時&quot;註冊變數&quot;選項一定要勾選</p>
+<p><strong>2. 設定</strong>
+打開選單 -&gt; 工具(Tools) -&gt; 自訂(Customize)
+點選 Add-ins and Macro files 分頁標籤(Tab) ,
+看到omnetpp選項, 將之勾選</p>
+<p>回到命令(Commands) 分頁標籤(Tab),
+分頁左上角的分類(Category) 選單會多出巨集(Macros) 選項.
+選擇巨集(Macros) 選項, 看到 addNEDfileToProject 巨集,
+點選 addNEDfileToProject 巨集,
+使用鼠標將巨集拖曳到工具列上,
+選擇合適的位置, 圖示後按確定.</p>
+<p>在完成上兩步之後, 我們已經將 VC 環境設定完成,
+可以準備開始在 VC 上建立新的 OMNET++ 專案,
+或是匯入原本不是在 Windows 環境下執行的專案</p>
+<p><strong>3. VC 中建立新專案</strong>
+若要從頭開始建立新的模擬套件,
+可以先在 Windows 檔案管理員中任意地點建立放置新專案的資料夾,
+再從 OMNET++ 安裝目錄/sample 中複製 .dsw, .dsp 專案檔到新專案的資料夾中.</p>
+<p>複製範例專案檔的目的是因為範例專案檔已經將 OMNET++ 編譯所需的編譯器,
+連結旗標, Tkenv/Cmdenv 參數等都設定好了, 讓我們不需再重新設定.</p>
+<p>點擊 .dsw檔進入 VC 編輯畫面.
+將檔案檢視 (File View) 中的檔案名稱清空後, 即可開始編輯新的專案</p>
+<p><strong>4. VC 中匯入專案</strong>
+有時我們會想使用別人在 OMNET++ 中已完成的模擬套件或成果,
+而對方使用的平台並非 Windows,
+此時我們可以用類似前一步驟的方式為這個模擬套件加入新的 VC 專案檔.
+從omnet安裝目錄/sample 中複製 .dsw, .dsp 專案檔到原來模擬套件的資料夾中.
+點擊 .dsw 檔進入 VC 編輯畫面.
+將 File View 中的檔案名稱清空後, 即可開始編輯新的專案</p>
+<p><strong>5. VC 中編輯專案</strong>
+在 IDE 環境下依照一般 VC 中編輯專案的方式增刪編輯檔案.
+但要將其他平台上的 c++ 檔案拿來用時, 注意檔案副檔名不能使用 .cc,
+副檔名都要先改成 .cpp 後在VC下才能正常編譯
+(這點好像不一定, 至少在 INET 模組裡就不必改)</p>
+<p>當遇到設計好 .ned 檔要加入 VC 時,
+先點選工具列上新增的 addNEDfileToProject 巨集圖示,
+輸入該 .ned 檔檔名(包含副檔名),
+之後  addNEDfileToProject 巨集會幫忙生成 .ned 對應的 cpp 檔.</p>
+<p>詳細設定可參考 OMNeT++ 安裝目錄下 doc/Readme-MSVC.txt</p>
+<p><strong>6, VC 中編譯專案</strong>
+首先打開命令列, 準備開始編譯的動作.
+命令列開啟流程為按作業系統左下角的&quot;開始&quot;, 在選單中選擇&quot;執行&quot;,
+其後將跳出輸入視窗, 在視窗中鍵入 <code>cmd (或 Terminal)</code>  按下確定後即彈出類似 Dos 視窗.
+接著用一般 Dos 指令切換到專案目錄下準備開始編譯, 鍵入
+<code>opp_nmakemake</code>  這動作會根據目錄中的來源檔案生成 <a href="http://Makefile.vc" target="_blank" rel="noopener">Makefile.vc</a> 檔案</p>
+<p>接著使用下面指令來生成模擬:
+<code>nmake -f Makefile.vc</code>  做完以上部驟之後就可以照一般 VC 編譯方式編譯啦:)</p>
+<p><strong>7, 重新編譯專案</strong>
+之前已編譯過時資料夾中會存有舊的 <a href="http://Makefile.vc" target="_blank" rel="noopener">Makefile.vc</a> 檔案, 可鍵入 <code>opp_nmakemake -f</code>  來強制覆寫 <a href="http://Makefile.vc" target="_blank" rel="noopener">Makefile.vc</a> .</p>
+<p>在編譯前要清除過時連結資料, 可以在命令列中輸入
+<code>nmake Makefile.vc clean</code>  也可以在 VC 中使用 選單/Build/Clean 選項將過時連結資料清除</p>
+<p><strong>8.選擇 Tkenv 視窗模式模擬</strong>
+在預設的情況下, 使用 OMNET++ 編譯出來的檔案將是在 cmdenv 命令列環境下執行.
+為了更容易檢視模擬結果,
+我們可以透過以下方法將模擬切換到在 TKenv 環境下執行:</p>
+<p>選單/Build/Set Active Project Configuration
+從四個選項中選取 xx- win32 Release Tkenv</p>
+<p>參考資料:
+1. OMNeT++ and MF build instructions for Windows
+2. OMNeT/doc/Readme-MSVC.txt</p>
+<p>refer: Make sure you enter these
+settings for <em>all</em> configurations (In the Project|Settings dialog,
+select ‘All configurations’ from the combo in the top-left corner.)</p>
+<ul>
+<li>include path: You must tell MSVC the location of omnetpp.h and other
+header files.  Add c:\omnetpp-2.3\include to the include path in
+Project|Settings --&gt; ‘C/C++’ tab --&gt; ‘Preprocessor’ category --&gt;
+Additional include directories.</li>
+<li>library path: MSVC needs to know where to find sim_std.lib, envir.lib
+and other libraries. Add omnetpp/lib to the linker path in
+Project|Settings --&gt; ‘Link’ tab --&gt; ‘Input’ category --&gt;
+Additional library path.</li>
+<li>nedc: It’s advisable to put OMNeT++'s bin directory into the PATH
+so that MSVC will find the NED compiler. (An alternative is to enter
+explicit nedc path for each NED file’s Custom build step, but that’s
+much more cumbersome.)</li>
+</ul>
+<p>Add the .ned files to the project and set custom build option for them:
+Description:  NED Compiling $(InputPath)
+Command:      nedc -s _n.cpp $(InputPath)
+Outputs:      $(InputPath)_n.cpp
+Hint: you can select all .ned files together, and ‘All configurations’
+from the combo at the left of the Settings dialog, and then you have to
+type this settings only once.
+Note: If you copied one of the sample projects, you’ll have to adjust
+Command, because they contain explicit nedc path (…\bin\nedc).</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2005/05/12/10th-day-of-porting-INET6/" rel="bookmark">10th day of porting INET6</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2005/05/12/12th-day-of-porting-INET6-Mile-Stone-Pre-work-Finished/" rel="bookmark">12th. day of porting INET6 (Mile Stone: Pre-work Finished)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2005/05/12/11th-day-of-porting-INET6/" rel="bookmark">11th. day of porting INET6</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2005/03/06/1st-Day-of-porting-INET6-第一天-從RFC2463開始/" rel="bookmark">1st. Day of porting INET6 第一天: 從RFC2463開始</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2005/03/06/2nd-day-of-porting-INET6-第二天/" rel="bookmark">2nd. day of porting INET6 第二天</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OMNET/" rel="tag"># OMNET++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2005/03/03/INET6-Project/" rel="prev" title="INET6 Project">
+      <i class="fa fa-chevron-left"></i> INET6 Project
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2005/03/06/2nd-day-of-porting-INET6-%E7%AC%AC%E4%BA%8C%E5%A4%A9/" rel="next" title="2nd. day of porting INET6 第二天">
+      2nd. day of porting INET6 第二天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2005/03/06/%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8-OMNET/";
+    this.page.identifier = "2005/03/06/在-Windows-上安裝與使用-OMNET/";
+    this.page.title = "在 Windows 上安裝與使用 OMNET++";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

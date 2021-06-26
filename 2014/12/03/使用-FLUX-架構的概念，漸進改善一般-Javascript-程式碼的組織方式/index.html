@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前陣子 Facebook 推出一套名為 FLUX 的前端程式架構，期望能幫過去沒有條理，程式多了結構就亂得像一團麵條的 Javascript 程式寫法找到一個理想的組織方法。 FLUX 簡介  視圖（View）-&gt; 操作（Action）-&gt; 分配器（Dispatcher）-&gt; 資料處理器（Store）-&gt; 繪圖者（Renderer）-&gt; 視圖（View） FLUX 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="前陣子 Facebook 推出一套名為 FLUX 的前端程式架構，期望能幫過去沒有條理，程式多了結構就亂得像一團麵條的 Javascript 程式寫法找到一個理想的組織方法。 FLUX 簡介  視圖（View）-&gt; 操作（Action）-&gt; 分配器（Dispatcher）-&gt; 資料處理器（Store）-&gt; 繪圖者（Renderer）-&gt; 視圖（View） FLUX 的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-12-03T15:43:59.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.725Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="webapp">
+<meta property="article:tag" content="FirefoxOS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式 | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-12-03 23:43:59" itemprop="dateCreated datePublished" datetime="2014-12-03T23:43:59+08:00">2014-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/03/使用-FLUX-架構的概念，漸進改善一般-Javascript-程式碼的組織方式/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前陣子 Facebook 推出一套名為 <a href="http://fluxxor.com/what-is-flux.html" target="_blank" rel="noopener">FLUX</a> 的前端程式架構，期望能幫過去沒有條理，程式多了結構就亂得像一團麵條的 Javascript 程式寫法找到一個理想的組織方法。</p>
+<h3 id="FLUX-簡介">FLUX 簡介</h3>
+<blockquote>
+<p>視圖（View）-&gt; 操作（Action）-&gt; 分配器（Dispatcher）-&gt; 資料處理器（Store）-&gt; 繪圖者（Renderer）-&gt; 視圖（View）
+FLUX 的基本原理有別於常用的 MVC（Model/View/Controller）或 MVVM（Model/View/ViewModel）是在M，Ｖ，C（VM）三者之間互相傳遞或修改資料，</p>
+</blockquote>
+<div class="separator" style="clear: both; text-align: center;"></div><div class="separator" style="clear: both; text-align: center;">[![](http://fluxxor.com/images/mvc-simple.png)&nbsp;](http://fluxxor.com/images/mvc-simple.png)</div><div class="separator" style="clear: both; text-align: center;">MVC (image from [fluxxer](http://fluxxor.com/what-is-flux.html))</div>
+FLUX 重新定義整個組織架構為**單向**的視圖（View）-&gt; 操作（Action）-&gt; 分配器（Dispatcher）-&gt; 資料處理器（Store）-&gt; 繪圖者（Renderer）-&gt;&nbsp; 視圖（View）的運作流程。
+<div class="separator" style="clear: both; text-align: center;">[![](http://fluxxor.com/images/flux-simple.png)](http://fluxxor.com/images/flux-simple.png)</div><div style="text-align: center;">FLUX (image from [fluxxer](http://fluxxor.com/what-is-flux.html))</div>
+就我的理解，FLUX 的架構可以拆分為三個重點流程：
+<ul>
+<li>跟視圖（View）有關的操作（Action），都透過事件註冊到分配器（Dispatcher）去。</li>
+<li>分配器 （Dispatcher）負責將操作（Action）傳遞給需要的資料處理器（Store）。</li>
+<li>資料處理器（Store）負責跟資料直接相關的操作。若資料處理器（Store）修改的結果需要反映到視圖（View）上，可以透過發送訊息通知給繪圖者（Renderer）處理。這邊講到了原本 FLUX 概念圖中沒有提到的繪圖者（Renderer）這個角色，在 Facebook 中他們是用 <a href="http://facebook.github.io/react/" target="_blank" rel="noopener">ReactJS</a> 處理。</li>
+</ul>
+<p>瞭解其基本架構之後，我發現其實就算不用他們提供的函式庫，用 Javascript 內建的 addEventListener, handleEvent, customEvent 等方法，也可以利用前面所提的三個重點，漸進寫出符合 FLUX 精神的程式。</p>
+<h3 id="目前的-JS-組織方式">目前的 JS 組織方式</h3>
+<p>一個常見的JS檔案，一般的架構是</p>
+<blockquote>
+<p>var App = {    init: function app_init() {
+      // get view
+      this.view1 = document.getElementById(‘xxx1’);
+      this.view2 = document.getElementById(‘xxx2’);
+     
+      // do stuff
+      this.view1.addEventListener(‘click’, function() {
+        // do something
+      });
+      this.view2.addEventListener(‘keyup’, function() {
+        // do something
+      });
+    }
+};若我們想要將視圖（View）的操作從 init 分離開來，大部分的人會這樣做</p>
+</blockquote>
+<blockquote>
+<p> var App = {
+    init: function app_init() {
+      // get view
+      this.view1 = document.getElementById(‘xxx1’);
+      this.view2 = document.getElementById(‘xxx2’);
+     
+      // do stuff
+      this.view1.addEventListener(‘click’, <strong>this.clickView1</strong>);
+      this.view2.addEventListener(‘keyup’, <strong>this.keyupView2</strong>);
+    },</p>
+<p>    <strong>clickView1</strong>: function app_clickView1() {
+       // do something
+    },</p>
+<p>    <strong>keyupView2</strong>: function app_keyupView2() {
+       // do something
+    }</p>
+<p>};
+如果在 clickView1 或 keyupView2 中要呼叫到 App 裡的參數或方法，那麼我們需要在addEventListener 時使用 bind(this)</p>
+</blockquote>
+<blockquote>
+<p> var App = {
+    init: function app_init() {
+      // get view
+      this.view1 = document.getElementById(‘xxx1’);
+      this.view2 = document.getElementById(‘xxx2’);
+     
+      // do stuff
+      this.view1.addEventListener(‘click’, this.clickView1**.bind(this)<strong>);
+      this.view2.addEventListener(‘keyup’, this.keyupView2</strong>.bind(this)**);
+    },</p>
+<p>    clickView1: function app_clickView1() {
+       // do something
+    },</p>
+<p>    keyupView2: function app_keyupView2() {
+       // do something
+       this.clickView1();
+    }</p>
+<p>};
+大多數書籍的範例大概就停在這裡，沒有再進一步探討程式的組織架構了。即使是龐大的 Javascript 專案如 <a href="https://github.com/mozilla-b2g/gaia" target="_blank" rel="noopener">Gaia</a>，不少部分的程式碼組織方式也是如此。在這種組織方式裡，若有很多的視圖（View）需要操作或修改，我們的程式碼就會開始亂起來。</p>
+</blockquote>
+<p>下面來試著將以上程式漸進改為 FLUX 架構。</p>
+<h3 id="改進建議一：將-handleEvent-當作-Dispatcher-來使用">改進建議一：將 handleEvent 當作 Dispatcher 來使用</h3>
+<blockquote>
+<p>跟視圖（View）有關的操作（Action），都透過事件註冊到分配器（Dispatcher）去。 （溫馨提示：IE 9以上版本才有支援 handleEvent 方法，在之前版本上使用要加 polyfill）</p>
+</blockquote>
+<p>我們先來想想看視圖（View）跟操作（Action）在前端 Javascript 程式中分別代表著什麼。
+視圖（View）很明顯，就是透過 getElementById 等方法，從 HTML 中取得代表對應節點（Node）的元素（element）。</p>
+<p>若想要套用FLUX架構，我們可以將附加在各個元素（element）上的事件行為分離，將事件註冊到一個統一的地方（分配器），在這個地方對不同的事件進行操作。</p>
+<p> Javascript 內建的分配器叫做 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventListener" target="_blank" rel="noopener">handleEvent</a>，它可以拿來處理任何事件Event，寫法如下。</p>
+<blockquote>
+<p> var App = {
+    init: function app_init() {
+      // get view
+      this.view1 = document.getElementById(‘xxx1’);
+      this.view2 = document.getElementById(‘xxx2’);
+     
+      // do stuff
+      this.view1.addEventListener(‘click’, <strong>this</strong>);
+      this.view2.addEventListener(‘keyup’, <strong>this</strong>);
+    },</p>
+<p>    <strong>handleEvent</strong>: app_handleEvent(evt) {
+       switch (evt.type) {
+         case ‘click’:
+           switch (evt.target) {
+              case this.view1:
+                this.clickView1();
+                break;
+           }
+           break;
+         case ‘keyup’:
+            switch (evt.target) {
+              case this.view2:
+                this.keyupView2();
+                break;             }
+       }
+    },</p>
+<p>    clickView1: function app_clickView1() {
+       // do something
+    },</p>
+<p>    keyupView2: function app_keyupView2() {
+       // do something
+       this.clickView1();
+    }</p>
+<p>};這麼做帶來的明顯好處是所有的呼叫都統一在 handleEvent 中，可以更容易地追查到。</p>
+</blockquote>
+<p>這麼寫也可以在 addEventListener/removeEventListener 時不用使用 bind(this)，而 bind(this) 經常有些 side effect 需要特別留意。</p>
+<p>例如假使我們想要反註冊 view1 上的 click 方法，使用以下寫法</p>
+<blockquote>
+<p> this.view1.removeEventListener(‘click’, this.clickView1.bind(this));其實並沒有將第一個 event 移除。因為使用了 **.bind(this) **後，回傳的其實是一個新的 instance…。
+正確的寫法是
+<strong>this.bindClickView1</strong> = this.clickView1.bind(this)
+this.view1.addEventListener(‘click’, this.bindClickView1);
+…
+this.view1.removeEventListener(‘click’, this.bindClickView1);用 handleEvent 可以省點事，要反註冊時也傳入 this 即可。
+this.view1.removeEventListener(‘click’, this);</p>
+</blockquote>
+<h3 id="改進建議二：將資料處理的部分分離，使用自訂事件來改變-Store-狀態">改進建議二：將資料處理的部分分離，使用自訂事件來改變 Store 狀態</h3>
+<blockquote>
+<p>分配器 （Dispatcher）負責將操作（Action）傳遞給需要的資料處理器（Store）
+資料處理器（Store）負責跟資料直接相關的操作。在稍大的 Web App 中，我們可以另外定一個 Object 來處理資料相關的事宜。一般我們的寫法會是</p>
+</blockquote>
+<blockquote>
+<p>// Store.js
+function Store() {
+  this._data: 0;
+};</p>
+<p>Store.prototype = {
+  getSomething: function s_getSomething() {
+    return this._data;
+  },</p>
+<p>  doSomething: function s_doSomething() {
+    this._data += 1;
+  },</p>
+<p>  setSomething: function s_setSomething(val) {
+    this._data = val;
+  }
+};</p>
+<p>// App.js
+var App = {
+  this.store = new Store();
+  this.store.init();
+  this.store.getSomething();
+  this.store.doSomething();
+  this.store.setSomething(2);
+};若想要套用FLUX架構，首先我們要避免從資料處理器（Store）外部直接改變資料處理器（Store）。我們可以透過在呼叫端使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.dispatchEvent" target="_blank" rel="noopener">window.DispatchEvent</a> 發送自訂事件（<a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="noopener">CustomEvent）</a>，並在資料處理器（Store）中接收自訂事件來做到。</p>
+</blockquote>
+<p>如此一來，資料處理器（Store）將只留下 get 方法來讓外部取得 Store 想提供的資料。</p>
+<p>另外如果程式碼改善進入到下一個重點，在操作（Action）時應該不需要再呼叫 Store.getSomething 了，我們將資料處理器（Store）的 getSomething 方法留著給繪圖者（Renderer）使用 。</p>
+<blockquote>
+<p>// Store.js
+function Store() {
+  this._data: 0;
+};</p>
+<p>Store.prototype = {
+  init: function s_init() {
+     <strong>window.addEventListener(‘store_do’, this);</strong>
+<strong>     window.addEventListener(‘store_set’, this);</strong>
+  },</p>
+<p>  handleEvent: s_handleEvent(evt) {
+    switch(evt.type) {
+      case ‘store_do’:
+        this.doSomething();
+        break;
+      case ‘store_set’:
+        this.setSomething(<strong>evt.detail.val</strong>);
+        break;
+    }
+  },</p>
+<p>  getSomething: function s_getSomething() {
+    return this._data;
+  },</p>
+<p>  _doSomething: function s_doSomething() {
+    this._data += 1;
+  },</p>
+<p>  _setSomething: function s_setSomething(val) {
+    this._data = val;
+  }
+};</p>
+<p>// App.js
+var App = {
+  this.store = new Store();
+  this.store.init();
+  <a href="//this.store.getSomething" target="_blank" rel="noopener">//this.store.getSomething</a>();
+  <strong>window…dispatchEvent(new CustomEvent(‘store_do’));
+  **<strong>window…dispatchEvent(new CustomEvent(‘store_set’,</strong>
+<strong>    {‘detail’:{‘val’:2}}
+  )); **
+};這麼做帶來的明顯好處是</strong>測試</strong>時可以簡單地將 Store 與 App 分開來測試，這對大型App是很重要的。</p>
+</blockquote>
+<h3 id="改進建議三：讓-Renderer-來處理視圖">改進建議三：讓 Renderer 來處理視圖</h3>
+<blockquote>
+<p>若資料處理器（Store）修改的結果需要反映到視圖（View）上，可以透過發送訊息通知給繪圖者（Renderer）處理&gt; //  Renderer.js
+var ClickRenderer = {
+  init: function s_init(element, Store) {
+     this.element = element;
+     this.store = Store;
+     <strong>window.addEventListener(‘render_view1’, this);</strong>
+  },</p>
+<p>  handleEvent: s_handleEvent(evt) {
+    switch(evt.type) {
+      case ‘render_view1’:
+        this.element.textConent = this.store.getSomething();
+        break;
+    }
+  }};</p>
+<p>// Store.js
+function Store() {
+  this._data: 0;
+};</p>
+<p>Store.prototype = {
+  init: function s_init() {
+     window.addEventListener(‘store_do’, this);
+     window.addEventListener(‘store_set’, this);
+  },</p>
+<p>  handleEvent: s_handleEvent(evt) {
+    switch(evt.type) {
+      case ‘store_do’:
+        this.doSomething();
+        break;
+      case ‘store_set’:
+        this.setSomething(evt.detail.val);
+        break;
+    }
+  },</p>
+<p>  getSomething: function s_getSomething() {
+    return this._data;
+  },</p>
+<p>  _doSomething: function s_doSomething() {
+    this._data += 1;
+    <strong>window…dispatchEvent(new CustomEvent(‘render_view1’));</strong>
+  },</p>
+<p>  _setSomething: function s_setSomething(val) {
+    this._data = val;
+  }
+};</p>
+<p>// App.js
+var App = {
+  init: function a_init() {
+    // get view
+    this.view1 = document.getElementById(‘xxx1’);
+    this.view2 = document.getElementById(‘xxx2’);
+    this.store = new Store();
+    this.store.init();
+    **ClickRenderer.init(this.view1, **<strong>this.store);</strong>
+  },</p>
+<p> 
+  handleEvent: a_handleEvent(evt) {
+    window…dispatchEvent(new CustomEvent(‘store_do’));
+    <a href="//Store.setSomething" target="_blank" rel="noopener">//Store.setSomething</a>(2)
+    window…dispatchEvent(new CustomEvent(‘store_set’,
+      {‘detail’:{‘val’:2}}
+    ));
+};
+上段程式在 App 中註冊了 ClickRenderer，並傳入 Store 與 所需的 View 元件。所有的介面更新全交由 ClickRenderer 處理。</p>
+</blockquote>
+<p>（另一個方法是讓繪圖者（Renderer）監看資料處理器（Store）的狀態，然後去改變視圖（View））
+ <a href="http://fluxxor.com/documentation/store-watch-mixin.html" target="_blank" rel="noopener">http://fluxxor.com/documentation/store-watch-mixin.html</a></p>
+<h3 id=""></h3>
+<h3 id="總結">總結</h3>
+<div class="separator" style="clear: both; text-align: center;"></div><div class="separator" style="clear: both; text-align: center;"></div><div class="separator" style="clear: both; text-align: left;">整理完後，一般 javascript 套用 flux 架構的運作流程如下：</div><div class="separator" style="clear: both; text-align: left;">
+</div><div class="separator" style="clear: both; text-align: center;">![](http://i.imgur.com/hpHcPRu.png)</div>
+簡而言之，上面的各種建議是鼓勵大家多使用 Javascript 內建的 addEventListener, handleEvent, customEvent 等方法。透過大量使用 event，我們可以改善 Javascript 程式邏輯，資料，與介面元件之間的關聯程度。
+<p>將 FLUX 架構拆分為三個重點流程來理解或實踐的好處，是我們能漸進地遵循其中一些方法來改善我們現有的程式架構。</p>
+<p>以上是我關於如何使用 FLUX 架構在一般 Javascript 組織方式的第三個版本，可能有些錯謬之處，還迎大家討論或給予建議。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2015/02/22/2015-年的-4-個-Web-技術趨勢/" rel="bookmark">2015 年的 4 個 Web 技術趨勢</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2015/02/28/Future-proved-Javascript-and-CSS/" rel="bookmark">Future proved Javascript and CSS</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2014/08/24/一個-WebApp，各自表述/" rel="bookmark">一個 WebApp，各自表述</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2015/06/01/Javascript，征服世界是可能的嗎？ /" rel="bookmark">Javascript，征服世界是可能的嗎？</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2015/10/02/Node 版的 SimpleHTTPServer/" rel="bookmark">Node 版的 SimpleHTTPServer</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webapp/" rel="tag"># webapp</a>
+              <a href="/tags/FirefoxOS/" rel="tag"># FirefoxOS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/08/24/%E4%B8%80%E5%80%8B-WebApp%EF%BC%8C%E5%90%84%E8%87%AA%E8%A1%A8%E8%BF%B0/" rel="prev" title="一個 WebApp，各自表述">
+      <i class="fa fa-chevron-left"></i> 一個 WebApp，各自表述
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/" rel="next" title="移民效應，是自幹一套還是拿別人的 Open Source 來用？">
+      移民效應，是自幹一套還是拿別人的 Open Source 來用？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#FLUX-簡介"><span class="nav-number">1.</span> <span class="nav-text">FLUX 簡介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前的-JS-組織方式"><span class="nav-number">2.</span> <span class="nav-text">目前的 JS 組織方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改進建議一：將-handleEvent-當作-Dispatcher-來使用"><span class="nav-number">3.</span> <span class="nav-text">改進建議一：將 handleEvent 當作 Dispatcher 來使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改進建議二：將資料處理的部分分離，使用自訂事件來改變-Store-狀態"><span class="nav-number">4.</span> <span class="nav-text">改進建議二：將資料處理的部分分離，使用自訂事件來改變 Store 狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改進建議三：讓-Renderer-來處理視圖"><span class="nav-number">5.</span> <span class="nav-text">改進建議三：讓 Renderer 來處理視圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#總結"><span class="nav-number">7.</span> <span class="nav-text">總結</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/";
+    this.page.identifier = "2014/12/03/使用-FLUX-架構的概念，漸進改善一般-Javascript-程式碼的組織方式/";
+    this.page.title = "使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

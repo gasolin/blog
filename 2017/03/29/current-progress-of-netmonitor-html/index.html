@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Update: Full instructions are avaiable on Netmonitor Readme to run the Network Monitor in the browser tab. Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset tha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Current Progress of Netmonitor.html">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2017/03/29/current-progress-of-netmonitor-html/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="Update: Full instructions are avaiable on Netmonitor Readme to run the Network Monitor in the browser tab. Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset tha">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://i.imgur.com/aiqBXV5.png">
+<meta property="article:published_time" content="2017-03-28T16:33:37.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.697Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="devtools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/aiqBXV5.png">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2017/03/29/current-progress-of-netmonitor-html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Current Progress of Netmonitor.html | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2017/03/29/current-progress-of-netmonitor-html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Current Progress of Netmonitor.html
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-29 00:33:37" itemprop="dateCreated datePublished" datetime="2017-03-29T00:33:37+08:00">2017-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/03/29/current-progress-of-netmonitor-html/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/29/current-progress-of-netmonitor-html/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Update: Full instructions are avaiable on <a href="https://github.com/mozilla/gecko-dev/blob/master/devtools/client/netmonitor/README.md" target="_blank" rel="noopener">Netmonitor Readme</a> to run the Network Monitor in the browser tab.</p>
+<p>Firefox Devtools is in progress of modernizing its infrastructure to use the same toolset that modern web developers are familiar with. When talking about <code>modern</code> web developers toolset, I mean <code>React</code>, <code>Redux</code>, <code>Immutablejs</code>, and <code>npm</code> modules.😎</p>
+<h2 id="What-Firefox-Devtools-team-did-last-year">What Firefox Devtools team did last year</h2>
+<p>Firefox Devtools was no different from Firefox itself. The Devtools panels are written in <code>XUL</code>, an HTML-like syntax language, and use several Firefox internal API called <code>XPCOM</code> or <code>Chrome privileged API</code>(Nothing related to Chrome Browser) to make the browser works.👽</p>
+<p>In last year(2016), Firefox Devtools team’s main goal is to convert the code base from XUL to pure HTML. The second goal is convert each tool with React/Redux structure for maintenance. Debugger, Inspector, Web Console are the first batch in the conversion progress.
+<a href="https://hacks.mozilla.org/2016/09/introducing-debugger-html/" target="_blank" rel="noopener">Debugger.html</a> is the very first attempt from Firefox Devtools team to embrace the modern web developers’ toolset. Now new Debugger and Web Console are available in Firefox <a href="https://www.mozilla.org/en-US/firefox/channel/desktop/" target="_blank" rel="noopener">Nightly</a>🍸</p>
+<p><a href="https://github.com/devtools-html/debugger.html" target="_blank" rel="noopener">Debugger.html</a>, <a href="">Perf.html</a>(Performance) has their standalone repository hosted on Github. A developer could use <code>git clone</code> to get the repository, and then do <code>yarn install</code>, <code>yarn start</code>(similar to npm command) to debug the debugger.html/perf.html with any browser’s devtools!🚅</p>
+<pre class="mermaid">graph LR
+clone[git clone] --> install[yarn install]
+install --> start[yarn start]</pre>
+<h2 id="What-Run-on-the-Browser-tab-means">What <code>Run on the Browser tab</code> means?</h2>
+<p><code>Run on the Browser tab</code> is a term versus <code>Run inside of the developer panel</code>. Traditionally Devtools are running inside of the browser’s developer panel. But some of new Firefox Devtools support run as normal web pages. Those pages can be opened in a browser tab by any modern browser such as Chrome, Safari, or Edge. The benefit is we can improve Firefox Devtools with any Browser’s Devtools, its an unfair advantage.🚀</p>
+<pre class="mermaid">graph LR
+Firefox -- debugging --> netmonitor(Netmonitor.html)
+netmonitor -- mozilla-rdp --> Firefox
+Chrome -- debugging --> netmonitor
+Edge -- debugging --> netmonitor
+Safari -- debugging --> netmonitor</pre>
+<p>We are going to make more Devtools easy to debug and can be used for cross-browser debugging.</p>
+<h2 id="Current-Status">Current Status</h2>
+<p>To replacing the jet engine while still flying is a challenging engineering work. To make it happen, we take several engineering experiments around Devtools.</p>
+<p>Here are the projects in progress and where they are hosted from:</p>
+<pre class="mermaid">graph LR
+debugger(Debugger.html) --> Nightly
+perf(Perf.html) --> Nightly
+webconsole(WebConsole.html) --> Nightly
+standalone[Github] --> debugger
+standalone --> perf
+refactor[mozilla-central] --> webconsole
+inspector(Inspector.html) --> Release
+netmonitor(Netmonitor.html) --> Release
+refactor --> inspector
+refactor --> netmonitor</pre>
+<h2 id="What-we-have-done-in-Netmonitor-html">What we have done in Netmonitor.html</h2>
+<p>Ricky Chien and I joined the effort of convert Object Inspector from XUL to HTML. Object Inspector is a more complicated tool to convert, so Object Inspector is still half <code>React</code> and without <code>Redux</code> in the playground.</p>
+<p>When the Object Inspector is fully converted to HTML, we shift our focus on convert the next important Devtool: <code>Netmonitor</code>. With Honza, Janda, Steve Chung, and other contributors’ help, at the end of Feb we have reached our first phase tangible goal: Converted the whole Netmonitor panel from XUL to HTML, with <code>React</code>, <code>Redux</code>, and <code>Immutablejs</code>. Now we have confidence that the code base is easy to read and contribute.🤗</p>
+<p><img src="http://i.imgur.com/aiqBXV5.png" alt="Imgur">
+Picture: How current Netmonitor looks like</p>
+<h2 id="What-we-plan-to-do-next">What we plan to do next</h2>
+<p>We just finished the Netmonitor workweek (Fred, Honza, Ricky) in Taiwan, plenty of discussions have occurred, and we have good progress for what should be going on for the Netmonitor.</p>
+<p>Here they are:</p>
+<ul>
+<li>We’ve triaged all new Netmonitor bugs and identify <a href="http://firefox-dev.tools/?easy&amp;tool=network" target="_blank" rel="noopener">good-first-bugs</a></li>
+<li>We have Prove-Of-Concept branches to prove we can run netmonitor on the browser tab</li>
+<li>We decide to keep using <code>mozilla-central</code>(The gecko) repo. Beside the current workflow, a developer would able to run <code>yarn start</code> command to debugging Netmonitor on the browser tab with any browser’s devtool.</li>
+<li>We stop Netmonitor.html phase I work immediately (convert XUL to HTML, MVP 100% completed)</li>
+<li>We’ll start Netmonitor.html phase II (To run Netmonitor on a browser tab so that we can debug Netmonitor with any browser’s devtool)
+<ul>
+<li>All phase II bugs are filed in the <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1348737" target="_blank" rel="noopener">Meta-bug</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="What-could-expect-in-the-future">What could expect in the future</h2>
+<p>Currently, Debugger.html have supported both Firefox and Chrome remote debugging protocols, so Debugger.html could be used to debug Firefox, Chrome, or even Node.js!😮</p>
+<pre class="mermaid">graph LR
+Firefox -- debugging --> netmonitor(Netmonitor.html)
+netmonitor -- mozilla-rdp --> Firefox
+Chrome -- debugging --> netmonitor
+netmonitor -- chrome-rdp --> Chrome
+netmonitor -- chrome-rdp --> Node[Node.js]
+Safari -- debugging --> netmonitor
+Edge -- debugging --> netmonitor</pre>
+<p>Since Debugger.html’s pure web stack nature, you can imagine one day the debugger.html can be embedded into some editors(Atom, Visual Studio Code) as plugins, or even in other browsers!😇</p>
+<pre class="mermaid">graph LR
+debugger(Debugger.html) --> Firefox
+debugger --> browsertab[Browser Tab]
+debugger --> Editor
+debugger --> other[Other Browser]</pre>
+<p><code>Run with different remote debugging protocols</code> is the next step once we make Netmonitor.html run on the browser tab.</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/12/22/debugging-firefox-devtools-in-2016/" rel="bookmark">Debugging Firefox Devtools in 2016</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/01/29/whats-new-in-devtools-2017/" rel="bookmark">Devtools的近期進展和新功能(2017)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/11/27/firefox-onboarding/" rel="bookmark">Firefox 使用者導覽 (Onboarding)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/01/03/ghpage-auto-deploy/" rel="bookmark">Automatically deploy new commit to github pages via Travis CI</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/03/01/how-bot-works/" rel="bookmark">聊天機器人是怎麼運作的(I)</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/devtools/" rel="tag"># devtools</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/13/git-merge-commits/" rel="prev" title="如何修改 git commits">
+      <i class="fa fa-chevron-left"></i> 如何修改 git commits
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/21/how-node-works/" rel="next" title="Node.js 的發展">
+      Node.js 的發展 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Firefox-Devtools-team-did-last-year"><span class="nav-number">1.</span> <span class="nav-text">What Firefox Devtools team did last year</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Run-on-the-Browser-tab-means"><span class="nav-number">2.</span> <span class="nav-text">What Run on the Browser tab means?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Current-Status"><span class="nav-number">3.</span> <span class="nav-text">Current Status</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-we-have-done-in-Netmonitor-html"><span class="nav-number">4.</span> <span class="nav-text">What we have done in Netmonitor.html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-we-plan-to-do-next"><span class="nav-number">5.</span> <span class="nav-text">What we plan to do next</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-could-expect-in-the-future"><span class="nav-number">6.</span> <span class="nav-text">What could expect in the future</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2017/03/29/current-progress-of-netmonitor-html/";
+    this.page.identifier = "2017/03/29/current-progress-of-netmonitor-html/";
+    this.page.title = "Current Progress of Netmonitor.html";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

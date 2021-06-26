@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="聲明：gasolin.eth 此 Domain 已過期，我並未繼續註冊 智能合約是什麼? 在區塊鏈上運行的程式，通常稱為智能合約(Smart Contract)📒。所以通常會把&quot;寫區塊鏈程式&quot;改稱作&quot;寫智能合約&quot;。雖然比特幣(Bitcoin)上也能寫智能合約，但是比特幣所支援的語法僅與交易有關，能做的事情比較有限。因此目前提到寫智能合約，通常指的是支援執行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什麼是智能合約(Smart Contract)?">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="聲明：gasolin.eth 此 Domain 已過期，我並未繼續註冊 智能合約是什麼? 在區塊鏈上運行的程式，通常稱為智能合約(Smart Contract)📒。所以通常會把&quot;寫區塊鏈程式&quot;改稱作&quot;寫智能合約&quot;。雖然比特幣(Bitcoin)上也能寫智能合約，但是比特幣所支援的語法僅與交易有關，能做的事情比較有限。因此目前提到寫智能合約，通常指的是支援執行">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/y6jvpAUl.png">
+<meta property="og:image" content="https://i.imgur.com/5550HgNl.png">
+<meta property="article:published_time" content="2017-09-02T14:14:48.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.718Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="ethereum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/y6jvpAUl.png">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>什麼是智能合約(Smart Contract)? | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          什麼是智能合約(Smart Contract)?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-09-02 22:14:48" itemprop="dateCreated datePublished" datetime="2017-09-02T22:14:48+08:00">2017-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/09/02/what-is-smart-contract/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/02/what-is-smart-contract/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">聲明：gasolin.eth 此 Domain 已過期，我並未繼續註冊</span><br></pre></td></tr></table></figure>
+<h2 id="智能合約是什麼">智能合約是什麼?</h2>
+<p>在區塊鏈上運行的程式，通常稱為智能合約(Smart Contract)📒。所以通常會把&quot;寫區塊鏈程式&quot;改稱作&quot;寫智能合約&quot;。雖然比特幣(Bitcoin)上也能寫智能合約，但是比特幣所支援的語法僅與交易有關，能做的事情比較有限。因此目前提到寫智能合約，通常指的是支援執行圖靈完備程式的以太坊(Ethereum)區塊鏈⛓。</p>
+<h2 id="智能合約可以做什麼">智能合約可以做什麼</h2>
+<p>目前最常見的智能合約是各種加密貨幣合約💷，開發者可以很容易地透過部署一個智能合約，來提供運行於以太坊上的新加密代幣。如果這份智能合約相容於ERC20標準<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，開發者不需要重新開發從挖礦到交易的整個代幣生態系，你的新加密代幣就可以直接使用支援以太坊的電子錢包💰來收送，大大降低了建立新加密代幣的門檻。</p>
+<p>智能合約也讓募資💸變得更透明。參與者投資資金或提供服務，也可獲得相應的權益。這份權益可以用代幣的形式返還給參與者。同樣地如果這代幣相容於ERC20標準<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，投資者或贊助者還可以隨時交易這些代幣。讓資金的運用變得更加彈性，也降低了投資的門檻。</p>
+<p>除此之外，智能合約也可以用來運作各式公開公正的自動服務機構(DAO，Decentralized Autonomous Organization)🏦。透過分散在全球各節點上運作的智能合約，所有運作與決策都是公開透明的，降低了交易的不確定性(Uncertainty)。</p>
+<h2 id="智能合約和一般程式的差異">智能合約和一般程式的差異</h2>
+<p>以太坊智能合約確實有些和一般程式不同的特性，以下整理了四個不同點。</p>
+<h3 id="一，整合金流容易">一，整合金流容易</h3>
+<p>一般的應用程式要整合金流是件非常不容易的事情。而智能合約極容易整合金流系統(使用以太幣或自行建立的新代幣合約)。</p>
+<h3 id="二，部署時與後續寫入時需費用">二，部署時與後續寫入時需費用</h3>
+<p>一般的應用程式需要提供網址讓使用者下載，一般的網頁應用程式也需要運行在伺服器上，開發者需要維持伺服器的運作以提供服務，這需要持續地花費（就算是免費的伺服器或網頁空間，也是廠商自行吸收了費用），程式開始運作後，除了維持費用外不需額外的花費。</p>
+<p>智能合約在部署時需要一筆費用，這筆費用將分給參與交易驗證（挖礦）的人。而在合約部署成功後，合約會作為不可更改的區塊鏈的一部分，分散地儲存在全球各地以太坊的節點上。也因此，智能合約在部署後，並不需定期提供維持費用，同時查詢已寫入區塊鏈的靜態資料時也不需費用。只有在每次透過智能合約寫入或讀取計算結果時，需要提供一小筆交易費用。</p>
+<h3 id="三，儲存資料的成本更高">三，儲存資料的成本更高</h3>
+<p>一般的應用程式將資料儲存在本機或伺服器上，需要資料時再從本機或伺服器上讀取，而智能合約將資料儲存在區塊鏈上，儲存資料所需的時間與成本相對昂貴。</p>
+<h3 id="四，部署後無法更改">四，部署後無法更改</h3>
+<p>一般的應用程式改版時可透過安裝新版程式，網頁應用程式也可透過部署新版程式達成，而智能合約一旦部署到區塊鏈上後，就無法更改這個智能合約。當然聰明的開發者透過加入額外的智能合約，也已有辦法繞過智能合約部署後無法再更改的限制。</p>
+<h2 id="如何撰寫智能合約？">如何撰寫智能合約？</h2>
+<p>Ethereum上的智能合約需要使用solidity<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>語言來撰寫。之前還有其他能用來撰寫智能合約的語言如Serpent(類Python)、lll(類Fortran)，但目前看到所有公開的智能合約都是使用solidity撰寫。官方宣傳上說solidity是一種類似Javascript的語言，而且圍繞著solidity的各種開發工具鏈都是使用屬於Javascript生態系的npm來提供的。</p>
+<h2 id="將智能合約部署到區塊鏈的流程">將智能合約部署到區塊鏈的流程</h2>
+<p>寫好solidity程式碼(.sol)後，需要先將程式碼編譯(compile)成EVM(Ethereum Virtual Machine)能讀懂的二進位Contract ByteCode，才能部署到Ethereum的區塊鏈上執行。部署到區塊鏈上的合約會有一個和錢包地址（Address）一樣格式的合約地址（Contract Address）。</p>
+<pre class="mermaid">graph LR
+subgraph local
+.sol -- compile --> bytecode[Contract Bytecode]
+end
+subgraph ethereum
+bytecode -- deploy --> Contract
+end</pre>
+<p>部署後智能合約可自動執行。後續呼叫智能合約的時候，使用者可以使用部署合約的錢包地址(Owner Account)，或依據撰寫的智能合約條件，讓其他錢包地址也能呼叫這個智能合約。
+所謂的&quot;呼叫智能合約&quot;，其實就是向這個合約地址發起交易，只是交易的不只是代幣，而可以是智能合約提供的呼叫方法。</p>
+<pre class="mermaid">graph LR
+subgraph local
+Account
+end
+subgraph ethereum
+Account -- call --> Contract
+Contract --> EVM
+end</pre>
+<h2 id="有點抽象，來個例子？-🌰">有點抽象，來個例子？ 🌰</h2>
+<p>在<a href="https://blog.gasolin.idv.tw/2017/08/13/got-my-ens-domain/">收到我的ENS網域啦 gasolin.eth</a>這篇文章中，我介紹了申請Ethereum Name Service的心得。其實ENS本身就是一堆智能合約的集合，透過這些智能合約，一起提供了Ethereum Name Service從申請，競價，到設定地址對應的服務。</p>
+<p>要和智能合約互動，除了需要有合約地址外，還需要知道合約所提供的操作介面(Application Binary Interface，ABI)，即知道如何呼叫程式提供的功能，和如何解釋程式回傳的資料。
+ABI（JSON格式）檔案在從原始碼編譯成ByteCode時會一併產生。</p>
+<p>下圖即是ENS Public Resolver這個合約的地址和ABI。
+<img src="https://i.imgur.com/y6jvpAUl.png" alt=""></p>
+<p>準備好合約地址和ABI後，我們才能呼叫對應功能來存取合約。
+<img src="https://i.imgur.com/5550HgNl.png" alt="Imgur"></p>
+<p>在<a href="https://blog.gasolin.idv.tw/2017/09/06/howto-write-a-smart-contract/">下一篇</a>中，我將簡單介紹如何撰寫Solidity程式。</p>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li>[1] ERC20 <a href="https://theethereum.wiki/w/index.php/ERC20_Token_Standard" target="_blank" rel="noopener">https://theethereum.wiki/w/index.php/ERC20_Token_Standard</a></li>
+<li>[2] Solidity <a href="http://solidity.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">http://solidity.readthedocs.io/en/latest/index.html</a></li>
+<li>[3] migration contracts <a href="http://truffleframework.com/docs/getting_started/migrations" target="_blank" rel="noopener">http://truffleframework.com/docs/getting_started/migrations</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/08/13/got-my-ens-domain/" rel="bookmark">收到我的ENS網域啦 gasolin.eth</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/01/02/howto-write-a-contract-test/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(IV)加入單元測試</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/12/howto-write-a-simple-token/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(II)建立加密代幣</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/06/howto-write-a-smart-contract/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(I)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/09/16/howto-write-an-erc20-compatible-token/" rel="bookmark">如何撰寫智能合約(Smart Contract)?(III)建立標準代幣</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ethereum/" rel="tag"># ethereum</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/01/tooling-in-2017-sep/" rel="prev" title="個人工具箱2017九月">
+      <i class="fa fa-chevron-left"></i> 個人工具箱2017九月
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/06/howto-write-a-smart-contract/" rel="next" title="如何撰寫智能合約(Smart Contract)?(I)">
+      如何撰寫智能合約(Smart Contract)?(I) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合約是什麼"><span class="nav-number">1.</span> <span class="nav-text">智能合約是什麼?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合約可以做什麼"><span class="nav-number">2.</span> <span class="nav-text">智能合約可以做什麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合約和一般程式的差異"><span class="nav-number">3.</span> <span class="nav-text">智能合約和一般程式的差異</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一，整合金流容易"><span class="nav-number">3.1.</span> <span class="nav-text">一，整合金流容易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二，部署時與後續寫入時需費用"><span class="nav-number">3.2.</span> <span class="nav-text">二，部署時與後續寫入時需費用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三，儲存資料的成本更高"><span class="nav-number">3.3.</span> <span class="nav-text">三，儲存資料的成本更高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四，部署後無法更改"><span class="nav-number">3.4.</span> <span class="nav-text">四，部署後無法更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何撰寫智能合約？"><span class="nav-number">4.</span> <span class="nav-text">如何撰寫智能合約？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#將智能合約部署到區塊鏈的流程"><span class="nav-number">5.</span> <span class="nav-text">將智能合約部署到區塊鏈的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有點抽象，來個例子？-🌰"><span class="nav-number">6.</span> <span class="nav-text">有點抽象，來個例子？ 🌰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/";
+    this.page.identifier = "2017/09/02/what-is-smart-contract/";
+    this.page.title = "什麼是智能合約(Smart Contract)?";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

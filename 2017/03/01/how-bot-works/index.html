@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="聊天機器人（Chat bot）已存在許久，常見於各種即時通訊工具中。一般人最可能接觸到的，還是銀行的語音服務（Voice Response System）。 當我們打電話到銀行免付費專線，會有語音提示我們輸入驗證資料，然後輸入對應的數字來得到銀行服務。 只有在根據一串語音提示，輸入特定數字時才轉接到真人回應的專線。這個過程跟使用聊天機器人基本上是一樣的。 graph LR User[使用者] --">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊天機器人是怎麼運作的(I)">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2017/03/01/how-bot-works/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="聊天機器人（Chat bot）已存在許久，常見於各種即時通訊工具中。一般人最可能接觸到的，還是銀行的語音服務（Voice Response System）。 當我們打電話到銀行免付費專線，會有語音提示我們輸入驗證資料，然後輸入對應的數字來得到銀行服務。 只有在根據一串語音提示，輸入特定數字時才轉接到真人回應的專線。這個過程跟使用聊天機器人基本上是一樣的。 graph LR User[使用者] --">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-01T02:36:53.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.702Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="mobile">
+<meta property="article:tag" content="bot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2017/03/01/how-bot-works/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>聊天機器人是怎麼運作的(I) | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2017/03/01/how-bot-works/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聊天機器人是怎麼運作的(I)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-01 10:36:53" itemprop="dateCreated datePublished" datetime="2017-03-01T10:36:53+08:00">2017-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/03/01/how-bot-works/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/01/how-bot-works/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>聊天機器人（Chat bot）已存在許久，常見於各種即時通訊工具中。一般人最可能接觸到的，還是銀行的語音服務（Voice Response System）。</p>
+<p>當我們打電話到銀行免付費專線，會有語音提示我們輸入驗證資料，然後輸入對應的數字來得到銀行服務。
+只有在根據一串語音提示，輸入特定數字時才轉接到真人回應的專線。這個過程跟使用聊天機器人基本上是一樣的。</p>
+<pre class="mermaid">graph LR
+User[使用者] --> dial[撥號]
+dial -- 輸入 --> identify[身份驗證資料]
+identify -- 選擇 --> number[服務項目]
+number --> auto[1-8: 自動應答]
+number --> manual[9: 專人服務]</pre>
+<p>銀行的語音服務流程</p>
+<h2 id="行動裝置的完全普及">行動裝置的完全普及</h2>
+<p>近年來聊天機器人能重新進入公眾視線，主因還是行動裝置的完全普及：
+幾乎所有的人都擁有一台智慧型手機。而且所有人的手機上都有一至數個聊天App（LINE, Facebook Messenger, Wechat）。</p>
+<p>邏輯思維2017年跨年演講<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>裡提到，美國, 中國想上網的人基本都已經能上網（上網人口已經接近飽和），人們每周平均花24小時上網,而這些數字都已經沒有太大的提升空間。因此所有的網路服務都得從有限的總量中搶占使用者的上網時間與關注。</p>
+<p>換句話說，2016年我們已正式進入行動網路（移動互連網）的下半場，廠商除了需要想方法佔用更多使用者上網時間之外，另一條路或是協助使用者更有效地利用上網的時間。</p>
+<h2 id="聊天App佔用使用者更多上網時間">聊天App佔用使用者更多上網時間</h2>
+<p>2016年初的調查顯示，人們每天平均在手機和在電腦上所花的時間差不多。
+隨著手機App的發展，人們能透過手機完成的事也越來越多。可以預見到的是人們每天花在手機上的時間佔比會再增加。
+人們在手機上花費最多時間的是聊天App和社交App。而今天的聊天/社交App都已內建網頁檢視（webview）功能。
+看到「朋友」分享的新聞連結，點選後可以直接瀏覽內容，完全不需要另外再開啟瀏覽器來查看新聞。</p>
+<p>由於聊天App佔用了使用者多數的時間，依照「使用者在哪，機會就在哪」的原則，聊天機器人，或是對話式界面(Conversational UI)成了一個選項。</p>
+<h2 id="Siri-聊天機器人的濫觴">Siri, 聊天機器人的濫觴</h2>
+<p>這波新一代聊天機器人的濫觴，也許可以歸功於2011年蘋果推出的Siri<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，雖然Siri並不存在於聊天App中。
+iPhone的使用者可以透過手機上的Siri智能助理應用，做到用口語詢問近期天氣，日程表，查詢地圖，餐廳，設定鬧鐘等行動，從而用更便利的方式取得服務。
+雖然今天Siri與其他選擇相比，已盡顯不足之處, 但當時Siri的推出，讓人們感知到與機器直接對話已不再遙不可及，這直接鼓勵了眾家廠商願意加大投入。</p>
+<p>近幾年語音辨識，人工智能AI的爆發式進展，與此必然有著千絲萬縷的聯繫。</p>
+<h2 id="聊天機器人有什麼用">聊天機器人有什麼用?</h2>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Reddit 曾有用戶提問，如果某個 1950 年代的人突然出現，最難向他解釋的現代事物是什麼？</span><br><span class="line">最多人推的回答是： 「我擁有一部機器，就放在我的口袋裡，我可以用它來存取任何人類已知的知識。</span><br><span class="line">我常用這個來看貓咪的圖片，還有跟陌生人筆戰。」</span><br><span class="line">-- @wastemobile</span><br></pre></td></tr></table></figure>
+<p>就像现在手机App一样，大部分的App其实没什么用，用了只是消耗自己的时间。
+但是像Siri所能做的，使用者透過聊天機器人簡化日常的瑣事，或是快速得到常見問題的答案。
+Slack平台上已有許多機器人，可以同步Github Bug，同步代辦事項資訊，提醒今日任務等。這些Bot能省下使用者寶貴的線上時間。
+我們更多需要的是這類型（用更便利的方式取得服務）的聊天機器人。</p>
+<h2 id="聊天機器人與使用者的互動方式">聊天機器人與使用者的互動方式</h2>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在網際網路上，沒人知道你是一隻狗</span><br></pre></td></tr></table></figure>
+<p>聊天軟體原本的功用是讓使用者可以和「另一個使用者」或「一群使用者」交流。聊天機器人則是取代「另一個使用者」的角色<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>，讓使用者和「聊天機器人」一對一交流，或是讓聊天機器人加入群組，和「一群使用者」交流。</p>
+<pre class="mermaid">graph LR
+User --> bot[Chat Bot]
+bot --> User</pre>
+<p>一對一</p>
+<pre class="mermaid">graph LR
+User --> Group
+Group --> User
+Group --> bot[Chat Bot]
+bot --> Group</pre>
+<p>群組（多對多）</p>
+<h2 id="聊天機器人的應對方式">聊天機器人的應對方式</h2>
+<p>除了「一對一」，「群組」（多對多）之外，依據聊天機器人的應對方式，還可以分為通知型（Notify），模式型（Pattern Matching），對話型（Context Aware）等幾種聊天機器人<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>。</p>
+<h3 id="通知型（Notify）">通知型（Notify）</h3>
+<p>通知型機器人會根據使用者「訂閱」的資訊，傳訊息通知使用者。例如明日天氣預報機器人可以定時告訴使用者明天氣象狀況與溫度，出門需不須要帶傘。
+使用者一般不需要輸入任何訊息與機器人對話。</p>
+<pre class="mermaid">graph RL
+bot[Chat Bot] -- notify --> User</pre>
+<h3 id="模式型（Pattern-Matching）">模式型（Pattern Matching）</h3>
+<p>模式型機器人會比對使用者送出的訊息，如果符合機器人設定好的一些模式，就做出對應的回應。</p>
+<pre class="mermaid">graph RL
+subgraph chatbot
+Matcher[Pattern Matching] --> Responder[Build Response]
+end
+User -- request --> Matcher
+Responder -- response --> User</pre>
+<p>例如使用者可以透過天氣機器人，輸入&quot;weather in Taipei&quot;查詢當前台北的天氣。</p>
+<p>基本的模式型機器人沒有對話的概念，並不會根據使用者過去的應對而改變回應的結果。
+例如使用天氣機器人時每次都需要指定想查詢的地點，或是透過預先設定地點/偏好溫度格式來簡化使用方式。</p>
+<p>除了傳統使用正則表達式(Regex)來比對模式外，Facebook Messenger bot則提供更接近口語的自然語言處理（Nature language Processing）模式比對。
+多數聊天機器人框架目前都仍偏向模式型。</p>
+<h3 id="對話型（Context-Aware）">對話型（Context Aware）</h3>
+<p>對話型機器人會從與使用者過去的對話中提取使用者的偏好，並運用到後續的對話中。</p>
+<p>例如Google Assistant會根據你之前的查詢,去進一步找到你想听的音樂。</p>
+<pre class="mermaid">graph RL
+subgraph chatbot
+Parser -- Action --> Processor[Do actions]
+Processor --> contexture[Context Brain]
+contexture --> Processor
+contexture --> Responder
+Processor --> Responder[Build Response]
+end
+User -- request --> Parser[Intent Parser]
+Responder -- response --> User</pre>
+<p>能理解與使用者過去的對話,也是對話型人工智能的重要特徵。當使用者在聊天軟體中新加入一個bot服務，使用者與這個服務的對話都與和一般服務員的交談無異，那麼服務的後面是不是真人還重要嗎？</p>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 羅輯思維4小時跨年演講 <a href="https://kknews.cc/zh-tw/tech/xz2x4p8.html" target="_blank" rel="noopener">https://kknews.cc/zh-tw/tech/xz2x4p8.html</a></li>
+<li><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> <a href="https://en.wikipedia.org/wiki/Siri" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Siri</a></li>
+<li><sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> <a href="https://zh.wikipedia.org/wiki/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%EF%BC%8C%E6%B2%A1%E4%BA%BA%E7%9F%A5%E9%81%93%E4%BD%A0%E6%98%AF%E4%B8%80%E6%9D%A1%E7%8B%97" target="_blank" rel="noopener">在網際網路上，沒人知道你是一隻狗</a></li>
+<li><sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> <a href="http://willschenk.com/bot-design-patterns/" target="_blank" rel="noopener">Bot Design Patterns</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/10/04/how-frontend-works/" rel="bookmark">網頁前端的發展 (科普)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/09/21/how-dynamic-web-works/" rel="bookmark">動態網頁的基本運作方式 (科普)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/07/21/how-node-works/" rel="bookmark">Node.js 的發展</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/10/06/how-mobile-web-works/" rel="bookmark">行動裝置網頁(Mobile Web)的發展（科普）</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/09/20/how-web-works/" rel="bookmark">網站的基本運作方式 (科普)</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/mobile/" rel="tag"># mobile</a>
+              <a href="/tags/bot/" rel="tag"># bot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/02/02/personal-automation-in-2017/" rel="prev" title="我如何做個人自動化紀錄-2017版">
+      <i class="fa fa-chevron-left"></i> 我如何做個人自動化紀錄-2017版
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/04/blog-updates-in-2017/" rel="next" title="2017年，我的部落格改進了什麼?">
+      2017年，我的部落格改進了什麼? <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#行動裝置的完全普及"><span class="nav-number">1.</span> <span class="nav-text">行動裝置的完全普及</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聊天App佔用使用者更多上網時間"><span class="nav-number">2.</span> <span class="nav-text">聊天App佔用使用者更多上網時間</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Siri-聊天機器人的濫觴"><span class="nav-number">3.</span> <span class="nav-text">Siri, 聊天機器人的濫觴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聊天機器人有什麼用"><span class="nav-number">4.</span> <span class="nav-text">聊天機器人有什麼用?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聊天機器人與使用者的互動方式"><span class="nav-number">5.</span> <span class="nav-text">聊天機器人與使用者的互動方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聊天機器人的應對方式"><span class="nav-number">6.</span> <span class="nav-text">聊天機器人的應對方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通知型（Notify）"><span class="nav-number">6.1.</span> <span class="nav-text">通知型（Notify）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式型（Pattern-Matching）"><span class="nav-number">6.2.</span> <span class="nav-text">模式型（Pattern Matching）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#對話型（Context-Aware）"><span class="nav-number">6.3.</span> <span class="nav-text">對話型（Context Aware）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2017/03/01/how-bot-works/";
+    this.page.identifier = "2017/03/01/how-bot-works/";
+    this.page.title = "聊天機器人是怎麼運作的(I)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

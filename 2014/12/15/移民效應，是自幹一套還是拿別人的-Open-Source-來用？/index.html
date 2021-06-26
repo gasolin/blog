@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.gasolin.idv.tw","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="從 Marissa Mayer 與起死回生的雅虎 一文中，可以看到雅虎工程師對自家 CEO 的讚美。其中一點提到雅虎內部有很多系統設計是與外界完全不一樣的，直到新 CEO 上任才放下使用多年的YUI而擁抱其他Open Source團隊維護的專案。 從樂觀的角度看：因為當初Yahoo工程師夠強（Douglas Crockford），覺得自己做的東西比別家的好，所以乾脆自己做。有這種「愛自幹」的精神，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移民效應，是自幹一套還是拿別人的 Open Source 來用？">
+<meta property="og:url" content="https://blog.gasolin.idv.tw/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/">
+<meta property="og:site_name" content="蓋索林 Gasolin">
+<meta property="og:description" content="從 Marissa Mayer 與起死回生的雅虎 一文中，可以看到雅虎工程師對自家 CEO 的讚美。其中一點提到雅虎內部有很多系統設計是與外界完全不一樣的，直到新 CEO 上任才放下使用多年的YUI而擁抱其他Open Source團隊維護的專案。 從樂觀的角度看：因為當初Yahoo工程師夠強（Douglas Crockford），覺得自己做的東西比別家的好，所以乾脆自己做。有這種「愛自幹」的精神，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-12-14T18:21:12.000Z">
+<meta property="article:modified_time" content="2020-12-24T08:31:33.818Z">
+<meta property="article:author" content="gasolin">
+<meta property="article:tag" content="Mozilla">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.gasolin.idv.tw/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>移民效應，是自幹一套還是拿別人的 Open Source 來用？ | 蓋索林 Gasolin</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2833924-9"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-2833924-9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/feeds/posts/default.xml" title="蓋索林 Gasolin" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蓋索林 Gasolin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人們總是高估一年可以完成的事，卻低估十年能完成的事</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.gasolin.idv.tw/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="gasolin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓋索林 Gasolin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          移民效應，是自幹一套還是拿別人的 Open Source 來用？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-12-15 02:21:12" itemprop="dateCreated datePublished" datetime="2014-12-15T02:21:12+08:00">2014-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-24 16:31:33" itemprop="dateModified" datetime="2020-12-24T16:31:33+08:00">2020-12-24</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/12/15/移民效應，是自幹一套還是拿別人的-Open-Source-來用？/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>從 <a href="http://mmdays.com/2014/12/12/yahoo_comeback/" target="_blank" rel="noopener">Marissa Mayer 與起死回生的雅虎</a> 一文中，可以看到雅虎工程師對自家 CEO 的讚美。其中一點提到雅虎內部有很多系統設計是與外界完全不一樣的，直到新 CEO 上任才放下使用多年的YUI而擁抱其他Open Source團隊維護的專案。</p>
+<p>從樂觀的角度看：因為當初Yahoo工程師夠強（Douglas Crockford），覺得自己做的東西比別家的好，所以乾脆自己做。有這種「愛自幹」的精神，所以才會做出很多跟其他地方不一樣的東西，這是feature。從反面看則是因為長期跟人家用的工具不一樣，所以沒辦法直接使用別人做的Open source工具，這也是bug。</p>
+<p>以前的Yahoo「不擁抱其他Open Source團隊維護的專案」嗎？Yahoo當然某種程度是支持Open Source的公司。就我所知，Yahoo是間很早開始支援 <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">Hadoop</a> 開源專案的公司。Yahoo使用 Hadoop，也延攬 Hadoop 開發者進公司，所以「不擁抱其他Open Source團隊維護的專案」這個論點也許是存在的。</p>
+<p>我們來看看 Google。類似於 YUI，Google 自己也有一套 <a href="https://developers.google.com/closure/library/" target="_blank" rel="noopener">Closure Library</a>，多數 Google 的產品都建構於其上，雖然開源，但外面專案會使用它的也少之又少。
+而 Android 呢，<a href="https://source.android.com/" target="_blank" rel="noopener">AOSP</a>專案裡也有不少只能在 Android 工具鏈中使用的工具，但從以前基於 Eclipse 的 Android 開發工具到最近釋出的Android Studio 1.0是基於 IntelliJ 的開發工具，部分的Google似乎較接受擁抱其他Open Source團隊維護的專案。</p>
+<p>在寫下這兩段話的同時，我比較這兩家公司擁抱其他Open Source團隊維護的專案的原因，竟發現兩者改變的相同點在於「併購」。當Google併購Android，就接受了Android團隊與他們提出的開發工具。當Yahoo開始大採購，許多新創團隊進入Yahoo大家庭的同時，也帶進各團隊使用的「其他Open Source團隊維護的專案」。也就是說，當新移民團隊進入這個團體時，帶來了改變。</p>
+<p>比起大公司而言，新移民團隊在被併購前的資源有限，使用其他Open Source團隊維護的專案是很自然的事。團隊被併購後若需使用併購方的技術重新打造產品，將是相當痛苦的事情。因此在Yahoo大採購後許多原有規矩被改寫，恐怕背後也有這些新團隊帶來的影響。</p>
+<p>用社會學可能可以解釋為什麼是團隊而不是個人？因為改變一直是困難的事。原有的團隊在過去磨合/開發的過程中已經凝聚出了一些共識。移民到新團體的過程中，新移民團隊需要參與和適應團體的一些運作方式，而團體則需接納和適應新移民團隊的一些習俗。</p>
+<p>回來想想 Mozilla 也做了很多 Open Source 專案，但整套工具常常僅供自己相關的專案使用。
+從自身找原因，自家工具的開源專案原本就是為了滿足自己的需求。當外部出現對這套工具的需求時，由於公司人力資源調配，優先要滿足的還是自身專案時程的需求。
+當用到的Open Source專案在公司裡就有人可以諮詢，當然比去找其他Open Source團隊維護的專案來地可靠（？）。許多專案在這樣的思維下就使用自己寫的工具，當意識到的那天，已經回不去了。</p>
+<p>若想避免現在的feature變成未來的bug，在決定自幹專案工具前，先想一想（或search一下），也許結果會不一樣。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2014/03/19/FoxBox-and-SummerOfCode14/" rel="bookmark">FoxBox and SummerOfCode14</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2016/08/09/The-newbies-workflow-on-Mozilla-Gecko-project/" rel="bookmark">The newbie's workflow on Mozilla Gecko project</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2014/01/13/template-js/" rel="bookmark">template.js</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2013/06/30/幫-Bugzilla-換個新佈景/" rel="bookmark">幫 Bugzilla 換個新佈景</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2013/08/09/貢獻開源專案？從怪獸（Mozilla）與超人蓋亞（Gaia）開始吧/" rel="bookmark">貢獻開源專案？從怪獸（Mozilla）與超人蓋亞（Gaia）開始吧</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mozilla/" rel="tag"># Mozilla</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/12/03/%E4%BD%BF%E7%94%A8-FLUX-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%BC%B8%E9%80%B2%E6%94%B9%E5%96%84%E4%B8%80%E8%88%AC-Javascript-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E7%B5%84%E7%B9%94%E6%96%B9%E5%BC%8F/" rel="prev" title="使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式">
+      <i class="fa fa-chevron-left"></i> 使用 FLUX 架構的概念，漸進改善一般 Javascript 程式碼的組織方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2015/01/03/2014%E5%AE%8C%E9%A3%9F%E7%9A%84%E6%9B%B8/" rel="next" title="2014完食的書">
+      2014完食的書 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="gasolin"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">gasolin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">533</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.gasolin.idv.tw/" title="HomePage → http:&#x2F;&#x2F;www.gasolin.idv.tw" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>HomePage</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.github.com/gasolin" title="Github → https:&#x2F;&#x2F;www.github.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.slideshare.net/gasolin" title="SlideShare → http:&#x2F;&#x2F;www.slideshare.net&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-slideshare fa-fw"></i>SlideShare</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitter.com/gasolin" title="Twitter → https:&#x2F;&#x2F;www.twitter.com&#x2F;gasolin" rel="noopener" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total" title="Read → https:&#x2F;&#x2F;share.readmoo.com&#x2F;mooer&#x2F;lifaicqb9&#x2F;bookshelf&#x2F;gasolin&#x2F;total" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>Read</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://movie.douban.com/people/gasolin/" title="Watch → https:&#x2F;&#x2F;movie.douban.com&#x2F;people&#x2F;gasolin&#x2F;" rel="noopener" target="_blank"><i class="fa fa-film fa-fw"></i>Watch</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.mytravelmap.tk/u/gg112695256249584453237" title="Visited → http:&#x2F;&#x2F;www.mytravelmap.tk&#x2F;u&#x2F;gg112695256249584453237" rel="noopener" target="_blank"><i class="fa fa-map-marker fa-fw"></i>Visited</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitcoin.co/tip?username=gasolin" title="Tip Me → https:&#x2F;&#x2F;gitcoin.co&#x2F;tip?username&#x3D;gasolin" rel="noopener" target="_blank"><i class="fa fa-bolt fa-fw"></i>Tip Me</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2005 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gasolin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57da69da7827f70b" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blog-gasolin-idv-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.gasolin.idv.tw/2014/12/15/%E7%A7%BB%E6%B0%91%E6%95%88%E6%87%89%EF%BC%8C%E6%98%AF%E8%87%AA%E5%B9%B9%E4%B8%80%E5%A5%97%E9%82%84%E6%98%AF%E6%8B%BF%E5%88%A5%E4%BA%BA%E7%9A%84-Open-Source-%E4%BE%86%E7%94%A8%EF%BC%9F/";
+    this.page.identifier = "2014/12/15/移民效應，是自幹一套還是拿別人的-Open-Source-來用？/";
+    this.page.title = "移民效應，是自幹一套還是拿別人的 Open Source 來用？";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://blog-gasolin-idv-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
