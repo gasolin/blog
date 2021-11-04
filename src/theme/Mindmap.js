@@ -1,0 +1,46 @@
+// use in *.mdx like:
+// import Mindmap from '@theme/Mindmap'
+
+// <Mindmap markdown={`
+// # DIR
+// ## Domain
+// ## Dora
+// `}/>
+
+import React, { useEffect, useRef } from "react";
+import { Transformer } from 'markmap-lib';
+import * as markmap from 'markmap-view';
+
+const transformer = new Transformer();
+const { Markmap, loadCSS, loadJS } = markmap;
+
+const Mindmap = ({ markdown, config }) => {
+  if (!markdown) return null;
+  console.log('>>>', markdown)
+  const ref = useRef()
+
+  useEffect(() => {
+    try {
+      const { root, features } = transformer.transform(markdown.trim());
+      const { styles, scripts } = transformer.getUsedAssets(features);
+
+      // 1. load assets
+      if (styles) loadCSS(styles);
+      if (scripts) loadJS(scripts, { getMarkmap: () => markmap });
+
+      // 2. create markmap
+      var el = Markmap.create(ref.current, { autoFit: false }, root);
+    } catch (e) {
+      console.error(e);
+    }
+    return () => {
+      el.styleNode.interrupt();
+      el.g.interrupt();
+      el.svg.interrupt();
+    };
+  }, [markdown])
+
+  return <svg ref={ref} width="400" height="300"></svg>;
+}
+
+export default Mindmap;
