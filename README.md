@@ -1,4 +1,5 @@
 # Website
+[![Node.js CI](https://github.com/gasolin/blog/actions/workflows/deploy-docusaurus.yml/badge.svg)](https://github.com/gasolin/blog/actions/workflows/deploy-docusaurus.yml)
 
 My personal Blog source, follow [Creative Common Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
