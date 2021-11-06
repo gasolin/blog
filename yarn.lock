@@ -6151,10 +6151,10 @@ mdurl@^1.0.0:
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
 
-mdx-mermaid@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/mdx-mermaid/-/mdx-mermaid-1.1.0.tgz#687bcec767fe7b142a065463f3ec6ede53bd7b9e"
-  integrity sha512-hmY1KWu7YqIfNSOnrsnxCUTq2sRklnNc9OyHz+SRSQDJuYo2ZCQP2PHciR2oK9sPAwHSvpnTep6w5ha2Gl98WQ==
+mdx-mermaid@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/mdx-mermaid/-/mdx-mermaid-1.1.1.tgz#d014d12acda0a2a069ae3fa0a9e3f9a5a18b4bcf"
+  integrity sha512-3Dc6zFRBaqxJ0S0cEKrbDSJEjdlJ/OUfTHFLY8uBwoDrTnF7+Dn8ukVPeVL10gNqqTvaPmQ1KGdgyx9wMuktEA==
 
 media-typer@0.3.0:
   version "0.3.0"
