@@ -9,7 +9,7 @@ const config = {
   title: '蓋索林 Gasolin',
   tagline: '人們總是高估一年可以完成的事，卻低估十年能完成的事',
   url: 'https://blog.gasolin.idv.tw/',
-  baseUrl: '/blog/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
