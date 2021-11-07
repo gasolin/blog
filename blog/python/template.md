@@ -1,7 +1,7 @@
 ---
 title: 樣板表示法
 tags:
-  - Android
+  - Python
 date: 2009-09-06 06:28:46
 ---
 

@@ -10,7 +10,7 @@ tags:
 
 隨著Firefox OS[^1]，黑莓BlackBerry 10[^2]，與Windows Phone[^3]三種行動裝置OS都陸續傳出退出消費市場或停產的消息，表明現在行動裝置OS已大勢底定，由Android與iOS二分天下。
 
-最近甚囂塵上的傳言[^4]是Google將在下周發表Android與Chrome OS合併的作業系統Andromeda(英文中是"仙女座"的意思。有人跟我一樣感覺這唸起來尾音頗像韓國話嗎?)。這讓我想起2008年的時候，我寫過一篇[Androbian?](https://blog.gasolin.idv.tw/2008/07/26/Androbian/)短評關於Android與Symbian將合併的傳言。裡面引用了一段話:
+最近甚囂塵上的傳言[^4]是Google將在下周發表Android與Chrome OS合併的作業系統Andromeda(英文中是"仙女座"的意思。有人跟我一樣感覺這唸起來尾音頗像韓國話嗎?)。這讓我想起2008年的時候，我寫過一篇[Androbian?](Androbian.md)短評關於Android與Symbian將合併的傳言。裡面引用了一段話:
 
 > How they will merge two platforms that have so many things different about them is beyond us. 
 > One is chocolate, the other is peanut butter. Two completely different things. However, we know how good they taste together!

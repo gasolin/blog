@@ -28,6 +28,8 @@ import Mindmap from '@theme/Mindmap'
 
 花了一天做基本的 Docusaurus 設定與文章修正 ✍️，另一天加上[自動部署](https://github.com/gasolin/blog/blob/master/.github/workflows/deploy-docusaurus.yml)，並加上 [Mermaid](https://github.com/sjwall/mdx-mermaid), [Markmap](https://github.com/gasolin/blog/blob/master/src/theme/Mindmap.js) 圖支援後，就倉促上線了⚡️。
 
+改版後一樣是透過 Github hosting + 使用 Markdown 保存文章。
+
 ## 改版的主要差異:
 
 ### 文章網址改變
@@ -37,6 +39,7 @@ import Mindmap from '@theme/Mindmap'
 
 ### RSS 連結改變
 
+從 http://blog.gasolin.idv.tw/feeds/posts/default
 改到 https://blog.gasolin.idv.tw/rss.xml
 
 ### 待修正
