@@ -44,5 +44,15 @@ import Mindmap from '@theme/Mindmap'
 
 ### 待修正
 
-- 修正文章內連結
-- 加回 Disqus 留言評論功能
+1. 修正文章內連結
+
+根據[建議](https://docusaurus.io/docs/docs-markdown-features)，最好使用關聯檔案路徑（`[文章](檔案.md)`）而非相關連結 （`[文章](https://post-url)`）。
+
+使用關聯檔案路徑有以下好處：
+- 在 Github 上連結也可以用
+- 可以隨時訂製 document slugs 而不需要更新所有連結
+- 多版本文件時，文件可以正確連到對應的版本
+
+2. 加回 Disqus 留言評論功能
+
+看來需要進一步修改客製，就先不弄了。有什麼想向我講的就請留言到 https://twitter.com/gasolin 囉。
