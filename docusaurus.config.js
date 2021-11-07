@@ -28,6 +28,7 @@ const config = {
         // },
         // docs: false,
         blog: {
+          blogDescription: '人們總是高估一年可以完成的事，卻低估十年能完成的事',
           routeBasePath: '/', //blog only
           showReadingTime: true,
           // Please change this to your repo.
@@ -38,6 +39,7 @@ const config = {
             // [require('remark-twemoji'), {ext: '.svg', size: 12}],
             require('mdx-mermaid'),
           ],
+          postsPerPage: 5,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

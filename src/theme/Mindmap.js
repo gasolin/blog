@@ -11,12 +11,14 @@ import React, { useEffect, useRef } from "react";
 import { Transformer } from 'markmap-lib';
 import * as markmap from 'markmap-view';
 
+const WIDTH = "80%";
+const HEIGHT = "30vh";
+
 const transformer = new Transformer();
 const { Markmap, loadCSS, loadJS } = markmap;
 
 const Mindmap = ({ markdown, config }) => {
   if (!markdown) return null;
-  console.log('>>>', markdown)
   const ref = useRef()
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Mindmap = ({ markdown, config }) => {
     };
   }, [markdown])
 
-  return <svg ref={ref} width="400" height="300"></svg>;
+  return <svg ref={ref} width={WIDTH} height={HEIGHT}></svg>;
 }
 
 export default Mindmap;
