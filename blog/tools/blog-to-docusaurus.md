@@ -13,31 +13,33 @@ import Mindmap from '@theme/Mindmap'
 ## 基於 [Docusaurus](https://docusaurus.io/)
 ### 只使用[Blog](https://docusaurus.io/docs/blog) 部分
 ## 優點
-### 改版容易
-#### 基於 React Component
-#### 支援 Mermaid, MarkMap 圖
+  - 改版容易
+  - 基於 React
+  - 文章中可自訂或內嵌 Component
+  - 支援 [Emoji](https://github.com/rhysd/remark-emoji), [Mermaid](https://github.com/sjwall/mdx-mermaid), MarkMap 圖
 ## 缺點
-### 文章網址改變
-### RSS 連結改變
+- 文章網址改變
+- RSS 連結改變
 `}/>
 
 更新 blog post 時發現自動 deploy 不運作，原來 Travis CI org 已經不服務了 Orz。
 
-原來用的 hexo 版本也舊了，要更新也得費一番工夫，不如來試試之前考慮過的 Docusaurus 吧
+原來用的 hexo 版本也舊了，要更新也得費一番工夫，不如來試試之前考慮過的 Docusaurus 吧。
 
-花了一天做基本的 Docusaurus 設定與文章修正 ✍️，另一天加上自動部署，並加上 Mermaid, Markmap 圖支援後，就倉促上線了⚡️。
+花了一天做基本的 Docusaurus 設定與文章修正 ✍️，另一天加上[自動部署](https://github.com/gasolin/blog/blob/master/.github/workflows/deploy-docusaurus.yml)，並加上 [Mermaid](https://github.com/sjwall/mdx-mermaid), [Markmap](https://github.com/gasolin/blog/blob/master/src/theme/Mindmap.js) 圖支援後，就倉促上線了⚡️。
 
 ## 改版的主要差異:
 
-## 文章網址改變
+### 文章網址改變
 
-現在讀部落格的人少了，這次改版不再相容舊版 Blogger 的設定。舊文依然保留，但網址改變了，可以透過[Tags](http://localhost:3000/tags) 查看各標籤分類下的文章。
+雖然這次改版不再相容舊版 Blogger 的設定，網址改變了，但舊文依然保留。
+可以透過[Tags](http://localhost:3000/tags) 查看各標籤分類下的文章。
 
-## RSS 連結改變
+### RSS 連結改變
 
 改到 https://blog.gasolin.idv.tw/rss.xml
 
-## 待修正
+### 待修正
 
 - 修正文章內連結
 - 加回 Disqus 留言評論功能

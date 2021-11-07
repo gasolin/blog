@@ -28,7 +28,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "remark-emoji": "2.2.0",
-    "remark-twemoji": "0.1.1",
+    "remark-plugin-twemoji": "1.0.1",
     "twemoji": "13.1.0",
     "url-loader": "4.1.1"
   },

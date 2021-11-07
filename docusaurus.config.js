@@ -36,7 +36,7 @@ const config = {
             'https://github.com/gasolin/blog/edit/main/website/blog/',
           remarkPlugins: [
             [require('remark-emoji'), {padSpaceAfter: true}],
-            // [require('remark-twemoji'), {ext: '.svg', size: 12}],
+            // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
             require('mdx-mermaid'),
           ],
           postsPerPage: 5,
