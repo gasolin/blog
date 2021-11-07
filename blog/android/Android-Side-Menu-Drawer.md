@@ -7,7 +7,7 @@ date: 2013-01-23 02:45:42
 
 [![](http://1.bp.blogspot.com/-WKOpggVsikA/UP3c27pO4OI/AAAAAAAAC9A/ODUnR5JnCuw/s400/slide_menu.png)](http://1.bp.blogspot.com/-WKOpggVsikA/UP3c27pO4OI/AAAAAAAAC9A/ODUnR5JnCuw/s1600/slide_menu.png)
 
-幾周前在GTUG Taipei活動，聽了David Wu分享的"A Deep Dive into Android Open Source Project"演講，回來後對Slide Menu效果很感興趣，也在[gPaper改版](http://blog.gasolin.idv.tw/2013/01/app-gpaper-20.html)時使用到這個技巧。
+幾周前在GTUG Taipei活動，聽了David Wu分享的"A Deep Dive into Android Open Source Project"演講，回來後對Slide Menu效果很感興趣，也在[gPaper改版](http://blog.gasolin.idv.tw/tools/App-gpaper-2-0)時使用到這個技巧。
 
 <iframe allowfullscreen="" frameborder="0" height="315" src="http://www.youtube.com/embed/gwB8xkTckKc" width="560"></iframe>
 
