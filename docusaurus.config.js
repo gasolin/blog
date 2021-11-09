@@ -35,9 +35,12 @@ const config = {
           editUrl:
             'https://github.com/gasolin/blog/edit/main/website/blog/',
           remarkPlugins: [
-            [require('remark-emoji'), {padSpaceAfter: true}],
-            // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
-            require('mdx-mermaid'),
+            [
+              require('remark-emoji'), {padSpaceAfter: true}],
+              // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
+              require('mdx-mermaid'), // charts
+              require('remark-pangu'), // chinese/english space
+              require('remark-oembed'), // youtube, twitter
           ],
           postsPerPage: 5,
         },

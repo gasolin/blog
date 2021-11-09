@@ -1,12 +1,17 @@
 ---
-title: 為何需要使用硬體錢包？
+title: 如何保護數位資產？
 tags:
-  - ethereum
+  - crypto
+  - security
 ---
 
 ## 哪有那麼剛好是我被駭
 
 因為你值得。
+
+就像買彩券或是買加密貨幣。如果這麼做的成本很低，潛在收益卻很大，那麼大多數人還是願意嘗試的。
+
+猜密碼某種程度就像買彩券，一但成功，就可以取得一個人的所有數位資產。如果使用字典工具等方式自動執行，則人工成本更低了。
 
 ## 為何需要硬體錢包？
 
@@ -30,12 +35,10 @@ tags:
 
 這些網站有標準不一的安全防護能力。
 
-https://haveibeenpwned.com/
+https://haveibeenpwned.com/ 可以查看哪些與你的Email關聯的帳號密碼已洩漏。
 
 The device itself holds the keys and signs transactions for you.
 
 
-https://steemit.com/bitcoin/@tomshwom/tomshwom-s-advanced-crypto-security-guide-part-1-privacy-security-and-trust
-
-https://steemit.com/cryptocurrency/@tomshwom/tomshwom-s-official-security-guide-part-2-wallet-analysis
-
+- https://steemit.com/bitcoin/@tomshwom/tomshwom-s-advanced-crypto-security-guide-part-1-privacy-security-and-trust
+- https://steemit.com/cryptocurrency/@tomshwom/tomshwom-s-official-security-guide-part-2-wallet-analysis

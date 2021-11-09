@@ -15,25 +15,26 @@ tags:
 
 ## 我們需要哪種類型的聊天機器人？
 
-從上面的分類來看，對話型機器人無疑是最強力的。但就實用的角度來看，模式型機器人
+從上面的分類來看，對話型機器人無疑是最強力的。但就實用的角度來看，模式型機器人即可以勝任大部分的工作。
 
-
-
+```mermaid
 IM Service --> Inbound message
 Outbound Message --> IM Service
 Inbound message -> Bot Engine
 Bot Engine --> Bot Model
+```
 
-文字處理 Word Processing
+## 文字處理 Word Processing
 
 斷詞, POS tagging, sentence analysis and question tagging
 進行自然語言的理解。這裡 NLP 一般是進行一些規範化的操作，比如識別一些專有名詞和地名，把主謂賓等一些簡單的語言結構分析出來，糾正一些常見的語法和拼寫錯誤，把一些時態相關的詞根分解出來等。
 
-Dialog State Tracking: topic 聊天狀態的跟蹤
+## Dialog State Tracking: topic 聊天狀態的跟蹤
 
-意圖感知 Intent Parser
+## 意圖感知 Intent Parser
 
-知識圖譜
+## 知識圖譜
+
 WordNet
 http://wordnet.princeton.edu/
 中文 http://lope.linguistics.ntu.edu.tw/cwn2/
