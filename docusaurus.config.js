@@ -74,8 +74,8 @@ const config = {
           // },
           {to: '/tags', label: 'Tags', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://gasolin.idv.tw/',
+            label: 'Homepage',
             position: 'right',
           },
         ],
