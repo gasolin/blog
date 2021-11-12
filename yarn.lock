@@ -6274,7 +6274,7 @@ markmap-common@^0.1.5:
   dependencies:
     "@babel/runtime" "^7.12.1"
 
-markmap-lib@^0.11.6:
+markmap-lib@0.11.6:
   version "0.11.6"
   resolved "https://registry.yarnpkg.com/markmap-lib/-/markmap-lib-0.11.6.tgz#f57883f9b70350ead94ed2d56926166b6d7ab2ef"
   integrity sha512-9CnLt/vZzNgW3kO/wqldhinKBbK/h8WUx5GGVjdn2JTs/DrDcZZbvAyVmke3VG+mnWwYHsnjLVIiCbPi5PaepA==
@@ -6286,7 +6286,7 @@ markmap-lib@^0.11.6:
     remarkable "^2.0.0"
     remarkable-katex "^1.1.6"
 
-markmap-view@^0.2.6:
+markmap-view@0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/markmap-view/-/markmap-view-0.2.6.tgz#ede2c615ad1dde6f7e04f93eaca4b4877ca00c2a"
   integrity sha512-MZzfRu+HXZUV5vNb7gSj898tTNqxJif8Bteg2J+etEtNGyLfdYe0gUUCWOZ9LLZcYZ/sZJmERQr95nYm3IAyCA==
@@ -7799,7 +7799,7 @@ remark-mdx@1.6.22:
     remark-parse "8.0.3"
     unified "9.2.0"
 
-remark-oembed@^1.2.2:
+remark-oembed@1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/remark-oembed/-/remark-oembed-1.2.2.tgz#d5870ca06a1c3af0d7fc9c26809151c4d6e1958d"
   integrity sha512-zTHfSCgBIJV7D2UHanWlUT1sDqulOuAv9eVGl3XhV2o2tGDUgyVjMz5Ctx560IysJ+Qni4p0C3vkR1n3EubNRQ==
@@ -7813,7 +7813,7 @@ remark-oembed@^1.2.2:
     mime "^2.5.2"
     param-case "^3.0.4"
 
-remark-pangu@^2.2.0:
+remark-pangu@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/remark-pangu/-/remark-pangu-2.2.0.tgz#6f28d8b37308bf0a88df9b803796c38e46927924"
   integrity sha512-3h2UiRIbnEQR+IxYPhQ5SMbAZPobIV8ddza8U1hJLsfLranbv/cdFiwnZEgMOJYKmi+9XHLMxrAIipmIsLrzPg==
