@@ -40,7 +40,7 @@ date: 2017-9-1 00:01:00
 * [豆瓣](http://www.douban.com/) 看電影記錄
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :link:IFTTT [自動化生活紀錄2017](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
+* :link:IFTTT [自動化生活紀錄2017](tools/tooling-in-2017.md)
 * :tv:[Youtube](https://www.youtube.com/)
 * :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/)
 
@@ -124,6 +124,6 @@ JS
 
 ## Reference
 
-* [^1] [個人工具箱2011](https://blog.gasolin.idv.tw/2013/01/02/%E5%80%8B%E4%BA%BA%E5%B7%A5%E5%85%B7%E7%AE%B12011/)
-* [^2] [個人工具箱2016](https://blog.gasolin.idv.tw/2016/12/19/tooling-in-2016/)
-* [^3] [個人工具箱2017](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017/)
+* [^1] [個人工具箱2011](tools/tooling-in-2011.md)
+* [^2] [個人工具箱2016](tools/tooling-in-2016.md)
+* [^3] [個人工具箱2017](tools/tooling-in-2017.md)

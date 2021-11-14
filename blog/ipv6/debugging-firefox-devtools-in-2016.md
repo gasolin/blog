@@ -7,7 +7,7 @@ date: 2016-12-22 11:12:05
 ---
 
 
-Not like [previous article about general workflow on Mozilla Gecko project](http://blog.gasolin.idv.tw/2016/08/08/The-newbies-workflow-on-Mozilla-Gecko-project/),
+Not like [previous article about general workflow on Mozilla Gecko project](mozilla/The-newbies-workflow-on-Mozilla-Gecko-project.md),
 This article is like a cookbook that I encountered during debugging Firefox devtools (mostly around inspector and network monitor).
 
 ## Remote debugging

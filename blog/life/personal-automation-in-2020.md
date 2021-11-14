@@ -41,7 +41,7 @@ date: 2020-04-04 15:00:29
 ## 手機自動化
 
 * 透過[Automate](https://play.google.com/store/apps/details?id=com.llamalab.automate) App
-  * [Youtube 自動點選略過廣告按鈕 (Android)](https://blog.gasolin.idv.tw/2020/02/06/automate-skip-ad/)
+  * [Youtube 自動點選略過廣告按鈕 (Android)](tools/automate-skip-ad.md)
   * 手機連線到藍芽耳機時，自動開啟指定的 App 播放。
 
 ## 照片自動化備份 :camera:
@@ -80,7 +80,7 @@ User -- 量體重 --> 小米體脂計
 
 ## 生活事件自動化紀錄
 
-延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google日曆中，以方便之後回顧。
+延續[用 IFTTT 做自動生活紀錄](life/LifeLog-via-IFTTT.md)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google日曆中，以方便之後回顧。
 
 ### 自動閱讀/觀看紀錄 :books:
 
@@ -176,7 +176,7 @@ User --> Browser
 
 目前已使用Github來放我的個人網站與部落格，透過與Travis CI整合，我所修改的任何內容，在幾分鐘之內都會自動部署到網站上。
 
-如何做可參考 [Hello Hexo](/make/hello-world) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](https://blog.gasolin.idv.tw/2017/01/03/ghpage-auto-deploy/)
+如何做可參考 [Hello Hexo](make/hello-world) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](devtools/ghpage-auto-deploy.md)
 
 ```mermaid
 graph LR
@@ -236,5 +236,5 @@ https://feedly.com/i/organize/my 把那些失效的連結清掉，並快速檢�
 
 
 ## 參考資料
-* [我如何做個人自動化紀錄 - 2018 版](https://blog.gasolin.idv.tw/2018/01/26/personal-automation-in-2018/)
-* [我如何做個人自動化紀錄 - 2017 版](https://blog.gasolin.idv.tw/2017/02/02/personal-automation-in-2017/)
+* [我如何做個人自動化紀錄 - 2018 版](life/personal-automation-in-2018.md)
+* [我如何做個人自動化紀錄 - 2017 版](life/personal-automation-in-2017.md)

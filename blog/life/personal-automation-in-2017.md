@@ -61,7 +61,7 @@ update(9/1): 後來不再帶小米手環2，覺得記錄睡眠與步數意義不
 
 ## 生活事件自動化紀錄
 
-延續[用 IFTTT 做自動生活紀錄](https://blog.gasolin.idv.tw/2015/02/28/%E7%94%A8-IFTTT-%E5%81%9A%E8%87%AA%E5%8B%95%E7%94%9F%E6%B4%BB%E7%B4%80%E9%8C%84-LifeLog/)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
+延續[用 IFTTT 做自動生活紀錄](life/LifeLog-via-IFTTT.md)這篇的思路，我把看過的書籍、電影，喜歡的Youtube影片，貼過的文章,每日完成的事項都記錄到Google Calendar中，以方便之後回顧。
 
 ### 自動閱讀/觀看紀錄 :books:
 
@@ -153,7 +153,7 @@ User --> Browser
 
 目前已使用Github來放我的個人網站與部落格，透過與Travis CI整合，我所修改的任何內容，在幾分鐘之內都會自動部署到網站上。
 
-如何做可參考 [Hello Hexo](/make/hello-world) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](https://blog.gasolin.idv.tw/2017/01/03/ghpage-auto-deploy/)
+如何做可參考 [Hello Hexo](make/hello-world) (個人網站自動化部署) 和 [Automatically deploy new commit to github pages via Travis CI](devtools/ghpage-auto-deploy.md)
 
 ```mermaid
 graph LR

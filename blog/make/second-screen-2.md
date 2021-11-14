@@ -8,10 +8,10 @@ date: 2019-11-20 09:50:30
 
 ## 我的第二螢幕(II)
 
-- [I] [我的第二螢幕 - Chromecast](https://blog.gasolin.idv.tw/2019/11/13/second-screen)
+- [I] [我的第二螢幕 - Chromecast](make/second-screen.md)
 - [II] 我的第二螢幕 - Ｇoogle相簿 + 資訊面版
 
-[上一篇](https://blog.gasolin.idv.tw/2019/11/13/second-screen/) 中我安裝了 `omxiv` 讓我可以從手機控制第二螢幕，在上面播放 Youtube 影片，做到類似 Chromecast 的功能。
+[上一篇](make/second-screen.md) 中我安裝了 `omxiv` 讓我可以從手機控制第二螢幕，在上面播放 Youtube 影片，做到類似 Chromecast 的功能。
 
 既然有一台開著的螢幕，在不當 Chromecast 播放影片的時候，還可以拿來做什麼哩？
 不如就像 Chromecast 那樣，在不播影片時就輪播照片。最好也可以顯示時間，或是其他有用的資訊。

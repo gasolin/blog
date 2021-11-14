@@ -5,7 +5,7 @@ tags:
 date: 2019-02-22 14:30:46
 ---
 
-I've been use Elementary OS as my primary laptop OS over a year and have been [written some posts](https://blog.gasolin.idv.tw/2018/02/25/advanced_elementary_os_usage/) for it.
+I've been use Elementary OS as my primary laptop OS over a year and have been [written some posts](tools/advanced_elementary_os_usage.md) for it.
 I Upgraded to Elementary OS Juno at December last year. Juno is based on Ubuntu 18.04, the experience is very positive. Most things works fine and not much things need to tune for daily usage.
 
 Here's my setup for my Dell XPS 13-9360 laptop.
@@ -58,7 +58,7 @@ Go `Settigns > Monitor > Night Light` to toggle it on.
 
 ## 6. Chinese Input Method
 
-Instead of [configure by yourself](https://blog.gasolin.idv.tw/2017/11/04/chinese-in-elementary-os/). It's build-in now.
+Instead of [configure by yourself](tools/chinese-in-elementary-os.md). It's build-in now.
 
 1. Select `Traditional Chinese` during install Elementary OS.
 2. Enter `System >　Language & Area > Keyboard Setting > Input Method Settings`.

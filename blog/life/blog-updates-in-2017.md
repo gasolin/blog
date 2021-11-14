@@ -29,7 +29,7 @@ date: 2017-3-4 16:08:00
 
 ## 參考資料 :notebook:
 
-* [^1] [Hello Hexo](http://blog.gasolin.idv.tw/hello-world)
+* [^1] [Hello Hexo](make/hello-world.md)
 * [^2] [Mermaid, Generation of diagrams and flowcharts from text](https://knsv.github.io/mermaid/)
 * [^3] [hexo-renderer-markdown-it](https://github.com/celsomiranda/hexo-renderer-markdown-it)
 * [^4] [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji)

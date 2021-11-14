@@ -9,7 +9,7 @@ date: 2019-11-13 23:18:30
 ## 我的第二螢幕(I)
 
 - [I] 我的第二螢幕 - Chromecast
-- [II] [我的第二螢幕 - Ｇoogle相簿 + 資訊面版](https://blog.gasolin.idv.tw/2019/11/20/second-screen-2)
+- [II] [我的第二螢幕 - Ｇoogle相簿 + 資訊面版](make/second-screen-2.md)
 
 去年我買了一台24吋的桌上螢幕。原本構想的用途很美好，但就實際效果而言，其實並不常運用到。
 

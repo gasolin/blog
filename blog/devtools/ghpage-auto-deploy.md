@@ -9,8 +9,8 @@ date: 2017-01-03 13:24:46
 
 ![](http://i.imgur.com/Q1hDoPLm.png)
 
-After  migrated [my blog](https://blog.gasolin.idv.tw/2016/09/18/hello-world/) from blogger to [github](https://github.com/gasolin/blog/),
-at the end of 2016, I've migrated [my blog](https://blog.gasolin.idv.tw/2016/09/18/hello-world/) and [home page](http://www.gasolin.idv.tw/) to host on [github](https://github.com/gasolin/gasolin.github.io) as well.
+After  migrated [my blog](make/hello-world.md) from blogger to [github](https://github.com/gasolin/blog/),
+at the end of 2016, I've migrated [my blog](make/hello-world.md) and [home page](http://www.gasolin.idv.tw/) to host on [github](https://github.com/gasolin/gasolin.github.io) as well.
 
 Both sites are fully stored in github and deployed automatically via [Travis CI](https://travis-ci.org/gasolin/gasolin.github.io).
 

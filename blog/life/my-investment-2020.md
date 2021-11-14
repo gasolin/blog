@@ -108,7 +108,7 @@ date: 2021-04-30 16:50:31
 > 洗水槽濾網 5⭐️
 > 附開關插座 5⭐️
 
-請參考廚房省時小工具 https://blog.gasolin.idv.tw/2020/04/04/kitchen-hack/
+請參考[廚房省時小工具](life/kitchen-hack.md)
 
 ## 浴室
 
