@@ -11,7 +11,7 @@ date: 2019-3-7 16:30:00
 
 ## 主要裝備
 
-* :computer:Dell XPS 13 (8550), i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](https://blog.gasolin.idv.tw/2019/02/22/elementary_juno/)
+* :computer:Dell XPS 13 (8550), i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](tools/elementary_juno.md)
 
 * :iphone:[Zenfone 5](https://www.asus.com/tw/Phone/ZenFone-5-ZE620KL/Tech-Specs/), Android 9(Pie), Snapdragon 636, 6.2" Super IPS
 
@@ -79,9 +79,9 @@ hub --- ns[Nintendo Switch]
 * :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :link:IFTTT [自動化生活紀錄2018](https://blog.gasolin.idv.tw/2018/01/26/personal-automation-in-2018/)
+* :link:IFTTT [自動化生活紀錄2018](life/personal-automation-in-2018.md)
 * :tv:[Youtube](https://www.youtube.com/)
-* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](https://blog.gasolin.idv.tw/2017/12/26/setup_ledger_nano_on_linux/)
+* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](crypto/setup_ledger_nano_on_linux.md)
 
 
 ### 設計工具
@@ -132,7 +132,7 @@ hub --- ns[Nintendo Switch]
 * 🚶‍♂️ 健康：小米運動, Pokemon Go, 7Min workout
 * :mantelpiece_clock:時間紀錄： SaveMyTime
 
-手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
+手機瀏覽器改使用Brave。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](life/handbook.md)
 
 ### 其他工具
 
@@ -145,9 +145,9 @@ hub --- ns[Nintendo Switch]
 
 ## Reference
 
-* [^1] [個人工具箱2011](https://blog.gasolin.idv.tw/2013/01/02/%E5%80%8B%E4%BA%BA%E5%B7%A5%E5%85%B7%E7%AE%B12011/)
-* [^2] [個人工具箱2016](https://blog.gasolin.idv.tw/2016/12/19/tooling-in-2016/)
-* [^3] [個人工具箱2017](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017/)
-* [^4] [個人工具箱2017九月](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017-sep/)
-* [^5] [個人工具箱2018二月](https://blog.gasolin.idv.tw/2018/01/25/tooling-in-2018-feb/)
-* [^6] [個人工具箱2018六月](https://blog.gasolin.idv.tw/2018/05/24/tooling-in-2018-jun/)
+* [^1] [個人工具箱2011](tools/tooling-in-2011.md)
+* [^2] [個人工具箱2016](tools/tooling-in-2016.md)
+* [^3] [個人工具箱2017](tools/tooling-in-2017.md)
+* [^4] [個人工具箱2017九月](tools/tooling-in-2017-sep.md)
+* [^5] [個人工具箱2018二月](tools/tooling-in-2018-feb.md)
+* [^6] [個人工具箱2018六月](tools/tooling-in-2018-jun.md)

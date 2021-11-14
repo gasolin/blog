@@ -9,7 +9,7 @@ tags:
 <iframe src="https://gasolin.github.io/2016-london-allhands/dubai_airport.html" height="400px" width="600px" align="center"></iframe>
 From Dubai Airport (The image is dragable to change view 可以拖曳照片來改變視角喔)
 
-之前寫過一篇[使用手機上傳 360 圖片到 Facebook](http://blog.gasolin.idv/upload-360photo-to-facebook)，但其實要分享360照片[^1]的話，我們也可以用[aframe](http://aframe.io)自己弄個網頁來分享。
+之前寫過一篇[使用手機上傳 360 圖片到 Facebook](vr/upload-360photo-to-facebook.md)，但其實要分享360照片[^1]的話，我們也可以用[aframe](http://aframe.io)自己弄個網頁來分享。
 
 將照片放在自己空間的缺點是所有工作得自己來。我用[yeoman](http://yeoman.io/)寫了個的360照片網頁產生器[generator-360-photo](https://www.npmjs.com/package/generator-360-photo)，可以用來產生如上的360照片網頁(照片與照片網頁都放在github page，透過iframe嵌入)，簡化了自己弄網頁來分享360照片的難度。
 

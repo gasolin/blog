@@ -40,7 +40,7 @@ date: 2019-11-30 16:30:00
 因為開發 React Native 程式時有需要用 iOS 模擬器測試，改使用:computer:Apple Macbook Pro 15 (2018)搭配🖱羅技 M720 滑鼠。
 
 現在的工作型態比較常在家或外出到定點工作。
-和前幾季最大的改變，是在家會使用樹莓派展示[第二螢幕](https://blog.gasolin.idv.tw/2019/11/13/second-screen)，除平時動態輪播照片，也顯示一些資訊外，可以像 Chromecast 那樣播放 Youtube 影片。
+和前幾季最大的改變，是在家會使用樹莓派展示[第二螢幕](make/second-screen.md)，除平時動態輪播照片，也顯示一些資訊外，可以像 Chromecast 那樣播放 Youtube 影片。
 
 另外由於Ｍacbook Pro 吃 65W 電，因此外出改以:electric_plug:Innergie 60C 來取代 Ｍacbook Pro 的電源線和:electric_plug:小米 45W 電源。:electric_plug:Innergie 60C 電源可為:computer:筆電與 🎮Nintendo Switch 供電，省下帶兩大塊電源線的麻煩。再加帶 5000mAh 行動電源（可選）和 USB C/Micro USB 雙頭轉接線，可解決大部分手機/耳機的充電問題。
 
@@ -73,9 +73,9 @@ hub --- pi[Raspberry Pi]
 * :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :link:IFTTT [自動化生活紀錄2018](https://blog.gasolin.idv.tw/2018/01/26/personal-automation-in-2018/)
+* :link:IFTTT [自動化生活紀錄2018](life/personal-automation-in-2018.md)
 * :tv:[Youtube](https://www.youtube.com/)
-* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](https://blog.gasolin.idv.tw/2017/12/26/setup_ledger_nano_on_linux/)
+* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](crypto/setup_ledger_nano_on_linux.md)
 
 
 ### 設計工具
@@ -125,7 +125,7 @@ hub --- pi[Raspberry Pi]
 * 有聲書：Audible, Podcast Addict
 * 🚶‍♂️ 健康：小米運動
 
-手機瀏覽器改使用 `Brave` 瀏覽器。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](https://blog.gasolin.idv.tw/2019/02/23/handbook/)
+手機瀏覽器改使用 `Brave` 瀏覽器。記帳改使用實體筆記本紀錄。[完整的實體筆記配置](life/handbook.md)
 
 ### 其他工具
 
@@ -138,10 +138,10 @@ hub --- pi[Raspberry Pi]
 
 ## Reference
 
-* [^1] [個人工具箱2011](https://blog.gasolin.idv.tw/2013/01/02/%E5%80%8B%E4%BA%BA%E5%B7%A5%E5%85%B7%E7%AE%B12011/)
-* [^2] [個人工具箱2016](https://blog.gasolin.idv.tw/2016/12/19/tooling-in-2016/)
-* [^3] [個人工具箱2017](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017/)
-* [^4] [個人工具箱2017九月](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017-sep/)
-* [^5] [個人工具箱2018二月](https://blog.gasolin.idv.tw/2018/01/25/tooling-in-2018-feb/)
-* [^6] [個人工具箱2018六月](https://blog.gasolin.idv.tw/2018/05/24/tooling-in-2018-jun/)
-* [^7] [個人工具箱2019三月](https://blog.gasolin.idv.tw/2018/05/24/tooling-in-2019-Mar/)
+* [^1] [個人工具箱2011](tools/tooling-in-2011.md)
+* [^2] [個人工具箱2016](tools/tooling-in-2016.md)
+* [^3] [個人工具箱2017](tools/tooling-in-2017.md)
+* [^4] [個人工具箱2017九月](tools/tooling-in-2017-sep.md)
+* [^5] [個人工具箱2018二月](tools/tooling-in-2018-feb.md)
+* [^6] [個人工具箱2018六月](tools/tooling-in-2018-jun.md)
+* [^7] [個人工具箱2019三月](tools/tooling-in-2019-Mar.md)

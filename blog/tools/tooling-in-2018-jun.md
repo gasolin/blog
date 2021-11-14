@@ -12,7 +12,7 @@ date: 2018-5-24 12:23:00
 
 ## 主要裝備
 
-* :computer:Dell XPS 13 (8550), Windows 10, i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](https://blog.gasolin.idv.tw/2017/10/25/xps13-elementary-os/)
+* :computer:Dell XPS 13 (8550), Windows 10, i7 4GHz x4, 8GB RAM, 13.3" LCD，作業系統：[Elementary OS + Windows](tools/xps13-elementary-os.md)
 * :iphone:[One Plus 3](https://oneplus.net/global/3), Android, 6GB RAM, 5.5" AMOLED
 * :headphones:Sony WI-1000 降噪耳機
 
@@ -70,9 +70,9 @@ hub --- rpi[Respberry Pi]
 * :movie_camera:看電影記錄：[豆瓣](http://www.douban.com/)
 * :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
 * :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :link:IFTTT [自動化生活紀錄2018](https://blog.gasolin.idv.tw/2018/01/26/personal-automation-in-2018/)
+* :link:IFTTT [自動化生活紀錄2018](life/personal-automation-in-2018.md)
 * :tv:[Youtube](https://www.youtube.com/)
-* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](https://blog.gasolin.idv.tw/2017/12/26/setup_ledger_nano_on_linux/)
+* :purse:電子錢包[MyEtherWallet](https://www.myetherwallet.com/), [Ledger Nano S](crypto/setup_ledger_nano_on_linux.md)
 
 
 ### 設計工具
@@ -148,8 +148,8 @@ hub --- rpi[Respberry Pi]
 
 ## Reference
 
-* [^1] [個人工具箱2011](https://blog.gasolin.idv.tw/2013/01/02/%E5%80%8B%E4%BA%BA%E5%B7%A5%E5%85%B7%E7%AE%B12011/)
-* [^2] [個人工具箱2016](https://blog.gasolin.idv.tw/2016/12/19/tooling-in-2016/)
-* [^3] [個人工具箱2017](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017/)
-* [^4] [個人工具箱2017九月](https://blog.gasolin.idv.tw/2017/02/02/tooling-in-2017-sep/)
-* [^5] [個人工具箱2018二月](https://blog.gasolin.idv.tw/2018/01/25/tooling-in-2018-feb/)
+* [^1] [個人工具箱2011](tools/tooling-in-2011.md)
+* [^2] [個人工具箱2016](tools/tooling-in-2016.md)
+* [^3] [個人工具箱2017](tools/tooling-in-2017.md)
+* [^4] [個人工具箱2017九月](tools/tooling-in-2017-sep.md)
+* [^5] [個人工具箱2018二月](tools/tooling-in-2018-feb.md)
