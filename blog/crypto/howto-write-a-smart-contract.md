@@ -9,7 +9,7 @@ date: 2017-09-06 18:30:31
 
 Update: 11/30/2017 更新教程，使用[Truffle 4.0.1](https://github.com/trufflesuite/truffle/releases/tag/v4.0.0)。
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/02/what-is-smart-contract/)中介紹了智能合約:ledger:是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
+[上一篇](crypto/what-is-smart-contract.md)中介紹了智能合約:ledger:是什麼，也概略描述了從編譯到部署智能合約的流程，接下來將介紹如何使用solidity語言來寫智能合約。
 
 ## 使用solidity語言撰寫智能合約
 

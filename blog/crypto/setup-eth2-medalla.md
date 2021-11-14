@@ -13,7 +13,7 @@ date: 2020-08-07 20:35:46
 
 ## 0. 準備
 
-照著[前一篇](https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/) 的教學安裝好樹莓派，按照[設定驗證者 (Validator) 資訊](https://blog.gasolin.idv.tw/2020/07/04/prepare-for-eth2/#%E8%A8%AD%E5%AE%9A%E9%A9%97%E8%AD%89%E8%80%85-Validator-%E8%B3%87%E8%A8%8A) 一節做完後，跟著本篇做 Modalla 測試網的設定。
+照著[前一篇](crypto/prepare-for-eth2.md) 的教學安裝好樹莓派，按照[設定驗證者 (Validator) 資訊](crypto/prepare-for-eth2.md#%E8%A8%AD%E5%AE%9A%E9%A9%97%E8%AD%89%E8%80%85-Validator-%E8%B3%87%E8%A8%8A) 一節做完後，跟著本篇做 Modalla 測試網的設定。
 
 接著打開 https://medalla.launchpad.ethereum.org 網頁，我們將跟著一步步完成驗證者的設定 (使用 prysm 客戶端)。
 

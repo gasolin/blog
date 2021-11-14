@@ -7,7 +7,7 @@ tags:
 date: 2017-09-16 17:35:31
 ---
 
-[上一篇](https://blog.gasolin.idv.tw/2017/09/11/howto-write-a-simple-token/)中我們已寫好並部署完成了簡單的加密代幣🔒💵合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
+[上一篇](crypto/howto-write-a-simple-token.md)中我們已寫好並部署完成了簡單的加密代幣🔒💵合約。在閱讀完本文後，你將學會建立一個可以放到乙太幣錢包:purse:的加密代幣🔒💵。
 
 ## 開發前的準備
 
