@@ -41,6 +41,10 @@ const config = {
               require('mdx-mermaid'), // charts
               require('remark-pangu'), // chinese/english space
               require('remark-oembed'), // youtube, twitter
+              // require('remark-gfm'),
+          ],
+          rehypePlugins: [
+            require('rehype-slug'),
           ],
           postsPerPage: 5,
         },
