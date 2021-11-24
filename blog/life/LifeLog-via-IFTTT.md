@@ -3,6 +3,8 @@ title: 用 IFTTT 做自動生活紀錄 (LifeLog)
 tags:
   - zen
   - life
+  - ifttt
+  - automation
 date: 2015-02-28 10:03:29
 ---
 

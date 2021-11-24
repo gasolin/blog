@@ -1,8 +1,8 @@
 ---
 title: 我想問歷史上的今天- Google 助理服務上架心得
 tags:
-  - google actions
-  - Google助理
+  - google
+  - chatbot
 date: 2019-04-04 22:45:00
 ---
 

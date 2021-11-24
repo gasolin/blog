@@ -2,7 +2,7 @@
 title: 聊天機器人是怎麼運作的(I)
 tags:
   - web
-  - bot
+  - chatbot
   - mobile
 date: 2017-03-01 10:36:53
 ---

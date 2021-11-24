@@ -1,7 +1,6 @@
 ---
 title: Single line of style to bring (keypart of) f.lux on FirefoxOS
 tags:
-  - html
   - FirefoxOS
 date: 2015-02-24 07:34:23
 ---

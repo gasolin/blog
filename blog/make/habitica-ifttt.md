@@ -4,6 +4,7 @@ tags:
   - ifttt
   - appscript
   - life
+  - automation
 date: 2020-10-23 11:15:46
 ---
 

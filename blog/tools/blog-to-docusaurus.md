@@ -3,6 +3,7 @@ title: 從 Hexo 遷移到 docusaurus
 tags:
   - docusaurus
   - hexo
+  - selfhost
 date: 2021-11-07 17:30:30
 ---
 
