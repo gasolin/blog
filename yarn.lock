@@ -6346,6 +6346,13 @@ markmap-common@^0.1.5:
   dependencies:
     "@babel/runtime" "^7.12.1"
 
+markmap-common@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/markmap-common/-/markmap-common-0.1.6.tgz#11050562c23ae84b160e01e663478f29f1dd9ae6"
+  integrity sha512-fx4YUo6gZFFr08mi8qX8i6RH9xm5yieLKHr9hAdaTMP+CkPmgzB65F/+t39aFH5HcyEgs5vtTrRZ40lkhalETA==
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+
 markmap-lib@0.11.6:
   version "0.11.6"
   resolved "https://registry.yarnpkg.com/markmap-lib/-/markmap-lib-0.11.6.tgz#f57883f9b70350ead94ed2d56926166b6d7ab2ef"
@@ -6358,16 +6365,16 @@ markmap-lib@0.11.6:
     remarkable "^2.0.0"
     remarkable-katex "^1.1.6"
 
-markmap-view@0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/markmap-view/-/markmap-view-0.2.6.tgz#ede2c615ad1dde6f7e04f93eaca4b4877ca00c2a"
-  integrity sha512-MZzfRu+HXZUV5vNb7gSj898tTNqxJif8Bteg2J+etEtNGyLfdYe0gUUCWOZ9LLZcYZ/sZJmERQr95nYm3IAyCA==
+markmap-view@0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/markmap-view/-/markmap-view-0.2.7.tgz#95bdd1930f85f5661b4c401454f4eb12947ecb04"
+  integrity sha512-07zNIV5OUSQcFd9dghVEykk2oKkQuRvPQgH+oKadganYW9Yu5qN7gks8CmlLwE4AGNH87zxlF0UfpGLH9aI+rQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@types/d3" "^6.0.0"
     d3 "^6.2.0"
     d3-flextree "^2.1.1"
-    markmap-common "^0.1.5"
+    markmap-common "^0.1.6"
 
 mdast-squeeze-paragraphs@^4.0.0:
   version "4.0.0"
