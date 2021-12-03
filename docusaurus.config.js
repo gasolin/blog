@@ -10,7 +10,7 @@ const config = {
   tagline: '人們總是高估一年可以完成的事，卻低估十年能完成的事',
   url: 'https://blog.gasolin.idv.tw/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'gasolin', // Usually your GitHub org/user name.
