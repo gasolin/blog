@@ -7,7 +7,7 @@ tags:
 date: 2021-11-07 17:30:30
 ---
 
-<!-- import Mindmap from '@theme/Mindmap' -->
+import Mindmap from '@theme/Mindmap'
 
 <Mindmap markdown={`
 # Blog
@@ -31,7 +31,7 @@ date: 2021-11-07 17:30:30
 
 改版後一樣是透過 Github hosting + 使用 [Markdown](https://docusaurus.io/docs/markdown-features) 保存文章。
 
-## 改版的主要差異:
+## 改版的主要差異
 
 ### 文章網址改變
 
@@ -50,6 +50,7 @@ date: 2021-11-07 17:30:30
 根據[建議](https://docusaurus.io/docs/docs-markdown-features)，最好使用關聯檔案路徑（```[文章](檔案.md)```）而非相關連結 （```[文章](https://post-url)```）。
 
 使用關聯檔案路徑有以下好處：
+
 - 在 Github 上連結也可以用
 - 可以隨時訂製 document slugs 而不需要更新所有連結
 - 多版本文件時，文件可以正確連到對應的版本
