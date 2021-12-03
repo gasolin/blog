@@ -133,8 +133,8 @@ date: 2021-12-03 11:30:00
 * 內建相機, 內建時鐘
 * 相簿：內建相簿、Google相簿、Dropbox
 * 社交：Facebook、LINE、Twitter(網頁版)
-* 待辦事項：Habitica
-* 自動記帳：Moneybook、coinstat
+* 待辦事項：[Habitica](https://habitica.com/)
+* 自動記帳：Moneybook、[CoinStats](https://coinstats.app/)
 * :closed_lock_with_key:密碼管理：Bitwarden，Yubi Authenticator（2步驟認證）
 * :tv:線上影片：Youtube、Disney+、Netflix
 * 音樂：Youtube Music、TuneIn (電台)

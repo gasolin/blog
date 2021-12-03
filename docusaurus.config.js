@@ -44,7 +44,7 @@ const config = {
               // require('remark-gfm'),
           ],
           rehypePlugins: [
-            require('rehype-slug'),
+            // require('rehype-slug'),
           ],
           postsPerPage: 5,
         },
