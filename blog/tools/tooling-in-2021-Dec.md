@@ -41,13 +41,14 @@ date: 2021-12-03 11:30:00
 * :electric_plug:Ｍacbook PRO 電源
 * 🖱 TrackPoint 滑鼠
 * :package:Synology NAS: 電影、影集、照片、資料備份，同步 Dropbox, Google Photos。`也嘗試用 Docker 安裝一些服務`。
-* 第二螢幕 :desktop_computer: iPad Air v3 (透過並行功能)，`Gechic 13吋外接螢幕`。
+* 第二螢幕 :desktop_computer: iPad Air v3 (透過並行功能)，`Gechic 13吋 On-Lap 1306S-R 外接螢幕`。
+
+> 購入13吋外接螢幕試試。疫情期間因為小朋友有時候會借用iPad，這時外接個螢幕反而比較容易。
+
 * `Chromcast for Google TV`
 * `Nest Audio`
 
 使用:computer:Apple Macbook Pro 13 (2020)搭配🖱TrackPoint 滑鼠。
-
-購入Gechic 13吋外接螢幕。疫情期間因為小朋友有時候會借用iPad，這時外接個螢幕反而比較容易。
 
 購入 Chromcast for Google TV 和 Nest Audio。
 因為 Nest Audio 而訂閱了大半年的 Youtube Premium。
