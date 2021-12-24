@@ -7,6 +7,8 @@ tags:
 date: 2018-01-28 13:30:30
 ---
 
+> 查看 [從 gitbook 遷移到 docusaurus](tools/docusaurus)
+
 把過去半年本部落格上關於區塊鏈的文章整理放到Gitbook。命名為[Ethereum區塊鏈！智能合約(Smart Contract)與分散式網頁應用(DApp)入門](https://www.gitbook.com/book/gasolin/learn-ethereum-dapp/details)，對區塊鏈，智能合約，分散式應用(DApp)感興趣的讀者不妨前往一觀。
 
 這不是我寫的第一本書[^1]，也不是我第一本用Markdown寫的電子書(以前用Leanpub出版過[Firefox OS 開發書](https://leanpub.com/gaiafromabove))，但絕對是我編輯過程最順暢的一本書（雖然還未完成 XD）。
