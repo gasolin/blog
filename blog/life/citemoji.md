@@ -5,7 +5,12 @@ tags:
 date: 2022-01-07 05:11:46
 ---
 
-去年參加 [g0v](https://g0v.hackmd.io/88H0L2kgRUq_PvnvMcA2_w?view#%E5%8F%B0%E7%81%A3%E5%90%84%E7%B8%A3%E5%B8%82%E5%9C%B0%E5%8D%80) 活動時，構想的一些代表台灣城市的 Emoji
+在程式設計這塊早已有人就將提交程式的說明 Emoji 化，並做成網站提倡 https://gitmoji.dev/
+
+去年參加 [g0v](https://g0v.hackmd.io/88H0L2kgRUq_PvnvMcA2_w?view#%E5%8F%B0%E7%81%A3%E5%90%84%E7%B8%A3%E5%B8%82%E5%9C%B0%E5%8D%80) 活動時，構想是否在三個關鍵字自介之外，搭配隨處易得的 Emoji，
+讓線上社群得以透過查看對方提供的一些語意化 Emoji 來大致理解彼此，以期在更容易溝通的同時，也為合作注入一點樂趣。
+
+以下是構想的一些代表台灣城市的 Emoji：
 
 - 新 🚄 (`新`幹線)
 - 北 🥂 (`杯`諧音)
