@@ -56,6 +56,11 @@ const config = {
         //   priority: 0.5,
         //   trailingSlash: false,
         // },
+        googleAnalytics: {
+          trackingID: 'UA-2833924-9',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
+        },
       }),
     ],
   ],
@@ -145,11 +150,6 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      googleAnalytics: {
-        trackingID: 'UA-2833924-9',
-        // Optional fields.
-        anonymizeIP: true, // Should IPs be anonymized?
       },
     }),
 };
