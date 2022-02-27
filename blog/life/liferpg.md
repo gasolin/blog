@@ -8,7 +8,7 @@ tags:
 date: 2014-02-17 16:23:51
 ---
 
-![](http://oliveremberton.com/wp-content/uploads/2014/02/Old-1024x639.png) 這篇文章的原文為 [Life is a game. This is your strategy guide](http://oliveremberton.com/2014/life-is-a-game-this-is-your-strategy-guide/)，作者為 Oliver Emberton，譯者為 [gasolin](http://www.gasolin.idv.tw)。已獲得作者的翻譯許可。
+[![](https://oliveremberton.com/app/uploads/2014/02/Cover-shallow.png)](https://oliveremberton.com/app/uploads/2014/02/Cover-shallow.png) 這篇文章的原文為 [Life is a game. This is your strategy guide](http://oliveremberton.com/2014/life-is-a-game-this-is-your-strategy-guide/)，作者為 Oliver Emberton，譯者為 [gasolin](http://www.gasolin.idv.tw)。已獲得作者的翻譯許可。
 
 [![](https://oliveremberton.com/app/uploads/2014/02/Cover-shallow.png)](https://oliveremberton.com/app/uploads/2014/02/Cover-shallow.png)(按下開始鍵)
 

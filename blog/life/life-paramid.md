@@ -17,6 +17,26 @@ date: 2019-12-31 10:30:51
 
 在2019年的最後一日，我也試著寫下目前我認知的人生課題目標。此外，也想想是否能量化這些人生課題？
 
+```mermaid
+graph TD
+me(我的課題) --> finance(財務)
+finance -.-> free((不用為錢煩惱))
+finance --> family[家庭]
+finance --> career[事業]
+family -.-> happy((舒適且歡笑))
+family --> health(身體健康)
+family --> mental(心靈健康)
+family --> cultivate[自我修養]
+career --> health
+career --> mental
+career --> cultivate
+career -.-> influence((擴展影響力))
+cultivate -.-> assessibility((自由往來無礙))
+health -.-> doctor_away((到老不用靠醫生))
+mental -.-> confident((安定不用向外求))
+```
+2022更新版
+
 
 ```mermaid
 graph TD
@@ -33,6 +53,7 @@ cultivate -.-> assessibility((自由往來無礙))
 health -.-> doctor_away((到老不用靠醫生))
 mental -.-> confident((安定不用向外求))
 ```
+2019原版
 
 ## 參考資料
 
