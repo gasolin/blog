@@ -75,6 +75,10 @@ const config = {
           src: 'img/avatar.jpg',
         },
         items: [
+          {
+            href: 'https://gasolin.idv.tw/',
+            label: 'Home',
+          },
           // {
           //   type: 'doc',
           //   docId: 'intro',
@@ -82,11 +86,6 @@ const config = {
           //   label: 'Tutorial',
           // },
           {to: '/tags', label: 'Tags', position: 'left'},
-          {
-            href: 'https://gasolin.idv.tw/',
-            label: 'Homepage',
-            position: 'right',
-          },
         ],
       },
       footer: {
