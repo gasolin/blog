@@ -19,18 +19,18 @@ date: 2019-12-31 10:30:51
 
 ```mermaid
 graph TD
-me(我的課題) --> finance(財務)
-finance -.-> free((不用為錢煩惱))
+graph TD
+free((不用為錢煩惱)) -.-> finance(財務)
+happy((維持舒適且安心)) -.-> family
 finance --> family[家庭]
 finance --> career[事業]
-family -.-> happy((舒適且歡笑))
 family --> health(身體健康)
 family --> mental(心靈健康)
 family --> cultivate[自我修養]
 career --> health
 career --> mental
 career --> cultivate
-career -.-> influence((擴展影響力))
+influence((持續擴展影響力)) -.-> career
 cultivate -.-> assessibility((自由往來無礙))
 health -.-> doctor_away((到老不用靠醫生))
 mental -.-> confident((安定不用向外求))
