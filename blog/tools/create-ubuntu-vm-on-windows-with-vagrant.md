@@ -10,7 +10,7 @@ tags:
 
 我想說那就趁這機會重灌OS吧！然而在嘗試灌各種Linux套件（Elementary OS Loki (Beta), Ubuntu 16.04, Ubuntu 14.04）都抓不到網卡驅動程式後，只好乖乖灌回Windows 10。
 
-由於在筆電上依然需要一個Linux工作環境，我就[之前的經驗](blog/mozilla/FoxBox-1-0-install-Firefox-OS-devtool-within-1hr.md)繼續使用vagrant來建立工作環境VM。安裝好[VirtualBox](https://www.virtualbox.org/)和[Vagrant](https://www.vagrantup.com/)後，只需要2行命令即可安裝完成，而且之後隨時可以砍掉重新開一個全新的VM。
+由於在筆電上依然需要一個Linux工作環境，我就[之前的經驗](mozilla/FoxBox-1-0-install-Firefox-OS-devtool-within-1hr.md)繼續使用vagrant來建立工作環境VM。安裝好[VirtualBox](https://www.virtualbox.org/)和[Vagrant](https://www.vagrantup.com/)後，只需要2行命令即可安裝完成，而且之後隨時可以砍掉重新開一個全新的VM。
 
 步驟：
 

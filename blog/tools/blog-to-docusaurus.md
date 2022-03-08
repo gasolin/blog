@@ -47,7 +47,7 @@ import Mindmap from '@theme/Mindmap'
 
 1. 修正文章內連結
 
-根據[建議](https://docusaurus.io/docs/docs-markdown-features)，最好使用關聯檔案路徑（```[文章](檔案.md)```）而非相關連結 （```[文章](https://post-url)```）。
+根據[建議](https://docusaurus.io/docs/docs-markdown-features)，最好使用關聯檔案路徑（```[文章]( 檔案.md )```）而非相關連結 （```[文章](https://post-url)```）。
 
 使用關聯檔案路徑有以下好處：
 

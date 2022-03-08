@@ -8,7 +8,7 @@ date: 2016-03-14 08:31:46
 [![Hubo](https://farm1.staticflickr.com/91/210333714_cccff3a76f.jpg)](https://www.flickr.com/photos/franzbrandtwein/210333714/in/photolist-jA1Tm-7zsdd5-c3S9RY-6nV3Rp-96h4Vx-of3ttt-38gqh7-gmHXQv-dVEbJF-7E2T3H-HtFB3-robohy-druZRm-nrF4vh-HtFAN-7Dk3uW-pkMp7E-qpn51r-67WHcz-dmkogt-AkVdM-951oFH-af6bdQ-igcWis-bw1gLG-6ZkGsP-r3KjtA-aojgSy-qXYEst-ckHzAN-97rv7G-qfi5f6-bu6G96-4mdWDR-62fyWi-qgcVh4-89o3px-8AKiYq-Xb2wh-5K91Q3-rwerig-i19QiK-7jGYc7-2Pc3VK-bNBoUp-9RDmqK-9iEDUt-kb1z7K-dwYP4H-pN2djS "Hubo") 
 
 
-([English Version available here](code/how-we-ported-hubot-from-coffeescript.md)）
+([English Version available here](code/How-we-ported-Hubot-from-Coffeescript-to-ES6.md)）
 
 用兩周多的時間，路路續續把原本用 [Coffeescript](http://coffeescript.org/) 撰寫的 [Hubot](https://github.com/github/hubot) 聊天機器人框架移植成使用到 ES6 特性的純 Javascript 版本。
 現在這個移植版本已經可供使用。移植後依然可以使用 Hubot 原來以 Coffeescript 撰寫的各種擴充套件(Plugins) 。
