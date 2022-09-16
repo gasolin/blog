@@ -32,7 +32,7 @@ date: 2021-06-26 15:10:31
 
 g0v 選在 https://gather.town/ 上舉行，復刻了之前舉辦的場地。
 
-會議開始後，可前往G0V LOGO 旁邊的販賣機，按 x 領取。
+會議開始後，可前往G0V LOGO 旁邊的販賣機，按 x 領取數位徽章。
 ![Imgur](https://i.imgur.com/ka3k87o.png)
 
 此時會開啟引導網頁，上面有如何領取數位徽章的連結
@@ -41,7 +41,7 @@ g0v 選在 https://gather.town/ 上舉行，復刻了之前舉辦的場地。
 
 ## 徽章兌換流程
 
-這次使用的是 POAP (Prove of Attendance Protocol) 提供的徽章
+這次使用的是 POAP (Prove of Attendance Protocol) 提供的徽章服務
 ![Imgur](https://i.imgur.com/AVEPnB1.png)
 
 輸入 Email 或是加密錢包地址，即可領取你的徽章。領到的徽章之後也可以轉移到其他地址。
@@ -54,9 +54,10 @@ g0v 選在 https://gather.town/ 上舉行，復刻了之前舉辦的場地。
 首先需準備
 1. 徽章名稱，描述，時間，地點
 2. 徽章圖面 (500x500 小於 200kb 的圓形 png)
-本次活動徽章圖面由 Tofu(Terry) 提供
 
-接著可透過POAP管理介面自行建立徽章
+本次活動徽章圖面由 Tofu(Terry) 提供 ♥️。
+
+接著即可透過 POAP 的管理介面自行建立徽章。
 
 https://app.poap.xyz/admin/events
 
