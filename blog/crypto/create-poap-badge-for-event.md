@@ -3,6 +3,7 @@ title: 為你的活動頒發數位徽章
 tags:
   - life
   - crypto
+  - g0v
 date: 2021-06-26 15:10:31
 ---
 
