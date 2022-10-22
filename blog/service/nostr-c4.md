@@ -2,7 +2,7 @@
 title: Nostr 介紹
 tags:
   - nostr
-date: 2022-10-22 17:54:18
+date: 2022-10-22 18:10:18
 ---
 
 [Nostr](https://github.com/nostr-protocol/nostr) 是一種正在發展中的分散式發佈/訂閱內容協定，基本的規則容易理解，但卻有很高的應用彈性。我才剛開始接觸，先將我理解的部分分享出來。
@@ -34,6 +34,18 @@ end
 
 目前的內容發佈機制很成熟了，但其中的缺憾是發佈者並不真正能確保自己發佈的內容。目前多數的閱聽者都處在 Facebook、Twitter、微信平台提供的訊息繭中，躋身於發佈者與閱聽者之間的平台掌握了發佈者的帳號與內容，隨時可以因為某些檢舉，將發佈者所提供的內容下架，甚或關閉發佈者的帳號。
 
+
+```mermaid
+graph LR
+User[使用者] -.- Publisher
+User -.- Reader
+subgraph 平台
+Publisher[發布者吊銷] -. X .- Content((內容禁止))
+Reader[閱聽者] -.- Content
+Content -.- Reader
+end
+```
+
 ## Nostr 的機制
 
 Nostr 並沒有使用到區塊鏈（Blockchain），但應用了目前大量使用於區塊鏈的加密技術(Crypto)。
@@ -49,6 +61,26 @@ Nostr 對於閱聽者來說：
 2. 內容發現靠加入一些中繼器(Relay)。
 3. 訂閱一個公鑰，就可以從加入的中繼器中取得對應公鑰提供的內容。如果這個公鑰的資料沒有在這個中繼器中，就看不到內容。
 4. 中繼器的內容儲存在資料庫中，因此能提供和目前主流平台近似的存取速度。
+
+```mermaid
+graph TD
+User[使用者] -.- PublisherA
+User -.- Reader
+PublisherA[發布者] -- 發佈 --> ContentA
+PublisherA[發布者] -- 發佈 --> ContentB
+subgraph Relay 1
+ContentA((我的內容))
+Publisher[其他發布者] -.- Content((內容))
+end
+subgraph Relay 2
+ContentB((我的內容))
+end
+subgraph Client
+PublisherA
+Reader[閱聽者] -- 訂閱 --> Publisher
+Content -- 閱讀 --> Reader
+end
+```
 
 Nostr 除了定義以上基礎的機制，在他的規格書 NIP 中 (https://github.com/nostr-protocol/nips) 還定義了一些中繼器與客戶端需要支援的協定。
 
@@ -71,8 +103,6 @@ Nostr 除了定義以上基礎的機制，在他的規格書 NIP 中 (https://gi
 上面的的範例中，如果你想要傳訊息給某個發佈者，也可以透過填入對方公鑰，輸入訊息後選擇 `Make private note`（產生私人訊息），則會透過加密機制，產生只有對方才能解開的私人訊息。
 
 透過 Nostr 提供的這些機制，發佈者也有機會將內容發送到支援付費內容的中繼器，讓閱聽者透過某些機制付費才能取得內容。
-
-
 
 ## 參考資料
 
