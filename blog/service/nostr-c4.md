@@ -82,7 +82,7 @@ Content -- 閱讀 --> Reader
 end
 ```
 
-Nostr 除了定義以上基礎的機制，在他的規格書 [NIPS]((https://github.com/nostr-protocol/nips)) 中還定義了相容中繼器與客戶端需要支援的協定。中繼器或客戶端的開發者也可以自行擴充功能後，提交新的參考建議。
+Nostr 除了定義以上基礎的機制，在他的規格書 [NIPS](https://github.com/nostr-protocol/nips) 中還定義了相容中繼器與客戶端需要支援的協定。中繼器或客戶端的開發者也可以自行擴充功能後，提交新的參考建議。
 
 ## 如何嘗試
 
@@ -107,3 +107,4 @@ Nostr 除了定義以上基礎的機制，在他的規格書 [NIPS]((https://git
 ## 參考資料
 
 - 已註冊的中繼器列表 https://nostr-registry.netlify.app/
+- nostr 原作者維護的工具箱 nostr-tools https://github.com/fiatjaf/nostr-tools
