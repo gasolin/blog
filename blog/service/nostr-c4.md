@@ -107,4 +107,7 @@ Nostr 除了定義以上基礎的機制，在他的規格書 [NIPS](https://gith
 ## 參考資料
 
 - 已註冊的中繼器列表 https://nostr-registry.netlify.app/
+- 或是 https://nostr.info/relays/
 - nostr 原作者維護的工具箱 nostr-tools https://github.com/fiatjaf/nostr-tools
+- Awesome-nostr 列表 https://github.com/aljazceru/awesome-nostr
+- Client 端比較 https://github.com/vishalxl/Nostr-Clients-Features-List
