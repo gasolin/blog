@@ -15,7 +15,7 @@ date: 2015-02-04 15:55:33
     在 Web 上沒有一個好的如何使用手勢操作的指引
 3. Access to Native Capabilities
     在 Web 上沒有辦法使用所有在原生平台上可取用的 API。
-    
+
 於是 Facebook 發表了使用 React UI 來開發 iOS/Android App ，他們現在已用在了 Facebook Group App 上。React Native 不像 Cordova/Phonegap 用 WebView 來跑 HTML/JS/CSS，而是直接接上 Native UI widget。
 
 ![](http://4.bp.blogspot.com/-d7HcU_mQEmU/VNI8IeF5XZI/AAAAAAAADzk/nO1cKbvaRH0/s1600/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%2B2015-02-04%2B%E4%B8%8B%E5%8D%8811.34.26.png)
