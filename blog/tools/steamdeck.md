@@ -1,17 +1,18 @@
 ---
 title: Steam Deck 設定
 tags:
-  - steam
+  - game
+  - linux
 date: 2023-01-11 16:30:00
 ---
 
-作為一台有觸控螢幕、震動手把、麥克風、陀螺儀感測、可外接螢幕，可外接SD卡、且整合的 CPU/GPU 可以跑大多數 2022 年的作品。2萬內台幣可入手的 Steam Deck 應該是目前最兼具效能與價格的掌上電腦設備。
+作為一台效能足以跑大多數 2022 年的 PC 遊戲，有觸控螢幕、震動手把、陀螺儀感測，還可外接螢幕、SD卡。2萬內台幣可入手的 Steam Deck 應該是目前最兼具效能與價格的掌上電腦設備。
 
-這台機器畢竟主要為遊戲服務，如果要使用他的桌面模式、或整合第三方到遊戲模式還是需要一些處理。
+Steam Deck 使用訂製的 Arch Linux，同時也能容易的從預設的遊戲模式切換到桌面模式。然而這台機器畢竟主要為遊戲服務，如果要使用他的桌面模式、或將第三方程式整合到遊戲模式，還是需要一些額外處理。
 
 ## 在遊戲模式中打開應用程式
 
-Steam Deck 使用訂製的 Arch Linux，同時也能容易地切換到桌面模式。透過 Discover / flatpak 程式，可以無痛的安裝各種應用程式（如瀏覽器）。在桌面模式下打開 `Steam 選單 > 遊戲 > 新增一個非 Steam 遊戲到我的收藏庫`，就可以將各種應用程式加入Steam 收藏庫，以後不需要切換到桌面模式，在遊戲模式中就可以直接打開。
+透過 Discover / flatpak 程式，可以無痛的安裝各種應用程式（如瀏覽器）。在桌面模式下打開 `Steam 選單 > 遊戲 > 新增一個非 Steam 遊戲到我的收藏庫`，就可以將各種應用程式加入Steam 收藏庫，以後不需要切換到桌面模式，在遊戲模式中就可以直接打開。
 
 ## 調整瀏覽器顯示
 
@@ -19,11 +20,13 @@ Steam Deck 使用訂製的 Arch Linux，同時也能容易地切換到桌面模�
 
 https://support.microsoft.com/en-gb/topic/xbox-cloud-gaming-in-microsoft-edge-with-steam-deck-43dd011b-0ce8-4810-8302-965be6d53296
 
- (after @@u @@):
+在每個遊戲/應用程式啟動畫面上點選設定按鈕，在啟動選項 (在 @@u @@ 變數之後) 中加入
 
+```sh
 --window-size=1024,640 --force-device-scale-factor=1.25 --device-scale-factor=1.25
+```
 
-若要預設開啟特定頁面可以加 --kiosk "https://www.xbox.com/play"
+若要預設開啟特定頁面可以繼續加入 `--kiosk "https://www.xbox.com/play"` 參數。
 
 瀏覽器預設用 R2(RT) 按鈕代表滑鼠左鍵、L2 代表右鍵、右觸控代表板滑鼠移動、左觸控板代表捲動。
 
