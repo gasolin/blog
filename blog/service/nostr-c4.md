@@ -46,6 +46,8 @@ Content -.- Reader
 end
 ```
 
+<!-- truncate -->
+
 ## Nostr 的機制
 
 Nostr 並沒有使用到區塊鏈（Blockchain），但應用了目前大量使用於區塊鏈的加密技術(Crypto)。
