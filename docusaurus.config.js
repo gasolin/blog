@@ -86,6 +86,7 @@ const config = {
           //   label: 'Tutorial',
           // },
           {to: '/tags', label: 'Tags', position: 'left'},
+          {to: '/life/mylifetools', label: '我的工具箱', position: 'left'},
         ],
       },
       footer: {
