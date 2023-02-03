@@ -12,6 +12,7 @@ date: 2023-01-19 16:52:31
 ## 日常服務 (Every Day Service)
 
 - [保護你的帳號安全 - 使用密碼管理軟體](life/password_manager.md)
+- 目前使用的電腦應用程式 [2023](tools/my-app-2023.md)
 
 ## 日常自動化
 
