@@ -10,7 +10,7 @@ date: 2023-02-03 09:15:31
 ## 半自動安裝
 
 ```sh
-$ brew install airpip balsamiq-wireframes brave-browser dropbox gnupg hiddenbar itsycal logseq nvm raycast recordit slack starship visual-studio-code yarn
+$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg hiddenbar itsycal logseq nvm raycast recordit slack starship steam visual-studio-code yarn
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 ```
@@ -22,17 +22,22 @@ $ brew install git-credential-manager-core
 - balsamiq-wireframes：👨‍💻 mockup 工具
 - brave-browser：🌐 主要使用的瀏覽器
 - dropbox：快速備份資料夾（空間 15.x GB）
+- fava: beancount 文字記帳視覺化
 - git-credential-manager-core：👨‍💻 [搭配 github 使用](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager)
 - gnupg：👨‍💻 [加密工具](https://tourcoder.com/gpg-on-macos/)(Pretty Good Privacy)，我用來簽署 git commit
 - [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
+  - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
 - itsycal：📅 狀態列日曆
 - logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中
 - nvm：👨‍💻 Node 版本管理工具
+  - 透過 `nvm install 16` 可以安裝最新版的 Nodejs 16.x，透過 `nvm ls-remote` 可以查看已安裝的版本
 - raycast：透過鍵盤快速啟動工具，（[取代 spotlight](https://manual.raycast.com/hotkey)）
 - recordit：螢幕錄製工具
 - slack：👨‍💻 溝通工具
 - starship：👨‍💻 命令行高亮提示
+- steam: 遊戲管理工具
 - visual-studio-code：👨‍💻 程式編輯工具
+  - 透過 `CMD + J` 命令可以取用內建的 Terminal 工具
 - yarn：👨‍💻 node 套件管理工具
 
 ### 設定腳本
