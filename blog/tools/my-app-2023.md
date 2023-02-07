@@ -10,7 +10,7 @@ date: 2023-02-03 09:15:31
 ## 半自動安裝
 
 ```sh
-$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg hiddenbar itsycal logseq nvm raycast recordit slack starship steam visual-studio-code yarn
+$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal logseq nvm raycast recordit slack starship steam visual-studio-code yarn
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 ```
@@ -25,6 +25,7 @@ $ brew install git-credential-manager-core
 - fava: beancount 文字記帳視覺化
 - git-credential-manager-core：👨‍💻 [搭配 github 使用](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager)
 - gnupg：👨‍💻 [加密工具](https://tourcoder.com/gpg-on-macos/)(Pretty Good Privacy)，我用來簽署 git commit
+- gnu-sed：👨‍💻 命令行字串取代工具
 - [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
   - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
 - itsycal：📅 狀態列日曆
@@ -37,7 +38,7 @@ $ brew install git-credential-manager-core
 - starship：👨‍💻 命令行高亮提示
 - steam: 遊戲管理工具
 - visual-studio-code：👨‍💻 程式編輯工具
-  - 透過 `CMD + J` 命令可以取用內建的 Terminal 工具
+  - 透過 `CMD + J` 命令可以在編輯模式與內建的 Terminal 工具之間切換
 - yarn：👨‍💻 node 套件管理工具
 
 ### 設定腳本
@@ -51,6 +52,7 @@ $ brew install git-credential-manager-core
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
 % source ~/.zprofile
 % nvm install 16
@@ -70,11 +72,27 @@ export NVM_DIR="$HOME/.nvm"
 ----
 
 ## 瀏覽器插件
+
 - Bitwarden：密碼管理工具
 - Browserflow：半自動網頁爬蟲
 - Pocket：📰 稍後閱讀
 - Youtube雙字幕：可同時顯示
 - 電子錢包：👛 Metamask、Tally Ho
+
+分頁使用瀏覽器內建的分頁群組功能
+
+## Visual Studio Code 插件
+- Background Terminal Notifier：命令執行後跳系統通知
+- Beancount：Beancount 格式補完
+- Blank Line at the End：檔尾自動加入空白行
+- Color Info：行內 CSS 顏色顯示/選擇器
+- EditorConfig for VSCode
+- ESLint：程式碼樣式檢查
+- Indent-rainbow: 快速辨識不同層的括號
+- Path Intellisense：改進檔案路徑搜尋
+- Trailing Spaces：去除行尾的空白。
+- Version Lens: 快速檢查 package.json 檔案中套件是否有更新的版本
+- WakaTime：紀錄使用編輯器的時間
 
 ----
 
