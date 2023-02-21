@@ -27,6 +27,6 @@ date: 2023-01-19 16:52:31
 - [廚房省時小工具](life/kitchen-hack.md)
 - [手機，平板，還是電腦？找出手邊設備隱藏的冨樫病毒](life/devices-procrastination.md)
 
-## 外出攜帶品
+## 外出攜帶
 
 - [拿筆電到戶外工作](life/work-outdoor-with-nb.md)

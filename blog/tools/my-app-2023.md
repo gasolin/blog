@@ -10,36 +10,12 @@ date: 2023-02-03 09:15:31
 ## 半自動安裝
 
 ```sh
-$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal logseq nvm raycast recordit slack starship steam visual-studio-code yarn
+$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq nvm raycast recordit slack starship steam visual-studio-code yarn
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 ```
 
 <!-- truncate -->
-
-- homebrew：所有可以透過 [homebrew](https://brew.sh/) 安裝的程式，都應透過 homebrew 安裝。
-- airpip：每日自動將桌布換成另一幅畫或照片
-- balsamiq-wireframes：👨‍💻 mockup 工具
-- brave-browser：🌐 主要使用的瀏覽器
-- dropbox：快速備份資料夾（空間 15.x GB）
-- fava: beancount 文字記帳視覺化
-- git-credential-manager-core：👨‍💻 [搭配 github 使用](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager)
-- gnupg：👨‍💻 [加密工具](https://tourcoder.com/gpg-on-macos/)(Pretty Good Privacy)，我用來簽署 git commit
-- gnu-sed：👨‍💻 命令行字串取代工具
-- [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
-  - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
-- itsycal：📅 狀態列日曆
-- logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中
-- nvm：👨‍💻 Node 版本管理工具
-  - 透過 `nvm install 16` 可以安裝最新版的 Nodejs 16.x，透過 `nvm ls-remote` 可以查看已安裝的版本
-- raycast：透過鍵盤快速啟動工具，（[取代 spotlight](https://manual.raycast.com/hotkey)）
-- recordit：螢幕錄製工具
-- slack：👨‍💻 溝通工具
-- starship：👨‍💻 命令行高亮提示
-- steam: 遊戲管理工具
-- visual-studio-code：👨‍💻 程式編輯工具
-  - 透過 `CMD + J` 命令可以在編輯模式與內建的 Terminal 工具之間切換
-- yarn：👨‍💻 node 套件管理工具
 
 ### 設定腳本
 
@@ -49,19 +25,34 @@ $ brew install git-credential-manager-core
 % code ~/.zprofile
 
 # 加入腳本
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Set PATH, MANPATH, etc., for Homebrew.
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-  PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+# starship
+eval "$(starship init zsh)"
+
+PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# find local ip
+ip(){
+  ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"
+}
 
 % source ~/.zprofile
 % nvm install 16
 
 % #xcode 命令行工具
 % xcode-select --install
+% sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \
+     /Library/Java/JavaVirtualMachines/openjdk.jdk
+
 ```
 
-### App Store
+## App Store
 
 - Transporter：👨‍💻 App 上傳工具
 
@@ -69,7 +60,48 @@ export NVM_DIR="$HOME/.nvm"
 
 - [pCloud](https://www.pcloud.com/)：備用的快速備份資料夾，一次付清後有 2TB 空間，目前拿來備份 Dropbox 資料夾。
 
+
+## 我到底裝了什麼
+
+這麼多的程式可以被分為系統增強、工作、生活相關幾類：
+
+### 系統增強
+
+- homebrew：所有可以透過 [homebrew](https://brew.sh/) 安裝的程式，都應透過 homebrew 安裝。
+- airpip：每日自動將桌布換成另一幅畫或照片
+- brave-browser：🌐 主要使用的瀏覽器
+- dropbox：快速備份資料夾（空間 15.x GB）
+- [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
+  - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
+- itsycal：📅 狀態列日曆
+- raycast：透過鍵盤快速啟動工具，（[取代 spotlight](https://manual.raycast.com/hotkey)）
+- recordit：螢幕錄製工具
+
+
+### 工作
+
+- balsamiq-wireframes：👨‍💻 mockup 工具
+- git-credential-manager-core：👨‍💻 [搭配 github 使用](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager)
+- gnupg：👨‍💻 [加密工具](https://tourcoder.com/gpg-on-macos/)(Pretty Good Privacy)，我用來簽署 git commit
+- gnu-sed：👨‍💻 命令行字串取代工具
+- java：👨‍💻 跑一些程式用
+- nvm：👨‍💻 Node 版本管理工具
+  - 透過 `nvm install 16` 可以安裝最新版的 Nodejs 16.x，透過 `nvm ls-remote` 可以查看已安裝的版本
+- slack：👨‍💻 溝通工具
+- starship：👨‍💻 命令行高亮提示
+- visual-studio-code：👨‍💻 程式編輯工具
+  - 透過 `CMD + J` 命令可以在編輯模式與內建的 Terminal 工具之間切換
+- yarn：👨‍💻 node 套件管理工具
+
+### 生活
+
+- fava: beancount 文字記帳視覺化
+- logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中
+- steam: 遊戲管理工具
+
 ----
+
+除了應用程式之外，電腦上還會裝瀏覽器插件、Raycast 插件、與編輯器插件。
 
 ## 瀏覽器插件
 
@@ -81,7 +113,13 @@ export NVM_DIR="$HOME/.nvm"
 
 分頁使用瀏覽器內建的分頁群組功能
 
+## Raycast 插件
+
+- Google Translate
+- Visual Studio Recent Projects
+
 ## Visual Studio Code 插件
+
 - Background Terminal Notifier：命令執行後跳系統通知
 - Beancount：Beancount 格式補完
 - Blank Line at the End：檔尾自動加入空白行
