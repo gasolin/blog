@@ -5,6 +5,8 @@ tags:
 date: 2023-02-03 09:15:31
 ---
 
+![](https://source.unsplash.com/960x640/?wooden,desk,computer,keyboard)
+
 剛換新電腦 (Macbook Air M2)，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。
 
 ## 半自動安裝
@@ -70,6 +72,10 @@ ip(){
 - homebrew：所有可以透過 [homebrew](https://brew.sh/) 安裝的程式，都應透過 homebrew 安裝。
 - airpip：每日自動將桌布換成另一幅畫或照片
 - brave-browser：🌐 主要使用的瀏覽器
+  - 重新整理目前的網頁：`command + r` (+ shift 完整重新整理)
+  - 關閉目前分頁：`command + w`
+  - 開新分頁：`command + t`
+  - 回到上一頁：`command + 左方向鍵`
 - dropbox：快速備份資料夾（空間 15.x GB）
 - [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
   - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
@@ -158,4 +164,5 @@ ip(){
 ### 系統內建快速鍵
 
 - 切換輸入法：`Control + 空白鍵`
+- 切換程式：`command + tab`
 - 切換虛擬桌面： `Control + 方向鍵`
