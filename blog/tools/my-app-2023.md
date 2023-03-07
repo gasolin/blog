@@ -5,7 +5,7 @@ tags:
 date: 2023-02-03 09:15:31
 ---
 
-![](https://source.unsplash.com/960x640/?wooden,desk,computer,keyboard)
+![](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=640&ixid=MnwxfDB8MXxyYW5kb218MHx8dmlydHVhbCxlbXBsb3llZXx8fHx8fDE2NzgyMjg3Nzc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=960)
 
 剛換新電腦 (Macbook Air M2)，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。
 
