@@ -12,7 +12,7 @@ date: 2023-02-03 09:15:31
 ## 半自動安裝
 
 ```sh
-$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq nvm raycast recordit slack starship steam visual-studio-code yarn
+$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm raycast recordit slack starship steam visual-studio-code yarn
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 ```
@@ -76,6 +76,7 @@ ip(){
   - 關閉目前分頁：`command + w`
   - 開新分頁：`command + t`
   - 回到上一頁：`command + 左方向鍵`
+- microsoft-edge: 🌐 💬 用來開 chatgpt / new bing 搜尋
 - dropbox：快速備份資料夾（空間 15.x GB）
 - [hiddenbar](https://github.com/dwarvesf/hidden)：隱藏多餘的狀態列圖示
   - `在狀態列圖示上按著 cmd 鍵可以拖曳改變順序`
@@ -84,8 +85,8 @@ ip(){
   -（[取代 spotlight](https://manual.raycast.com/hotkey)）用 `Command + 空白鍵` 啟動。
   - 取代系統內建的 [emoji keyboard](https://www.raycast.com/changelog/1-29-0)，在 Extentions > Search Emoji 綁定 `Control + Command` 快捷鍵。
   - 取代 rectangle 安排視窗位置，在 `Extentions > Window Management` 綁定 `Option + Command + 方向鍵` 快捷鍵。
+  - snippets 綁定 `Option + /` 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。
 - recordit：螢幕錄製工具
-
 
 ### 工作
 
@@ -161,8 +162,8 @@ ip(){
 
 - 🗂️ 個人網站：[個人網站](http://www.gasolin.idv.tw/)、[Github](https://github.com/gasolin/blog/)、[Linkedin](https://www.linkedin.com/in/fredglin/)
 
-### 系統內建快速鍵
+### 系統內建快速鍵和手勢
 
 - 切換輸入法：`Control + 空白鍵`
 - 切換程式：`command + tab`
-- 切換虛擬桌面： `Control + 方向鍵`
+- 切換虛擬桌面： 用三指在觸控板上同時向左或右撥動，或 `Control + 方向鍵`
