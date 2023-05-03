@@ -12,7 +12,8 @@ date: 2023-02-03 09:15:31
 ## 半自動安裝
 
 ```sh
-$ brew install airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm raycast recordit slack starship steam visual-studio-code yarn
+$ xcode-select --install
+$ brew install android-studio airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm raycast recordit slack starship steam visual-studio-code yarn
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 ```
@@ -38,6 +39,9 @@ eval "$(starship init zsh)"
 
 PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # find local ip
 ip(){
@@ -90,6 +94,7 @@ ip(){
 
 ### 工作
 
+- android-studio：Android 開發環境
 - balsamiq-wireframes：👨‍💻 mockup 工具
 - git-credential-manager-core：👨‍💻 [搭配 github 使用](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager)
 - gnupg：👨‍💻 [加密工具](https://tourcoder.com/gpg-on-macos/)(Pretty Good Privacy)，我用來簽署 git commit
