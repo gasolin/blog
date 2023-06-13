@@ -29,7 +29,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "rehype-slug": "4.0.1",
-    "remark-emoji": "2.2.0",
+    "remark-emoji": "3.1.2",
     "remark-gfm": "2.0.0",
     "remark-oembed": "1.2.2",
     "remark-pangu": "2.2.0",
