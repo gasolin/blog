@@ -21,12 +21,10 @@ date: 2023-06-28 11:40:31
 可使用 `conda create` 命令建立獨立的虛擬環境
 
 ```
-$ conda create python=3 --n TEST
+$ conda create python=3 -n TEST
 ```
 
 這樣會自動下載最新 Python 3 版本，並將環境名稱設定為 `TEST`。
-
-可使用命令 `conda env list` 查看現有的虛擬環境。
 
 ## 切換環境
 
@@ -37,3 +35,9 @@ $ conda create python=3 --n TEST
 `TEST` 為環境名稱。切換後還是可以用 `pip3 install` 等工具來安裝函式庫。
 
 可使用 `conda deactivate` 命令離開環境。
+
+## 查看或管理環境
+
+可使用命令 `conda env list` 查看現有的虛擬環境。
+
+不再需要此虛擬環境時，可使用命令 `conda env remove -n TEST` 移除名為 `TEST` 的環境。
