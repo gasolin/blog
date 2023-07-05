@@ -41,3 +41,9 @@ $ conda create python=3 -n TEST
 可使用命令 `conda env list` 查看現有的虛擬環境。
 
 不再需要此虛擬環境時，可使用命令 `conda env remove -n TEST` 移除名為 `TEST` 的環境。
+
+## 安裝套件
+
+有些 Python 程式建議用不同的套件管理工具如 poetry，也可以透過 `conda` 命令來安裝使用
+
+`conda install -c conda-forge poetry`
