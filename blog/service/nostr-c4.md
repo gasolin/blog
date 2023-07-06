@@ -70,13 +70,16 @@ User[使用者] -.- PublisherA
 User -.- Reader
 PublisherA[發布者] -- 發佈 --> ContentA
 PublisherA[發布者] -- 發佈 --> ContentB
+
 subgraph Relay 1
 ContentA((我的內容))
 Publisher[其他發布者] -.- Content((內容))
 end
+
 subgraph Relay 2
 ContentB((我的內容))
 end
+
 subgraph Client
 PublisherA
 Reader[閱聽者] -- 訂閱 --> Publisher
