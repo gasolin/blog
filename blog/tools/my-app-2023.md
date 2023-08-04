@@ -48,6 +48,23 @@ ip(){
   ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"
 }
 
+# kill process by port
+kp() {
+  npx kill-port --port $1
+}
+
+# apply PR to codebase
+pr() {
+  git fetch upstream pull/$1/head:pr-$1
+  git checkout pr-$1
+}
+
+# list short changelog
+changelog() {
+  echo "changelog:"
+  LANG=en_US git log --pretty=format:"* %h - %s (%ar) <%an>" -n $1
+}
+
 % source ~/.zprofile
 % nvm install 16
 
