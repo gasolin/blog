@@ -95,6 +95,8 @@ pie showData
 
 穿著浮具、帶好裝備，跟著熟悉當地水域的教練親水，可以保障活動的安全。若沒有教練帶也要相伴而行，並需要具備判斷水域狀況的能力，才能保障自己的生命安全。
 
+(另外本文只分析了 2021 年的資料，多少會有些當年度特殊狀況造成的誤差，更理想的是多追蹤幾年看整體趨勢)
+
 ## 參考資料
 
 - 本篇文章使用的[資料與分析表格](https://docs.google.com/spreadsheets/d/1FtZx5Pby9J0XeHCo1qMAekHoQQqeNXlsUCy4By7Iphk/edit?usp=sharing)(Google Spreadsheets)
