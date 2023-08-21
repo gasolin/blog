@@ -55,6 +55,8 @@ function BlogPostPageContent({sidebar, children}) {
       {(nextItem || prevItem) && (
         <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />
       )}
+
+      <div style={{marginTop:'20px'}} ref={commentElement}></div>
     </BlogLayout>
   );
 }
