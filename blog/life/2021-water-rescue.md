@@ -5,6 +5,8 @@ tags:
   - life
 ---
 
+![Imgur](https://i.imgur.com/iLxlDNpl.png)
+
 ```mermaid
 pie showData
     title 2021 消防機關水域救援統計
