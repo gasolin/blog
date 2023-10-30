@@ -66,7 +66,7 @@ changelog() {
 }
 
 % source ~/.zprofile
-% nvm install 16
+% nvm install 18
 
 % #xcode 命令行工具
 % xcode-select --install
