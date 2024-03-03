@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[92532],{3452:l=>{l.exports=JSON.parse('{"label":"olpc","permalink":"/tags/olpc","allTagsPath":"/tags","count":1}')}}]);
