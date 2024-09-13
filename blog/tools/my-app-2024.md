@@ -15,7 +15,7 @@ date: 2024-08-28 13:15:31
 ```sh
 # xcode 命令行工具
 $ xcode-select --install
-$ brew install android-studio balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm ollama raycast recordit slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
+$ brew install android-studio balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm ollama raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
 ```
 
 <!-- truncate -->
@@ -117,7 +117,6 @@ changelog() {
   - 取代系統內建的 [emoji keyboard](https://www.raycast.com/changelog/1-29-0)，在 Extentions > Search Emoji 綁定 `Control + Command` 快捷鍵。
   - 取代 rectangle 安排視窗位置，在 `Extentions > Window Management` 綁定 `Option + Command + 方向鍵` 快捷鍵。
   - snippets 綁定 `Option + /` 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。
-- recordit：螢幕錄製工具
 
 ### 工作
 
@@ -136,6 +135,7 @@ changelog() {
   - 用 `CMD + B` 命令可以開關側邊欄。
 - yarn：👨‍💻 node 套件管理工具
 - surfshark: VPN 工具
+- quicktime：螢幕錄製工具
 
 ### 生活
 
