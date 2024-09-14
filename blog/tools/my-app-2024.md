@@ -2,7 +2,7 @@
 title: 目前使用的電腦應用程式 (2024)
 tags:
   - tool
-date: 2024-08-28 13:15:31
+date: 2024-09-13 13:15:31
 ---
 
 ![](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=640&ixid=MnwxfDB8MXxyYW5kb218MHx8dmlydHVhbCxlbXBsb3llZXx8fHx8fDE2NzgyMjg3Nzc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=960)
