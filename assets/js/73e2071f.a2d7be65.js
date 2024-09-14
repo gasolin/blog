@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[79704],{39599:a=>{a.exports=JSON.parse('{"label":"360photo","permalink":"/tags/360-photo","allTagsPath":"/tags","count":2}')}}]);

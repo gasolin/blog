@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[7079],{43427:a=>{a.exports=JSON.parse('{"label":"IPv6","permalink":"/tags/i-pv-6","allTagsPath":"/tags","count":59}')}}]);
