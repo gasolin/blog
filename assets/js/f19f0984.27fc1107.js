@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[8454],{11933:a=>{a.exports=JSON.parse('{"label":"lingascript","permalink":"/tags/lingascript","allTagsPath":"/tags","count":1}')}}]);

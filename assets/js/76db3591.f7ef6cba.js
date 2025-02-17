@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[31797],{45683:a=>{a.exports=JSON.parse('{"label":"OMNET++","permalink":"/tags/omnet","allTagsPath":"/tags","count":34}')}}]);
