@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[80765],{10:s=>{s.exports=JSON.parse('{"label":"subversion","permalink":"/tags/subversion","allTagsPath":"/tags","count":1}')}}]);
