@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[72017],{11046:e=>{e.exports=JSON.parse('{"label":"FirefoxOS","permalink":"/tags/firefox-os","allTagsPath":"/tags","count":20}')}}]);

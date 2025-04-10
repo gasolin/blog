@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[49307],{19391:a=>{a.exports=JSON.parse('{"label":"Ubiquity","permalink":"/tags/ubiquity","allTagsPath":"/tags","count":1}')}}]);
