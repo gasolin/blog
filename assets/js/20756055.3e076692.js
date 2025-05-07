@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[72307],{44393:a=>{a.exports=JSON.parse('{"label":"magicmirror","permalink":"/tags/magicmirror","allTagsPath":"/tags","count":1}')}}]);

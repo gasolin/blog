@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[47969],{9842:s=>{s.exports=JSON.parse('{"label":"chromeos","permalink":"/tags/chromeos","allTagsPath":"/tags","count":1}')}}]);

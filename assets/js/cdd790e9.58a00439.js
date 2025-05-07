@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[11050],{44304:a=>{a.exports=JSON.parse('{"label":"TurboGears","permalink":"/tags/turbo-gears","allTagsPath":"/tags","count":56}')}}]);

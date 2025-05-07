@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[11947],{95332:a=>{a.exports=JSON.parse('{"label":"gamification","permalink":"/tags/gamification","allTagsPath":"/tags","count":2}')}}]);
