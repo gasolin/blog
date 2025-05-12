@@ -16,7 +16,7 @@ Ollama 是一款相當方便使用的本地大模型命令行工具，使用者�
 Ollama 網站裡 https://ollama.com/search 可以找到各種可以在本地運行的模型，
 如要安裝近期較佳的本地模型如 gemma3 或 qwen3，可運行命令如 `ollama run gemma3`，若本地沒有此模型，就會先自動下載 Google 的 gemma3 模型，下載完後自動在本機執行。
 
-![Imgur](https://imgur.com/S6L5mae.png)
+![Imgur](https://imgur.com/nVxipOu.png)
 
 (選擇想要使用的模型後，在右上角可以直接複製對應的命令)
 
