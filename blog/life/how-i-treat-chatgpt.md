@@ -3,6 +3,7 @@ title: 外派平台、外派幫手、出場詩 - 我如何看待 ChatGPT
 tags:
   - tooling
   - life
+  - llm
 date: 2023-03-07 22:25:46
 ---
 
