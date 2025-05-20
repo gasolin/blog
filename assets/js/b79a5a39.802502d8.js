@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[75927],{84696:l=>{l.exports=JSON.parse('{"label":"Blockly","permalink":"/tags/blockly","allTagsPath":"/tags","count":3}')}}]);
