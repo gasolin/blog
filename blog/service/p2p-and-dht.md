@@ -87,3 +87,9 @@ sequenceDiagram
 1. 一旦我方電腦獲取了小明電腦的 IP 地址，它們就可以直接建立 P2P 連線了，而不需要再透過 DHT 網路。
 
 這樣看下來，有沒比較了解 P2P 網路的運作，和 DHT 對 P2P 網路的幫助哩？
+
+----
+
+資訊公開：我目前負責 Keet 的 Mobile 端的開發，分享自己對整個架構設計的理解。Keet 使用的很多元件都是開源的，你可以在 https://github.com/holepunchto 查看，或看看我整理的 [Awesome-pears](https://github.com/gasolin/awesome-pears)，裡面有更多 P2P 應用程式喔！
+
+對相關技術感興趣的朋友，也歡迎參考[徵才訊息](https://holepunch.recruitee.com/)，歡迎對P2P 技術有研究，或 React Native 的開發者加入。
