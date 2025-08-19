@@ -3,6 +3,7 @@ title: 使用 Ollama 與 Holesail 遠端運行本地模型
 tags:
   - tools, ollama, holepunch
 date: 2025-05-12 11:41:46
+modified: 2025-08-19 17:44:40
 ---
 
 ### Ollama 介紹
@@ -59,7 +60,7 @@ nomic-embed-text:latest    0a109f422b47    274 MB    4 months ago
 執行 Ollama 服務後，使用命令
 
 ```
-$ holesail --live 11434 --host localhost
+$ holesail --live 11434
 ```
 
 `11434` 是 Ollama 預設的 port，這命令的作用是通知 holesail 將 port `11434` 映射出去。
@@ -72,7 +73,7 @@ $ holesail --live 11434 --host localhost
 holesail [hashcode]
 ```
 
-會回報另一個 port (ex: 8989)，這時 holesail 已經將遠端主機的 port `11434` 上的服務，映射到本地 port `8989` 上，若用瀏覽器開啟網址 http://127.0.0.1:8989 ，可以看到 `ollama is running` 字樣，表示跑在桌機上的 Ollama 已經透過 port 8989 得以模擬在本機執行。
+會回報另一個 port (ex: 8989, 可透過 `--port [num]` 指定)，這時 holesail 已經將遠端主機的 port `11434` 上的服務，映射到本地 port `8989` 上，若用瀏覽器開啟網址 http://127.0.0.1:8989 ，可以看到 `ollama is running` 字樣，表示跑在桌機上的 Ollama 已經透過 port 8989 得以模擬在本機執行。
 
 ![Imgur](https://imgur.com/zuiATTB.png)
 
