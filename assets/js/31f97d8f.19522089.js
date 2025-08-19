@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[99194],{15921:e=>{e.exports=JSON.parse('{"label":"aglie test","permalink":"/tags/aglie-test","allTagsPath":"/tags","count":4}')}}]);

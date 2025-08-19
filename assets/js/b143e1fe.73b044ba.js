@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[13756],{45330:e=>{e.exports=JSON.parse('{"label":"bitfinex","permalink":"/tags/bitfinex","allTagsPath":"/tags","count":1}')}}]);
