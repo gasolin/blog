@@ -37,7 +37,7 @@ Then we should prepare the compile tools.
 First checkout the android source from [http://source.android.com/](http://source.android.com/) (name as mydroid), we'll use the cross compile gcc in it's "prebuilt/linux-x86/toolchain/arm-eabi-4.2.1/bin" folder. Another tool is located in "ase/tools/agcc".
 
 Edit .bashrc , add a line to include those compile tools:
-> export PATH=${PATH}:~/mydroid/prebuilt/linux
+> export PATH=$\{PATH\}:~/mydroid/prebuilt/linux
 > -x86/toolchain/arm-eabi-4.2.1/bin:~/ase/tools/agcc
 Then start compile python for ASE.
 

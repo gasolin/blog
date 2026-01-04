@@ -75,9 +75,9 @@ IPvXAddress destAddr = chooseDestAddr();
 超過一個目的位址時從中選擇隨機目的位址
 
 IPvXAddress UDPBasicApp::chooseDestAddr()
-{
+\{
     int k = intrand(destAddresses.size());
 destAddresses.size() 即目標位址數量, intrand(n) 從n中隨機取一數
 
     return destAddresses[k];
-}
+\}

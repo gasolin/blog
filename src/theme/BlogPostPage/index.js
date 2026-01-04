@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import {HtmlClassNameProvider, ThemeClassNames} from '@docusaurus/theme-common';
-import {BlogPostProvider, useBlogPost} from '@docusaurus/theme-common/internal';
+import { HtmlClassNameProvider, ThemeClassNames } from '@docusaurus/theme-common';
+import { BlogPostProvider, useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import BlogLayout from '@theme/BlogLayout';
 import BlogPostItem from '@theme/BlogPostItem';
 import BlogPostPaginator from '@theme/BlogPostPaginator';
 import BlogPostPageMetadata from '@theme/BlogPostPage/Metadata';
 import TOC from '@theme/TOC';
-function BlogPostPageContent({sidebar, children}) {
-  const {metadata, toc} = useBlogPost();
-  const {nextItem, prevItem, frontMatter} = metadata;
+function BlogPostPageContent({ sidebar, children }) {
+  const { metadata, toc } = useBlogPost();
+  const { nextItem, prevItem, frontMatter } = metadata;
   const {
     hide_table_of_contents: hideTableOfContents,
     toc_min_heading_level: tocMinHeadingLevel,
@@ -56,7 +56,7 @@ function BlogPostPageContent({sidebar, children}) {
         <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />
       )}
 
-      <div style={{marginTop:'20px'}} ref={commentElement}></div>
+      <div style={{ marginTop: '20px' }} ref={commentElement}></div>
     </BlogLayout>
   );
 }

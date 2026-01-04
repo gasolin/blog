@@ -32,7 +32,7 @@ Hubot 使用了很多 Coffeescript 的 Class 語法。Class 與 super 的用法�
 Hubot 程式碼裡常常會出現諸如 reply(strings...) 的語法。Coffeescript 裡的"strings..."可以對應到ES6 的 "...strings"（...放置位置剛好相反）。
 "...strings" 代表的是一個陣列。在程式中有時要展開有時不用，其實頗令人苦惱。**7\. 使用 for..of 替換 for.. in 迴圈**
 碰到 for..in 迴圈有幾種解法，最不會出錯的是將 Array iteration 改寫成 forEach。但是用 forEach ˇ的話無法在執行中使用 break/return 跳出是其缺點。其二是在 for..in 迴圈裡加入 hasOwnProperty 確認不會跑到無關的 function。
-在 Webbybot 的第二版中已使用 ES6支援的 [for..of 迴圈](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) 來取代 forEach 和 for..in 迴圈。由於 for..of 迴圈只支援 iteratable ，不支援一般 Object，所以碰到要對 Object 跑迴圈時可以在 Object 外包一層 Object.keys，例如 `for (let item of Object.keys(TargetObj)) {...}
+在 Webbybot 的第二版中已使用 ES6支援的 [for..of 迴圈](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) 來取代 forEach 和 for..in 迴圈。由於 for..of 迴圈只支援 iteratable ，不支援一般 Object，所以碰到要對 Object 跑迴圈時可以在 Object 外包一層 Object.keys，例如 `for (let item of Object.keys(TargetObj)) {...}`
 **8\. 使用 Object.assign 替換 Extend**
 
 要擴展一個物件的功能不用再用 lodash 或是自己寫 extend 函式，直接用 [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 吧。

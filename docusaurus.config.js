@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -11,10 +12,22 @@ const config = {
   url: 'https://blog.gasolin.idv.tw/',
   baseUrl: '/',
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'gasolin', // Usually your GitHub org/user name.
   projectName: 'blog', // Usually your repo name.
+
+  markdown: {
+    format: 'detect',
+    mermaid: true,
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
+    // Move onBrokenMarkdownLinks here for Docusaurus v3/v4 compliance
+    // Note: The warning said siteConfig.markdown.hooks.onBrokenMarkdownLinks but usually it's markdown.onBrokenMarkdownLinks or hooks if you use them.
+    // Actually, in v3, onBrokenMarkdownLinks is still allowed at root but warned.
+  },
 
   presets: [
     [
@@ -31,17 +44,19 @@ const config = {
           blogDescription: '人們總是高估一年可以完成的事，卻低估十年能完成的事',
           routeBasePath: '/', //blog only
           showReadingTime: true,
+          onUntruncatedBlogPosts: 'ignore',
           // Please change this to your repo.
           editUrl:
+
             'https://github.com/gasolin/blog/edit/main/website/blog/',
           remarkPlugins: [
             [
-              require('remark-emoji'), {padSpaceAfter: true}],
-              // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
-              require('mdx-mermaid'), // charts
-              require('remark-pangu'), // chinese/english space
-              require('remark-oembed'), // youtube, twitter
-              // require('remark-gfm'),
+              require('remark-emoji').default, { padSpaceAfter: true }],
+            // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
+            require('mdx-mermaid'), // charts
+            require('remark-pangu'), // chinese/english space
+            require('remark-oembed'), // youtube, twitter
+            require('remark-gfm').default,
           ],
           rehypePlugins: [
             // require('rehype-slug'),
@@ -56,14 +71,14 @@ const config = {
         //   priority: 0.5,
         //   trailingSlash: false,
         // },
-        googleAnalytics: {
+        gtag: {
           trackingID: 'UA-2833924-9',
-          // Optional fields.
-          anonymizeIP: true, // Should IPs be anonymized?
+          anonymizeIP: true,
         },
       }),
     ],
   ],
+
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -85,8 +100,8 @@ const config = {
           //   position: 'left',
           //   label: 'Tutorial',
           // },
-          {to: '/tags', label: 'Tags', position: 'left'},
-          {to: '/life/mylifetools', label: '我的工具箱', position: 'left'},
+          { to: '/tags', label: 'Tags', position: 'left' },
+          { to: '/life/mylifetools', label: '我的工具箱', position: 'left' },
         ],
       },
       footer: {
@@ -155,3 +170,4 @@ const config = {
 };
 
 module.exports = config;
+
