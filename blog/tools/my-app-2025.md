@@ -16,21 +16,19 @@ date: 2025-05-07 10:15:31
 ```sh
 # xcode 命令行工具
 $ xcode-select --install
-$ brew install brave-browser cherry-studio dropbox fava gnupg gnu-sed hiddenbar itsycal jetbrains-toolbox java logseq nvm ollama raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
+$ brew install brave-browser cherry-studio dropbox fava gnupg gnu-sed hiddenbar itsycal zulu@17 jetbrains-toolbox logseq lm-studio nvm raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
 ```
 
 <!-- truncate -->
 
 
-額外安裝 git 工具、nvm (nodejs 版本管理)、設定 openjdk 連結
+額外安裝 git 工具、nvm (nodejs 版本管理)、設定 java (zulu) 連結
 
 ```
 
 $ brew tap microsoft/git
 $ brew install git-credential-manager-core
 $ nvm install 22
-$ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \
-     /Library/Java/JavaVirtualMachines/openjdk.jdk
 ```
 
 ### 設定腳本
@@ -48,10 +46,11 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(starship init zsh)"
 
 # Android
-PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+# export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/25.1.8937393
+export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin

@@ -57,3 +57,5 @@ npx barechat --bootstrap=192.168.0.123:55688
 BareChat 就像一個「**沒有中央伺服器的聊天室**」，它沒有一個像 LINE 或 Messenger 的總部來幫大家管理帳號與聊天內容，所以你需要透過 DHT 來找到你的朋友。
 
 BareChat 和 Keet 使用相同的 [Hyperdht](https://github.com/holepunchto/hyperdht) 這套 DHT 協定，與建構在其上的 [Hyperswarm](https://github.com/holepunchto/hyperswarm) 這套協定工具。透過 Hyperswarm 協定，只要提供一個主題碼（雜湊碼）給 BareChat，就能與其他關注同一個主題碼的其他機器互相連接，開始聊天。聊天過程中不需要再連上 DHT。
+
+若想要進一步了解 Keet 底層協議，可以看看  https://pear.conventionaldevs.org/
