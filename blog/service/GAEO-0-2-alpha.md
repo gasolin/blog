@@ -24,13 +24,13 @@ date: 2008-10-10 01:10:57
 ## 建立新專案
 
 使用
-> gaeo <專案名稱>
+> gaeo `<專案名稱>`
 來建立一個新專案，新專案中除了基本 Google App Engine 的設定檔案外，還複製了一個 gaeo 檔案夾，提供  gaeo 相關的函式庫。
 
 建立後進入專案，啟動 Google App Engine 開發工具的 server 就可以看到運行的網站。
 
 還可以改使用
-> gaeo --eclipse <專案名稱>
+> gaeo --eclipse `<專案名稱>`
 來順便建立 pydev+eclipse 開發環境用的專案資訊。
 
 ## 程式碼組織方式

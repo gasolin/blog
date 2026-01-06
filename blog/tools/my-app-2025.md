@@ -82,9 +82,21 @@ changelog() {
   echo "changelog:"
   LANG=en_US git log --no-merges --pretty=format:"* %h - %s (%ar) <%an>" -n $1
 }
+
+oc() {
+  echo 'install latest...'
+  npm i -g opencode-ai
+  npm i -g @fission-ai/openspec@latest
+  echo 'run opencode'
+  opencode
+}
+
+sleep() {
+  osascript -e 'tell application "System Events" to sleep'
+}
 ```
 
-加入一些 bash 命令，如 `kp [port]` 可以馬上刪掉佔用 port 的服務。
+加入一些 bash 命令，如 `kp [port]` 可以馬上刪掉佔用 port 的服務，`oc` 用來啟動 opencode。
 
 
 % code ~/.gitconfig
@@ -184,11 +196,11 @@ changelog() {
 ## 瀏覽器插件
 
 - Bitwarden：密碼管理工具
-- Pocket：📰 稍後閱讀
 - Youtube 雙字幕：可同時顯示兩種語言
-- 電子錢包：👛 Metamask、Tally Ho
+- 電子錢包：👛 Metamask
+- 沈浸式翻譯
 
-分頁使用瀏覽器內建的分頁群組功能
+分頁使用瀏覽器內建的分頁群組功能。Pocket（稍後閱讀）、Tally Ho 很少使用先封存。
 
 ## Raycast 插件
 
@@ -208,7 +220,7 @@ changelog() {
 - Trailing Spaces：去除行尾的空白。
 - Version Lens: 快速檢查 package.json 檔案中套件是否有更新的版本
 - WakaTime：紀錄使用編輯器的時間
-
+- Roo code：協助偵錯
 
 ----
 
