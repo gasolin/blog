@@ -53,7 +53,7 @@ const config = {
             [
               require('remark-emoji').default, { padSpaceAfter: true }],
             // [require('remark-plugin-twemoji'), { size: '12x12', ext: '.svg' }],
-            require('mdx-mermaid'), // charts
+            // require('mdx-mermaid'), // removed - using @docusaurus/theme-mermaid instead
             require('remark-pangu'), // chinese/english space
             require('remark-oembed'), // youtube, twitter
             require('remark-gfm').default,
@@ -78,6 +78,8 @@ const config = {
       }),
     ],
   ],
+
+  themes: ['@docusaurus/theme-mermaid'],
 
 
   themeConfig:
