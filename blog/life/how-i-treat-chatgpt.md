@@ -7,7 +7,7 @@ tags:
 date: 2023-03-07 22:25:46
 ---
 
-![](https://images.unsplash.com/photo-1615642036791-a9fa3dc117b2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=640&ixid=MnwxfDB8MXxyYW5kb218MHx8dWJlcmVhdHx8fHx8fDE2NzgyMjk4NDI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=960)
+![](/img/posts/life/deliver-agent.png)
 
 ChatGPT 在去年橫空出世後得到了廣泛關注，它讓一般人可以在聊天界面中，使用各種語言自然的與機器對話，並得到還不錯的回答。以前想要得到答案，需要先在搜尋網站下關鍵字找關聯網站或文章，查看內容中提取需要的關鍵資訊，再組合出需要的答案。現在則可以在 ChatGPT 中問問題，並期待直接得到解答。更少的中間步驟，更好的使用者體驗 😎。
 

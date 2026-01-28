@@ -7,6 +7,8 @@ tags:
   - llm
 ---
 
+![](/img/posts/life/agent-skill.png)
+
 23 年時我寫了一篇 [外派平台、外派幫手、出場詩 - 我如何看待 ChatGPT](life/how-i-treat-chatgpt.md)，當時提到 ChatGPT 讓一般人可以透過聊天界面，自然的與機器對話。我將其比喻為一個「外派平台」，我們透過吟誦特定的「出場詩」（Prompt），就能呼叫特定的「外派幫手」來協助處理雜事。
 
 經過幾年的飛速發展，從 ChatGPT 到 Claude、Gemini、Grok，AI 模型的進化早已超出了單純的「對話」。到了 2026 年的今天，我對 AI 的看法也從單純的「工具外派」，演進到了「器靈協作」的新境界。
