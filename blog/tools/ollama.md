@@ -77,6 +77,9 @@ holesail [hashcode]
 
 ![Imgur](https://imgur.com/zuiATTB.png)
 
+![Notes]
+2026/2/2 為了方便自動化，可以在 holesail 後面加入 `--key [key]` 參數，填入自訂的 key 後將產生一致的 hashcode，這樣客戶端可以一直用同個 hashcode（記得過一陣子要換一個）。
+
 ### 透過 Cherry Studio 使用本地模型
 
 Ollama 提供了命令行介面，但是一般使用時還是用**類似 ChatGPT 的介面**更方便。
