@@ -1,0 +1,35 @@
+- # /Users/linyumin/idv/blog/blog/code
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：程式設計、開發流程、開源貢獻
+    - 時間跨度：2006-2016
+    - 檔案數量：40 個
+  -
+  - ## Core Topics
+    - ## 開發方法論
+      - Demo Driven Development：以 Demo 為驅動的開發流程
+      - Debugging 哲學：除錯難度與程式碼複雜度關係
+      - Functional Programming：以數學方程式方式編程
+    - ## 技術轉換
+      - Hubot 從 CoffeeScript 轉至 ES6 的經驗
+      - Javascript 世界主導的四個秘密
+    - ## Web 框架實戰
+      - TurboGears Time Tracker：53 行代碼完成 Web APP
+      - Python / JavaScript 混合開發策略
+    - ## 開源貢獻
+      - 如何參與開源專案（以 Hubot 為例）
+      - 開發者指南與最佳實踐
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | 3min-flashcard-patch.md | 29 | 三分鐘自製閃光卡補充包（日文假名詞庫） |
+      | Code-Like-a-Pythonista.md | 12 | Pythonista 編程習慣簡報（PyCon 2007） |
+      | Debugging.md | 13 | 程式除錯哲學（Brian Kernighan 引用） |
+      | Demo-Driven-Development.md | 32 | Demo 導向開發（DDD）：以演示為驅動 |
+      | Functional-Programming.md | 60 | 函數式編程概念：以數學方程式方式編程 |
+      | How-we-port-Hubot-from-Coffeescript-to-ES6.md | 128 | Hubot 從 CoffeeScript 轉 ES6 經驗（webbybot） |
+      | Javascript-conquer-the-world.md | 69 | Javascript 征服世界是可能的嗎？（Modern Web 2015） |
+      | Making-a-Time-Tracker-in-TurboGears.md | 78 | TurboGears Time Tracker：53 行代碼完成 Web APP |
+      | Jenkins-ci-deploy-Android.md | 18 | Jenkins CI 自動部署 Android 專案 |

@@ -1,0 +1,60 @@
+- # /Users/linyumin/idv/blog/blog
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：技術部落格、個人知識庫
+    - 時間跨度： 2006-2026
+    - 總檔案數量： ~600 個（各目錄總和）
+  -
+  - ## Directory Structure
+    - ## android/ （63 個檔案）
+      - Android SDK 各版本特性、開發工具演進
+      - Market 分析、山寨機與第三方服務
+    - ## python/ （98 個檔案）
+      - Python 語言與 Web 框架（TurboGears/Django/Pylons）
+      - pypy 編譯器、conda 環境管理
+    - ## life/ （42 個檔案）
+      - 年度回顧、閱讀筆記、個人自動化
+      - 人生遊戲攻略、個人商業畫布
+    - ## devtools/ （43 個檔案）
+      - 版本控制（Git/Mercurial/Subversion）
+      - 自動化部署（Travis CI、Docusaurus）
+    - ## code/ （40 個檔案）
+      - 開發方法論（DDD、Functional Programming）
+      - 技術轉換（CoffeeScript -> ES6）
+    - ## tools/ （62 個檔案）
+      - App 開發、開發環境設定
+      - 工具發展史（2011-2025）
+    - ## crypto/ （13 個檔案）
+      - 區塊鏈、加密貨幣、智能合約
+      - Ethereum、Solidity、Truffle
+    - ## digest/ （14 個檔案）
+      - 思考模型、學習方法
+      - 知識管理與摘要技巧
+    - ## iot/ （6 個檔案）
+      - 物聯網、Bot、Scapy
+    - ## make/ （9 個檔案）
+      - 創作者、DIY、Open Badges
+    - ## mozilla/ （14 個檔案）
+      - Firefox OS、Open Source
+    - ## react-native/ （5 個檔案）
+      - React Native、移動開發
+    - ## service/ （14 個檔案）
+      - 服務設計、Open Service
+    - ## vr/ （7 個檔案）
+      - 虛擬實境（VR）、AR、MR
+  -
+  - ## Core Themes
+    - ## 技術學習與實踐
+      - 多語言程式設計（Python、JavaScript、Java）
+      - Web 技術演進（jQuery -> React -> Vue）
+    - ## 開源與社群參與
+      - Mozilla、TurboGears 社群貢獻
+      - 技術分享與教學（GTUG、PyCon）
+    - ## 工具與自動化
+      - IFTTT 自動化流程
+      - 版本控制與 CI/CD 流程
+  -
+  - ## Notes
+    - > 此索引由 LLM 自動生成，時間戳記： 2026-02-22 15:35
+    - > 每個子目錄的 `.abstract` 檔案包含該目錄的詳細摘要

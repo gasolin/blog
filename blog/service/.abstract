@@ -1,0 +1,26 @@
+- # /Users/linyumin/idv/blog/blog/service
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：服務設計、Open Service、政府服務
+    - 時間跨度： 2013-2015
+    - 檔案數量： 14 個
+  -
+  - ## Core Topics
+    - ## Open Service 設計
+      - Open Service 簡介：開放服務設計原則
+      - 政府開放資料與服務整合
+    - ## 服務發展案例
+      - eGov：移動_web 政府服務
+      - Public Service Innovation Lab
+    - ## 服務架構與方法
+      - Service Canvas：服務設計工具
+      - User Journey：使用者旅程map
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | eGov-by-mobile-web.md | 48 | eGov：移動_web 政府服務 |
+      | Open-Service.md | 35 | Open Service 設計原則 |
+      | Public-Service-Innovation-Lab.md | 42 | 公共服務創新實驗室 |
+      | Service-Canvas.md | 38 | Service Canvas 服務設計工具 |

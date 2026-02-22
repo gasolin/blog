@@ -1,0 +1,38 @@
+- # /Users/linyumin/idv/blog/blog/tools
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：工具應用、開發環境設定、App 開發
+    - 時間跨度：2013-2017
+    - 檔案數量：62 個
+  -
+  - ## Core Topics
+    - ## App 開發與工具
+      - App Store 規則、 Blocklyduino（Arduino 編程）
+      - gFolder、gpaper：個人信息管理工具
+      - attachEmail： Gmail 附件自動儲存工具
+    - ## 開發環境設定
+      - Chrome OS 開源版本、elementary OS 設定
+      - Ubuntu / Windows 雙系統安裝
+      - Raspberry Pi Kano OS 設置
+    - ## 工具比較與分析
+      - OCR 應用比較、Web Widget 分析
+      - Wi-Fi Range Extender 測試
+      - Steam Deck、XPS13 筆電設定
+    - ## 工具发展历程
+      - tooling-in-2011~2025：年度工具回顧系列
+      - Ollama、AI 工具使用經驗
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | Anobiit.md | 20 | Anobii 書籍管理工具整合筆記 |
+      | App-AttachEmail.md | 35 | Gmail 附件自動儲存工具（attachEmail） |
+      | App-Taiwan-fruit.md | 51 | 台灣水果識別 App（Open Source） |
+      | Blockly-Arduino-Grove-Blocklyduino-pre-alpha.md | 78 | BlocklyArduino 初測（視覺化 Arduino 編程） |
+      | Chrome-OS-OSS.md | 42 | Chrome OS 開源版本（Chromium OS）介紹 |
+      | elementary_juno.md | 47 | elementary OS Juno 使用體驗與設定 |
+      | ollama.md | 38 | Ollama：本地 AI 模型執行工具 |
+      | setup-elementary-os-loki.md | 45 | elementary OS Loki 初次設定指南 |
+      | tooling-in-2011.md | 57 | 工具發展史（2011 年回顧） |
+      | tooling-in-2025-Apr.md | 48 | 工具發展史（2025 年 4 月更新） |

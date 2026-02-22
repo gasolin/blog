@@ -1,0 +1,38 @@
+- # /Users/linyumin/idv/blog/blog/life
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：個人生活、自動化、閱讀筆記、年度回顧
+    - 時間跨度：2011-2026
+    - 檔案數量：42 個
+  -
+  - ## Core Topics
+    - ## 年度回顧
+      - 2011年：GTUG活動、個人數據化（203本書、4萬頁）
+      - 2013-2015：百書完食系列（書單統計與推薦）
+      - 2021水災救援分析：水域風險數據分析
+    - ## 自動化與工具
+      - IFTTT 生活紀錄：自動同步書影/文章至日曆
+      - Todoist + Google Calendar 工作流程
+      - 自動化部落格部署（Travis CI + Github Pages）
+    - ## 閱讀與學習
+      - 個人筆記本配置（實體 B5 方格本 + 魔擦筆）
+      - 個人商業畫布：年度規劃工具
+      - KUSO 程式設計語言（中文程式語言周蟒）
+    - ## 運動與健康
+      - 小米手環/體脂計自動化紀錄
+      - 水域救援安全分析（2021 年統計）
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | 2011-summary.md | 78 | 2011年GTUG活動、個人數據化（203本書） |
+      | 2013-reading-summary.md | 54 | 百書完食第四年（114本）、Kindle Paperwhite 使用 |
+      | 2014-reading-summary.md | 59 | 百書完食第五年（86本）、電子書比例達38% |
+      | 2015-reading-summary.md | 74 | 百書完食第六年（115本）、電子書首次超過實體書 |
+      | LifeLog-via-IFTTT.md | 51 | 使用 IFTTT 自動化紀錄書影/文章至 Google Calendar |
+      | handbook.md | 50 | 實體筆記本配置（B5 方格本 + 魔擦筆） |
+      | liferpg.md | 138 | 人生攻略指南：將生命視為策略遊戲 |
+      | personal-canvas.md | 98 | 個人商業畫布：年度規劃工具 |
+      | personal-automation-in-2017.md | 136 | 2017 版個人自動化系統（IFTTT/Todoist/Google Calendar） |
+      | personal-automation-in-2018.md | 124 | 2018 版個人自動化系統更新 |

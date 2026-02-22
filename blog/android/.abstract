@@ -1,0 +1,70 @@
+- # /Users/linyumin/idv/blog/blog/android
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Files
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | Andbook-Learning-Android-From-Scratch.md | 16 | anddev.org 的 plusminus 發佈免費 Android 入門電子書 (~62頁)，持續經營 anddev.org 提供範例 |
+      | Androbian.md | 15 | 2008年 Android 與 Symbian 合併傳言，用巧克力花生醬比喻兩個平台的融合 |
+      | Android-2-2-as-it-should-be.md | 34 | Android 2.2 Froyo 發佈，支援雲端備份、SD卡安裝應用、瀏覽器速度提升2-3倍 |
+      | Android-2-3-Google-App-Improvements.md | 41 | Android 2.3 Google 應用程式更新：Market/YouTube/Gmail/Maps/Docs，支援平板與手機 |
+      | Android-2-3-publish.md | 31 | Android 2.3 SDK 發佈，支援 SIP 網路語音、更多感測器、xlarge 屏幕，引入 Proguard 程式碼混淆 |
+      | Android-3-0-publish.md | 21 | Android 3.0 HoneyComb 發佈，專為平板設計，引入 Fragment 概念與 Action Bar |
+      | Android-3-x-and-phone.md | 56 | Android 3.x SDK 可用於手機開發，Fragment API 分向後相容與原生版本，作者推薦學習跨版本基礎知識 |
+      | Android-3DMark.md | 14 | Qualcomm Neocore 3DMark 程式運行於 G1 手機，證明 Android 3D 圖形能力 |
+      | Android-4-0-publish.md | 29 | Android 4.0 Ice Cream Sandwich 發佈，整合平板與手機介面，引入 Holo 主題、臉部解鎖、語音辨識 |
+      | Android-Maps.md | 20 | Android 1.0 地圖開發困難，需要申請 Map Key，版本變動快難以確認教程正確性 |
+      | Android-Market-first-day.md | 46 | 首次上架測試顯示：針對使用者需求設計會影響下載與留存率，英制版 aBMI 優於公制版 gBMI |
+      | Android-OS-non-official-Sharp-Zaurus-SL-C760.md | 14 | 第一台非官方 Android 平台 Sharp Zaurus SL-C760 出現，支援手動安裝 |
+      | Android-SDK-1-5-publish.md | 28 | Android SDK 1.5 CupCake 發佈，支援輸入法、桌面小工具（App Widget），改進模擬器架構 |
+      | Android-SQLite.md | 21 | SQLite 與 CRUD 教學需要 5 章詳細講解，ContentProvider 尚需額外 2-3 章 |
+      | Android-Side-Menu-Drawer.md | 48 | Android 側邊滑動選單（Side Menu Drawer）效果實現，使用 Simple Side Drawer Library |
+      | Android-Wear-associates.md | 19 | Android Wear 是連接 Android 設備與周邊的協議，透過 Notification API 推播訊息至手錶 |
+      | Android-apprank.md | 14 | Android 應用程式排行資訊來源：cyrket/aTrackDog/Android Market Place Rankings |
+      | Android-book-samples-on-Github.md | 45 | Android 書籍範例更新至 Github，使用分支管理不同章節程式碼，git clone 可取得特定版本 |
+      | Android-difference-Demo.md | 24 | Android 介面持續改版，新版支援類似 iPhone 的 Widget 功能與多點觸控 |
+      | Android-freemium.md | 17 | Android 免費+廣告營利模式經驗分享，使用 AdMob 廣告系統 |
+      | Android-grant-phase-1.md | 5 | Android 專案補助第一階段，鼓勵社群參與 |
+      | Android-markets-war.md | 38 | Android 市場競爭分析：數百萬支 App、渠道多樣化、單一維度比較已不夠 |
+      | CupCake-screencast-in-Emulator.md | 14 | Android 1.5 CupCake screencast 在模擬器上運行，可在 nullwire 下載 Emulator |
+      | Donut-Android-1-6-publish.md | 27 | Android 1.6 Donut 發佈，補完 Android 1.x 功能，支援更多設備與解析度 |
+      | Eclair-Android-2-0-publish.md | 27 | Android 2.0 Eclair 發佈，開放 Bluetooth、多點觸控（3點）、AccountManager API |
+      | Flash-demo-on-Android.md | 14 | Android 支援網頁 Flash 廣告與遊戲執行 |
+      | G1-dev-in-Ubuntu-9-04.md | 8 | Ubuntu 9.04 上連接 G1 開發手機的設定方法 |
+      | Google-Android-book-cover.md | 20 |《Google! Android 手機應用程式設計入門》繁體中文書封面發佈，2009年上市 |
+      | Google-I-O-2011-Day1-Keynote-note.md | 43 | Google I/O 2011 Keynote：Android Market 新增影片與音樂服務、Google TV 整合、USB API 支援 |
+      | Google-IO-speech.md | 16 | Google IO 演講影片上線，結合 YouTube 影片與 Google Doc 講稿 |
+      | Google-shutdown-Android-Market-pay-App.md | 56 | Google 關閉台灣 Android Market 付費 App 下載，引起國外開發者與政府法規爭議 |
+      | Guide-to-put-Hero-Builds-to-your-G1-Magic-Android.md | 8 | XDA 開發者论坛給 G1/Magic 手機刷機的指南帖子 |
+      | HTC-Dream.md | 21 | HTC Dream 手機，第二台 Android 手機，512MB 記憶體、虛擬鍵盤 |
+      | HTC-HERO.md | 19 | HTC HERO 手機，介面改進，支援 Android 2.1 |
+      | HTC-sense-ui.md | 20 | HTC 自製介面影片流出，與標準 Android 不同，類似 Linux 發行版概念 |
+      | HoneyComb-Highlights.md | 19 | Google I/O 2011 HoneyComb Highlights 演講投影片與錄影 |
+      | Introduction-of-Android-Scripting-Environment.md | 14 | Android Scripting Environment 簡介投影片，COSCUP 2009 分享 |
+      | MS-Google-Dropbox.md | 41 | 微軟、Google 發佈類 Dropbox 雲端硬碟服務，整合進 Windows/Android 系統 |
+      | Market.md | 18 | Android Market 新版介面改進，向好方向發展 |
+      | Nexus-One-handson.md | 21 | Nexus One 操作影片，支援 Flash 10 |
+      | OPhone-Web-3-0.md | 42 | 中國移動 OPhone 系統基於 Android，引入 Mobileyou「客戶端即伺服器」架構（pWeb） |
+      | OS-release-in-2013.md | 95 | 2013年多款作業系統發佈：Android 4.3、Chrome OS、FirefoxOS、Ubuntu Phone、SteamOS |
+      | Play-Store-front-page.md | 62 | 上架 Google Play 熱門推薦需因素：日均下載1500-3000次、宣傳圖（180x120）、主題圖（1024x500） |
+      | Q1-2009-tw-Android.md | 26 | Q1 2009 Android 將支援繁體中文（zh_TW）、IMF/IME 輸入法框架，可能推出繁體中文手機 |
+      | SDK-and-emulator.md | 32 | 非官方 Android SDK BT 种子下載，支援 Windows/Mac/Linux，AvdManager 支援多種模擬器 |
+      | T-Mobile-G1-Android-SDK-1-0.md | 24 | T-Mobile G1 第一台 Android 實機，Android SDK 1.0 發佈，內建 Google Gear Plugin |
+      | TAT-desktop.md | 21 | TAT 桌面展示影片，探討桌面不需要過度絢麗 |
+      | The-day-the-routers-died-2.md | 14 | 車上網速比家裡快，Android 發佈改變世界 |
+      | Zii-Egg.md | 19 | 基於 Android 平台的手持設備 Zii Egg，支援 MPEG-4 外接 FullHD 顯示器 |
+      | app-run-in-sd-2-2.md | 39 | Android 2.2 App2SD 功能，應用程式安裝到 SD 卡執行，需要 android:installLocation="preferExternal" |
+      | bread-maker.md | 30 | 作者轉職為麵包師父，Android 書一年改版三次，更新開發工具架構與新功能 |
+      | cn-book-publish.md | 17 | Android 入門書簡體版出版，定價45 RMB |
+      | desert-maker.md | 28 | Android 書更新至 1.6 版，引入新 SDK 架構、多解析度支援、獨立範例章節 |
+      | detech-screen-size-and-resolution.md | 53 | Android 偵測螢幕大小與解析度：4.0+ 使用 SCREENLAYOUT_SIZE_MASK、1.5- 支援 density 判斷 |
+      | dive-into-Android-dev-publish.md | 69 |《深入淺出 Android 手機應用程式設計》電子書公開，目標讓台灣讀者快速上手 Android |
+      | gesture-ui-update-Android-Todo-List-Demo.md | 13 | Android 待辦事項應用程式更新：支持手指劃掉項目 |
+      | multi-resolution-Android-Market.md | 47 | Android 1.6 支援不同解析度機器，需在 AndroidManifest 加入 supports-screens 宣告 |
+      | no-Google-service-Android.md | 21 | 不含 Google 服務的 Android 山寨機， Chinese OEM 廠商簡體化介面與輸入法 |
+      | projecting-Android-screen.md | 26 | Android Screen Monitor 工具可在電腦螢幕展示手機畫面 |
+      | rumor-andromeda.md | 34 | Android + Chrome OS = Andromeda 傳言，類似 2008 年 Androbian 聯想 |
+      | solve-Android-version-compatibility-1.md | 0 | 檔案不存在 |
+      | switch-Android-language.md | 27 | Android 1.5 後支援多語系資源，可動態切換介面語言 |
+      | taipei-map-taked-down.md | 104 | 台北捷運地圖 App 被下架原因：侵權（未經授權使用捷運公司路線圖） |
+      | upgrade-build-xml.md | 27 | Android SDK Tools r14 後 build.xml 格式修改，需重新產生後加入自訂設定 |

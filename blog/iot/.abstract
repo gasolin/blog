@@ -1,0 +1,28 @@
+- # /Users/linyumin/idv/blog/blog/iot
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：物聯網、Bot、Scapy、Scratch3
+    - 時間跨度： 2013-2016
+    - 檔案數量： 6 個
+  -
+  - ## Core Topics
+    - ## Bot 與聊天機器人
+      - Chatbot Slide：聊天機器人簡報
+      - How Bot Works：Bot 工作原理
+    - ## 物聯網裝置
+      - OddWerx ROMO：機器人套件
+      - Setup Skype Chatbot on Raspberry Pi：樹莓派 Chatbot 設置
+    - ## 網路協議與分析
+      - Scapy：Python 網路封包攻擊/分析工具
+    - ## 教育與學習
+      - Scratch3 Internet：Scratch3 網路功能
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | chatbot-slide.md | 28 | 聊天機器人簡報 |
+      | how-bot-works.md | 32 | Bot 工作原理介紹 |
+      | scapy.md | 45 | Scapy 網路封包分析工具 |
+      | Setup-a-skype-chatbot-on-Respberry-pi-with-4GB-SD-Card.md | 52 | 樹莓派 Skype Chatbot 設置 |
+      | scratch3-internet.md | 24 | Scratch3 網路功能 |

@@ -1,0 +1,36 @@
+- # /Users/linyumin/idv/blog/blog/python
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：Python 語言與 Web 框架（TurboGears/Django/Pylons）
+    - 時間跨度：2006-2023
+    - 檔案數量：98 個
+  -
+  - ## Core Topics
+    - ## Python 核心技術
+      - Python 簡介與哲學（縮排、zen、pdb、語法）
+      - Unicode 處理與編碼問題
+      - Web 框架比較（Django/TurboGears/Pylons）
+    - ## TurboGears 專題
+      - MVC 架構與 Decorator 機制
+      - Widget 表單元件系統
+      - AJAX 支援與 JSON 格式
+      - SQLSoup 資料庫整合
+    - ## Python 生態系
+      - Jython / IronPython 移植
+      - pypy 編譯器與翻譯框架
+      - conda 環境管理
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | 10-things-python.md | 38 | Python 10 大問題問答，社群注意力分散問題 |
+      | 2007-code-of-year-Python.md | 18 | Python 獲選 2007 年度程式語言（TIOBE） |
+      | All-About-Python-and-Unicode.md | 43 | Python Unicode 處理機制：encode/decode 必要性 |
+      | CRUD-Template.md | 80 | TurboGears 電腦產生器，自動生成 CRUD 介面 |
+      | Python-web-frameworks.md | 82 | Python 網頁框架比較：Django/TurboGears/Pylons |
+      | TurboGears-Ajax.md | 29 | TurboGears AJAX 支援：表單參數處理一致性 |
+      | TurboGears-vs-Rails.md | 50 | TurboGears vs Rails：Pythonic 與 Convention 差異 |
+      | conda.md | 52 | Python 環境管理工具：miniconda 使用教學 |
+      | pypy-intro.md | 50 | PyPy：用 Python 寫的 Python，支援跨平台編譯 |
+      | webframework-URL-mapping.md | 69 | 網頁框架 URL 對映方式：Regex/Object/Routes |

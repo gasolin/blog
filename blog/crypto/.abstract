@@ -1,0 +1,36 @@
+- # /Users/linyumin/idv/blog/blog/crypto
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：區塊鏈、加密貨幣、智能合約
+    - 時間跨度：2017-2018
+    - 檔案數量：13 個
+  -
+  - ## Core Topics
+    - ## 區塊鏈基礎
+      - 區塊链是什麼：價值交換技術
+      - P2P 網路、共識機制、加密技術
+      - 公有鏈 vs 聯盟鏈 vs 私有鏈
+    - ## 以太坊專題
+      - Ethereum：智能合約平台
+      - EVM（Ethereum Virtual Machine）
+      - Web3.js 與 DAPP 開發
+    - ## 智能合約開發
+      - Solidity 語言入門
+      - Truffle 框架使用教程
+      - ERC20 Token 標準
+    - ## 加密貨幣與 ICO
+      - Bitcoin vs Ethereum
+      - 初次代幣發行（ICO）風險提示
+      - Ledger Nano 硬體錢包設定
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | what-is-blockchain.md | 134 | 區塊鏈是什麼：價值交換技術 |
+      | what-is-ethereum.md | 92 | 以太坊：智能合約平台 |
+      | howto-write-a-smart-contract.md | 192 | 如何撰寫智能合約（Truffle 教程） |
+      | create-poap-badge-for-event.md | 38 | 創建 POAP（Proof of Attendance Protocol）徽章 |
+      | got-my-ens-domain.md | 25 | 獲得我的 ENS 域名 |
+      | setup_ledger_nano_on_linux.md | 42 | Linux 上設定 Ledger Nano 硬體錢包 |
+      | prepare-for-eth2.md | 35 | Eth 2.0 準備指南 |

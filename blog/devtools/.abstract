@@ -1,0 +1,36 @@
+- # /Users/linyumin/idv/blog/blog/devtools
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：開發工具、版本控制、自動化部署
+    - 時間跨度：2007-2022
+    - 檔案數量：43 個
+  -
+  - ## Core Topics
+    - ## 版本控制系統
+      - Git: merge commits, pull request, rebase, fixup
+      - Mercurial: 分支合併、多來源更新
+      - Subversion + Trac 整合安裝
+    - ## 自動化部署
+      - Travis CI + GitHub Pages 自動部署流程
+      - Docusaurus 架站流程（fork + 線上編輯）
+    - ## 開發工具
+      - App Inventor：拖拉式 Android App 開發
+      - Bugzilla 主題變更（Mozilla 專案）
+      - WebAPPlate：整合 babel/myth transpiler
+    - ## 網頁技術
+      - Future-proof JavaScript/CSS（Arrow functions, CSS variables）
+      - Responsive Web Design
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | App-Inventor-in-public.md | 38 | App Inventor 開放使用，拖拉式 Android App 開發 |
+      | AppInventor-dev-thought.md | 82 | 台客舞 App 開發心得（AppInventor Bootcamp） |
+      | Automated-Tests.md | 7 | 自動化測試重要性（Test automation helps stabilize code base） |
+      | Bugzilla-theme.md | 72 | 帮 Bugzilla 換新佈景（Mozilla 專案） |
+      | Future-proved-Javascript-and-CSS.md | 104 | ES6 Arrow Functions + CSS Variables 導入 |
+      | ghpage-auto-deploy.md | 102 | Travis CI + GitHub Pages 自動部署流程 |
+      | git-merge-commits.md | 62 | 如何修改 git commits（amend, rebase, fixup） |
+      | github-pull-request.md | 39 | 如何抓別人的 Pull Request（diff + bash script） |
+      | kickstart-docusaurus.md | 61 | 用 Docusaurus 建立網站（fork + 線上編輯） |

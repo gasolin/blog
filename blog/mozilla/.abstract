@@ -1,0 +1,29 @@
+- # /Users/linyumin/idv/blog/blog/mozilla
+  - > Auto-generated index. Last updated: 2026-02-22 15:35
+  -
+  - ## Summary
+    - 主題：Mozilla、Firefox OS、Open Source
+    - 時間跨度： 2013-2015
+    - 檔案數量： 14 個
+  -
+  - ## Core Topics
+    - ## Firefox OS 專題
+      - Next Stop Mozilla：Firefox OS 開發筆記
+      - Firefox xmas：Firefox 霍爾節日慶祝
+    - ## Mozilla 工具與擴展
+      - Bugzilla 主題變更（Mozilla 設計）
+      - Mercurial in Mozilla：Mozilla 的版本控制
+    - ## 開源貢獻
+      - OOS License：Open Source Software 授權
+      - UML：Unified Modeling Language 使用經驗
+    - ## Web 技術
+      - Future proved Javascript and CSS（未來-proof 的 JS/CSS）
+  -
+  - ## Files (Selected Highlights)
+    - | File | Lines | Summary |
+      |------|------:|---------|
+      | next-stop-mozilla-firefox-os.md | 35 | Firefox OS 開發筆記 |
+      | Bugzilla-theme.md | 72 | 幫 Bugzilla 換佈景（Mozilla 專案） |
+      | mercurial-in-Mozilla.md | 48 | Mozilla 的 Mercurial 使用經驗 |
+      | OOS-license.md | 28 | Open Source Software 授權說明 |
+      | UML.md | 34 | Unified Modeling Language 使用經驗 |
