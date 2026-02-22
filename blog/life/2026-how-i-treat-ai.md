@@ -5,6 +5,8 @@ tags:
   - tooling
   - life
   - llm
+  - ai
+  - agent
 ---
 
 ![](/img/posts/life/agent-skill.png)
