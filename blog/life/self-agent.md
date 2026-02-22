@@ -1,5 +1,5 @@
 ---
-title: 用自己的代理(SelfAgent)，讀自己的資料
+title: 用自己的代理（SelfAgent），讀自己的資料
 tags:
   - tooling
   - llm
@@ -8,7 +8,7 @@ tags:
 date: 2026-02-22 21:00:00
 ---
 
-2026 開年以來 Openclaw 突然變得非常熱門，在關心 AI 的群眾間，開始颳起「養龍蝦」的風潮。
+2026 開年以來 Openclaw 突然變得非常熱門，在關心 AI 的社群間，颳起了一陣「養龍蝦」的風潮。
 Openclaw 是一個開源的代理（Agent）框架，它讓擁有者可以透過即時聊天軟體（如 Telegram）與代理對話，就像使用 ChatGPT 一樣。不同的是，Openclaw 可以讀取本地檔案，也可以自主開發新的 Agent Skill（代理技能），代你完成各種專屬任務。
 
 這篇文章不談 Openclaw 的安裝與設定（因涉及安全與費用問題，不建議一般人隨意架設），主要是想分享我如何使用與 Openclaw 底層同款的函式庫 [pi-mono](https://github.com/badlogic/pi-mono)，來打造一個專屬於自己的代理。
@@ -29,13 +29,13 @@ Openclaw 像是 AI 時代的作業系統。基於大型語言模型（LLM），�
 
 ## 代理（Agent）的基礎：一個會使用工具的 LLM（Tool Use）
 
-[learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 提供了很棒的程式代理（Code Agent）學習範例。它清晰展示了 Claude Code 等程式代理的運作概念，簡單來說，整個流程就是：等待使用者下達指令 -> Agent 將指令傳給 LLM 思考 -> 若需操作則呼叫工具（tool_use） -> 反覆執行直到「不再」需要使用工具 -> 整理結果並回覆給使用者。
+[learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 提供了很棒的程式代理（Code Agent）學習範例。它清晰展示了 Claude Code 等程式代理的運作概念，簡單來說，整個流程就是：等待使用者下達指令 → Agent 將指令傳給 LLM 思考 → 若需操作則呼叫工具（tool_use） → 反覆執行直到「不再」需要使用工具 → 整理結果並回覆給使用者。
 
 這正是打造一個通用代理（Agent）的最佳起點，理解裡面的概念，對開發自己的專屬代理很有幫助。
 
 ## 用自己的代理（Agent），讀自己的資料
 
-OpenClaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精華在於整體框架的設計。諸如 [nanobot](https://github.com/HKUDS/nanobot)、[nanoclaw](https://github.com/gavrielc/nanoclaw) 等專案，都正嘗試用不同的方式來實踐類似的代理機制。
+Openclaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精華在於整體框架的設計。諸如 [nanobot](https://github.com/HKUDS/nanobot)、[nanoclaw](https://github.com/gavrielc/nanoclaw) 等專案，都正嘗試用不同的方式來實踐類似的代理機制。
 經過研究後，我決定先使用 [pi-mono](https://github.com/badlogic/pi-mono) 來打造自己的代理。初期先純粹透過命令列（CLI）來操作，未來再考慮接上聊天介面。
 
 ## 打造我的 SelfAgent：工具鏈與安裝
@@ -76,9 +76,9 @@ cd ~/.pi && pi
 
 ### AGENTS.md
 
-Agent 啟動後會先讀取 AGENTS.md，然後再讀取 SOUL.md 與 USER.md，接著就是各種 skill。
+Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md`，接著便是載入各種 Skill。
 
-我在 ~/.pi/AGENTS.md 裡放了如下內容
+我在 `~/.pi/AGENTS.md` 裡放了如下內容：
 
 ```text
 - 回覆語言：全部使用正體中文（除非我先用英文）
