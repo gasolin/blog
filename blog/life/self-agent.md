@@ -5,7 +5,7 @@ tags:
   - llm
   - ai
   - agent
-date: 2026-02-22 20:40:00
+date: 2026-02-22 21:00:00
 ---
 
 2026 開年以來 Openclaw 突然變得非常熱門，在關心 AI 的群眾間，開始颳起「養龍蝦」的風潮。
@@ -27,18 +27,18 @@ Openclaw 像是 AI 時代的作業系統。基於大型語言模型（LLM），�
 
 當然，它也能接上本地的 AI 模型。雖然目前本地 AI 模型的各項能力尚無法與雲端抗衡，但將私密資料完全保留在本地、不被第三方讀取，這點依然具備無可取代的價值。
 
-## 用自己的代理（Agent），讀自己的資料
-
-OpenClaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精華在於整體框架的設計。諸如 [nanobot](https://github.com/HKUDS/nanobot)、[nanoclaw](https://github.com/gavrielc/nanoclaw) 等專案，都正嘗試用不同的方式來實踐類似的代理機制。
-經過研究後，我決定先使用 [pi-mono](https://github.com/badlogic/pi-mono) 來打造自己的代理。初期先純粹透過命令列（CLI）來操作，未來再考慮接上聊天介面。
-
 ## 代理（Agent）的基礎：一個會使用工具的 LLM（Tool Use）
 
 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 提供了很棒的程式代理（Code Agent）學習範例。它清晰展示了 Claude Code 等程式代理的運作概念，簡單來說，整個流程就是：等待使用者下達指令 -> Agent 將指令傳給 LLM 思考 -> 若需操作則呼叫工具（tool_use） -> 反覆執行直到「不再」需要使用工具 -> 整理結果並回覆給使用者。
 
 這正是打造一個通用代理（Agent）的最佳起點，理解裡面的概念，對開發自己的專屬代理很有幫助。
 
-## 我的 SelfAgent 主要組件
+## 用自己的代理（Agent），讀自己的資料
+
+OpenClaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精華在於整體框架的設計。諸如 [nanobot](https://github.com/HKUDS/nanobot)、[nanoclaw](https://github.com/gavrielc/nanoclaw) 等專案，都正嘗試用不同的方式來實踐類似的代理機制。
+經過研究後，我決定先使用 [pi-mono](https://github.com/badlogic/pi-mono) 來打造自己的代理。初期先純粹透過命令列（CLI）來操作，未來再考慮接上聊天介面。
+
+## 打造我的 SelfAgent：工具鏈與安裝
 
 我的 SelfAgent 主要架構與依賴元件如下：
 
@@ -54,9 +54,9 @@ Antigravity 則是 Google 推出的 AI 程式開發助理，能協助我們快�
 
 我長期使用 Logseq 與個人 Blog（基於 Docusaurus）作為知識庫，剛好兩者的內容都採用純文字的 `.md`（Markdown）格式，非常適合讓 Agent 讀取與處理。
 
-## 怎麼開始玩 SelfAgent
+### 怎麼開始玩 SelfAgent
 
-首先進行安裝：
+首先透過 npm 進行安裝：
 
 ```bash
 npm install -g @mariozechner/pi-coding-agent
@@ -70,7 +70,7 @@ cd ~/.pi && pi
 
 啟動後即可開始使用。其中 `~/.pi` 是 `pi-coding-agent` 執行後的預設目錄。
 
-## 分享我的 SelfAgent 架構
+## SelfAgent 的核心設計與記憶系統
 
 在研究後，我發現「記憶（Memory）」是當前 Agent 好不好用的關鍵。網路上 [Jason Zuo](https://x.com/xxx111god/status/2023838143045136557) 分享的「三層記憶系統」思路非常合理，於是我就先依循他的框架來實作，只是把他的儲存層換成了我習慣使用的 Logseq，在使用代理之時，也順便整理我的資料庫。
 
@@ -166,4 +166,4 @@ Agent 啟動後會先讀取 AGENTS.md，然後再讀取 SOUL.md 與 USER.md，�
 ## 成果與展望
 
 目前這套 SelfAgent 已經可以順利運作。Agent 定義了我的個人習慣，能自動處理並歸納 Blog 等專案目錄；而我每日與 Agent 的對話過程，也會自動摘要彙整至 Logseq 的每日 Journal 內。
-這不但大幅提升了資料消化的效率，也讓我對 Agent 如何與本地知識庫結合，有了更多想像空間。
+這不但大幅提升了資料消化的效率，也讓我對 Agent 如何與個人知識庫結合，有了更多想像空間。
