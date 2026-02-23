@@ -49,9 +49,9 @@ Openclaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精�
 - **[Antigravity](https://antigravity.google/)**：協助開發與打造 Agent Skill。
 - **個人資料庫**：本地的 [Logseq](https://logseq.com/downloads) 與 [Blog](https://blog.gasolin.idv.tw) 資料夾。
 
-[pi-mono](https://github.com/badlogic/pi-mono) 是一個開源的代理工具箱，你可以運用它提供的基礎積木（building blocks）來組裝自己的代理；而 `pi-coding-agent` 則是預先組裝好且立即可用的代理，除了直接使用外，也能當作範例進行二次修改。
+[pi-mono](https://github.com/badlogic/pi-mono) 是一個開源的代理工具箱，你可以運用它提供的基礎積木（building blocks）來組裝自己的代理；而 `pi-coding-agent` 則是其中預先組裝好且立即可用的代理。除了直接使用外，也能當作範例進行二次修改。
 
-Antigravity 則是 Google 推出的 AI 程式開發助理，能協助我們快速打造 Agent Skill（這部分也可以用 Claude Code 等工具取代）。
+Antigravity 則是 Google 推出的 AI 程式開發助理，能利用雲端 LLM，協助我快速打造 Agent Skill（這部分也可以用 Claude Code 等工具取代）。
 
 我長期使用 Logseq 與個人 Blog（基於 Docusaurus）作為知識庫，剛好兩者的內容都採用純文字的 `.md`（Markdown）格式，非常適合讓 Agent 讀取與處理。
 
