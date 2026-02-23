@@ -42,8 +42,9 @@ Openclaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精�
 
 我的 SelfAgent 主要架構與依賴元件如下：
 
-- **[lm studio](https://lmstudio.ai/)**：用來管理本地的 AI 模型。
+- **[lm studio](https://lmstudio.ai/)**：用來管理本地的 AI 模型（跑在家中的主機）。
   - 採用模型：`qwen/qwen3-coder-next`
+  - [holesail]：[之前文章](tools/ollama)提過用這個命令行工具將 port 映射到平常用的筆電上，可以當作在本機上使用 LLM 服務。
 - **[pi-coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent)**：用來打造自己專屬的代理。
 - **[Antigravity](https://antigravity.google/)**：協助開發與打造 Agent Skill。
 - **個人資料庫**：本地的 [Logseq](https://logseq.com/downloads) 與 [Blog](https://blog.gasolin.idv.tw) 資料夾。
@@ -174,3 +175,4 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 
 目前這套 SelfAgent 已經可以順利運作。Agent 定義了我的個人習慣，能自動處理並歸納 Blog 等專案目錄；而我每日與 Agent 的對話過程，也會自動摘要彙整至 Logseq 的每日 Journal 內。
 這不但大幅提升了資料消化的效率，也讓我對 Agent 如何與個人知識庫結合，有了更多想像空間。
+
