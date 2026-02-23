@@ -16,7 +16,7 @@ date: 2025-05-07 10:15:31
 ```sh
 # xcode 命令行工具
 $ xcode-select --install
-$ brew install brave-browser cherry-studio dropbox fava gnupg gnu-sed hiddenbar itsycal zulu@17 jetbrains-toolbox logseq lm-studio nvm raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
+$ brew install brave-browser cherry-studio dropbox fava gnupg gnu-sed hiddenbar itsycal zulu@17 jetbrains-toolbox logseq lm-studio mole nvm raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh
 ```
 
 <!-- truncate -->
@@ -162,6 +162,7 @@ sleep() {
   - 取代系統內建的 [emoji keyboard](https://www.raycast.com/changelog/1-29-0)，在 Extentions > Search Emoji 綁定 `Control + Command` 快捷鍵。
   - 取代 rectangle 安排視窗位置，在 `Extentions > Window Management` 綁定 `Option + Command + 方向鍵` 快捷鍵。
   - snippets 綁定 `Option + /` 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。
+  - mole：命令行工具，取代 pearcleaner，用來清理電腦垃圾。
 
 原本用 microsoft-edge 來開 chatgpt / new bing 搜尋，但太耗費空間已移除。
 
@@ -181,7 +182,7 @@ sleep() {
   - 用 `CMD + B` 命令可以開關側邊欄。
 - yarn：👨‍💻 node 套件管理工具
 - surfshark: VPN 工具
-- quicktime：螢幕錄製工具 (原來用的 recordit 已經 gg 了)
+- quicktime：內建工具，用來螢幕錄製 Screencast (原來用的 recordit 已經 gg 了)
 
 ### 生活
 
@@ -200,7 +201,7 @@ sleep() {
 - 電子錢包：👛 Metamask
 - 沈浸式翻譯
 
-分頁使用瀏覽器內建的分頁群組功能。Pocket（稍後閱讀）、Tally Ho 很少使用先封存。
+分頁使用瀏覽器內建的分頁群組功能。Pocket（稍後閱讀）與 Tally Ho 很少使用，先封存。
 
 ## Raycast 插件
 
