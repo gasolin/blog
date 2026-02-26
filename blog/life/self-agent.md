@@ -77,14 +77,13 @@ cd ~/.pi && pi
 
 ### AGENTS.md
 
-Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md`，接著便是載入各種 Skill。
-
+Agent 啟動後會先讀取 `AGENTS.md` 檔案，這檔案是所有設定的入口。
 我在 `~/.pi/AGENTS.md` 裡放了如下內容：
 
 ```text
 **啟動流程**
 1. 先讀取 `SOUL.md` 設定個性
-2. 再讀取 `IDENTITY.md` 瞭解個人資料
+2. 再讀取 `USER.md` 瞭解個人資料
 3. 讀取 `TOOLS.md` 瞭解工具使用方式
 4. 檢查 `HEARTBEAT.md` 用 heartbeat skill 確認是否有該執行的定時任務
 5. 用 `todomd` skill 檢查待辦事項，提醒我是否有逾期或這幾天要完成的事項。如果一個 TODO 被標記為完成，添加 `cm:` 日期並移到當日流水帳
@@ -101,7 +100,7 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 ~/.pi
 ├── AGENTS.md      ← 啟動入口，預設會讀 SOUL.md 讀取 agent 的性格
 ├── SOUL.md        ← 個性定義
-├── IDENTITY.md    ← 關於我
+├── USER.md    ← 關於我
 ├── TOOLS.md       ← 工具筆記
 ├── HEARTBEAT.md   ← 定時任務
 ├── TODO.md        ← 待辦清單
@@ -128,7 +127,7 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 
 ### SOUL.md
 
-`SOUL.md` 是定義 Agent 個性的核心檔案。我請 Antigravity 參考 Openclaw 的架構，為我生成了如下內容：
+`SOUL.md` 是定義 Agent 名稱、個性與回覆風格的核心檔案。我請 Antigravity 參考 Openclaw 的架構，為我生成了如下內容：
 
 ```text
 # SOUL.md — 你是誰
@@ -157,7 +156,9 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 即使明確指示，也要先向我展示預計修改的內容，同意後才修改。
 ```
 
-### IDENTITY.md
+### USER.md
+
+USER.md 定義我的個人資料，包含稱呼、背景、工作習慣、專案偏好與興趣等，讓 AGENT 產出的結果更符合我的心意。這個檔案包含了個人資料，因此放在 Logseq 資料夾中不外流。
 
 ```
 - 統一叫我「Gasolin」，不使用「你」
