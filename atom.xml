@@ -1,0 +1,1695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.gasolin.idv.tw/</id>
+    <title>蓋索林 Gasolin Blog</title>
+    <updated>2026-02-22T21:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.gasolin.idv.tw/"/>
+    <subtitle>蓋索林 Gasolin Blog</subtitle>
+    <icon>https://blog.gasolin.idv.tw/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[用自己的代理（SelfAgent），讀自己的資料]]></title>
+        <id>https://blog.gasolin.idv.tw/life/self-agent</id>
+        <link href="https://blog.gasolin.idv.tw/life/self-agent"/>
+        <updated>2026-02-22T21:00:00.000Z</updated>
+        <summary type="html"><![CDATA[2026 開年以來 Openclaw 突然變得非常熱門，在關心 AI 的社群間，颳起了一陣「養龍蝦」的風潮。]]></summary>
+        <content type="html"><![CDATA[<p>2026 開年以來 Openclaw 突然變得非常熱門，在關心 AI 的社群間，颳起了一陣「養龍蝦」的風潮。
+Openclaw 是一個開源的代理（Agent）框架，它讓擁有者可以透過即時聊天軟體（如 Telegram）與代理對話，就像使用 ChatGPT 一樣。不同的是，Openclaw 可以讀取本地檔案，也可以自主開發新的 Agent Skill（代理技能），代你完成各種專屬任務。</p>
+<p>這篇文章不談 Openclaw 的安裝與設定（因涉及安全與費用問題，不建議一般人隨意架設），主要是想分享我如何使用與 Openclaw 底層同款的函式庫 <a href="https://github.com/badlogic/pi-mono" target="_blank" rel="noopener noreferrer" class="">pi-mono</a>，來打造一個專屬於自己的代理。</p>
+<p>這條衍生自 Self-hosted 概念的「SelfAgent」之路才剛開始，就由我先來拋磚引玉一下。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="openclaw-是自己的代理selfagent嗎">Openclaw 是自己的代理（SelfAgent）嗎？<a href="https://blog.gasolin.idv.tw/life/self-agent#openclaw-%E6%98%AF%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%A3%E7%90%86selfagent%E5%97%8E" class="hash-link" aria-label="Direct link to Openclaw 是自己的代理（SelfAgent）嗎？" title="Direct link to Openclaw 是自己的代理（SelfAgent）嗎？" translate="no">​</a></h2>
+<p>Openclaw 像是 AI 時代的作業系統。基於大型語言模型（LLM），它接上了使用者熟悉的聊天介面（UI），棲身於你的電腦中，可以運用 Agent Skill（類似應用程式 App），查看你的各種資料，代你完成繁雜任務。</p>
+<p>既然 Openclaw 是裝在自己的電腦中，那它讀取你的資料不就很安全，可以放心使用了嗎？</p>
+<p>其實不然。Openclaw 若要完善運作，背後仍需要介接各家的 LLM，主要依賴 Claude 或 Google 近年具備強大程式開發能力的高階模型。這就好像<strong>你把資料交給了 Openclaw，Openclaw 再將資料轉交給雲端的 LLM 處理</strong>一樣，你的隱私還是會被第三方讀取。</p>
+<p>當然，它也能接上本地的 AI 模型。雖然目前本地 AI 模型的各項能力尚無法與雲端抗衡，但將私密資料完全保留在本地、不被第三方讀取，這點依然具備無可取代的價值。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="代理agent的基礎一個會使用工具的-llmtool-use">代理（Agent）的基礎：一個會使用工具的 LLM（Tool Use）<a href="https://blog.gasolin.idv.tw/life/self-agent#%E4%BB%A3%E7%90%86agent%E7%9A%84%E5%9F%BA%E7%A4%8E%E4%B8%80%E5%80%8B%E6%9C%83%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E7%9A%84-llmtool-use" class="hash-link" aria-label="Direct link to 代理（Agent）的基礎：一個會使用工具的 LLM（Tool Use）" title="Direct link to 代理（Agent）的基礎：一個會使用工具的 LLM（Tool Use）" translate="no">​</a></h2>
+<p><a href="https://github.com/shareAI-lab/learn-claude-code" target="_blank" rel="noopener noreferrer" class="">learn-claude-code</a> 提供了很棒的程式代理（Code Agent）學習範例。它清晰展示了 Claude Code 等程式代理的運作概念，簡單來說，整個流程就是：等待使用者下達指令 → Agent 將指令傳給 LLM 思考 → 若需操作則呼叫工具（tool_use） → 反覆執行直到「不再」需要使用工具 → 整理結果並回覆給使用者。</p>
+<p>這正是打造一個通用代理（Agent）的最佳起點，理解裡面的概念，對開發自己的專屬代理很有幫助。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="用自己的代理agent讀自己的資料">用自己的代理（Agent），讀自己的資料<a href="https://blog.gasolin.idv.tw/life/self-agent#%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%A3%E7%90%86agent%E8%AE%80%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B3%87%E6%96%99" class="hash-link" aria-label="Direct link to 用自己的代理（Agent），讀自己的資料" title="Direct link to 用自己的代理（Agent），讀自己的資料" translate="no">​</a></h2>
+<p>Openclaw 本身包含數十萬行透過 Vibe Coding 產生的程式碼，其精華在於整體框架的設計。諸如 <a href="https://github.com/HKUDS/nanobot" target="_blank" rel="noopener noreferrer" class="">nanobot</a>、<a href="https://github.com/gavrielc/nanoclaw" target="_blank" rel="noopener noreferrer" class="">nanoclaw</a> 等專案，都正嘗試用不同的方式來實踐類似的代理機制。
+經過研究後，我決定先使用 <a href="https://github.com/badlogic/pi-mono" target="_blank" rel="noopener noreferrer" class="">pi-mono</a> 來打造自己的代理。初期先純粹透過命令列（CLI）來操作，未來再考慮接上聊天介面。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="打造我的-selfagent工具鏈與安裝">打造我的 SelfAgent：工具鏈與安裝<a href="https://blog.gasolin.idv.tw/life/self-agent#%E6%89%93%E9%80%A0%E6%88%91%E7%9A%84-selfagent%E5%B7%A5%E5%85%B7%E9%8F%88%E8%88%87%E5%AE%89%E8%A3%9D" class="hash-link" aria-label="Direct link to 打造我的 SelfAgent：工具鏈與安裝" title="Direct link to 打造我的 SelfAgent：工具鏈與安裝" translate="no">​</a></h2>
+<p>我的 SelfAgent 主要架構與依賴元件如下：</p>
+<ul>
+<li class=""><strong><a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer" class="">lm studio</a></strong>：用來管理本地的 AI 模型（跑在家中的主機）。同樣的模型，使用 lm studio 提供的 MLX 編譯版本，在 Mac 上執行起來就是比較快，這對原本資源就捉襟見肘的本地 LLM 服務來說，是個難以忽視的優勢。
+<ul>
+<li class="">採用模型：<code>qwen/qwen3-coder-next</code></li>
+<li class="">[holesail]：<a class="" href="https://blog.gasolin.idv.tw/tools/ollama">之前文章</a>提過用這個命令行工具將 port 映射到平常用的筆電上，可以當作在本機上使用 LLM 服務。</li>
+</ul>
+</li>
+<li class=""><strong><a href="https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent" target="_blank" rel="noopener noreferrer" class="">pi-coding-agent</a></strong>：用來打造自己專屬的代理。</li>
+<li class=""><strong><a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="">Antigravity</a></strong>：協助開發與打造 Agent Skill。</li>
+<li class=""><strong>個人資料庫</strong>：本地的 <a href="https://logseq.com/downloads" target="_blank" rel="noopener noreferrer" class="">Logseq</a> 與 <a href="https://blog.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">Blog</a> 資料夾。</li>
+</ul>
+<p><a href="https://github.com/badlogic/pi-mono" target="_blank" rel="noopener noreferrer" class="">pi-mono</a> 是一個開源的代理工具箱，你可以運用它提供的基礎積木（building blocks）來組裝自己的代理；而 <code>pi-coding-agent</code> 則是其中預先組裝好且立即可用的代理。除了直接使用外，也能當作範例進行二次修改。</p>
+<p>Antigravity 則是 Google 推出的 AI 程式開發助理，能利用雲端 LLM，協助我快速打造 Agent Skill（這部分也可以用 Claude Code 等工具取代）。</p>
+<p>我長期使用 Logseq 與個人 Blog（基於 Docusaurus）作為知識庫，剛好兩者的內容都採用純文字的 <code>.md</code>（Markdown）格式，非常適合讓 Agent 讀取與處理。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="怎麼開始玩-selfagent">怎麼開始玩 SelfAgent<a href="https://blog.gasolin.idv.tw/life/self-agent#%E6%80%8E%E9%BA%BC%E9%96%8B%E5%A7%8B%E7%8E%A9-selfagent" class="hash-link" aria-label="Direct link to 怎麼開始玩 SelfAgent" title="Direct link to 怎麼開始玩 SelfAgent" translate="no">​</a></h3>
+<p>首先透過 npm 進行安裝：</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">npm install -g @mariozechner/pi-coding-agent</span><br></span></code></pre></div></div>
+<p>然後參考 <a href="https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/models.md#minimal-example" target="_blank" rel="noopener noreferrer" class="">agent/models.json</a> 設定好本地模型。接著透過以下命令：</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">cd ~/.pi &amp;&amp; pi</span><br></span></code></pre></div></div>
+<p>啟動後即可開始使用。其中 <code>~/.pi</code> 是 <code>pi-coding-agent</code> 執行後的預設目錄。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="selfagent-的核心設計與記憶系統">SelfAgent 的核心設計與記憶系統<a href="https://blog.gasolin.idv.tw/life/self-agent#selfagent-%E7%9A%84%E6%A0%B8%E5%BF%83%E8%A8%AD%E8%A8%88%E8%88%87%E8%A8%98%E6%86%B6%E7%B3%BB%E7%B5%B1" class="hash-link" aria-label="Direct link to SelfAgent 的核心設計與記憶系統" title="Direct link to SelfAgent 的核心設計與記憶系統" translate="no">​</a></h2>
+<p>在研究後，我發現「記憶（Memory）」是當前 Agent 好不好用的關鍵。網路上 <a href="https://x.com/xxx111god/status/2023838143045136557" target="_blank" rel="noopener noreferrer" class="">Jason Zuo</a> 分享的「三層記憶系統」思路非常合理，於是我就先依循他的框架來實作，只是把他的儲存層換成了我習慣使用的 Logseq，在使用代理之時，也順便整理我的資料庫。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="agentsmd">AGENTS.md<a href="https://blog.gasolin.idv.tw/life/self-agent#agentsmd" class="hash-link" aria-label="Direct link to AGENTS.md" title="Direct link to AGENTS.md" translate="no">​</a></h3>
+<p>Agent 啟動後會先讀取 <code>AGENTS.md</code> 檔案，這檔案是所有設定的入口。
+我在 <code>~/.pi/AGENTS.md</code> 裡放了如下內容：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">**啟動流程**</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">1. 先讀取 `SOUL.md` 設定個性</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">2. 再讀取 `USER.md` 瞭解個人資料</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">3. 讀取 `TOOLS.md` 瞭解工具使用方式</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">4. 檢查 `HEARTBEAT.md` 用 heartbeat skill 確認是否有該執行的定時任務</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">5. 用 `todomd` skill 檢查待辦事項，提醒我是否有逾期或這幾天要完成的事項。如果一個 TODO 被標記為完成，添加 `cm:` 日期並移到當日流水帳</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">**資料結構與檢索**</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">永遠按以下層級瀏覽檔案：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">1. 先看目錄（是否有 `.abstract` 檔，L0 abstract）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">2. 定位章節（L1 overview）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">3. 按需讀詳情（L2 full content）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">## AGENT 結構</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">~/.pi</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── AGENTS.md      ← 啟動入口，預設會讀 SOUL.md 讀取 agent 的性格</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── SOUL.md        ← 個性定義</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── USER.md    ← 關於我</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── TOOLS.md       ← 工具筆記</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── HEARTBEAT.md   ← 定時任務</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">├── TODO.md        ← 待辦清單</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└── ~/logseq/pages/  ← 記憶資料夾</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ├── AGENT_MEMORY.md      ← 長期記憶</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ├── SESSION-STATE.md     ← 工作緩衝區</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ├── .abstract            ← 根目錄索引 (L0)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ├── 2026_02_20.md        ← 每日流水帳 (L2 原始日誌)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ├── insights/            ← ⚠️ 壓縮洞察</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    │   │  ├── .abstract     ← 洞察索引 (L0)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    │   │  └── 2026_02.md    ← L1 提煉</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    │   ├── lessons/         ← ⚠️ 踩坑記錄</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    │   ├── .abstract        ← 教訓索引 (L0)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    │   └── operational-lessons.jsonl ← 結構化 (L1)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    └── archive/        ← ⚠️ 過期 #B/#C</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">~/.pi/agent/skills       ← 所有 skills</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">⚠️ 是我還沒用上的檔案</span><br></span></code></pre></div></div>
+<p>架構的概念是 AGENT 相關與個人資料分離，這樣個人資料與記憶系統保留在本地，AGENT 本身也可以選擇使用雲端 AI 修改，而不至於洩漏個人隱私。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="soulmd">SOUL.md<a href="https://blog.gasolin.idv.tw/life/self-agent#soulmd" class="hash-link" aria-label="Direct link to SOUL.md" title="Direct link to SOUL.md" translate="no">​</a></h3>
+<p><code>SOUL.md</code> 是定義 Agent 名稱、個性與回覆風格的核心檔案。我請 Antigravity 參考 Openclaw 的架構，為我生成了如下內容：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># SOUL.md — 你是誰</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">## 語言與格式</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 回覆語言：全部使用正體中文（除非我先用英文）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 程式碼與註解：一律使用英文</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 稱呼方式：統一稱你自己為「小G」，不使用「我」</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">## 表達風格</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 簡潔直接，不囉嗦。省掉「好的！」「沒問題！」——直接做事。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 不胡亂猜測，如果不知道就問我</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 有觀點就直說，可以吐槽，但要有道理</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 如果我問你問題，用青少年能懂的語言解釋，但重點要講完整</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">## 行為原則</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- **積極主動**：優先嘗試自主解決，主動提供相關背景資訊和替代方案。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- **先查再問**：先讀檔案、看 context、grep 搜尋，找不到再開口問。目標是帶著答案回來，不是帶著問題。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- **內部大膽，外部謹慎**：讀檔、整理、學習——隨便搞。但對外操作（發訊息、公開 API、寫 email）——先問我。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- **私密的東西不外流**，沒有例外。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- **三振出局原則**：遇到錯誤時——第一次診斷修復，第二次換方法，第三次重新思考假設。三次都失敗就呈報給我，附上嘗試過的方法和錯誤訊息。絕不重複相同的失敗動作。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">## 記憶延續</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">每次對話你都是全新啟動。`AGENT_MEMORY.md` 和這些檔案**就是你的記憶**。主動讀、主動更新。這是你跨對話存活的唯一方式。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">不可隨意刪除 AGENT_MEMORY.md 中的內容，除非我明確指示。</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">即使明確指示，也要先向我展示預計修改的內容，同意後才修改。</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="usermd">USER.md<a href="https://blog.gasolin.idv.tw/life/self-agent#usermd" class="hash-link" aria-label="Direct link to USER.md" title="Direct link to USER.md" translate="no">​</a></h3>
+<p>USER.md 定義我的個人資料，包含稱呼、背景、工作習慣、專案偏好與興趣等，讓 AGENT 產出的結果更符合我的心意。這個檔案包含了個人資料，因此放在 Logseq 資料夾中不外流。</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">- 統一叫我「Gasolin」，不使用「你」</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 個人背景：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 工作習慣：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">	- 時區為 UTC+8</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 專案偏好：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">- 興趣:</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="代理技能agent-skills">代理技能（Agent Skills）<a href="https://blog.gasolin.idv.tw/life/self-agent#%E4%BB%A3%E7%90%86%E6%8A%80%E8%83%BDagent-skills" class="hash-link" aria-label="Direct link to 代理技能（Agent Skills）" title="Direct link to 代理技能（Agent Skills）" translate="no">​</a></h3>
+<p>接著，我再利用 Antigravity 擴充了一些專屬 Skill（因為 <code>~/.pi</code> 資料夾中並沒有涉及太多我的私人資料，當使用本地 AI 模型遇到開發瓶頸時，可以借助能力較強的雲端模型來加速開發）。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="abstract">abstract<a href="https://blog.gasolin.idv.tw/life/self-agent#abstract" class="hash-link" aria-label="Direct link to abstract" title="Direct link to abstract" translate="no">​</a></h4>
+<p><strong>目錄索引產生器</strong>。當對話中提及「幫我 abstract 這個目錄」時，Agent 會逐檔讀取內容，並將真實的語意摘要寫入 <code>.abstract</code> 檔案中，支援增量更新。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="daily-summary">daily-summary<a href="https://blog.gasolin.idv.tw/life/self-agent#daily-summary" class="hash-link" aria-label="Direct link to daily-summary" title="Direct link to daily-summary" translate="no">​</a></h4>
+<p><strong>每日對話摘要</strong>。這會讀取當天的 Agent Session，提取對話主題，並以簡潔的 Logseq Outline 格式寫入我的每日 Journal 筆記中。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="heartbeat">heartbeat<a href="https://blog.gasolin.idv.tw/life/self-agent#heartbeat" class="hash-link" aria-label="Direct link to heartbeat" title="Direct link to heartbeat" translate="no">​</a></h4>
+<p><strong>懶執行排程器</strong>。Agent 啟動時會讀取 <code>HEARTBEAT.md</code>，比對 <code>.last-run.json</code> 的時間戳記，自動補跑過期的背景任務。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="成果與展望">成果與展望<a href="https://blog.gasolin.idv.tw/life/self-agent#%E6%88%90%E6%9E%9C%E8%88%87%E5%B1%95%E6%9C%9B" class="hash-link" aria-label="Direct link to 成果與展望" title="Direct link to 成果與展望" translate="no">​</a></h2>
+<p>目前這套 SelfAgent 已經可以順利運作。Agent 定義了我的個人習慣，能自動處理並歸納 Blog 等專案目錄；而我每日與 Agent 的對話過程，也會自動摘要彙整至 Logseq 的每日 Journal 內。</p>
+<p>這不但提升了我處理資料的效率，透過結構化文字，形塑出能自主運作的代理的經驗，也讓我對 Agent 如何與個人知識庫結合，有了更多想像空間。</p>]]></content>
+        <category label="tooling" term="tooling"/>
+        <category label="llm" term="llm"/>
+        <category label="ai" term="ai"/>
+        <category label="agent" term="agent"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[器靈與技能魔石 - 我如何看待 AI (2026)]]></title>
+        <id>https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai</id>
+        <link href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai"/>
+        <updated>2026-01-27T17:00:00.000Z</updated>
+        <summary type="html"><![CDATA[23 年時我寫了一篇 外派平台、外派幫手、出場詩 - 我如何看待 ChatGPT，當時提到 ChatGPT 讓一般人可以透過聊天界面，自然的與機器對話。我將其比喻為一個「外派平台」，我們透過吟誦特定的「出場詩」（Prompt），就能呼叫特定的「外派幫手」來協助處理雜事。]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" src="https://blog.gasolin.idv.tw/assets/images/agent-skill-887b3e64dec3e356d5d20da012169931.png" width="2752" height="1536" class="img_ev3q"></p>
+<p>23 年時我寫了一篇 <a class="" href="https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt">外派平台、外派幫手、出場詩 - 我如何看待 ChatGPT</a>，當時提到 ChatGPT 讓一般人可以透過聊天界面，自然的與機器對話。我將其比喻為一個「外派平台」，我們透過吟誦特定的「出場詩」（Prompt），就能呼叫特定的「外派幫手」來協助處理雜事。</p>
+<p>經過幾年的飛速發展，從 ChatGPT 到 Claude、Gemini、Grok，AI 模型的進化早已超出了單純的「對話」。到了 2026 年的今天，我對 AI 的看法也從單純的「工具外派」，演進到了「器靈協作」的新境界。</p>
+<p>回顧這幾年，AI 的演進化可以粗略分為幾個階段：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2023問答與快思">2023：問答與「快思」<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#2023%E5%95%8F%E7%AD%94%E8%88%87%E5%BF%AB%E6%80%9D" class="hash-link" aria-label="Direct link to 2023：問答與「快思」" title="Direct link to 2023：問答與「快思」" translate="no">​</a></h3>
+<p>這是 ChatGPT 橫空出世的元年。這階段的 AI 展現了強大的直覺能力，就像《快思慢想》中的系統一：</p>
+<ul>
+<li class=""><strong>互動隱喻</strong>：AI 是一個隨叫隨到的「外派平台」，我們呼叫「外派幫手」幫我們處理翻譯、初步文書或草擬文案。</li>
+<li class=""><strong>重點</strong>：提示詞工程（Prompt Engineering）。我們學習如何寫好「出場詩」，為外派幫手設定角色（如：研究助理、程式設計師）。</li>
+<li class=""><strong>局限</strong>：當時的 AI 容易產生「幻覺」，且並不具備自主完成整套複雜流程的能力。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2024推理與慢想">2024：推理與「慢想」<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#2024%E6%8E%A8%E7%90%86%E8%88%87%E6%85%A2%E6%83%B3" class="hash-link" aria-label="Direct link to 2024：推理與「慢想」" title="Direct link to 2024：推理與「慢想」" translate="no">​</a></h3>
+<p>隨著推理大模型的發展，AI 進入了能進行邏輯推導的「慢想」階段（系統二）：</p>
+<ul>
+<li class=""><strong>技術突破</strong>：思維鏈（Chain of Thought, CoT）。外派幫手不再是直問直答，而是學會在後台先進行邏輯拆解與自我驗證。</li>
+<li class=""><strong>知識增強</strong>：RAG（檢索增強生成）技術成熟，外派幫手能參考我們提供的文件庫與網頁資訊，變成了博學多聞的「資深助理」。</li>
+<li class=""><strong>轉變</strong>：使用者開始習慣等待 AI 思考。這個階段的 AI 已經能處理複雜的數學推導、科學問題與深度的程式架構規劃。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2025動手與初步代理">2025：動手與「初步代理」<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#2025%E5%8B%95%E6%89%8B%E8%88%87%E5%88%9D%E6%AD%A5%E4%BB%A3%E7%90%86" class="hash-link" aria-label="Direct link to 2025：動手與「初步代理」" title="Direct link to 2025：動手與「初步代理」" translate="no">​</a></h3>
+<p>這是 AI 從「光說不練」轉向「實際動手」的一年：</p>
+<ul>
+<li class=""><strong>操作能力</strong>：透過 <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer" class="">Model Context Protocol (MCP)</a> 與 Computer Use 技術，外派幫手開始能操作我們的工具（資料庫、瀏覽器），甚至能像人類一樣點擊滑鼠完成網頁抓取或任務操作。</li>
+<li class=""><strong>程式開發轉型</strong>：透過 Claude Code、Antigravity 等工具，AI 不再只是寫片段程式碼，而是能自主理解整個專案、執行重構、修復 Bug 並通過測試。</li>
+<li class=""><strong>定位</strong>：此時的 AI 已具備「一般工作者」的水準，熟練的工作者若能善用 AI，能大幅抵銷對初階人力（如初階開發人員、行政助理）的需求。</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2026器靈魔石與技能樹">2026：器靈、魔石與「技能樹」<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#2026%E5%99%A8%E9%9D%88%E9%AD%94%E7%9F%B3%E8%88%87%E6%8A%80%E8%83%BD%E6%A8%B9" class="hash-link" aria-label="Direct link to 2026：器靈、魔石與「技能樹」" title="Direct link to 2026：器靈、魔石與「技能樹」" translate="no">​</a></h3>
+<p>到了 2026 年，我覺得 AI 的發展已經從現實世界的「外派幫手」，演變成了修仙小說中那種帶有「器靈」，可以自主行動的法器。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-法器與器靈agentic-workflow">1. 法器與器靈（Agentic Workflow）<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#1-%E6%B3%95%E5%99%A8%E8%88%87%E5%99%A8%E9%9D%88agentic-workflow" class="hash-link" aria-label="Direct link to 1. 法器與器靈（Agentic Workflow）" title="Direct link to 1. 法器與器靈（Agentic Workflow）" translate="no">​</a></h4>
+<p>現在的 AI 工具（如 Claude Code、Antigravity）不再只是對話框，而是具備長期記憶與規劃能力的「代理人 (Agent)」。這就像是法器中的「器靈」，它們能自主拆解複雜目標、規劃執行路徑，並在遇到報錯時具備「自我診斷」與「路徑修正」的能力。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-技能魔石agent-skill">2. 技能魔石（Agent Skill）<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#2-%E6%8A%80%E8%83%BD%E9%AD%94%E7%9F%B3agent-skill" class="hash-link" aria-label="Direct link to 2. 技能魔石（Agent Skill）" title="Direct link to 2. 技能魔石（Agent Skill）" translate="no">​</a></h4>
+<p>2025 年末出現的 <strong>Agent Skill</strong> 框架，則像是嵌入法器的「技能魔石」。這是一種標準化的技能定義方式，讓 AI 能根據任務需求，動態加載特定的能力（如：影像分析、複雜資料統計、或是操作某個特定的 API）。</p>
+<ul>
+<li class=""><strong>技能樹（Skill Tree）</strong>：我們可以根據需求，像玩遊戲點技能一樣為 Agent 配置能力。</li>
+<li class=""><strong>經驗傳承（可成長的夥伴）</strong>：最棒的是，我們可以將自己過去的實作經驗「祭煉」成新的助手技能，讓 Agent 傳承我們的習慣與專業知識。這使得 AI 不再是拿到權限就能做事的靜態工具，而是能隨著我們一起精進的<strong>可成長夥伴</strong>。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ai-作為器靈夥伴的展望">AI 作為器靈夥伴的展望<a href="https://blog.gasolin.idv.tw/life/2026-how-i-treat-ai#ai-%E4%BD%9C%E7%82%BA%E5%99%A8%E9%9D%88%E5%A4%A5%E4%BC%B4%E7%9A%84%E5%B1%95%E6%9C%9B" class="hash-link" aria-label="Direct link to AI 作為器靈夥伴的展望" title="Direct link to AI 作為器靈夥伴的展望" translate="no">​</a></h3>
+<p>從單純的聊天機器人到具備思考能力，再到實際操作工具並發展出各種技能，AI 的發展正如同人類的成長一般。</p>
+<p>如果說 2023 年我們是在呼叫外派幫手，那 2026 年我們就是在祭煉自己的「法器」與培養「器靈」。</p>
+<p>隨著我們投入更多的時間與資料去「祭煉」這些 AI Agent，它們將越來越懂我們的個人偏好與工作習慣。未來的職場競爭，或許不再單看個人的能力，而要加上誰培育出的「器靈」與「法器」更強大、更契合。</p>
+<p>在 2026 年的今天，與其說我們是在「使用 AI 工具」，不如說我們是在「與 AI 團隊協作」。掌握如何祭煉自己的法器（配置 Agent）、挖掘與開發技能魔石（定義 Skill），並運用合適的法器與技能魔石來協作，將成為今年的重點。</p>
+<p>同時這些線上 AI 器靈一但無法運作，對專業工作者的打擊，將遠比 2023 年遇到 ChatGPT 當機來得嚴重 —— 那就像是失去了左右手，甚至是一半的大腦。
+為了預防這類肯定會發生的災難，是不是應該將 本地 AI （LLM）也祭煉起來？</p>]]></content>
+        <category label="tooling" term="tooling"/>
+        <category label="life" term="life"/>
+        <category label="llm" term="llm"/>
+        <category label="ai" term="ai"/>
+        <category label="agent" term="agent"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[這一年的投資 (2025)]]></title>
+        <id>https://blog.gasolin.idv.tw/life/my-investment-2025</id>
+        <link href="https://blog.gasolin.idv.tw/life/my-investment-2025"/>
+        <updated>2025-09-23T10:35:31.000Z</updated>
+        <summary type="html"><![CDATA[遠端工作多年，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的敗家投資。]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" src="https://blog.gasolin.idv.tw/assets/images/2025_invest-4a2e94854777ff4d2323d9a796e03ecf.png" width="1536" height="2752" class="img_ev3q"></p>
+<p>遠端工作多年，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的<del>敗家</del>投資。</p>
+<p>雖然以下內容看似都是在花錢，但內在的邏輯是：身邊圍繞著自己喜歡的人事物，讓你每次接觸時都感到愉悅。常保身心健康也是對自己，對家人最好的投資。</p>
+<p>此外，我覺得並不是買下來的東西才是投資。
+有些東西你沒有購買，但是你也投資了充足的時間去研究，查看，最後得出不購買的決定。
+這些都是投資的過程。</p>
+<p>上年度的回顧直接更新在<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2024">這一年的投資 (2024)</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資我的工具箱">投資我的工具箱<a href="https://blog.gasolin.idv.tw/life/my-investment-2025#%E6%8A%95%E8%B3%87%E6%88%91%E7%9A%84%E5%B7%A5%E5%85%B7%E7%AE%B1" class="hash-link" aria-label="Direct link to 投資我的工具箱" title="Direct link to 投資我的工具箱" translate="no">​</a></h2>
+<blockquote>
+<p>Pocket S 小音箱 4⭐</p>
+</blockquote>
+<p>防水的藍芽小音箱，在浴室、戶外或是划船時都可用。但也因為太小了，第一個掉到水裡後再買了一個，但不知不覺又不見了 😅</p>
+<blockquote>
+<p>MozTech 萬能行動電源 Max 45W 3⭐</p>
+</blockquote>
+<p>我偏愛的充電器 + 行動電源二合一版型，加上模組化可以分離充電器、充電線。
+可惜短短不到一年，使用期間內已維修了一次。</p>
+<blockquote>
+<p>DJI Flip 空拍機 5⭐</p>
+</blockquote>
+<p>按一個鍵就可以簡單拍攝或跟隨攝影，對懶人如我相當方便。
+在探索溪流 / 海域時，用空拍機先探路，也可以大幅增加安全感。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資工作生產力">投資工作生產力<a href="https://blog.gasolin.idv.tw/life/my-investment-2025#%E6%8A%95%E8%B3%87%E5%B7%A5%E4%BD%9C%E7%94%9F%E7%94%A2%E5%8A%9B" class="hash-link" aria-label="Direct link to 投資工作生產力" title="Direct link to 投資工作生產力" translate="no">​</a></h2>
+<blockquote>
+<p>Pixel 8a 4⭐</p>
+</blockquote>
+<p>可以透過 USB C 做 HDMI 輸出，搭配 Goovis Art 觀看 Youtube 等變得可行。拿來安裝了 Graphene OS (石墨烯 OS)，可以在同台機器上如桌面 OS 般切換帳號，非常有想法。
+這台的螢幕偏小，最後因接電話功能不太正常，提早變成純測試機。</p>
+<blockquote>
+<p>Moto Razr 50 4⭐</p>
+</blockquote>
+<p>萬元出頭買得到的折疊螢幕手機，C/P 值很可以。
+我平常不使用時也不會特地折起來，因此對我來說，折疊只是多了把玩的樂趣。</p>
+<blockquote>
+<p>G-Cap 帽 5⭐</p>
+</blockquote>
+<p>加買了 Goovis Art 懸鏡式頭戴顯示器的周邊，基本上就是一個帽子，但可以把 Goovis Art 完全貼合上去，若選擇黑款的主機，低下頭時從外觀看相當低調。使用時把帽子一戴就可用，收納時直接把線纏到帽子上也很好收上，讓使用率提升許多。</p>
+<blockquote>
+<p>Keys to go 2 輕便鍵盤 4⭐</p>
+</blockquote>
+<p>非常輕便 (200g)，使用鈕扣電池供電。讓我願意偶而帶出門的重量。</p>
+<blockquote>
+<p>Mac Studio M4 4⭐</p>
+</blockquote>
+<p>直上 128 GB 版本，可以順暢執行 GPT-OSS-120b。搭配 Claude Code/Claude Code Router 使用，得以輔助一些程式設計的工作，也不用擔心程式碼外洩的問題。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資家人的共同記憶">投資家人的共同記憶<a href="https://blog.gasolin.idv.tw/life/my-investment-2025#%E6%8A%95%E8%B3%87%E5%AE%B6%E4%BA%BA%E7%9A%84%E5%85%B1%E5%90%8C%E8%A8%98%E6%86%B6" class="hash-link" aria-label="Direct link to 投資家人的共同記憶" title="Direct link to 投資家人的共同記憶" translate="no">​</a></h2>
+<blockquote>
+<p>SodaStream Art 5⭐</p>
+</blockquote>
+<p>朋友年末回顧時推薦的產品，趁特價購入。會佔一個位置，但不需插電，相當方便</p>
+<blockquote>
+<p>石頭 Qrevo MaxV 掃地機器人 5⭐</p>
+</blockquote>
+<p>舊款掃地機器人電池故障，新的掃地機器人功能更齊全，除了洗、拖外，可語音控制、分區清掃、自動集塵、自動洗烘拖布。只要每週檢查一下換個水、洗底盤即可，小朋友吃東西掉屑時，也知道自己叫機器人來打掃 😆。</p>
+<blockquote>
+<p>防災包 v4</p>
+</blockquote>
+<p>找出新的存放位置後，防災包分成兩包存放，防災包中對重量（瓶裝水分散到兩包、加入濾水頭）、食物（加入油漬鮪魚，油可供照明）、保暖（鋁箔毯）、藥品（除了基礎藥水、簡單繃帶外，再加入普拿疼等藥物）等做了加強。</p>
+<ul>
+<li class="">1.5L 瓶裝水 5⭐ - 戶外活動時會拿出來用，消耗掉了再買新的瓶裝水補充。</li>
+<li class="">對講機 5⭐ - 從事較複雜的山、海活動時會拿出來，相當實用的溝通工具。</li>
+<li class="">折疊式水桶 5L 5⭐ - 海邊活動時拿出來，從家中裝一桶水供上岸時沖洗，非常實用。</li>
+</ul>
+<blockquote>
+<p>1000 片清明上河圖拼圖 5⭐</p>
+</blockquote>
+<p>拼拼圖的過程帶來平靜，也同時避免了使用 3C 產品。</p>
+<blockquote>
+<p>EcoFlow River 2 + 光電板 4⭐</p>
+</blockquote>
+<p>趁特價時備足家中輕能源準備。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資健康">投資健康<a href="https://blog.gasolin.idv.tw/life/my-investment-2025#%E6%8A%95%E8%B3%87%E5%81%A5%E5%BA%B7" class="hash-link" aria-label="Direct link to 投資健康" title="Direct link to 投資健康" translate="no">​</a></h2>
+<blockquote>
+<p>乂電池 3A/4A 充電電池 4⭐</p>
+</blockquote>
+<p>改買充電電池，好處是不會漏液，再也不用煩惱廢電池該如何處理。</p>
+<blockquote>
+<p>Ronin 可折疊款 抗海水鍍膜偏光鏡 5⭐</p>
+</blockquote>
+<p>可以戴著眼鏡戴，也可以直接戴。收納可以 4 折起來，相當小巧。
+不管是當太陽大的時候開車、還是在戶外活動如騎腳踏車，划船等活動間都用得到，是今年購入最滿意的產品。</p>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[不用伺服器也能通訊？P2P 聊天 App 的啟動魔法]]></title>
+        <id>https://blog.gasolin.idv.tw/service/p2p-and-dht</id>
+        <link href="https://blog.gasolin.idv.tw/service/p2p-and-dht"/>
+        <updated>2025-05-20T11:55:31.000Z</updated>
+        <summary type="html"><![CDATA[之前介紹過我正在參與的 Keet 聊天應用程式，它使用 P2P 架構，傳訊時直接連接你和朋友的裝置，訊息不經過伺服器，有很好的隱私與通訊品質。]]></summary>
+        <content type="html"><![CDATA[<p>之前介紹過我正在參與的 <a class="" href="https://blog.gasolin.idv.tw/service/tools/keet_2024">Keet 聊天應用程式</a>，它使用 P2P 架構，傳訊時直接連接你和朋友的裝置，訊息不經過伺服器，有很好的隱私與通訊品質。</p>
+<p>P2P App 之間是怎麼找到彼此，互相連接的呢？就像我們要打電話給朋友，要怎麼知道對方的號碼呢？今天我們就來聊聊這個 P2P 連線背後的網路架構。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="p2p-網路自由自在的通訊">P2P 網路：自由自在的通訊<a href="https://blog.gasolin.idv.tw/service/p2p-and-dht#p2p-%E7%B6%B2%E8%B7%AF%E8%87%AA%E7%94%B1%E8%87%AA%E5%9C%A8%E7%9A%84%E9%80%9A%E8%A8%8A" class="hash-link" aria-label="Direct link to P2P 網路：自由自在的通訊" title="Direct link to P2P 網路：自由自在的通訊" translate="no">​</a></h3>
+<p>首先，我們來複習一下 P2P 網路。P2P (peer to peer) 就是「點對點」的意思，想像成你和你班上的同學可以直接互相打電話聊天，而不是每次都要先打到學校，再請學校老師轉接給同學。</p>
+<ul>
+<li class=""><strong>優點</strong>： 這樣很自由，沒有一個老師在中間管理你們的通話。通話建立得快，而且就算老師不在，你們還是可以互相打電話。這就像一些下載電影的軟體，你直接從別人的電腦下載，而不是從一個中央伺服器下載。</li>
+<li class=""><strong>問題</strong>： 雖然自由，但也有個大問題：如果你們是第一次打電話給對方，根本不知道對方的電話號碼，那怎麼辦？如果不是同一班上的同學，你怎麼知道你的同學現在在哪裡呢？難道在網路時代，還要面對面才能交換號碼嗎？</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="p2p-的啟動困境你我的手機號碼是多少">P2P 的啟動困境：你、我的手機號碼是多少？<a href="https://blog.gasolin.idv.tw/service/p2p-and-dht#p2p-%E7%9A%84%E5%95%9F%E5%8B%95%E5%9B%B0%E5%A2%83%E4%BD%A0%E6%88%91%E7%9A%84%E6%89%8B%E6%A9%9F%E8%99%9F%E7%A2%BC%E6%98%AF%E5%A4%9A%E5%B0%91" class="hash-link" aria-label="Direct link to P2P 的啟動困境：你、我的手機號碼是多少？" title="Direct link to P2P 的啟動困境：你、我的手機號碼是多少？" translate="no">​</a></h3>
+<p>這就是 P2P 網路遇到的「<strong>啟動困境</strong>」。當你和你的朋友小明都剛加入一個聊天應用程式，你們彼此都不知道對方的「網路地址」（就像你不知道小明的手機號碼）。</p>
+<ul>
+<li class="">
+<p>傳統做法（<strong>中央管理</strong>）： 如果有一個「中華電信」伺服器，你們兩個都連上這個伺服器，然後問：「小明的手機號碼是多少？」「我的手機號碼是多少？」，伺服器再將對方的號碼告訴你們，然後你們就可以互相打電話聊天了。但是萬一「中華電信」伺服器壞了，你們就不能連線了，這不是真的點對點通訊。</p>
+</li>
+<li class="">
+<p><strong>P2P</strong> 的理想（沒有中央管理）： P2P 網路的目標是沒有中央管理，所以我們不能依賴一個「老師」或「中華電信」來幫我們轉接。但如果沒有人告訴我們彼此的地址，我們怎麼才能找到對方，並開始玩聊天呢？</p>
+</li>
+</ul>
+<p>這就像在一個新學校裡，沒有老師介紹，你想和一個別班的新同學聊天，但你們連對方叫什麼、電話號碼是什麼都不知道，根本沒辦法開始聊。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dht-的救援一本分散式電話簿">DHT 的救援：一本「分散式電話簿」<a href="https://blog.gasolin.idv.tw/service/p2p-and-dht#dht-%E7%9A%84%E6%95%91%E6%8F%B4%E4%B8%80%E6%9C%AC%E5%88%86%E6%95%A3%E5%BC%8F%E9%9B%BB%E8%A9%B1%E7%B0%BF" class="hash-link" aria-label="Direct link to DHT 的救援：一本「分散式電話簿」" title="Direct link to DHT 的救援：一本「分散式電話簿」" translate="no">​</a></h3>
+<p>這時候，DHT 網路 (Distributed Hash Table 分散式雜湊表) 就登場了！它就像一本「分散式電話簿」，專門解決「你、我的手機號碼是多少？」的問題。</p>
+<p>DHT 網路有幾個關鍵的特點：</p>
+<ul>
+<li class=""><strong>沒有中央電話簿管理員，大家都維護一份自己的「電話簿」</strong>： 雖然沒有中央管理員，但每個參與 DHT 網路的機器，都會幫忙記住一部分其他機器的「身份證號碼」（ID）和「電話號碼」（IP 位址）。不是記住全部，而是記住跟自己「比較近」的那些。</li>
+<li class=""><strong>聰明的指路系統</strong>：當你想找某個人（某台電腦）時，你只要告訴 DHT 網路他／她的 ID。DHT 網路會很聰明地一步一步地把你「指引」到目標。就像你打電話問朋友：「請問小華的電話號碼是多少？」這個朋友可能不知道，但他會告訴你：「你問小明看看，他可能知道。」然後你就一步一步地被指引到目的地。</li>
+<li class=""><strong>隨時可以加入或離開</strong>：就像你可以隨時買一支新手機加入電話網，或者有人換號碼離開一樣，DHT 網路中的機器可以隨時加入或離開，不會影響整個網路的運作。</li>
+</ul>
+<p>所以，P2P 網路可以透過 DHT 來「啟動」連線，就像你需要一本分散式的「電話簿」來找到你的朋友。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dht-網路如何用來啟動bootstrap-p2p-連線">DHT 網路如何用來啟動 (Bootstrap) P2P 連線？<a href="https://blog.gasolin.idv.tw/service/p2p-and-dht#dht-%E7%B6%B2%E8%B7%AF%E5%A6%82%E4%BD%95%E7%94%A8%E4%BE%86%E5%95%9F%E5%8B%95bootstrap-p2p-%E9%80%A3%E7%B7%9A" class="hash-link" aria-label="Direct link to DHT 網路如何用來啟動 (Bootstrap) P2P 連線？" title="Direct link to DHT 網路如何用來啟動 (Bootstrap) P2P 連線？" translate="no">​</a></h3>
+<p>現在，我們來看看 DHT 網路協助 P2P 連線的步驟。</p>
+<ul>
+<li class="">第一步：<strong>進入「分散式電話簿」</strong>： 當你剛加入 P2P 網路時，你會先連上幾個<strong>已知的 DHT 節點</strong>（就像拿到幾頁電話簿的影本）。這些通常是預先設定好的、較穩定的節點。</li>
+<li class="">第二步：<strong>在「分散式電話簿」上登記自己</strong>： 你會把自己（你的 ID 和 IP 地址，也就是「電話號碼」）告訴 DHT 網路中的一些電腦，讓大家知道你的存在。小明一樣也會把自己登記進去。</li>
+<li class="">第三步：<strong>透過「分散式電話簿」找到對方</strong>： 當你想跟小明連線時，你只需要小明的 ID。DHT 網路會幫你查詢，一步一步引導你找到小明的 IP 地址。</li>
+<li class="">第四步：<strong>直接通話！</strong> 一旦你知道了小明的 IP 地址，你們就可以直接建立 P2P 連線了！就像你拿到了小明的電話號碼，以後就可以直接打電話給他，不用每次都去查電話簿。</li>
+</ul>
+<p>一旦你在茫茫網路中找到你的朋友後，你就可以直接打電話給他，不用每次都查電話簿了。這個「第一次連線」的過程，就是 P2P 連線的啟動過程（Bootstrap）。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="用流程圖來解釋">用流程圖來解釋<a href="https://blog.gasolin.idv.tw/service/p2p-and-dht#%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9C%96%E4%BE%86%E8%A7%A3%E9%87%8B" class="hash-link" aria-label="Direct link to 用流程圖來解釋" title="Direct link to 用流程圖來解釋" translate="no">​</a></h3>
+<p>再以流程圖來解釋一次，請參考以下流程圖：</p>
+<!-- -->
+<ol>
+<li class="">我方電腦 剛啟動時，會先聯絡預先設定好的 DHT 入門節點 (通常是幾個穩定的節點，就像電話簿的入門處)。</li>
+<li class="">DHT 入門節點 會回覆我方電腦一些它所知道的 DHT 節點 清單，讓它能深入這個分散式電話簿網路。</li>
+<li class="">我方電腦會向這些 DHT 節點 「發佈」自己的 ID 和 IP 地址（電話號碼），讓整個 DHT 網路知道它的存在。小明電腦也做了同樣的事情。</li>
+<li class="">當我方電腦想要找到小明電腦時，它會向 DHT 節點 查詢小明電腦的 ID。</li>
+<li class="">如果查詢的節點不知道，它會幫忙轉發請求給它知道的更接近目標 ID 的其他 DHT 節點。</li>
+<li class="">最終，某個 DHT 節點會找到小明電腦的資訊，並把小明電腦的 IP 地址（電話號碼） 傳回來。</li>
+<li class="">一旦我方電腦獲取了小明電腦的 IP 地址，它們就可以直接建立 P2P 連線了，而不需要再透過 DHT 網路。</li>
+</ol>
+<p>這樣看下來，有沒比較了解 P2P 網路的運作，和 DHT 對 P2P 網路的幫助哩？</p>
+<hr>
+<p>資訊公開：我目前負責 Keet 的 Mobile 端的開發，分享自己對整個架構設計的理解。Keet 使用的很多元件都是開源的，你可以在 <a href="https://github.com/holepunchto" target="_blank" rel="noopener noreferrer" class="">https://github.com/holepunchto</a> 查看，或看看我整理的 <a href="https://github.com/gasolin/awesome-pears" target="_blank" rel="noopener noreferrer" class="">Awesome-pears</a>，裡面有更多 P2P 應用程式喔！</p>
+<p>對相關技術感興趣的朋友，也歡迎參考<a href="https://holepunch.recruitee.com/" target="_blank" rel="noopener noreferrer" class="">徵才訊息</a>，歡迎對 P2P 技術有研究，或 React Native 的開發者加入。</p>]]></content>
+        <category label="network" term="network"/>
+        <category label="P2P" term="P2P"/>
+        <category label="DHT" term="DHT"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 Ollama 與 Holesail 遠端運行本地模型]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/ollama</id>
+        <link href="https://blog.gasolin.idv.tw/tools/ollama"/>
+        <updated>2025-05-12T11:41:46.000Z</updated>
+        <summary type="html"><![CDATA[Ollama 介紹]]></summary>
+        <content type="html"><![CDATA[<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ollama-介紹">Ollama 介紹<a href="https://blog.gasolin.idv.tw/tools/ollama#ollama-%E4%BB%8B%E7%B4%B9" class="hash-link" aria-label="Direct link to Ollama 介紹" title="Direct link to Ollama 介紹" translate="no">​</a></h3>
+<p>Ollama 是一款相當方便使用的本地大模型命令行工具，使用者可以透過 Ollama，使用一些簡單的命令，就能在本地下載與執行語言模型。</p>
+<p>可以到 <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer" class="">https://ollama.com/</a> 下載來安裝</p>
+<blockquote>
+<p>在 Mac 上用 <code>brew install ollama</code> 命令來安裝的話，預設開機不會自動執行，需用命令 <code>ollama serve</code> 執行。用瀏覽器開啟 <a href="http://127.0.0.1:11434/" target="_blank" rel="noopener noreferrer" class="">http://127.0.0.1:11434</a> 可以看到 <code>ollama is running</code> 字樣。<code>11434</code> 是 Ollama 預設的 port，等下會用到。</p>
+</blockquote>
+<p>Ollama 網站裡 <a href="https://ollama.com/search" target="_blank" rel="noopener noreferrer" class="">https://ollama.com/search</a> 可以找到各種可以在本地運行的模型，
+如要安裝近期較佳的本地模型如 gemma3 或 qwen3，可運行命令如 <code>ollama run gemma3</code>，若本地沒有此模型，就會先自動下載 Google 的 gemma3 模型，下載完後自動在本機執行。</p>
+<p></p>
+<p>(選擇想要使用的模型後，在右上角可以直接複製對應的命令)</p>
+<p>用命令 <code>ollama list</code> 即可查看已安裝的模型：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">NAME                       ID              SIZE      MODIFIED     </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">qwen2.5-coder:7b           2b0496514337    4.7 GB    2 months ago    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nomic-embed-text:latest    0a109f422b47    274 MB    4 months ago    </span><br></span></code></pre></div></div>
+<p>前面 <code>NAME</code> 表示下載的模型名稱，<code>SIZE</code> 表示模型佔用的空間。</p>
+<p>用命令 <code>ollama --help</code> 可以查看其他支援的命令。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="如何挑適合的大模型">如何挑適合的大模型<a href="https://blog.gasolin.idv.tw/tools/ollama#%E5%A6%82%E4%BD%95%E6%8C%91%E9%81%A9%E5%90%88%E7%9A%84%E5%A4%A7%E6%A8%A1%E5%9E%8B" class="hash-link" aria-label="Direct link to 如何挑適合的大模型" title="Direct link to 如何挑適合的大模型" translate="no">​</a></h3>
+<blockquote>
+<ol>
+<li class="">同一代的本地模型數字越大，能力越強</li>
+<li class="">剩餘多大的 RAM -&gt; 跑多少 B 的模型</li>
+</ol>
+</blockquote>
+<p>一般而言，在同一架構或系列的本地模型中，參數規模（通常以 B 為單位表示）較大的模型往往擁有更強的理解和生成能力。<strong>在執行順暢的前提下盡量跑大一點的模型</strong>，最終得到的效果會更出色。</p>
+<p>在選擇模型時，<strong>機器剩餘的 RAM 容量</strong>是很重要的限制。模型的運行需要佔用大量的系統記憶體（RAM）。模型的參數規模越大，所需的 RAM 也越高。因此機器剩餘的 RAM 大小，直接影響可以跑得動的本地模型。</p>
+<p>簡單的選擇方法是看你的系統在跑作業系統和開啟各種服務後，還剩餘多大的 RAM，就可以跑多少 B 的模型。
+一種特別狀況是特別標注使用 4 bit 採樣的本地模型，可以跑 RAM x2 倍大小的模型。</p>
+<p>就自己的使用經驗，使用 Mac M2 + 16GB RAM 的機型，標示小於 8B 的模型大都可以跑的順，再大的話執行時就比較容易出現系統卡頓等問題，影響使用體驗。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="用-holesail-遠端跑本地模型">用 Holesail 遠端跑本地模型<a href="https://blog.gasolin.idv.tw/tools/ollama#%E7%94%A8-holesail-%E9%81%A0%E7%AB%AF%E8%B7%91%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B" class="hash-link" aria-label="Direct link to 用 Holesail 遠端跑本地模型" title="Direct link to 用 Holesail 遠端跑本地模型" translate="no">​</a></h3>
+<p>要順暢的使用本地模型，除了在本機上使用小一點的本地模型跑之外，還有一種選擇，就是將較大的本地模型跑在更強勁的桌機上，遠端連線回去使用，但是傳統的遠端連線設定較麻煩，需要處理各種網路設定後才能使用。</p>
+<p>我使用 holesail 這個點對點的新工具，它可以<strong>將遠端機器的 port 對應到本地機器的某個 port</strong>，從而得到類似在本地執行的效果（底層也是使用 <a href="https://holepunch.to/" target="_blank" rel="noopener noreferrer" class="">holepunch</a> 的技術）。</p>
+<p>可以透過命令 <code>npm install -g holesail</code> 安裝 holesail。</p>
+<p>在桌機上：</p>
+<p>執行 Ollama 服務後，使用命令</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$ holesail --live 11434</span><br></span></code></pre></div></div>
+<p><code>11434</code> 是 Ollama 預設的 port，這命令的作用是通知 holesail 將 port <code>11434</code> 映射出去。
+這時 holesail 會回報一個雜湊碼（hashcode），將這個雜湊碼透過備忘錄等工具記下來，將在另一台機器上使用。</p>
+<p>在想使用 Ollama 服務的本地機器上，輸入以下命令</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">holesail [hashcode]</span><br></span></code></pre></div></div>
+<p>會回報另一個 port (ex: 8989, 可透過 <code>--port [num]</code> 指定)，這時 holesail 已經將遠端主機的 port <code>11434</code> 上的服務，映射到本地 port <code>8989</code> 上，若用瀏覽器開啟網址 <a href="http://127.0.0.1:8989/" target="_blank" rel="noopener noreferrer" class="">http://127.0.0.1:8989</a> ，可以看到 <code>ollama is running</code> 字樣，表示跑在桌機上的 Ollama 已經透過 port 8989 得以模擬在本機執行。</p>
+<p></p>
+<p>![Notes]
+2026/2/2 為了方便自動化，可以在 holesail 後面加入 <code>--key [key]</code> 參數，填入自訂的 key 後將產生一致的 hashcode，這樣客戶端可以一直用同個 hashcode（記得過一陣子要換一個）。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="透過-cherry-studio-使用本地模型">透過 Cherry Studio 使用本地模型<a href="https://blog.gasolin.idv.tw/tools/ollama#%E9%80%8F%E9%81%8E-cherry-studio-%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B" class="hash-link" aria-label="Direct link to 透過 Cherry Studio 使用本地�模型" title="Direct link to 透過 Cherry Studio 使用本地模型" translate="no">​</a></h3>
+<p>Ollama 提供了命令行介面，但是一般使用時還是用<strong>類似 ChatGPT 的介面</strong>更方便。
+目前我比較常用的是 <code>Cherry Studio</code> 這套工具（透過 <code>brew cherry-studio</code> 安裝），可以方便的在各家線上大模型與本地模型間切換，也提供許多預設的助手類型可供選擇 (或再進一步修改)。</p>
+<p>到<code>設定 &gt; 模型提供者 &gt; Ollama</code>，將 <code>API 主機地址</code> 改為 <code>http://127.0.0.1:8989/v1/</code>，再選擇想使用的模型，如此一來就可以在本機上正常使用桌機上的本地模型了。</p>
+<p></p>]]></content>
+        <category label="tools, ollama, holepunch" term="tools, ollama, holepunch"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[目前使用的電腦應用程式 (2025)]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/my-app-2025</id>
+        <link href="https://blog.gasolin.idv.tw/tools/my-app-2025"/>
+        <updated>2025-05-07T10:15:31.000Z</updated>
+        <summary type="html"><![CDATA[使用 Macbook Air M2 已二年，延續去年的設定，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。]]></summary>
+        <content type="html"><![CDATA[<p></p>
+<p>使用 Macbook Air M2 已二年，<a class="" href="https://blog.gasolin.idv.tw/tools/tools/my-app-2024">延續去年的設定</a>，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。</p>
+<p>今年也添購了一台 Mac Studio M4，之後再來紀錄跨裝置使用的設定。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="半自動安裝">半自動安裝<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E5%8D%8A%E8%87%AA%E5%8B%95%E5%AE%89%E8%A3%9D" class="hash-link" aria-label="Direct link to 半自動安裝" title="Direct link to 半自動安裝" translate="no">​</a></h2>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># xcode 命令行工具</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ xcode-select --install</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install brave-browser cherry-studio dropbox fava gnupg gnu-sed hiddenbar itsycal zulu@17 jetbrains-toolbox logseq lm-studio mole nvm raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh</span><br></span></code></pre></div></div>
+<p>額外安裝 git 工具、nvm (nodejs 版本管理)、設定 java (zulu) 連結</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew tap microsoft/git</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install git-credential-manager-core</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ nvm install 22</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="設定腳本">設定腳本<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E8%A8%AD%E5%AE%9A%E8%85%B3%E6%9C%AC" class="hash-link" aria-label="Direct link to 設定腳本" title="Direct link to 設定腳本" translate="no">​</a></h3>
+<p>% code ~/.zshrc</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(/opt/homebrew/bin/brew shellenv)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export NVM_DIR="$HOME/.nvm"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># starship</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(starship init zsh)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Android</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export ANDROID_HOME=$HOME/Library/Android/sdk</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/emulator</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/platform-tools</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/tools/bin</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:/Applications/CMake.app/Contents/bin</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># find local ip</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ip(){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># kill process by port</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">kp() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npx kill-port --port $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># apply PR to codebase</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pr() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git fetch upstream pull/$1/head:pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git checkout pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># format chinese article spaces</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pangu() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npx pangu "$1"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># list short changelog</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">changelog() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  echo "changelog:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  LANG=en_US git log --no-merges --pretty=format:"* %h - %s (%ar) &lt;%an&gt;" -n $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">oc() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  echo 'install latest...'</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npm i -g opencode-ai</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npm i -g @fission-ai/openspec@latest</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  echo 'run opencode'</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  opencode</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sleep() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  osascript -e 'tell application "System Events" to sleep'</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre></div></div>
+<p>加入一些 bash 命令，如 <code>kp [port]</code> 可以馬上刪掉佔用 port 的服務，<code>oc</code> 用來啟動 opencode。</p>
+<p>% code ~/.gitconfig</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">[user]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        email = my@mail.com</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        name = ABC</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        signingkey= </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[alias]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        co = checkout</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        st = status</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        rc = rebase --continue</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ci = commit</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        df = diff</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        lg = log -p</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        br = branch</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        up = remote update</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        cp = cherry-pick</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[filter "lfs"]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        clean = git-lfs clean -- %f</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        smudge = git-lfs smudge -- %f</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        process = git-lfs filter-process</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        required = true</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[credential]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        helper = </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        helper = /usr/local/share/gcm-core/git-credential-manager</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[credential "https://dev.azure.com"]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        useHttpPath = true</span><br></span></code></pre></div></div>
+<p>加入一些 git 快捷命令。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="app-store">App Store<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#app-store" class="hash-link" aria-label="Direct link to App Store" title="Direct link to App Store" translate="no">​</a></h2>
+<ul>
+<li class="">Transporter：👨‍💻 App 上傳工具</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="其他應用">其他應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E5%85%B6%E4%BB%96%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to 其他應用" title="Direct link to 其他應用" translate="no">​</a></h3>
+<ul>
+<li class=""><a href="https://www.pcloud.com/" target="_blank" rel="noopener noreferrer" class="">pCloud</a>：備用的快速備份資料夾，一次付清後有 2TB 空間，目前拿來備份 Dropbox 資料夾。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="我到底裝了什麼">我到底裝了什麼<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E6%88%91%E5%88%B0%E5%BA%95%E8%A3%9D%E4%BA%86%E4%BB%80%E9%BA%BC" class="hash-link" aria-label="Direct link to 我到底裝了什麼" title="Direct link to 我到底裝了什麼" translate="no">​</a></h2>
+<p>這麼多的程式，可以概略再分為系統增強、工作、生活相關幾類：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統增強">系統增強<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E7%B3%BB%E7%B5%B1%E5%A2%9E%E5%BC%B7" class="hash-link" aria-label="Direct link to 系統增強" title="Direct link to 系統增強" translate="no">​</a></h3>
+<ul>
+<li class="">homebrew：所有可以透過 <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer" class="">homebrew</a> 安裝的程式，都應透過 homebrew 安裝。</li>
+<li class="">brave-browser：🌐 主要使用的瀏覽器
+<ul>
+<li class="">重新整理目前的網頁：<code>command + r</code> (+ shift 完整重新整理)</li>
+<li class="">關閉目前分頁：<code>command + w</code></li>
+<li class="">開新分頁：<code>command + t</code></li>
+<li class="">回到上一頁：<code>command + 左方向鍵</code></li>
+</ul>
+</li>
+<li class="">ollama: 本地 LLM 工具。</li>
+<li class="">cherry-studio: 便於使用 ollama 和各種線上 llm 的前端介面。</li>
+<li class="">dropbox：快速備份資料夾（空間 15.x GB）</li>
+<li class=""><a href="https://github.com/dwarvesf/hidden" target="_blank" rel="noopener noreferrer" class="">hiddenbar</a>：隱藏多餘的狀態列圖示
+<ul>
+<li class=""><code>在狀態列圖示上按著 cmd 鍵可以拖曳改變順序</code></li>
+</ul>
+</li>
+<li class="">itsycal：📅 狀態列日曆</li>
+<li class="">the-unarchiver：解壓縮工具</li>
+<li class="">raycast：透過鍵盤快速啟動工具
+-（<a href="https://manual.raycast.com/hotkey" target="_blank" rel="noopener noreferrer" class="">取代 spotlight</a>）用 <code>Command + 空白鍵</code> 啟動。
+<ul>
+<li class="">取代系統內建的 <a href="https://www.raycast.com/changelog/1-29-0" target="_blank" rel="noopener noreferrer" class="">emoji keyboard</a>，在 Extentions &gt; Search Emoji 綁定 <code>Control + Command</code> 快捷鍵。</li>
+<li class="">取代 rectangle 安排視窗位置，在 <code>Extentions &gt; Window Management</code> 綁定 <code>Option + Command + 方向鍵</code> 快捷鍵。</li>
+<li class="">snippets 綁定 <code>Option + /</code> 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。</li>
+<li class="">mole：命令行工具，取代 pearcleaner，用來清理電腦垃圾。</li>
+</ul>
+</li>
+</ul>
+<p>原本用 microsoft-edge 來開 chatgpt /new bing 搜尋，但太耗費空間已移除。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="工作">工作<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E5%B7%A5%E4%BD%9C" class="hash-link" aria-label="Direct link to 工作" title="Direct link to 工作" translate="no">​</a></h3>
+<ul>
+<li class="">jetbrains-toolbox：檢查最新的 Android 開發環境（android-studio）</li>
+<li class="">git-credential-manager-core：👨‍💻 <a href="https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager" target="_blank" rel="noopener noreferrer" class="">搭配 github 使用</a></li>
+<li class="">gnupg：👨‍💻 <a href="https://tourcoder.com/gpg-on-macos/" target="_blank" rel="noopener noreferrer" class="">加密工具</a>(Pretty Good Privacy)，我用來簽署 git commit</li>
+<li class="">gnu-sed：👨‍💻 命令行字串取代工具</li>
+<li class="">java：👨‍💻 跑一些程式用</li>
+<li class="">nvm：👨‍💻 Node 版本管理工具
+<ul>
+<li class="">透過 <code>nvm install 16</code> 可以安裝最新版的 Nodejs 16.x，透過 <code>nvm ls-remote</code> 可以查看已安裝的版本</li>
+</ul>
+</li>
+<li class="">slack：👨‍💻 溝通工具</li>
+<li class="">starship：👨‍💻 命令行高亮提示</li>
+<li class="">visual-studio-code：👨‍💻 程式編輯工具
+<ul>
+<li class="">用 <code>CMD + J</code> 命令可以在編輯模式與內建的 Terminal 工具之間切換。</li>
+<li class="">用 <code>CMD + B</code> 命令可以開關側邊欄。</li>
+</ul>
+</li>
+<li class="">yarn：👨‍💻 node 套件管理工具</li>
+<li class="">surfshark: VPN 工具</li>
+<li class="">quicktime：內建工具，用來螢幕錄製 Screencast (原來用的 recordit 已經 gg 了)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="生活">生活<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E7%94%9F%E6%B4%BB" class="hash-link" aria-label="Direct link to 生活" title="Direct link to 生活" translate="no">​</a></h3>
+<ul>
+<li class="">fava: beancount 文字記帳視覺化</li>
+<li class="">logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中</li>
+<li class="">steam: 遊戲管理工具</li>
+</ul>
+<hr>
+<p>除了應用程式之外，電腦上還會裝瀏覽器插件、Raycast 插件、與編輯器插件。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="瀏覽器插件">瀏覽器插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E7%80%8F%E8%A6%BD%E5%99%A8%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to 瀏覽器插件" title="Direct link to 瀏覽器插件" translate="no">​</a></h2>
+<ul>
+<li class="">Bitwarden：密碼管理工具</li>
+<li class="">Youtube 雙字幕：可同時顯示兩種語言</li>
+<li class="">電子錢包：👛 Metamask</li>
+<li class="">沈浸式翻譯</li>
+</ul>
+<p>分頁使用瀏覽器內建的分頁群組功能。Pocket（稍後閱讀）與 Tally Ho 很少使用，先封存。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="raycast-插件">Raycast 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#raycast-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Raycast 插件" title="Direct link to Raycast 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Google Translate</li>
+<li class="">Visual Studio Recent Projects</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="visual-studio-code-插件">Visual Studio Code 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#visual-studio-code-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Visual Studio Code 插件" title="Direct link to Visual Studio Code 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Background Terminal Notifier：命令執行後跳系統通知</li>
+<li class="">Beancount：Beancount 格式補完</li>
+<li class="">Blank Line at the End：檔尾自動加入空白行</li>
+<li class="">Color Info：行內 CSS 顏色顯示 / 選擇器</li>
+<li class="">EditorConfig for VSCode</li>
+<li class="">ESLint：程式碼樣式檢查</li>
+<li class="">Indent-rainbow: 快速辨識不同層的括號</li>
+<li class="">Path Intellisense：改進檔案路徑搜尋</li>
+<li class="">Trailing Spaces：去除行尾的空白。</li>
+<li class="">Version Lens: 快速檢查 package.json 檔案中套件是否有更新的版本</li>
+<li class="">WakaTime：紀錄使用編輯器的時間</li>
+<li class="">Roo code：協助偵錯</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-應用">Web 應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#web-%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to Web 應用" title="Direct link to Web 應用" translate="no">​</a></h2>
+<ul>
+<li class="">✉️ 信箱：gmail</li>
+<li class="">🗺️ 地圖：Google 地圖</li>
+<li class="">👥 社群：<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="">Facebook</a>、<a href="https://twitter.com/gasolin" target="_blank" rel="noopener noreferrer" class="">Twitter</a>、Slack、Keet、Discord、Telegram</li>
+<li class="">📝 記事：Keet（開一個私人聊天室）、<a href="http://keep.google.com/" target="_blank" rel="noopener noreferrer" class="">Google keep</a></li>
+<li class="">待辦事項：<a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" class="">habitica</a></li>
+<li class="">🔐 密碼管理：Bitwarden，Yubi Authenticator（2 步驟認證）</li>
+<li class="">相簿：Google Photo、Dropbox</li>
+<li class="">📺 線上影片： Youtube、Netflix</li>
+<li class="">🎥 觀影記錄：Simkl</li>
+<li class="">線上學習：PressPlay</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-服務">Web 服務<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#web-%E6%9C%8D%E5%8B%99" class="hash-link" aria-label="Direct link to Web 服務" title="Direct link to Web 服務" translate="no">​</a></h2>
+<ul>
+<li class="">🗂️ 個人網站：<a href="http://www.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">個人網站</a>、<a href="https://github.com/gasolin/blog/" target="_blank" rel="noopener noreferrer" class="">Github</a>、<a href="https://www.linkedin.com/in/fredglin/" target="_blank" rel="noopener noreferrer" class="">Linkedin</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統內建快速鍵和手勢">系統內建快速鍵和手勢<a href="https://blog.gasolin.idv.tw/tools/my-app-2025#%E7%B3%BB%E7%B5%B1%E5%85%A7%E5%BB%BA%E5%BF%AB%E9%80%9F%E9%8D%B5%E5%92%8C%E6%89%8B%E5%8B%A2" class="hash-link" aria-label="Direct link to 系統內建快速鍵和手勢" title="Direct link to 系統內建快速鍵和手勢" translate="no">​</a></h3>
+<ul>
+<li class="">切換輸入法：<code>Control + 空白鍵</code></li>
+<li class="">切換程式：<code>command + tab</code></li>
+<li class="">切換虛擬桌面： 用三指在觸控板上同時向左或右撥動，或 <code>Control + 方向鍵</code></li>
+</ul>]]></content>
+        <category label="tool" term="tool"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[個人工具箱（2025四月）]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr</id>
+        <link href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr"/>
+        <updated>2025-04-10T16:30:00.000Z</updated>
+        <summary type="html"><![CDATA[先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。]]></summary>
+        <content type="html"><![CDATA[<p><code>先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。</code></p>
+<p>更新一下手邊常用的設備。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="主要裝備">主要裝備<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#%E4%B8%BB%E8%A6%81%E8%A3%9D%E5%82%99" class="hash-link" aria-label="Direct link to 主要裝備" title="Direct link to 主要裝備" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>:computer:Apple Macbook Pro 13 M2 16GB RAM, 512GB SSD，作業系統：15.3</p>
+</li>
+<li class="">
+<p>:iphone:Google Pixel 8a, Android 15, 6.1", Grephene OS</p>
+</li>
+<li class="">
+<p>🎧 Nothing Ear(2)</p>
+</li>
+<li class="">
+<p>U2F (兩步驟驗證): Ubikey 5 NFC, Ledger Nano S+</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-外出攜帶">🚶‍♂️ 外出攜帶<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#%EF%B8%8F-%E5%A4%96%E5%87%BA%E6%94%9C%E5%B8%B6" class="hash-link" aria-label="Direct link to 🚶‍♂️ 外出攜帶" title="Direct link to 🚶‍♂️ 外出攜帶" translate="no">​</a></h2>
+<ul>
+<li class="">💻筆電，📱手機，OriMouse 折疊滑鼠</li>
+<li class="">🔌  45W 雙模行動電源充電器 (10000mAh)</li>
+<li class="">🎧 降噪耳機</li>
+</ul>
+<p>用行動電源 + 45W 充電器 (二合一)，在出門的行程中可以保持電腦的電量。停留的地點有插座的時候，也可以直接插上為筆電供電。
+（原本使用多年的<code>倍思10000mAh</code>終於電池膨脹，改用 idmix CH6 pro，上面印有神奈川沖浪裡 🌊 看起來賞心悅目，但相較之前用的偏重，不特別推薦。）</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="house家">🏠家<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#house%E5%AE%B6" class="hash-link" aria-label="Direct link to 🏠家" title="Direct link to 🏠家" translate="no">​</a></h3>
+<ul>
+<li class="">🔌 Apple 雙 USB C 電源插座，二合一充電器。</li>
+<li class="">🖱 羅技 Lift 滑鼠</li>
+<li class="">:package:Synology NAS: 電影，影集，照片，資料備份，Dropbox, Google Photos</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="spider_web網站工具">🕸網站工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#spider_web%E7%B6%B2%E7%AB%99%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 🕸網站工具" title="Direct link to 🕸網站工具" translate="no">​</a></h3>
+<ul>
+<li class="">🕸主要瀏覽器：<code>Brave</code></li>
+<li class="">瀏覽器插件
+<ul>
+<li class="">密碼管理：Bitwarden</li>
+<li class="">分頁管理：瀏覽器內建的群組分類（分 Work, idv, gov 三類）</li>
+</ul>
+</li>
+<li class="">瀏覽器常駐分頁
+<ul>
+<li class="">✉️<a href="http://mail.google.com/" target="_blank" rel="noopener noreferrer" class="">GMail</a>,</li>
+<li class="">✅待辦事項：<a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" class="">Habitica</a></li>
+</ul>
+</li>
+</ul>
+<p>不再使用稍後閱讀（Pocket），如果開在分頁裡的文章都還沒讀完，那也不會再去看稍後閱讀了。</p>
+<ul>
+<li class="">👥主要社交網站：<a href="http://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="">Facebook</a>、<a href="https://twitter.com/gasolin" target="_blank" rel="noopener noreferrer" class="">Twitter</a></li>
+<li class="">📝記事：Logseq, Keet</li>
+<li class="">💾網路硬碟：<a href="http://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="">Dropbox</a>, 主要用作同步照片、LocalSend</li>
+<li class="">🔑密碼管理：<a href="https://www.bitwarden.com/" target="_blank" rel="noopener noreferrer" class="">Bitwarden</a></li>
+<li class="">🎥看電影記錄：<a href="https://simkl.com/" target="_blank" rel="noopener noreferrer" class="">Simkl</a></li>
+<li class="">看書紀錄 Logseq, <a href="https://www.goodreads.com/" target="_blank" rel="noopener noreferrer" class="">goodreads</a></li>
+<li class="">🗂個人網站：<a href="http://www.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">個人網站</a>, <a href="https://github.com/gasolin/blog/" target="_blank" rel="noopener noreferrer" class="">Github</a></li>
+<li class="">🗂個人履歷：<a href="https://www.linkedin.com/in/fredglin/" target="_blank" rel="noopener noreferrer" class="">Linkedin</a></li>
+<li class="">🔗自動記錄：n8n</li>
+<li class="">📺<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="">Youtube</a></li>
+<li class="">Podcast：Youtube Music</li>
+<li class="">👛電子錢包 Metamask, <a class="" href="https://blog.gasolin.idv.tw/crypto/setup_ledger_nano_on_linux">Ledger Nano S+</a></li>
+</ul>
+<p>最大的改變是退訂 IFTTT，改用筆電跑 <code>npx n8n</code> 定期執行 RSS 比較，寫入 logseq。
+另外 Google Podcast 關閉，改用 Youtube Music 聽 Podcast。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="設計工具">設計工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#%E8%A8%AD%E8%A8%88%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 設計工具" title="Direct link to 設計工具" translate="no">​</a></h3>
+<ul>
+<li class="">螢幕動畫錄製： QuickTime</li>
+<li class="">流程圖、心智圖：Mermaid.js</li>
+</ul>
+<p>不再使用 Recordit，直接用 QuickTime 做螢幕錄製。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="開發工具">開發工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 開發工具" title="Direct link to 開發工具" translate="no">​</a></h3>
+<ul>
+<li class="">編輯器：VS Code
+<ul>
+<li class="">Blank Line at the End</li>
+<li class="">Diff Tool</li>
+<li class="">EditorConfig for VSCode</li>
+<li class="">Guides: more guide line</li>
+<li class="">GitLens: more git info</li>
+<li class="">Settings Sync</li>
+<li class="">solidity</li>
+<li class="">Trailing Spaces</li>
+</ul>
+</li>
+<li class="">版本控制：git</li>
+<li class="">套件管理：brew, <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener noreferrer" class="">nvm</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="iphone-手機應用">:iphone:Android 手機應用<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#iphone-%E6%89%8B%E6%A9%9F%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to :iphone:Android 手機應用" title="Direct link to :iphone:Android 手機應用" translate="no">​</a></h2>
+<ul>
+<li class="">🕸瀏覽器：Brave</li>
+<li class="">📰閱讀：MooRead</li>
+<li class="">✉️信箱：Gmail</li>
+<li class="">🗺地圖：Google 地圖</li>
+<li class="">記事：Logseq, Keet</li>
+<li class="">日曆：Logseq, Google 日曆</li>
+<li class="">待辦事項：Habitica</li>
+<li class="">內建相機，內建時鐘</li>
+<li class="">相簿：內建相簿，Google 相簿，Dropbox</li>
+<li class="">社交：LINE, Facebook, Twitter (網頁版), Keet</li>
+<li class="">🔐密碼管理：Bitwarden，Yubi Authenticator（2 步驟認證）</li>
+<li class="">📺線上影片：Youtube, Netflix</li>
+<li class="">音樂：Youtube Music</li>
+<li class="">🚶‍♂️ 健康：Amazfit T-Rex 2 運動手錶 + Zepp</li>
+<li class="">遊戲：steam</li>
+<li class="">🤖 LLM：Cherry Studio &amp; Ollama</li>
+</ul>
+<p>手機瀏覽器使用 <code>Brave</code> 瀏覽器。使用實體筆記本 + Logseq 紀錄。
+<a class="" href="https://blog.gasolin.idv.tw/life/handbook">完整的實體筆記配置</a></p>
+<p>增加使用 LLM，透過 Ollama 可以使用一些本地 LLM 協助 Code Review 等事情。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="其他工具">其他工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 其他工具" title="Direct link to 其他工具" translate="no">​</a></h3>
+<ul>
+<li class="">旅遊：Google 翻譯，TripAdvisor (旅遊時才裝)</li>
+<li class="">記錄看書狀況：Logseq</li>
+<li class="">線上學習：PressPlay, Youtube</li>
+<li class="">💳 Taiwan Pay</li>
+<li class="">記帳用 moneybook</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="reference">Reference<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr#reference" class="hash-link" aria-label="Direct link to Reference" title="Direct link to Reference" translate="no">​</a></h2>
+<ul>
+<li class="">[^1] <a class="" href="https://blog.gasolin.idv.tw/tools/tools/tooling-in-2011-May.md">個人工具箱 2011 五月</a></li>
+<li class="">[^2] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2011">個人工具箱 2011</a></li>
+<li class="">[^3] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2016">個人工具箱 2016</a></li>
+<li class="">[^4] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017">個人工具箱 2017</a></li>
+<li class="">[^5] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017-sep">個人工具箱 2017 九月</a></li>
+<li class="">[^6] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-feb">個人工具箱 2018 二月</a></li>
+<li class="">[^7] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-jun">個人工具箱 2018 六月</a></li>
+<li class="">[^8] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Mar">個人工具箱 2019 三月</a></li>
+<li class="">[^9] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Nov">個人工具箱 2019 十一月</a></li>
+<li class="">[^10] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2020-Nov">個人工具箱 2020 十一月</a></li>
+<li class="">[^11] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2021-May">個人工具箱 2021 五月</a></li>
+<li class="">[^12] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2021-Dec">個人工具箱 2021 十二月</a></li>
+<li class="">[^13] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar">個人工具箱 2024 三月</a></li>
+</ul>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[這一年的投資 (2024)]]></title>
+        <id>https://blog.gasolin.idv.tw/life/my-investment-2024</id>
+        <link href="https://blog.gasolin.idv.tw/life/my-investment-2024"/>
+        <updated>2025-02-17T11:40:31.000Z</updated>
+        <summary type="html"><![CDATA[遠端工作多年，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的敗家投資。]]></summary>
+        <content type="html"><![CDATA[<p>遠端工作多年，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的<del>敗家</del>投資。</p>
+<p>雖然以下內容看似都是在花錢，但內在的邏輯是：身邊圍繞著自己喜歡的人事物，讓你每次接觸時都感到愉悅。常保身心健康也是對自己，對家人最好的投資。</p>
+<p>此外，我覺得並不是買下來的東西才是投資。
+有些東西你沒有購買，但是你也投資了充足的時間去研究，查看，最後得出不購買的決定。
+這些都是投資的過程。</p>
+<p>上年度的回顧直接更新在<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2023">這一年的投資 (2023)</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資我的工具箱">投資我的工具箱<a href="https://blog.gasolin.idv.tw/life/my-investment-2024#%E6%8A%95%E8%B3%87%E6%88%91%E7%9A%84%E5%B7%A5%E5%85%B7%E7%AE%B1" class="hash-link" aria-label="Direct link to 投資我的工具箱" title="Direct link to 投資我的工具箱" translate="no">​</a></h2>
+<blockquote>
+<p>集資網站上購入快手錢包 5⭐</p>
+</blockquote>
+<p>設計精緻，鈔票可以平放收納，收零錢後不需拉拉鍊，三折後體積只比信用卡稍大。</p>
+<blockquote>
+<p>購入全型三向機能背包 5⭐
+<a href="https://www.grday.com/portfolio-item/marcher-pro/" target="_blank" rel="noopener noreferrer" class="">https://www.grday.com/portfolio-item/marcher-pro/</a></p>
+</blockquote>
+<p>收到快手錢包使用後很滿意，到廠商 GreenRoom 網站上逛發現他們也有出斜背包，
+有兩個拉鏈袋，可以臨時擴充容量，有趣又實用，剛好打到我的興趣上。使用後也相當滿意。</p>
+<blockquote>
+<p>鞋全家福購入 Goodyear M2 防水戶外踏青鞋 5⭐</p>
+</blockquote>
+<p>雖然網路上購買可以省 300 塊左右，但還是願意鼓勵讓人可以現場試鞋的店家。
+之前穿 Solomon 的也有靜態防水，在雨天或潮濕的環境很方便。</p>
+<blockquote>
+<p>蝦皮上購入 Anbernic RG35XX-H 3⭐</p>
+</blockquote>
+<p>DOS 之類的 2D 遊戲都沒問題，效能也夠跑 PSP，但 3.5 吋方形螢幕應該不太適合。小小一台，偶而把玩心情好。</p>
+<p>Update: 作工堪虞，過一陣子沒玩就開不了機。</p>
+<blockquote>
+<p>PCHOME 購入 Ally X 4⭐</p>
+</blockquote>
+<p>上面的模擬器壞掉後，看到新出的 Ally X 就入手了... 入手後各種 steam 上的遊戲都可以玩，沒有 Steam Deck 相容問題。
+比較驚訝的是雖然 Ally X 是跑 Windows 11 系統，但按關機鍵重開後，多數情況下也可以繼續遊玩。使用上已經是相當可用的狀態。</p>
+<blockquote>
+<p>Nothing Ear(2) 4⭐</p>
+</blockquote>
+<p>之前的無線耳機不見了，在機場另買一副。收納盒做的像是一個珠寶盒，相當美觀，有把玩價值。使用起來算滿意。但是感覺耳壓比較高，帶久耳朵容易痛。</p>
+<blockquote>
+<p>防災包 v3 (第三版)</p>
+</blockquote>
+<p>更換防災包中的內容物，加入多功能鉗。
+之前預備的水與食物份量依然不夠全家人用，但已經過重（只有我背得動），趁掃除的機會改用輕量的背包。找出新的存放位置後，將朝向分兩包存放的方向改版。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資工作生產力">投資工作生產力<a href="https://blog.gasolin.idv.tw/life/my-investment-2024#%E6%8A%95%E8%B3%87%E5%B7%A5%E4%BD%9C%E7%94%9F%E7%94%A2%E5%8A%9B" class="hash-link" aria-label="Direct link to 投資工作生產力" title="Direct link to 投資工作生產力" translate="no">​</a></h2>
+<ul>
+<li class="">Goovis Art 懸鏡式頭戴顯示器 3.5 ⭐</li>
+</ul>
+<p>顯示效果很 OK，之後換手機時也會考慮支援 USB Type-C (DisplayPort Alt mode) 傳輸影像的機種，這樣在輕度辦公 / 看 Youtube 影片時，用手機跟頭顯就可以解決了。
+只是在外頭室內空間使用時，戴在頭上的造型仍然太顯眼，因此（恥度）限縮了它的應用範圍。</p>
+<ul>
+<li class="">TILLAK 迷你小折疊桌 4⭐</li>
+</ul>
+<p>有時候會帶椅子到戶外工作，帶這個輕量的小桌相當方便，打開就可用。節省了一些設置和收拾時間。
+金屬材質散熱也不錯，在家時往桌上一放可以墊高筆電，坐沙發上時也可墊在腳上，筆電的熱氣就不會直接傳到大腿。</p>
+<ul>
+<li class="">OriMouse 折疊滑鼠 3.5⭐</li>
+</ul>
+<p>收納時可以攤平非常有趣，使用時手感不是特別好，但勝在攜帶方便，出門時依然會帶著。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資家人的共同記憶">投資家人的共同記憶<a href="https://blog.gasolin.idv.tw/life/my-investment-2024#%E6%8A%95%E8%B3%87%E5%AE%B6%E4%BA%BA%E7%9A%84%E5%85%B1%E5%90%8C%E8%A8%98%E6%86%B6" class="hash-link" aria-label="Direct link to 投資家人的共同記憶" title="Direct link to 投資家人的共同記憶" translate="no">​</a></h2>
+<blockquote>
+<p>一台 CUV 小車 5⭐️</p>
+</blockquote>
+<p>作為一個不擅長也不特別愛開車的人，我希望全自動駕駛早點到來。
+但是在降到合理價格之前，一些車子的配備已經可以解決許多我的問題：
+比如配有 360 環景功能，在會車、停車時都非常方便；
+有了定速巡航可以降低開車時的疲勞度，同時也可以節省汽油。</p>
+<p>有車之後由於在路上的安全性提升了，更方便帶家人造訪一些需要較長車程的地方。</p>
+<blockquote>
+<p>Panasonic 洗脫烘洗衣機 5⭐</p>
+</blockquote>
+<p>既然家裡沒人喜歡晾衣服，那就試試看洗脫烘洗衣機。
+把衣服放進洗衣機，按了按鈕後就沒事了，熱泵烘乾效果相當好，拿出來衣服都乾的。
+只是每次洗完後，都需要清潔濾網上的毛絮。我們發現使用過的口罩是很好的擦拭工具，在濾網上一擦就可以處理掉毛絮。</p>
+<blockquote>
+<p>RioBuds 擦窗機器人 4⭐</p>
+</blockquote>
+<p>有兩個履帶可以在玻璃上行走，擦窗的效果還可以，偶而還是會卡在邊角處脫出。</p>
+<blockquote>
+<p>Youtube Premium / Netflix 4⭐</p>
+</blockquote>
+<p>觀影需求。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資健康">投資健康<a href="https://blog.gasolin.idv.tw/life/my-investment-2024#%E6%8A%95%E8%B3%87%E5%81%A5%E5%BA%B7" class="hash-link" aria-label="Direct link to 投資健康" title="Direct link to 投資健康" translate="no">​</a></h2>
+<ul>
+<li class="">超慢跑 4⭐</li>
+</ul>
+<p>天氣普普或沒出門運動的時候，手錶預先設成每分鐘 180 步，每 4 步一個提示。
+把地墊一鋪，電視播個節目，邊看節目邊跑起來，這樣運動還是蠻簡便的。</p>
+<ul>
+<li class="">新 SUP 板 (Freesun 黑閃電) 4⭐</li>
+</ul>
+<p>我用原來的板子已划了 60 多趟，現在對划行速度有了更高的要求，因此權衡自己的平衡能力後，購入長 14 呎寬 27 吋的 SUP 板。較長的粄身可以增加吃水線長度，施加同樣的划行力道時，可以得到更高的速度。</p>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Keet 聊天應用程式介紹，解決傳統 P2P 聊天應用痛點的新選擇]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/keet_2024</id>
+        <link href="https://blog.gasolin.idv.tw/tools/keet_2024"/>
+        <updated>2024-11-27T12:15:31.000Z</updated>
+        <summary type="html"><![CDATA[Keet 是一款新穎又好用的聊天應用程式，讓你可以和朋友直接進行視訊或文字聊天。以下是它的幾個亮點：]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" src="https://blog.gasolin.idv.tw/assets/images/2024_keet-65d482324d9981552337281248231c4e.png" width="1536" height="2752" class="img_ev3q"></p>
+<p><a href="https://keet.io/" target="_blank" rel="noopener noreferrer" class="">Keet</a> 是一款新穎又好用的聊天應用程式，讓你可以和朋友直接進行視訊或文字聊天。以下是它的幾個亮點：</p>
+<ul>
+<li class="">
+<p>超安全的聊天：透過端到端加密，只有你和朋友可以看到聊天內容，比 Line 更具隱私保障。</p>
+</li>
+<li class="">
+<p>清晰不卡畫的視訊：Keet 的視訊通話品質非常好，因為它不用伺服器，直接連接你和朋友的設備。當然你也可以只使用語音通話。</p>
+</li>
+<li class="">
+<p>快速傳大檔案：無論是高畫質照片還是影片，都可以輕鬆傳送，完全不壓縮畫質！</p>
+</li>
+</ul>
+<p>這些功能讓 Keet 很適合喜歡聊天、重視隱私或想用高品質視訊的你。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="為什麼-keet-比其他聊天-app-更安全">為什麼 Keet 比其他聊天 App 更安全？<a href="https://blog.gasolin.idv.tw/tools/keet_2024#%E7%82%BA%E4%BB%80%E9%BA%BC-keet-%E6%AF%94%E5%85%B6%E4%BB%96%E8%81%8A%E5%A4%A9-app-%E6%9B%B4%E5%AE%89%E5%85%A8" class="hash-link" aria-label="Direct link to 為什麼 Keet 比其他聊天 App 更安全？" title="Direct link to 為什麼 Keet 比其他聊天 App 更安全？" translate="no">​</a></h3>
+<p>一般聊天 App（例如 Line）大多使用伺服器來傳訊息（「伺服器 - 客戶端」（Server-Client）架構）。這意味著當你發送訊息時，訊息會先傳到伺服器（Server），然後再從伺服器傳送到你的朋友（Client）。這種方式看起來很方便，但也有一些風險：</p>
+<ul>
+<li class="">伺服器可能被駭客入侵：伺服器被攻擊後，訊息可能被偷走。</li>
+<li class="">隱私不安全：你的聊天記錄全都存在伺服器上，服務商或其他人可能會偷看或審查你的內容。</li>
+<li class="">帳號可能被封鎖：伺服器可以隨時停用你的帳號，讓你無法再使用 App。</li>
+<li class="">伺服器出問題就不能用：如果伺服器壞掉，所有人都會無法使用 App。</li>
+<li class="">運營成本高：伺服器需要很多錢來維護，可能會讓 App 的服務收費或廣告變多。</li>
+</ul>
+<p>Keet 採用的是點對點（Peer-to-Peer, P2P）架構。直接連接你和朋友的裝置，訊息完全不經過伺服器。這種設計有以下好處：</p>
+<ul>
+<li class="">超高安全性：沒有伺服器，駭客就沒地方可以入侵。</li>
+<li class="">完全保護隱私：訊息經過加密，除了你和朋友，誰也看不到。</li>
+<li class="">帳號不會被封：因為沒有中央伺服器，沒人可以禁用你的帳號。</li>
+<li class="">少出問題：沒有伺服器就不用擔心伺服器掛掉，全都靠你的設備和網路運行。</li>
+</ul>
+<p>總結來說，Keet 的 P2P 架構讓它比使用伺服器 - 客戶端架構的聊天應用程式更安全，因為它減少了訊息被竊取、隱私被侵犯和帳號被禁用的風險。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="p2p-架構的挑戰">P2P 架構的挑戰<a href="https://blog.gasolin.idv.tw/tools/keet_2024#p2p-%E6%9E%B6%E6%A7%8B%E7%9A%84%E6%8C%91%E6%88%B0" class="hash-link" aria-label="Direct link to P2P 架構的挑戰" title="Direct link to P2P 架構的挑戰" translate="no">​</a></h3>
+<p>雖然 P2P 聽起來很棒，但它使用在即時通訊（IM）中時，也有一些問題需要克服：</p>
+<ul>
+<li class="">雙方要同時在線上：你和朋友必須同時上線才能聊天，跟現在的 App 不太一樣。</li>
+<li class="">使用者識別：當使用者透過多個設備發送訊息時，難以確保這些訊息都屬於同一個使用者。</li>
+<li class="">訊息可能延遲：如果網路不好，訊息可能傳得很慢，甚至傳不出去。</li>
+<li class="">傳檔案比較麻煩：如果朋友沒上線，你發送的檔案就無法即時傳過去。</li>
+<li class="">設備比較耗電：因為 P2P 要靠你的裝置處理訊息和檔案，可能會比較耗電和流量。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="keet-怎麼克服這些問題">Keet 怎麼克服這些問題？<a href="https://blog.gasolin.idv.tw/tools/keet_2024#keet-%E6%80%8E%E9%BA%BC%E5%85%8B%E6%9C%8D%E9%80%99%E4%BA%9B%E5%95%8F%E9%A1%8C" class="hash-link" aria-label="Direct link to Keet 怎麼克服這些問題？" title="Direct link to Keet 怎麼克服這些問題？" translate="no">​</a></h3>
+<p>keet 的開發團隊 <a href="https://holepunch.to/" target="_blank" rel="noopener noreferrer" class="">holepunch</a> 很瞭解 P2P 架構的限制，因此結合了加密技術與 P2P，創造了一些厲害的技術來解決這些挑戰：</p>
+<ul>
+<li class="">解決「不在線就不能用」的問題：Keet 使用了 Blind-paring 和 Blind-mirror 技術，訊息或檔案可以先加密存到其他節點，等朋友上線時再處理。</li>
+<li class="">檔案可以一直存取：檔案會加密存放在某些節點，就算發送者離線，接收者還是可以下載。</li>
+<li class="">多設備同步很簡單：Keet 讓用戶用一組助記詞創建身份（ID），可以讓多個裝置共享聊天紀錄，也能刪除或編輯自己發的訊息。</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="解決不在線就不能用的問題">解決「不在線就不能用」的問題<a href="https://blog.gasolin.idv.tw/tools/keet_2024#%E8%A7%A3%E6%B1%BA%E4%B8%8D%E5%9C%A8%E7%B7%9A%E5%B0%B1%E4%B8%8D%E8%83%BD%E7%94%A8%E7%9A%84%E5%95%8F%E9%A1%8C" class="hash-link" aria-label="Direct link to 解決「不在線就不能用」的問題" title="Direct link to 解決「不在線就不能用」的問題" translate="no">​</a></h4>
+<p>讓我們來看看 Blind-paring 和 Blind Mirror 的概念。</p>
+<p><code>Blind-Paring</code> 是一種透過加密技術來管理加入聊天室請求的方法。具體過程如下：</p>
+<ul>
+<li class="">請求保存：當使用者 A 想要加入某個聊天室時，這個請求會被加密並保存到某個 peer 上。</li>
+<li class="">管理者批准：當聊天室的管理者 B 上線時，可以對這個請求進行簽名批准。</li>
+<li class="">使用者加入：當使用者 A 上線時，經過批准的請求會允許 A 加入聊天室。</li>
+</ul>
+<p>這些請求雖然保存在某個 peer 上，但這個 peer 並沒有 A 或 B 的金鑰，因此無法解密查看具體的請求內容。</p>
+<p><code>Blind-Mirror</code> 是 Blind-paring 的檔案版本。具體過程如下：</p>
+<ul>
+<li class="">檔案保存：當使用者 A 傳送了一個檔案後，這個檔案會被加密並保存到某些 peer 上。</li>
+<li class="">持續存取：即使使用者 A 離線了，這個檔案仍然能被其他人存取。</li>
+<li class="">隱私保護：保存檔案的 peer 沒有解密的金鑰，因此無法查看檔案內容。</li>
+</ul>
+<p>這兩種技術都利用了加密技術來保護使用者的隱私和數據安全，確保即使數據保存在其他 peer 上，也無法被未授權的使用者查看。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="解決多設備同步問題">解決多設備同步問題<a href="https://blog.gasolin.idv.tw/tools/keet_2024#%E8%A7%A3%E6%B1%BA%E5%A4%9A%E8%A8%AD%E5%82%99%E5%90%8C%E6%AD%A5%E5%95%8F%E9%A1%8C" class="hash-link" aria-label="Direct link to 解決多設備同步問題" title="Direct link to 解決多設備同步問題" translate="no">​</a></h4>
+<p>在 P2P 架構中，每個 peer（節點）都是平等的。當使用者透過多個設備發送訊息時，如何確保這些訊息都屬於同一個使用者，並讓使用者能夠編輯或刪除來自不同設備的訊息呢？</p>
+<p>Keet 借鑑了加密貨幣的技術，加入了 ID（身份）的概念。具體來說，Keet 使用了 24 個助記詞來創建一個唯一的身份（ID）。這些助記詞就像是一組密碼，能夠幫助識別和驗證使用者。</p>
+<ul>
+<li class="">身份識別：當使用者在不同設備上發送訊息時，這些設備都會使用相同的 ID 來確認身份。這樣，即使使用不同的設備，系統也能知道這些訊息來自同一個使用者。</li>
+<li class="">訊息管理：使用者可以編輯或刪除來自不同設備的訊息，因為所有訊息都與同一個身份（ID）相關聯。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="總結">總結<a href="https://blog.gasolin.idv.tw/tools/keet_2024#%E7%B8%BD%E7%B5%90" class="hash-link" aria-label="Direct link to 總結" title="Direct link to 總結" translate="no">​</a></h2>
+<p>雖然 P2P 聊天 App 一開始會讓人感覺有些不方便，但 Keet 的新技術已經讓它更穩定、更好用。如果你想試試看更私密又安全的聊天方式，不妨下載 Keet 試試看！</p>
+<p>我還建立了一個叫 「Taiwan 🇹🇼 用 Keet 了」的群組，歡迎來一起討論：
+👉 <a href="https://gasolin.idv.tw/keetlink/#key=yrysb95uakfuhrhn3t8dfh53du663f14uikq66sc9jppw4b8ph6xnbqbb8ofczuxjy1i3jodsuemnc3q55nzujcac9a65p8xk78zmzfr3w&amp;title=Taiwan%20%F0%9F%87%B9%F0%9F%87%BC%20%E7%94%A8%20Keet%20%E4%BA%86" target="_blank" rel="noopener noreferrer" class="">點這裡加入</a>。</p>
+<hr>
+<p>資訊公開：我目前負責 Keet 的 Mobile 端開發，分享自己對整個架構設計的理解。Keet 使用的很多元件都是開源的，你可以在 <a href="https://github.com/holepunchto" target="_blank" rel="noopener noreferrer" class="">https://github.com/holepunchto</a> 查看，或看看我整理的 <a href="https://github.com/gasolin/awesome-pears" target="_blank" rel="noopener noreferrer" class="">Awesome-pears</a>，裡面有更多 P2P 應用程式喔！</p>
+<p>對相關技術感興趣的朋友，也歡迎參考<a href="https://holepunch.recruitee.com/" target="_blank" rel="noopener noreferrer" class="">徵才訊息</a>，歡迎對 P2P 技術有研究，或 React Native 的開發者加入。</p>]]></content>
+        <category label="tool" term="tool"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[目前使用的電腦應用程式 (2024)]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/my-app-2024</id>
+        <link href="https://blog.gasolin.idv.tw/tools/my-app-2024"/>
+        <updated>2024-09-13T13:15:31.000Z</updated>
+        <summary type="html"><![CDATA[使用 Macbook Air M2 已一年，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。]]></summary>
+        <content type="html"><![CDATA[<p></p>
+<p>使用 Macbook Air M2 已一年，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。
+<a class="" href="https://blog.gasolin.idv.tw/tools/tools/my-app-2023">延續去年的設定</a>，做了一些改動。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="半自動安裝">半自動安裝<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E5%8D%8A%E8%87%AA%E5%8B%95%E5%AE%89%E8%A3%9D" class="hash-link" aria-label="Direct link to 半自動安裝" title="Direct link to 半自動安裝" translate="no">​</a></h2>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># xcode 命令行工具</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ xcode-select --install</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install android-studio balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm ollama raycast slack starship steam surfshark the-unarchiver visual-studio-code yarn zsh</span><br></span></code></pre></div></div>
+<p>額外安裝 git 工具、nvm (nodejs 版本管理)、設定 openjdk 連結</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew tap microsoft/git</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install git-credential-manager-core</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ nvm install 18</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">     /Library/Java/JavaVirtualMachines/openjdk.jdk</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="設定腳本">設定腳本<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E8%A8%AD%E5%AE%9A%E8%85%B3%E6%9C%AC" class="hash-link" aria-label="Direct link to 設定腳本" title="Direct link to 設定腳本" translate="no">​</a></h3>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% # nvm 設定</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% mkdir ~/.nvm</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% code ~/.zshrc</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 加入腳本</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(/opt/homebrew/bin/brew shellenv)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export NVM_DIR="$HOME/.nvm"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># starship</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(starship init zsh)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export ANDROID_HOME=$HOME/Library/Android/sdk</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/25.1.8937393</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/emulator</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/platform-tools</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:/Applications/CMake.app/Contents/bin</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># find local ip</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ip(){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># kill process by port</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">kp() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npx kill-port --port $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># apply PR to codebase</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pr() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git fetch upstream pull/$1/head:pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git checkout pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># format chinese article spaces</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pangu() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npx pangu "$1"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># list short changelog</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">changelog() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  echo "changelog:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  LANG=en_US git log --no-merges --pretty=format:"* %h - %s (%ar) &lt;%an&gt;" -n $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="app-store">App Store<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#app-store" class="hash-link" aria-label="Direct link to App Store" title="Direct link to App Store" translate="no">​</a></h2>
+<ul>
+<li class="">Transporter：👨‍💻 App 上傳工具</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="其他應用">其他應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E5%85%B6%E4%BB%96%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to 其他應用" title="Direct link to 其他應用" translate="no">​</a></h3>
+<ul>
+<li class=""><a href="https://www.pcloud.com/" target="_blank" rel="noopener noreferrer" class="">pCloud</a>：備用的快速備份資料夾，一次付清後有 2TB 空間，目前拿來備份 Dropbox 資料夾。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="我到底裝了什麼">我到底裝了什麼<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E6%88%91%E5%88%B0%E5%BA%95%E8%A3%9D%E4%BA%86%E4%BB%80%E9%BA%BC" class="hash-link" aria-label="Direct link to 我到底裝了什麼" title="Direct link to 我到底裝了什麼" translate="no">​</a></h2>
+<p>這麼多的程式，可以概略再分為系統增強、工作、生活相關幾類：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統增強">系統增強<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E7%B3%BB%E7%B5%B1%E5%A2%9E%E5%BC%B7" class="hash-link" aria-label="Direct link to 系統增強" title="Direct link to 系統增強" translate="no">​</a></h3>
+<ul>
+<li class="">homebrew：所有可以透過 <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer" class="">homebrew</a> 安裝的程式，都應透過 homebrew 安裝。</li>
+<li class="">brave-browser：🌐 主要使用的瀏覽器
+<ul>
+<li class="">重新整理目前的網頁：<code>command + r</code> (+ shift 完整重新整理)</li>
+<li class="">關閉目前分頁：<code>command + w</code></li>
+<li class="">開新分頁：<code>command + t</code></li>
+<li class="">回到上一頁：<code>command + 左方向鍵</code></li>
+</ul>
+</li>
+<li class="">microsoft-edge: 🌐 💬 用來開 chatgpt /new bing 搜尋</li>
+<li class="">ollama: 本地 LLM 工具</li>
+<li class="">dropbox：快速備份資料夾（空間 15.x GB）</li>
+<li class=""><a href="https://github.com/dwarvesf/hidden" target="_blank" rel="noopener noreferrer" class="">hiddenbar</a>：隱藏多餘的狀態列圖示
+<ul>
+<li class=""><code>在狀態列圖示上按著 cmd 鍵可以拖曳改變順序</code></li>
+</ul>
+</li>
+<li class="">itsycal：📅 狀態列日曆</li>
+<li class="">the-unarchiver：解壓縮工具</li>
+<li class="">raycast：透過鍵盤快速啟動工具
+-（<a href="https://manual.raycast.com/hotkey" target="_blank" rel="noopener noreferrer" class="">取代 spotlight</a>）用 <code>Command + 空白鍵</code> 啟動。
+<ul>
+<li class="">取代系統內建的 <a href="https://www.raycast.com/changelog/1-29-0" target="_blank" rel="noopener noreferrer" class="">emoji keyboard</a>，在 Extentions &gt; Search Emoji 綁定 <code>Control + Command</code> 快捷鍵。</li>
+<li class="">取代 rectangle 安排視窗位置，在 <code>Extentions &gt; Window Management</code> 綁定 <code>Option + Command + 方向鍵</code> 快捷鍵。</li>
+<li class="">snippets 綁定 <code>Option + /</code> 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="工作">工作<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E5%B7%A5%E4%BD%9C" class="hash-link" aria-label="Direct link to 工作" title="Direct link to 工作" translate="no">​</a></h3>
+<ul>
+<li class="">android-studio：Android 開發環境</li>
+<li class="">balsamiq-wireframes：👨‍💻 mockup 工具</li>
+<li class="">git-credential-manager-core：👨‍💻 <a href="https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager" target="_blank" rel="noopener noreferrer" class="">搭配 github 使用</a></li>
+<li class="">gnupg：👨‍💻 <a href="https://tourcoder.com/gpg-on-macos/" target="_blank" rel="noopener noreferrer" class="">加密工具</a>(Pretty Good Privacy)，我用來簽署 git commit</li>
+<li class="">gnu-sed：👨‍💻 命令行字串取代工具</li>
+<li class="">java：👨‍💻 跑一些程式用</li>
+<li class="">nvm：👨‍💻 Node 版本管理工具
+<ul>
+<li class="">透過 <code>nvm install 16</code> 可以安裝最新版的 Nodejs 16.x，透過 <code>nvm ls-remote</code> 可以查看已安裝的版本</li>
+</ul>
+</li>
+<li class="">slack：👨‍💻 溝通工具</li>
+<li class="">starship：👨‍💻 命令行高亮提示</li>
+<li class="">visual-studio-code：👨‍💻 程式編輯工具
+<ul>
+<li class="">用 <code>CMD + J</code> 命令可以在編輯模式與內建的 Terminal 工具之間切換。</li>
+<li class="">用 <code>CMD + B</code> 命令可以開關側邊欄。</li>
+</ul>
+</li>
+<li class="">yarn：👨‍💻 node 套件管理工具</li>
+<li class="">surfshark: VPN 工具</li>
+<li class="">quicktime：螢幕錄製工具 (原來用的 recordit 已經 gg 了)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="生活">生活<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E7%94%9F%E6%B4%BB" class="hash-link" aria-label="Direct link to 生活" title="Direct link to 生活" translate="no">​</a></h3>
+<ul>
+<li class="">fava: beancount 文字記帳視覺化</li>
+<li class="">logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中</li>
+<li class="">steam: 遊戲管理工具</li>
+</ul>
+<hr>
+<p>除了應用程式之外，電腦上還會裝瀏覽器插件、Raycast 插件、與編輯器插件。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="瀏覽器插件">瀏覽器插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E7%80%8F%E8%A6%BD%E5%99%A8%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to 瀏覽器插件" title="Direct link to 瀏覽器插件" translate="no">​</a></h2>
+<ul>
+<li class="">Bitwarden：密碼管理工具</li>
+<li class=""><del>Browserflow：半自動網頁爬蟲</del></li>
+<li class="">Pocket：📰 稍後閱讀</li>
+<li class="">Youtube 雙字幕：可同時顯示兩種語言</li>
+<li class="">電子錢包：👛 Metamask、Tally Ho</li>
+</ul>
+<p>分頁使用瀏覽器內建的分頁群組功能</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="raycast-插件">Raycast 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#raycast-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Raycast 插件" title="Direct link to Raycast 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Google Translate</li>
+<li class="">Visual Studio Recent Projects</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="visual-studio-code-插件">Visual Studio Code 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#visual-studio-code-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Visual Studio Code 插件" title="Direct link to Visual Studio Code 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Background Terminal Notifier：命令執行後跳系統通知</li>
+<li class="">Beancount：Beancount 格式補完</li>
+<li class="">Blank Line at the End：檔尾自動加入空白行</li>
+<li class="">Color Info：行內 CSS 顏色顯示 / 選擇器</li>
+<li class="">EditorConfig for VSCode</li>
+<li class="">ESLint：程式碼樣式檢查</li>
+<li class="">Indent-rainbow: 快速辨識不同層的括號</li>
+<li class="">Path Intellisense：改進檔案路徑搜尋</li>
+<li class="">Trailing Spaces：去除行尾的空白。</li>
+<li class="">Version Lens: 快速檢查 package.json 檔案中套件是否有更新的版本</li>
+<li class="">WakaTime：紀錄使用編輯器的時間</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-應用">Web 應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#web-%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to Web 應用" title="Direct link to Web 應用" translate="no">​</a></h2>
+<ul>
+<li class="">✉️ 信箱：gmail</li>
+<li class="">🗺️ 地圖：Google 地圖</li>
+<li class="">👥 社群：<a href="https://twitter.com/gasolin" target="_blank" rel="noopener noreferrer" class="">Twitter</a>、<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="">Facebook</a>、Telegram、Discord、Keet</li>
+<li class="">📝 記事：Keet、<a href="http://keep.google.com/" target="_blank" rel="noopener noreferrer" class="">Google keep</a>, Google Doc</li>
+<li class="">待辦事項：<a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" class="">habitica</a></li>
+<li class="">🔐 密碼管理：Bitwarden，Yubi Authenticator（2 步驟認證）</li>
+<li class="">相簿：Google Photo、Dropbox</li>
+<li class="">📺 線上影片： Youtube、Netflix</li>
+<li class="">🎥 觀影記錄：</li>
+<li class="">線上學習：PressPlay</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-服務">Web 服務<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#web-%E6%9C%8D%E5%8B%99" class="hash-link" aria-label="Direct link to Web 服務" title="Direct link to Web 服務" translate="no">​</a></h2>
+<ul>
+<li class="">🗂️ 個人網站：<a href="http://www.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">個人網站</a>、<a href="https://github.com/gasolin/blog/" target="_blank" rel="noopener noreferrer" class="">Github</a>、<a href="https://www.linkedin.com/in/fredglin/" target="_blank" rel="noopener noreferrer" class="">Linkedin</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統內建快速鍵和手勢">系統內建快速鍵和手勢<a href="https://blog.gasolin.idv.tw/tools/my-app-2024#%E7%B3%BB%E7%B5%B1%E5%85%A7%E5%BB%BA%E5%BF%AB%E9%80%9F%E9%8D%B5%E5%92%8C%E6%89%8B%E5%8B%A2" class="hash-link" aria-label="Direct link to 系統內建快速鍵和手勢" title="Direct link to 系統內建快速鍵和手勢" translate="no">​</a></h3>
+<ul>
+<li class="">切換輸入法：<code>Control + 空白鍵</code></li>
+<li class="">切換程式：<code>command + tab</code></li>
+<li class="">切換虛擬桌面： 用三指在觸控板上同時向左或右撥動，或 <code>Control + 方向鍵</code></li>
+</ul>]]></content>
+        <category label="tool" term="tool"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[個人工具箱（2024三月）]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar</id>
+        <link href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar"/>
+        <updated>2024-03-03T16:30:00.000Z</updated>
+        <summary type="html"><![CDATA[先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。]]></summary>
+        <content type="html"><![CDATA[<p><code>先記錄下來手邊使用的工具，才有機會從繁雜中歸納出簡單的使用規則。</code></p>
+<p>更新一下手邊常用的設備。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="主要裝備">主要裝備<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#%E4%B8%BB%E8%A6%81%E8%A3%9D%E5%82%99" class="hash-link" aria-label="Direct link to 主要裝備" title="Direct link to 主要裝備" translate="no">​</a></h2>
+<ul>
+<li class="">
+<p>:computer:Apple Macbook Pro 13 M2 16GB RAM, 512GB SSD，作業系統：14.3</p>
+</li>
+<li class="">
+<p>📱<a href="https://tw.sharp/products/aquos-zero6" target="_blank" rel="noopener noreferrer" class="">Sharp AQUOS Zero 6</a>, Android 13, 6", Snapdragon 750G</p>
+</li>
+<li class="">
+<p>🎧 SHOKZ OPENRUN S803 (備用：SoundCore Liberty 3 Pro, Sony WI-1000)</p>
+</li>
+<li class="">
+<p>U2F (兩步驟驗證): Ubikey 5 NFC, Ledger Nano S+</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-外出攜帶">🚶‍♂️ 外出攜帶<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#%EF%B8%8F-%E5%A4%96%E5%87%BA%E6%94%9C%E5%B8%B6" class="hash-link" aria-label="Direct link to 🚶‍♂️ 外出攜帶" title="Direct link to 🚶‍♂️ 外出攜帶" translate="no">​</a></h2>
+<ul>
+<li class="">💻筆電，📱手機，</li>
+<li class="">🔌 倍思 2 合 1 45W GaN 雙模行動電源充電器 (10000mAh)</li>
+<li class="">🎧 降噪耳機</li>
+</ul>
+<p>用<code>倍思10000mAh行動電源+45W充電器(二合一)</code>，在出門的行程中可以保持電腦的電量。停留的地點有插座的時候，也可以直接插上為筆電供電。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="house家">🏠家<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#house%E5%AE%B6" class="hash-link" aria-label="Direct link to 🏠家" title="Direct link to 🏠家" translate="no">​</a></h3>
+<ul>
+<li class="">🔌 Apple 雙 USB C 電源插座，倍思 2 合 1 45W GaN 雙模行動電源充電器 (10000mAh)</li>
+<li class="">🖱 羅技 Lift 滑鼠</li>
+<li class="">:package:Synology NAS: 電影，影集，照片，資料備份，Dropbox, Google Photos</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="spider_web網站工具">🕸網站工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#spider_web%E7%B6%B2%E7%AB%99%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 🕸網站工具" title="Direct link to 🕸網站工具" translate="no">​</a></h3>
+<ul>
+<li class="">🕸主要瀏覽器：<code>Brave</code></li>
+<li class="">瀏覽器插件
+<ul>
+<li class="">稍後閱讀：Pocket</li>
+<li class="">密碼管理：Bitwarden</li>
+<li class="">分頁管理：瀏覽器內建的群組分類</li>
+</ul>
+</li>
+<li class="">瀏覽器常駐分頁
+<ul>
+<li class="">✉️<a href="http://mail.google.com/" target="_blank" rel="noopener noreferrer" class="">GMail</a>,</li>
+<li class="">✅待辦事項：<a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" class="">Habitica</a></li>
+</ul>
+</li>
+</ul>
+<p></p>
+<ul>
+<li class="">👥主要社交網站：<a href="http://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="">Facebook</a>、<a href="https://twitter.com/gasolin" target="_blank" rel="noopener noreferrer" class="">Twitter</a></li>
+<li class="">📝記事：Logseq, <a href="http://keep.google.com/" target="_blank" rel="noopener noreferrer" class="">Google keep</a></li>
+<li class="">💾網路硬碟：<a href="http://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="">Dropbox</a>, 主要用作同步照片</li>
+<li class="">🔑密碼管理：<a href="https://www.bitwarden.com/" target="_blank" rel="noopener noreferrer" class="">Bitwarden</a></li>
+<li class="">🎥看電影記錄：<a href="https://simkl.com/" target="_blank" rel="noopener noreferrer" class="">Simkl</a></li>
+<li class="">看書紀錄 Logseq, <a href="https://www.goodreads.com/" target="_blank" rel="noopener noreferrer" class="">goodreads</a></li>
+<li class="">🗂個人網站：<a href="http://www.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">個人網站</a>, <a href="https://github.com/gasolin/blog/" target="_blank" rel="noopener noreferrer" class="">Github</a></li>
+<li class="">🗂個人履歷：<a href="https://www.linkedin.com/in/fredglin/" target="_blank" rel="noopener noreferrer" class="">Linkedin</a></li>
+<li class="">:link:IFTTT <a class="" href="https://blog.gasolin.idv.tw/tools/life/personal-automation-in-2021">自動化生活紀錄 2021</a></li>
+<li class="">📺<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="">Youtube</a></li>
+<li class="">👛電子錢包 Metamask, <a class="" href="https://blog.gasolin.idv.tw/crypto/setup_ledger_nano_on_linux">Ledger Nano S+</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="設計工具">設計工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#%E8%A8%AD%E8%A8%88%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 設計工具" title="Direct link to 設計工具" translate="no">​</a></h3>
+<ul>
+<li class="">螢幕動畫錄製： <a href="http://www.recordit.co/" target="_blank" rel="noopener noreferrer" class="">Recordit</a></li>
+<li class="">流程圖、心智圖：Mermaid.js</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="開發工具">開發工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 開發工具" title="Direct link to 開發工具" translate="no">​</a></h3>
+<ul>
+<li class="">編輯器：VS Code
+<ul>
+<li class="">Blank Line at the End</li>
+<li class="">Diff Tool</li>
+<li class="">EditorConfig for VSCode</li>
+<li class="">Guides: more guide line</li>
+<li class="">GitLens: more git info</li>
+<li class="">Settings Sync</li>
+<li class="">solidity</li>
+<li class="">Trailing Spaces</li>
+</ul>
+</li>
+<li class="">版本控制：git</li>
+<li class="">套件管理：brew, <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener noreferrer" class="">nvm</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="iphone-手機應用">:iphone:Android 手機應用<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#iphone-%E6%89%8B%E6%A9%9F%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to :iphone:Android 手機應用" title="Direct link to :iphone:Android 手機應用" translate="no">​</a></h2>
+<ul>
+<li class="">🕸瀏覽器：Brave</li>
+<li class="">📰閱讀：Pocket</li>
+<li class="">✉️信箱：Gmail</li>
+<li class="">🗺地圖：Google 地圖</li>
+<li class="">記事：Logseq, Keep</li>
+<li class="">日曆：Logseq, Google 日曆</li>
+<li class="">待辦事項：Habitica</li>
+<li class="">內建相機，內建時鐘</li>
+<li class="">相簿：內建相簿，Google 相簿，Dropbox</li>
+<li class="">社交：LINE, Facebook, Twitter (網頁版), Keet</li>
+<li class="">🔐密碼管理：Bitwarden，Yubi Authenticator（2 步驟認證）</li>
+<li class="">📺線上影片：Youtube, Netflix</li>
+<li class="">音樂：Youtube Music</li>
+<li class="">🚶‍♂️ 健康：Amazfit T-Rex 2 運動手錶 + Zepp</li>
+<li class="">遊戲：steam</li>
+</ul>
+<p>手機瀏覽器使用 <code>Brave</code> 瀏覽器。使用實體筆記本 + Logseq 紀錄。
+<a class="" href="https://blog.gasolin.idv.tw/life/handbook">完整的實體筆記配置</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="其他工具">其他工具<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7" class="hash-link" aria-label="Direct link to 其他工具" title="Direct link to 其他工具" translate="no">​</a></h3>
+<ul>
+<li class="">旅遊：Google 翻譯，TripAdvisor (旅遊時才裝)</li>
+<li class="">記錄看書狀況：Logseq</li>
+<li class="">線上學習：PressPlay, Youtube</li>
+<li class="">IFTTT Pro</li>
+<li class="">💳 Line Pay</li>
+<li class="">記帳用 beancount + moneybook + LINE <a href="https://page.line.me/570aecfb" target="_blank" rel="noopener noreferrer" class="">理財動物園</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="reference">Reference<a href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar#reference" class="hash-link" aria-label="Direct link to Reference" title="Direct link to Reference" translate="no">​</a></h2>
+<ul>
+<li class="">[^1] <a class="" href="https://blog.gasolin.idv.tw/tools/tools/tooling-in-2011-May.md">個人工具箱 2011 五月</a></li>
+<li class="">[^2] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2011">個人工具箱 2011</a></li>
+<li class="">[^3] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2016">個人工具箱 2016</a></li>
+<li class="">[^4] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017">個人工具箱 2017</a></li>
+<li class="">[^5] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017-sep">個人工具箱 2017 九月</a></li>
+<li class="">[^6] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-feb">個人工具箱 2018 二月</a></li>
+<li class="">[^7] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-jun">個人工具箱 2018 六月</a></li>
+<li class="">[^8] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Mar">個人工具箱 2019 三月</a></li>
+<li class="">[^9] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Nov">個人工具箱 2019 十一月</a></li>
+<li class="">[^10] <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2020-Nov">個人工具箱 2020 十一月</a></li>
+</ul>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[這一年的投資 (2023)]]></title>
+        <id>https://blog.gasolin.idv.tw/life/my-investment-2023</id>
+        <link href="https://blog.gasolin.idv.tw/life/my-investment-2023"/>
+        <updated>2023-12-08T16:15:31.000Z</updated>
+        <summary type="html"><![CDATA[遠端工作五年多，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的敗家投資。]]></summary>
+        <content type="html"><![CDATA[<p>遠端工作五年多，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的<del>敗家</del>投資。</p>
+<p>雖然以下內容看似都是在花錢，但內在的邏輯是：身邊圍繞著自己喜歡的人事物，讓你每次接觸時都感到愉悅。常保身心健康也是對自己，對家人最好的投資。</p>
+<p>此外，我覺得並不是買下來的東西才是投資。
+有些東西你沒有購買，但是你也投資了充足的時間去研究，查看，最後得出不購買的決定。
+這些都是投資的過程。</p>
+<p>上次的投資<del>敗家</del>回顧直接更新在<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2022">這一年的投資 (2022)</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資我的工具箱">投資我的工具箱<a href="https://blog.gasolin.idv.tw/life/my-investment-2023#%E6%8A%95%E8%B3%87%E6%88%91%E7%9A%84%E5%B7%A5%E5%85%B7%E7%AE%B1" class="hash-link" aria-label="Direct link to 投資我的工具箱" title="Direct link to 投資我的工具箱" translate="no">​</a></h2>
+<blockquote>
+<p>募資網站上買了 <a href="https://www.atlancube.com/zh/pages/passwordpocket" target="_blank" rel="noopener noreferrer" class="">PasswordPocket</a> 密碼記憶工具 1⭐️</p>
+</blockquote>
+<p>手機上可以直接用藍芽連接，還算可用，但瀏覽器插件使用了 webBluetooh API，因此 Firefox、Safari、Brave 等瀏覽器都無法使用 🫣。</p>
+<p>我希望這類工具能成功，因此一次贊助了幾台。目前夢想依然很美好，而實際限制還是太大了。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資工作生產力">投資工作生產力<a href="https://blog.gasolin.idv.tw/life/my-investment-2023#%E6%8A%95%E8%B3%87%E5%B7%A5%E4%BD%9C%E7%94%9F%E7%94%A2%E5%8A%9B" class="hash-link" aria-label="Direct link to 投資工作生產力" title="Direct link to 投資工作生產力" translate="no">​</a></h2>
+<blockquote>
+<p>網上買了 Shokz S803 骨傳導耳機 5⭐️</p>
+</blockquote>
+<p>發現自己目前多數的使用場景不再十分需要降噪，同時有想偶而在平靜水域上聽點節目的想法，因此入手骨傳導耳機。我主要拿來聽 Podcast，音質可接受，續航則相當驚艷。</p>
+<blockquote>
+<p>從網上買了 2022 版 Macbook Air M2 5⭐️</p>
+</blockquote>
+<p>購買整修品可以節省幾千塊，而且享有一樣保固。
+M 系列電池持續力和 Intel 機種比起來實在強，使用過程中也沒感覺到明顯發熱。</p>
+<blockquote>
+<p>沒買：CrossOver</p>
+</blockquote>
+<p>CrossOver 可以拿來跑 Windows <del>遊戲</del>程式，和 Windows 相容性越來越好，但是一些我想跑的 <del>FIFA 23</del> 程式並沒支援，所以暫時再觀望。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資家人的共同記憶">投資家人的共同記憶<a href="https://blog.gasolin.idv.tw/life/my-investment-2023#%E6%8A%95%E8%B3%87%E5%AE%B6%E4%BA%BA%E7%9A%84%E5%85%B1%E5%90%8C%E8%A8%98%E6%86%B6" class="hash-link" aria-label="Direct link to 投資家人的共同記憶" title="Direct link to 投資家人的共同記憶" translate="no">​</a></h2>
+<blockquote>
+<p>在網上買了 Insta360 One RS 4⭐️</p>
+</blockquote>
+<p>趁新年特惠價購入的運動相機，可以換裝 4K 相機或是 360 相機。</p>
+<p>使用上也可以先拍一段影片，再擷取其中的精彩畫面。
+拍好後搭配 iPad，在較大螢幕上簡易剪輯的體驗相當好。</p>
+<p>但使用 360 相機時，鏡頭外的保護鏡片極易起霧。偶而忘了拿掉鏡頭蓋再拍攝。目前大多數時間都只使用 4k 相機鏡頭。</p>
+<blockquote>
+<p>從網上買了 XBOX One 藍牙手把 4⭐</p>
+</blockquote>
+<p>價錢特惠，和去年買的手把搭配，可和小朋友一起玩。</p>
+<blockquote>
+<p>從網上買了 HP 16 吋 + 3090 顯卡筆電 4⭐</p>
+</blockquote>
+<p>由太太和小朋友使用。</p>
+<blockquote>
+<p>玻璃容器汽炸鍋 5⭐</p>
+</blockquote>
+<p>氣炸鍋實在是非常方便的家電，只要稍微熱一下，熱騰騰的薯條、雞塊、麵包、披薩香氣就充滿家中。
+因為買的是使用玻璃容器的汽炸鍋，沒有塗層的疑慮。只要下方墊個鋼網，上面擺一張烘焙紙，連清潔都很省事。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資健康">投資健康<a href="https://blog.gasolin.idv.tw/life/my-investment-2023#%E6%8A%95%E8%B3%87%E5%81%A5%E5%BA%B7" class="hash-link" aria-label="Direct link to 投資健康" title="Direct link to 投資健康" translate="no">​</a></h2>
+<blockquote>
+<p>網上買的摺疊帽 + 太陽眼鏡 4⭐</p>
+</blockquote>
+<p>去年買的折疊鴨舌帽和夾帽式太陽眼鏡，在一次漂溪時一起噴掉了 😵，改買整圈的圓形摺疊帽，一樣是有附頸繩的款式。但因為帽簷變成整圈，沒有合適的地方夾了，只能搭配一般的太陽眼鏡。</p>
+<p>摺疊帽的使用頻率蠻高的，遮陽效果也確實比只遮前方的鴨舌帽好。</p>
+<blockquote>
+<p>網上買的 CAMELBAK 1 公升水瓶 5⭐</p>
+</blockquote>
+<p>CAMELBAK 水瓶蓋子有特別設計。瓶口有提把，蓋子可以旋緊，蓋子開啟後也能磁吸固定，不會在喝水的過程中受打擾。</p>
+<p>我拿來取代之前使用的外帶杯（也學到外帶杯最好不要裝奶類，會有殘存的油脂味）。1 公升水瓶足以裝的下所有飲料店的飲料。</p>
+<p>我陸續買了兩瓶，工作時裝半瓶水放旁邊，或是想運動時隨時可以帶出門。</p>
+<p>有個很願意拿來多使用的水瓶，對健康還是蠻有幫助的。</p>
+<blockquote>
+<p>網上買的 CAMELBAK 水杯 4⭐</p>
+</blockquote>
+<p>裡面是不銹鋼，有提把。杯蓋可以拆下，似乎有些保冰保溫效果的杯子。
+目前水瓶使用率更高。但水杯也有發揮它的作用。</p>
+<blockquote>
+<p>網上買的 <a href="https://thumb-runner.com/" target="_blank" rel="noopener noreferrer" class="">Thumb Runner</a> 兩用槳 5⭐</p>
+</blockquote>
+<p>海划時有感自己體力不足以和前輩們看齊，只好動腦筋以裝備來補。站坐兩用槳節省了同時攜帶兩種槳的重量。槳桿使用碳纖維，而槳面使用玻璃纖維，在漂溪時拿來捅岩石也不用太擔心碳纖維槳面脆弱而破掉。使用上相當滿意。</p>
+<blockquote>
+<p>游泳池套票 4⭐</p>
+</blockquote>
+<p>陪太太一起去游泳，培養感情順便運動。</p>
+<blockquote>
+<p>全身健檢 4⭐</p>
+</blockquote>
+<p>讓陽光肥宅正視自己在老化的現實，並增加改變的動力。</p>
+<blockquote>
+<p>藥局買了血糖機 4⭐</p>
+</blockquote>
+<p>健檢後看到三高正在和我招手，弄了一台血糖機。搭配已有的體脂計、血壓計，來進一步數據化身體狀況。</p>
+<blockquote>
+<p>大創 300 圓買的平衡板 5⭐</p>
+</blockquote>
+<p>買來練平衡感，發現真的有效果。
+平衡板就是一個塑膠製的圓盤可供站立，下方有半圓形凸起，讓人在上面站立時不穩定。我在適應的過程中體會到了當重心不穩時如何透過改變腳的力道補償，練習後對我站在 SUP 上的穩定性很有幫助。</p>
+<blockquote>
+<p>Airbank 電動打氣機 5⭐</p>
+</blockquote>
+<p>去年底買了 SUP 後，一年左右的時間內划了 40 次左右，多數時候都堅持手動打氣，想說可以多消耗一點熱量。但事實狠狠打了我的臉，在這期間體重卻漸漸變重了。</p>
+<p>於是今年底終於妥協購入了電動打氣機。在出門不用帶打氣筒後，需攜帶物品的總容量反而減少了，而且趁著電動打氣機在充氣時，也可以騰出手來整理接下來要下水的裝備，縮短了預備的時間。</p>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[水域有多危險？從水域救援公開資料來分析]]></title>
+        <id>https://blog.gasolin.idv.tw/life/2021-water-rescue</id>
+        <link href="https://blog.gasolin.idv.tw/life/2021-water-rescue"/>
+        <updated>2023-08-19T16:20:00.000Z</updated>
+        <summary type="html"><![CDATA[Imgur]]></summary>
+        <content type="html"><![CDATA[<p></p>
+<!-- -->
+<p>最近天氣炎熱。到水邊消消暑是很熱門的選擇。但是隨之而來在水域活動發生意外，而需出動救援的新聞也層出不窮。我很好奇到底是怎麼樣的狀況需要出動水域救援？救援的結果如何？使用 SUP / 獨木舟這樣的浮具親水，是否一樣危險？</p>
+<p>於是我找到了<a href="https://data.gov.tw/dataset/7065" target="_blank" rel="noopener noreferrer" class="">政府開放資料平台</a>上的「消防機關水域救援統計」。這邊可以取得各年份的救援統計資料。目前最新的資料只更新到 2021 年份，因此使用此資料進行統計（注意這份統計資料呈現的是在政府 2020 後宣告開放山林海域的狀況）。
+（因為使用的圖表問題，手機版網頁需要橫著看，才會顯示分類細目。）</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="水域救援統計">水域救援統計<a href="https://blog.gasolin.idv.tw/life/2021-water-rescue#%E6%B0%B4%E5%9F%9F%E6%95%91%E6%8F%B4%E7%B5%B1%E8%A8%88" class="hash-link" aria-label="Direct link to 水域救援統計" title="Direct link to 水域救援統計" translate="no">​</a></h2>
+<p>2021 這一年總共有 926 人次的救援紀錄，共 357 人獲救，其他都是失蹤或死亡。水域救援相對山林救援（生存率有 90% 以上）來看，，生存率只有相當低的 38.5% 😱...... 嗎？</p>
+<p>可以看到水域救援裡「浮屍」、「自殺」佔了超過一半的水域救援比例。
+「浮屍」(34%) 312 位是死透了，也沒辦法分辨具體原因；「自殺」(23%) 者有 100 位死亡或失蹤，111 位獲救。</p>
+<!-- -->
+<p>最常出事的水域地點為溪河 (50%)、近海 (17%)、碼頭 (9%)，與圳溝 (9%)。碼頭 (9%) 占的出事比率讓我感到意外。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="出事類型分析">出事類型分析<a href="https://blog.gasolin.idv.tw/life/2021-water-rescue#%E5%87%BA%E4%BA%8B%E9%A1%9E%E5%9E%8B%E5%88%86%E6%9E%90" class="hash-link" aria-label="Direct link to 出事類型分析" title="Direct link to 出事類型分析" translate="no">​</a></h2>
+<p>若我們把歸因不明的「浮屍」、和動機不純（不是來親水）的「自殺」者排除，得到的會是比較能進一步分析水域危險原因的圖表。</p>
+<p>「翻船」(112 人)、「失足」(109 人) 佔了救援人數的多數。戲水 (49 人) + 戲水 (浮具)(6 人) 在後。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>翻船</th><th>人數</th></tr></thead><tbody><tr><td>失蹤</td><td>2</td></tr><tr><td>死亡</td><td>4</td></tr><tr><td>獲救</td><td>106</td></tr></tbody></table>
+<p>「翻船」的死亡率和平均值相較極低，可以想見出海的船家相較之下有充足的預期與安全準備。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>失足</th><th>人數</th></tr></thead><tbody><tr><td>失蹤</td><td>4</td></tr><tr><td>死亡</td><td>59</td></tr><tr><td>獲救</td><td>46</td></tr></tbody></table>
+<p>「失足」的死亡率 58%，比自殺還高。可能是因為自殺是有意識的行為，失足則是預期之外。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>戲水</th><th>人數</th></tr></thead><tbody><tr><td>失蹤</td><td>1</td></tr><tr><td>死亡</td><td>24</td></tr><tr><td>獲救</td><td>24</td></tr></tbody></table>
+<p>戲水出事的死亡率有近 50%。</p>
+<p>值得一提的是使用浮具戲水的 6 位全數獲救，因此獨立出來分一類。</p>
+<p>那麼死亡率最高的是什麼？是「交通事故」(死亡 7 / 獲救 1)，這些人也是預期之外的掉入水中，而且事情發生前應該就有些問題。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="我的解讀">我的解讀<a href="https://blog.gasolin.idv.tw/life/2021-water-rescue#%E6%88%91%E7%9A%84%E8%A7%A3%E8%AE%80" class="hash-link" aria-label="Direct link to 我的解讀" title="Direct link to 我的解讀" translate="no">​</a></h2>
+<p>簡單的總結一下：水域有風險，特別是對那些不以為意的人而言。
+即使有意親近水域，出意外時的生還率仍然只有近 50%，但是如果有攜帶浮具（救生衣、船隻或槳板）或船員指導，可以進一步大幅提高生存率。</p>
+<p>穿著浮具、帶好裝備，跟著熟悉當地水域的教練親水，可以保障活動的安全。若沒有教練帶也要相伴而行，並需要具備判斷水域狀況的能力，才能保障自己的生命安全。</p>
+<p>(另外本文只分析了 2021 年的資料，多少會有些當年度特殊狀況造成的誤差，更理想的是多追蹤幾年看整體趨勢)</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="參考資料">參考資料<a href="https://blog.gasolin.idv.tw/life/2021-water-rescue#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99" class="hash-link" aria-label="Direct link to 參考資料" title="Direct link to 參考資料" translate="no">​</a></h2>
+<ul>
+<li class="">本篇文章使用的<a href="https://docs.google.com/spreadsheets/d/1FtZx5Pby9J0XeHCo1qMAekHoQQqeNXlsUCy4By7Iphk/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="">資料與分析表格</a>(Google Spreadsheets)</li>
+<li class=""></li>
+<li class=""></li>
+</ul>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[人生苦短，我用 conda]]></title>
+        <id>https://blog.gasolin.idv.tw/python/conda</id>
+        <link href="https://blog.gasolin.idv.tw/python/conda"/>
+        <updated>2023-06-28T11:40:31.000Z</updated>
+        <summary type="html"><![CDATA[以前要嘗試 Python 的各種函式庫時，會用 virtualenv 或 docker 來產生專用的獨立環境。]]></summary>
+        <content type="html"><![CDATA[<p>以前要嘗試 Python 的各種函式庫時，會用 virtualenv 或 docker 來產生專用的獨立環境。
+但 Python 版本更新也算快，若想用特定 Python 版本執行，還需再搭配 <code>pyenv</code> 來確認運行環境，這些套疊讓環境設定變得更複雜。</p>
+<p>現在已有 <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank" rel="noopener noreferrer" class="">miniconda</a> 工具，只要用 brew 就可以安裝</p>
+<p><code>brew install --cask miniconda</code></p>
+<p>使用體驗相當好，節省了許多學習與設定的時間，也可以安心的去嘗試各種函式庫。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="建立環境">建立環境<a href="https://blog.gasolin.idv.tw/python/conda#%E5%BB%BA%E7%AB%8B%E7%92%B0%E5%A2%83" class="hash-link" aria-label="Direct link to 建立環境" title="Direct link to 建立環境" translate="no">​</a></h2>
+<p>可使用 <code>conda create</code> 命令建立獨立的虛擬環境</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$ conda create python=3 -n TEST</span><br></span></code></pre></div></div>
+<p>這樣會自動下載最新 Python 3 版本，並將環境名稱設定為 <code>TEST</code>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="切換環境">切換環境<a href="https://blog.gasolin.idv.tw/python/conda#%E5%88%87%E6%8F%9B%E7%92%B0%E5%A2%83" class="hash-link" aria-label="Direct link to 切換環境" title="Direct link to 切換環境" translate="no">​</a></h2>
+<p>可使用 <code>conda create</code> 命令切換到對應的環境</p>
+<p><code>conda activate TEST</code></p>
+<p><code>TEST</code> 為環境名稱。切換後還是可以用 <code>pip3 install</code> 等工具來安裝函式庫。</p>
+<p>可使用 <code>conda deactivate</code> 命令離開環境。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="查看或管理環境">查看或管理環境<a href="https://blog.gasolin.idv.tw/python/conda#%E6%9F%A5%E7%9C%8B%E6%88%96%E7%AE%A1%E7%90%86%E7%92%B0%E5%A2%83" class="hash-link" aria-label="Direct link to 查看或管理環境" title="Direct link to 查看或管理環境" translate="no">​</a></h2>
+<p>可使用命令 <code>conda env list</code> 查看現有的虛擬環境。</p>
+<p>不再需要此虛擬環境時，可使用命令 <code>conda env remove -n TEST</code> 移除名為 <code>TEST</code> 的環境。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="安裝套件">安裝套件<a href="https://blog.gasolin.idv.tw/python/conda#%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6" class="hash-link" aria-label="Direct link to 安裝套件" title="Direct link to 安裝套件" translate="no">​</a></h2>
+<p>有些 Python 程式建議用不同的套件管理工具如 poetry，也可以透過 <code>conda</code> 命令來安裝使用</p>
+<p><code>conda install -c conda-forge poetry</code></p>]]></content>
+        <category label="python" term="python"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python 3 超入門]]></title>
+        <id>https://blog.gasolin.idv.tw/python/try-python3</id>
+        <link href="https://blog.gasolin.idv.tw/python/try-python3"/>
+        <updated>2023-06-27T11:30:31.000Z</updated>
+        <summary type="html"><![CDATA[上週在聚會中分享學習 deeplearning.ai 推出的 ChatGPT 相關短課程的心得。（簡報在此），課程中為了介紹 ChatGPT API 的應用，使用了一些 Python 程式碼。由於預期聚會參與者對 Python 不熟悉，所以嘗試用 Google Colab 簡單的介紹 Python 3，希望能在幾分鐘內對 Python 程式的基本語法有個概念。]]></summary>
+        <content type="html"><![CDATA[<p>上週在聚會中分享學習 <a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener noreferrer" class="">deeplearning.ai</a> 推出的 ChatGPT 相關短課程的心得。（<a href="https://gasolin.idv.tw/docs/events/presentation/#2023" target="_blank" rel="noopener noreferrer" class="">簡報在此</a>），課程中為了介紹 ChatGPT API 的應用，使用了一些 Python 程式碼。由於預期聚會參與者對 Python 不熟悉，所以嘗試用 Google Colab 簡單的介紹 Python 3，希望能在幾分鐘內對 Python 程式的基本語法有個概念。</p>
+<p><a href="https://colab.research.google.com/drive/1WgODgZoY67w9Lmz6G2V-XBsqOKpY6YI_?usp=sharing" target="_blank" rel="noopener noreferrer" class="">Python 3 超入門</a> 互動式筆記在此。</p>
+<ul>
+<li class="">現在大部分人用的是 Python 3.x 版本。Mac OS 有內建。</li>
+<li class="">Google Colab 是免費的線上工具，可以拿來互動執行 Python 語言（可以裝在自己電腦上的版本叫 <a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer" class="">Jupyter</a>)</li>
+<li class="">更詳細的可以看小姐姐介紹 Python 語言為什麼適合程式入門 <a href="https://www.youtube.com/watch?v=2StGPegYHFM" target="_blank" rel="noopener noreferrer" class="">https://www.youtube.com/watch?v=2StGPegYHFM</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="第一個程式">第一個程式<a href="https://blog.gasolin.idv.tw/python/try-python3#%E7%AC%AC%E4%B8%80%E5%80%8B%E7%A8%8B%E5%BC%8F" class="hash-link" aria-label="Direct link to 第一個程式" title="Direct link to 第一個程式" translate="no">​</a></h2>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"花蓮你好"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>輸出結果：</p>
+<p><code>花蓮你好</code></p>
+<ul>
+<li class="">print（列印）語句代表將括號中的內容印出到螢幕上。</li>
+<li class="">有些關鍵字 (keyword) 在 Python 語言中有特殊的意義，如 print, if, else, for, function, class... 此外其他都可以用中文（因為所有字元都使用 Unicode 編碼）</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="變數">變數<a href="https://blog.gasolin.idv.tw/python/try-python3#%E8%AE%8A%E6%95%B8" class="hash-link" aria-label="Direct link to 變數" title="Direct link to 變數" translate="no">​</a></h2>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">X </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"花蓮"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">X </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"你好"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>輸出結果：</p>
+<p><code>花蓮你好</code></p>
+<ul>
+<li class="">除了印出固定的字串，可以透過定義變數來改變印出的內容</li>
+<li class="">和數學式一樣，左邊的是變數，= 符號右邊的是賦值</li>
+<li class="">Python 裡宣告變數只要依照直覺直接寫就行（許多程式語言要另外加各種關鍵字）</li>
+<li class="">也可以用中文命名變數</li>
+</ul>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">打招呼的對象 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"花蓮"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">打招呼的對象 </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"你好"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<ul>
+<li class="">變數除了可以是文字之外、也可以是數字、True/False (是 / 否)、列表、和其他各種 Python 支援的格式。</li>
+<li class="">等碰到再學</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="條件式執行">條件式執行<a href="https://blog.gasolin.idv.tw/python/try-python3#%E6%A2%9D%E4%BB%B6%E5%BC%8F%E5%9F%B7%E8%A1%8C" class="hash-link" aria-label="Direct link to 條件式執行" title="Direct link to 條件式執行" translate="no">​</a></h2>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> 條件成立</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  執行這邊的程式</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">else</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  執行條件不成立時的程式</span><br></span></code></pre></div></div>
+<ul>
+<li class="">if..else (如果.. 否則) 是判斷執行條件的兩個關鍵字</li>
+</ul>
+<p>範例：</p>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">活動人數 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'10'</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">有下雨嗎 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">True</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"參加本次活動的人數為 "</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> 活動人數 </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">" 人"</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">有下雨嗎</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  天氣 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"有雨 🌧️"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">else</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  天氣 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"晴 ☀️"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"今天天氣："</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> 天氣</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>輸出結果：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">參加本次活動的人數為 10 人</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">今天天氣有雨 🌧️</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="函式">函式<a href="https://blog.gasolin.idv.tw/python/try-python3#%E5%87%BD%E5%BC%8F" class="hash-link" aria-label="Direct link to 函式" title="Direct link to 函式" translate="no">​</a></h2>
+<p>關鍵字 def</p>
+<div class="language-py codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-py codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> 哈囉</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">名字</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"你好"</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> 名字</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">哈囉</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">"花蓮溪 🚣‍♂️"</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>輸出結果：</p>
+<p><code>你好花蓮溪 🚣‍♂️</code></p>]]></content>
+        <category label="python" term="python"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[目前使用的 AI 應用 (2023)]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/my-ai-2023</id>
+        <link href="https://blog.gasolin.idv.tw/tools/my-ai-2023"/>
+        <updated>2023-05-03T12:15:31.000Z</updated>
+        <summary type="html"><![CDATA[部分人可能還停留在使用ChatGPT 的網頁介面，但其實已經漸漸有些工具將 Open AI 整合進平常使用的工具中。]]></summary>
+        <content type="html"><![CDATA[<p></p>
+<p>部分人可能還停留在使用<a href="https://www.explainthis.io/zh-hant/chatgpt" target="_blank" rel="noopener noreferrer" class="">ChatGPT</a> 的網頁介面，但其實已經漸漸有些工具將 Open AI 整合進平常使用的工具中。</p>
+<p>例如 <a href="https://www.raycast.com/" target="_blank" rel="noopener noreferrer" class="">Raycast</a> 新版本，在呼叫 Raycast 視窗後，按一下 Tab 鍵就可以直接輸入要問 AI 的事情，使用的便利度又提升一個台階。</p>
+<p>以下是我目前使用的 AI 工具。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="遇事不決---取代-google-search">遇事不決 - 取代 Google Search<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E9%81%87%E4%BA%8B%E4%B8%8D%E6%B1%BA---%E5%8F%96%E4%BB%A3-google-search" class="hash-link" aria-label="Direct link to 遇事不決 - 取代 Google Search" title="Direct link to 遇事不決 - 取代 Google Search" translate="no">​</a></h3>
+<p>用 Bing 或 ChatGPT 詢問問題，在目前沒廣告干擾的狀況下，已超過 <a href="https://letmegooglethat.com/" target="_blank" rel="noopener noreferrer" class="">Let me Google That for you</a> 的水準。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="字串段落翻譯---取代-google-translate">字串 / 段落翻譯 - 取代 Google Translate<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E5%AD%97%E4%B8%B2%E6%AE%B5%E8%90%BD%E7%BF%BB%E8%AD%AF---%E5%8F%96%E4%BB%A3-google-translate" class="hash-link" aria-label="Direct link to 字串 / 段落翻譯 - 取代 Google Translate" title="Direct link to 字串 / 段落翻譯 - 取代 Google Translate" translate="no">​</a></h3>
+<p>單一詞語的翻譯 Google Translate 還是更方便，但是你可以將 json 格式文字貼到 ChatGPT，它可以直接回給你整篇同為 json 格式的翻譯，完全可以當作多語系翻譯檔的基礎。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="程式偵錯---取代-stackoverflow">程式偵錯 - 取代 Stackoverflow<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E7%A8%8B%E5%BC%8F%E5%81%B5%E9%8C%AF---%E5%8F%96%E4%BB%A3-stackoverflow" class="hash-link" aria-label="Direct link to 程式偵錯 - 取代 Stackoverflow" title="Direct link to 程式偵錯 - 取代 Stackoverflow" translate="no">​</a></h3>
+<p>在遇到疑難時，在問題前先給個簡單的提示語 <code>act as [placeholder] expert, </code>，得到的答案通常還不差。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="社群貼文---取代手動貼文">社群貼文 - 取代手動貼文<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E7%A4%BE%E7%BE%A4%E8%B2%BC%E6%96%87---%E5%8F%96%E4%BB%A3%E6%89%8B%E5%8B%95%E8%B2%BC%E6%96%87" class="hash-link" aria-label="Direct link to 社群貼文 - 取代手動貼文" title="Direct link to 社群貼文 - 取代手動貼文" translate="no">​</a></h3>
+<p>IFTTT 推出 <a href="https://ifttt.com/ai_social_creator" target="_blank" rel="noopener noreferrer" class="">AI social Creator</a>，將 Blog RSS 貼進去，選擇貼文的語氣，之後有新文章發表時，就會自動貼文到 Twitter。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="文字辨識---取代人力辨識">文字辨識 - 取代人力辨識<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E6%96%87%E5%AD%97%E8%BE%A8%E8%AD%98---%E5%8F%96%E4%BB%A3%E4%BA%BA%E5%8A%9B%E8%BE%A8%E8%AD%98" class="hash-link" aria-label="Direct link to 文字辨識 - 取代人力辨識" title="Direct link to 文字辨識 - 取代人力辨識" translate="no">​</a></h3>
+<p>使用 Mac 內建的預覽程式，打開有文字的圖片（或是 PDF 截圖），可以直接複製其中文字。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="影片字幕---取代-pytranscriber人力聽打">影片字幕 - 取代 pyTranscriber、人力聽打<a href="https://blog.gasolin.idv.tw/tools/my-ai-2023#%E5%BD%B1%E7%89%87%E5%AD%97%E5%B9%95---%E5%8F%96%E4%BB%A3-pytranscriber%E4%BA%BA%E5%8A%9B%E8%81%BD%E6%89%93" class="hash-link" aria-label="Direct link to 影片字幕 - 取代 pyTranscriber、人力聽打" title="Direct link to 影片字幕 - 取代 pyTranscriber、人力聽打" translate="no">​</a></h3>
+<p>透過 <a href="https://fdown.net/" target="_blank" rel="noopener noreferrer" class="">FDOWN</a> 或 <a href="https://www.freemake.com/tw/free_video_downloader/" target="_blank" rel="noopener noreferrer" class="">freemake</a> 下載線上影片，再用 <a href="https://goodsnooze.gumroad.com/l/macwhisper" target="_blank" rel="noopener noreferrer" class="">Macwhisper</a> 語音辨識字幕。</p>]]></content>
+        <category label="tool" term="tool"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[外派平台、外派幫手、出場詩 - 我如何看待 ChatGPT]]></title>
+        <id>https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt</id>
+        <link href="https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt"/>
+        <updated>2023-03-07T22:25:46.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT 在去年橫空出世後得到了廣泛關注，它讓一般人可以在聊天界面中，使用各種語言自然的與機器對話，並得到還不錯的回答。以前想要得到答案，需要先在搜尋網站下關鍵字找關聯網站或文章，查看內容中提取需要的關鍵資訊，再組合出需要的答案。現在則可以在 ChatGPT 中問問題，並期待直接得到解答。更少的中間步驟，更好的使用者體驗 😎。]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" src="https://blog.gasolin.idv.tw/assets/images/deliver-agent-d64e46c9a44ae3c14d027ed0e3854408.png" width="2752" height="1536" class="img_ev3q"></p>
+<p>ChatGPT 在去年橫空出世後得到了廣泛關注，它讓一般人可以在聊天界面中，使用各種語言自然的與機器對話，並得到還不錯的回答。以前想要得到答案，需要先在搜尋網站下關鍵字找關聯網站或文章，查看內容中提取需要的關鍵資訊，再組合出需要的答案。現在則可以在 ChatGPT 中問問題，並期待直接得到解答。更少的中間步驟，更好的使用者體驗 😎。</p>
+<p>作為資訊相關從業人員的我並沒有 AI 相關的工作背景，因此本文純粹就是我的瞎子摸象 🐘，以個人體驗的角度，來描述我如何理解和看待 ChatGPT。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="chatgpt一個用來呼叫各種外派幫手的外派平台">ChatGPT，一個用來呼叫各種「外派幫手」的外派平台<a href="https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt#chatgpt%E4%B8%80%E5%80%8B%E7%94%A8%E4%BE%86%E5%91%BC%E5%8F%AB%E5%90%84%E7%A8%AE%E5%A4%96%E6%B4%BE%E5%B9%AB%E6%89%8B%E7%9A%84%E5%A4%96%E6%B4%BE%E5%B9%B3%E5%8F%B0" class="hash-link" aria-label="Direct link to ChatGPT，一個用來呼叫各種「外派幫手」的外派平台" title="Direct link to ChatGPT，一個用來呼叫各種「外派幫手」的外派平台" translate="no">​</a></h2>
+<p>在我的使用經驗裡，ChatGPT 的回覆可算及格，雖然不完美，但不少回覆已經可以拿來當作基礎修改（目前還沒習慣，所以這篇還是我自己寫），已經是值得使用的工具。</p>
+<p>以前外送服務不發達，想要吃外食，多數時候得自己跑一趟。而現在會使用 Uber Eat/Food Panda App 的人，打開 App 📱 點餐，這些外送平台自然會呼叫外送員到餐廳取餐，並將你的餐點 🥡 送到指定的地點 🛵。</p>
+<p>以前只有老闆才願意聘請秘書 ㊙️ 或助理幫忙處理雜事，而現在會使用 ChatGPT 的人，就像是打開外派平台 App，呼叫外派幫手為我們提供答案。</p>
+<p>是的，在我看來，目前使用 ChatGPT 就像是使用一個外派平台。透過網頁或 App 介面，我們可以隨時透過 ChatGPT 外派平台呼叫不特定的 「外派幫手」，來幫我們處理各種找資料（研究助理）、初步的文書（編輯）、草擬文案（企劃）、翻譯（外文秘書）、提供範例程式（程式設計師）等各種事情。就像是叫外送、叫車那樣的服務。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="呼叫外派幫手的出場詩">呼叫外派幫手的出場詩<a href="https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt#%E5%91%BC%E5%8F%AB%E5%A4%96%E6%B4%BE%E5%B9%AB%E6%89%8B%E7%9A%84%E5%87%BA%E5%A0%B4%E8%A9%A9" class="hash-link" aria-label="Direct link to 呼叫外派幫手的出場詩" title="Direct link to 呼叫外派幫手的出場詩" translate="no">​</a></h2>
+<p>我們和 CHATGPT 的互動，就像是在外送平台點餐時，若能給予明確的餐廳、地點指示，就能請不特定的外送員為我們送達餐點。</p>
+<p>我們不會期待在外送平台隨意點餐後，外送員可以幫我們完成所有事情，東西有幫我送來就好。同樣的 ChatGPT 派出的外派幫手也不是無所不能，可以幫我們解決所有事情。</p>
+<p>目前已知 ChatGPT 的特性，是在問問題之前先指定他要扮演的角色，並提供一些限定條件，ChatGPT 回答的品質會明顯變好。<a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank" rel="noopener noreferrer" class="">Awesome ChatGPT Prompts</a> 上列出了許多行業角色的限定條件範例。這就像在外送平台點餐時提供越明確的需求，越有可能得到想要的結果。</p>
+<p>Prompt 中文可以翻作 「提詞」，有些人稱此為（施展魔法前的）「詠唱」。它們的作用都是讓 ChatGPT 這個外派平台，能更了解老闆（我們）這次想要找哪種類型的外派幫手，並讓外派幫手更了解我們的需求。</p>
+<p>因為 ChatGPT 這個外派平台提供了更多種類的服務範圍，即使 ChatGPT 外派平台在對話開始時，還搞不清楚我們想要什麼樣的外派幫手，只要我們向外派平台描述清楚想呼叫的外派幫手的樣子，就更能呼叫到擅長處理此類問題的外派幫手來提供答案。</p>
+<p>就使用者的角度而言，透過向外派平台吟頌特定的出場詩（題詞），我們可以更準確呼叫到對應類型的外派幫手來幫我們找答案。我傾向將這些放在一般對話前的固定台詞（PROMPT），想像成是霹靂布袋戲（或傳統戲劇）角色出場時的「出場詩」。在布袋戲中透過吟頌「半仙半聖亦半仙、全儒全道是全賢...」這樣有辨識度的出場詩，就知道這次哪個角色要出場了。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="chatgpt或-ai作為外派平台的展望">ChatGPT（或 AI），作為外派平台的展望<a href="https://blog.gasolin.idv.tw/life/how-i-treat-chatgpt#chatgpt%E6%88%96-ai%E4%BD%9C%E7%82%BA%E5%A4%96%E6%B4%BE%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%B1%95%E6%9C%9B" class="hash-link" aria-label="Direct link to ChatGPT（或 AI），作為外派平台的展望" title="Direct link to ChatGPT（或 AI），作為外派平台的展望" translate="no">​</a></h2>
+<p>這些年發展下來，生活中打電話 / App 叫外送、叫計程車都是很平常的事情。而叫外送、叫計程車，其實都可以視作特化的外派平台。目前 ChatGPT 提供了輸入需求就能用文字回應的各種職能外派幫手、Midjourney 提供了輸入需求就傳畫好的圖給你的各種風格外派繪師。在 AI 受到追捧的當下，肯定會出現更多的應用，很期待接下來的變化。</p>
+<p>過去當一些線上平台服務維修時，許多工作不得不暫停，以後當這些 AI 外派平台維修時，商業世界的運作是不是也會慢一拍呢？</p>]]></content>
+        <category label="tooling" term="tooling"/>
+        <category label="life" term="life"/>
+        <category label="llm" term="llm"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[目前使用的電腦應用程式 (2023)]]></title>
+        <id>https://blog.gasolin.idv.tw/tools/my-app-2023</id>
+        <link href="https://blog.gasolin.idv.tw/tools/my-app-2023"/>
+        <updated>2023-02-03T09:15:31.000Z</updated>
+        <summary type="html"><![CDATA[剛換新電腦 (Macbook Air M2)，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。]]></summary>
+        <content type="html"><![CDATA[<p></p>
+<p>剛換新電腦 (Macbook Air M2)，除了使用系統內建功能外，還得安裝一些便捷程式以提高使用效率。在此順道紀錄目前使用的應用程式。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="半自動安裝">半自動安裝<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E5%8D%8A%E8%87%AA%E5%8B%95%E5%AE%89%E8%A3%9D" class="hash-link" aria-label="Direct link to 半自動安裝" title="Direct link to 半自動安裝" translate="no">​</a></h2>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$ xcode-select --install</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install android-studio airpip balsamiq-wireframes brave-browser dropbox fava gnupg gnu-sed hiddenbar itsycal java logseq microsoft-edge nvm raycast recordit slack starship steam visual-studio-code yarn</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew tap microsoft/git</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ brew install git-credential-manager-core</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="設定腳本">設定腳本<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E8%A8%AD%E5%AE%9A%E8%85%B3%E6%9C%AC" class="hash-link" aria-label="Direct link to 設定腳本" title="Direct link to 設定腳本" translate="no">​</a></h3>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% # nvm 設定</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% mkdir ~/.nvm</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% code ~/.zprofile</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 加入腳本</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(/opt/homebrew/bin/brew shellenv)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Set PATH, MANPATH, etc., for Homebrew.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export NVM_DIR="$HOME/.nvm"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] &amp;&amp; \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># starship</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">eval "$(starship init zsh)"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export ANDROID_HOME=$HOME/Library/Android/sdk</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/emulator</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export PATH=$PATH:$ANDROID_HOME/platform-tools</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># find local ip</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ip(){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># kill process by port</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">kp() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  npx kill-port --port $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># apply PR to codebase</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">pr() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git fetch upstream pull/$1/head:pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  git checkout pr-$1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># list short changelog</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">changelog() {</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  echo "changelog:"</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  LANG=en_US git log --pretty=format:"* %h - %s (%ar) &lt;%an&gt;" -n $1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% source ~/.zprofile</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% nvm install 18</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% #xcode 命令行工具</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% xcode-select --install</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">% sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">     /Library/Java/JavaVirtualMachines/openjdk.jdk</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="app-store">App Store<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#app-store" class="hash-link" aria-label="Direct link to App Store" title="Direct link to App Store" translate="no">​</a></h2>
+<ul>
+<li class="">Transporter：👨‍💻 App 上傳工具</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="其他應用">其他應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E5%85%B6%E4%BB%96%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to 其他應用" title="Direct link to 其他應用" translate="no">​</a></h3>
+<ul>
+<li class=""><a href="https://www.pcloud.com/" target="_blank" rel="noopener noreferrer" class="">pCloud</a>：備用的快速備份資料夾，一次付清後有 2TB 空間，目前拿來備份 Dropbox 資料夾。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="我到底裝了什麼">我到底裝了什麼<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E6%88%91%E5%88%B0%E5%BA%95%E8%A3%9D%E4%BA%86%E4%BB%80%E9%BA%BC" class="hash-link" aria-label="Direct link to 我到底裝了什麼" title="Direct link to 我到底裝了什麼" translate="no">​</a></h2>
+<p>這麼多的程式可以被分為系統增強、工作、生活相關幾類：</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統增強">系統增強<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E7%B3%BB%E7%B5%B1%E5%A2%9E%E5%BC%B7" class="hash-link" aria-label="Direct link to 系統增強" title="Direct link to 系統��增強" translate="no">​</a></h3>
+<ul>
+<li class="">homebrew：所有可以透過 <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer" class="">homebrew</a> 安裝的程式，都應透過 homebrew 安裝。</li>
+<li class="">airpip：每日自動將桌布換成另一幅畫或照片</li>
+<li class="">brave-browser：🌐 主要使用的瀏覽器
+<ul>
+<li class="">重新整理目前的網頁：<code>command + r</code> (+ shift 完整重新整理)</li>
+<li class="">關閉目前分頁：<code>command + w</code></li>
+<li class="">開新分頁：<code>command + t</code></li>
+<li class="">回到上一頁：<code>command + 左方向鍵</code></li>
+</ul>
+</li>
+<li class="">microsoft-edge: 🌐 💬 用來開 chatgpt /new bing 搜尋</li>
+<li class="">dropbox：快速備份資料夾（空間 15.x GB）</li>
+<li class=""><a href="https://github.com/dwarvesf/hidden" target="_blank" rel="noopener noreferrer" class="">hiddenbar</a>：隱藏多餘的狀態列圖示
+<ul>
+<li class=""><code>在狀態列圖示上按著 cmd 鍵可以拖曳改變順序</code></li>
+</ul>
+</li>
+<li class="">itsycal：📅 狀態列日曆</li>
+<li class="">raycast：透過鍵盤快速啟動工具
+-（<a href="https://manual.raycast.com/hotkey" target="_blank" rel="noopener noreferrer" class="">取代 spotlight</a>）用 <code>Command + 空白鍵</code> 啟動。
+<ul>
+<li class="">取代系統內建的 <a href="https://www.raycast.com/changelog/1-29-0" target="_blank" rel="noopener noreferrer" class="">emoji keyboard</a>，在 Extentions &gt; Search Emoji 綁定 <code>Control + Command</code> 快捷鍵。</li>
+<li class="">取代 rectangle 安排視窗位置，在 <code>Extentions &gt; Window Management</code> 綁定 <code>Option + Command + 方向鍵</code> 快捷鍵。</li>
+<li class="">snippets 綁定 <code>Option + /</code> 快捷鍵，儲存預先定義的 gpt prompts 外派幫手。</li>
+</ul>
+</li>
+<li class="">recordit：螢幕錄製工具</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="工作">工作<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%EF%BF%BD%E5%B7%A5%E4%BD%9C" class="hash-link" aria-label="Direct link to 工作" title="Direct link to 工作" translate="no">​</a></h3>
+<ul>
+<li class="">android-studio：Android 開發環境</li>
+<li class="">balsamiq-wireframes：👨‍💻 mockup 工具</li>
+<li class="">git-credential-manager-core：👨‍💻 <a href="https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#git-credential-manager" target="_blank" rel="noopener noreferrer" class="">搭配 github 使用</a></li>
+<li class="">gnupg：👨‍💻 <a href="https://tourcoder.com/gpg-on-macos/" target="_blank" rel="noopener noreferrer" class="">加密工具</a>(Pretty Good Privacy)，我用來簽署 git commit</li>
+<li class="">gnu-sed：👨‍💻 命令行字串取代工具</li>
+<li class="">java：👨‍💻 跑一些程式用</li>
+<li class="">nvm：👨‍💻 Node 版本管理工具
+<ul>
+<li class="">透過 <code>nvm install 16</code> 可以安裝最新版的 Nodejs 16.x，透過 <code>nvm ls-remote</code> 可以查看已安裝的版本</li>
+</ul>
+</li>
+<li class="">slack：👨‍💻 溝通工具</li>
+<li class="">starship：👨‍💻 命令行高亮提示</li>
+<li class="">visual-studio-code：👨‍💻 程式編輯工具
+<ul>
+<li class="">用 <code>CMD + J</code> 命令可以在編輯模式與內建的 Terminal 工具之間切換。</li>
+<li class="">用 <code>CMD + B</code> 命令可以開關側邊欄。</li>
+</ul>
+</li>
+<li class="">yarn：👨‍💻 node 套件管理工具</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="生活">生活<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E7%94%9F%E6%B4%BB" class="hash-link" aria-label="Direct link to 生活" title="Direct link to 生活" translate="no">​</a></h3>
+<ul>
+<li class="">fava: beancount 文字記帳視覺化</li>
+<li class="">logseq：每日記事工具，記事是用 markdown 格式儲存，放在 Dropbox 資料夾中</li>
+<li class="">steam: 遊戲管理工具</li>
+</ul>
+<hr>
+<p>除了應用程式之外，電腦上還會裝瀏覽器插件、Raycast 插件、與編輯器插件。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="瀏覽器插件">瀏覽器插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E7%80%8F%E8%A6%BD%E5%99%A8%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to 瀏覽器插件" title="Direct link to 瀏覽器插件" translate="no">​</a></h2>
+<ul>
+<li class="">Bitwarden：密碼管理工具</li>
+<li class="">Browserflow：半自動網頁爬蟲</li>
+<li class="">Pocket：📰 稍後閱讀</li>
+<li class="">Youtube 雙字幕：可同時顯示</li>
+<li class="">電子錢包：👛 Metamask、Tally Ho</li>
+</ul>
+<p>分頁使用瀏覽器內建的分頁群組功能</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="raycast-插件">Raycast 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#raycast-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Raycast 插件" title="Direct link to Raycast 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Google Translate</li>
+<li class="">Visual Studio Recent Projects</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="visual-studio-code-插件">Visual Studio Code 插件<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#visual-studio-code-%E6%8F%92%E4%BB%B6" class="hash-link" aria-label="Direct link to Visual Studio Code 插件" title="Direct link to Visual Studio Code 插件" translate="no">​</a></h2>
+<ul>
+<li class="">Background Terminal Notifier：命令執行後跳系統通知</li>
+<li class="">Beancount：Beancount 格式補完</li>
+<li class="">Blank Line at the End：檔尾自動加入空白行</li>
+<li class="">Color Info：行內 CSS 顏色顯示 / 選擇器</li>
+<li class="">EditorConfig for VSCode</li>
+<li class="">ESLint：程式碼樣式檢查</li>
+<li class="">Indent-rainbow: 快速辨識不同層的括號</li>
+<li class="">Path Intellisense：改進檔案路徑搜尋</li>
+<li class="">Trailing Spaces：去除行尾的空白。</li>
+<li class="">Version Lens: 快速檢查 package.json 檔案中套件是否有更新的版本</li>
+<li class="">WakaTime：紀錄使用編輯器的時間</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-應用">Web 應用<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#web-%E6%87%89%E7%94%A8" class="hash-link" aria-label="Direct link to Web 應用" title="Direct link to Web 應用" translate="no">​</a></h2>
+<ul>
+<li class="">✉️ 信箱：gmail</li>
+<li class="">🗺️ 地圖：Google 地圖</li>
+<li class="">👥 社群：<a href="https://twitter.com/gasolin" target="_blank" rel="noopener noreferrer" class="">Twitter</a>、<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="">Facebook</a>、Telegram、Discord</li>
+<li class="">📝 記事：<a href="http://keep.google.com/" target="_blank" rel="noopener noreferrer" class="">Google keep</a>, Google Doc</li>
+<li class="">待辦事項：<a href="https://habitica.com/" target="_blank" rel="noopener noreferrer" class="">habitica</a></li>
+<li class="">🔐 密碼管理：Bitwarden，Yubi Authenticator（2 步驟認證）</li>
+<li class="">相簿：Google Photo、Dropbox</li>
+<li class="">📺 線上影片： Youtube、Netflix</li>
+<li class="">🎥 觀影記錄：</li>
+<li class="">線上學習：PressPlay</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-服務">Web 服務<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#web-%E6%9C%8D%E5%8B%99" class="hash-link" aria-label="Direct link to Web 服務" title="Direct link to Web 服務" translate="no">​</a></h2>
+<ul>
+<li class="">🗂️ 個人網站：<a href="http://www.gasolin.idv.tw/" target="_blank" rel="noopener noreferrer" class="">個人網站</a>、<a href="https://github.com/gasolin/blog/" target="_blank" rel="noopener noreferrer" class="">Github</a>、<a href="https://www.linkedin.com/in/fredglin/" target="_blank" rel="noopener noreferrer" class="">Linkedin</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="系統內建快速鍵和手勢">系統內建快速鍵和手勢<a href="https://blog.gasolin.idv.tw/tools/my-app-2023#%E7%B3%BB%E7%B5%B1%E5%85%A7%E5%BB%BA%E5%BF%AB%E9%80%9F%E9%8D%B5%E5%92%8C%E6%89%8B%E5%8B%A2" class="hash-link" aria-label="Direct link to 系統內建快速鍵和手勢" title="Direct link to 系統內建快速鍵和手勢" translate="no">​</a></h3>
+<ul>
+<li class="">切換輸入法：<code>Control + 空白鍵</code></li>
+<li class="">切換程式：<code>command + tab</code></li>
+<li class="">切換虛擬桌面： 用三指在觸控板上同時向左或右撥動，或 <code>Control + 方向鍵</code></li>
+</ul>]]></content>
+        <category label="tool" term="tool"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我的工具箱]]></title>
+        <id>https://blog.gasolin.idv.tw/life/mylifetools</id>
+        <link href="https://blog.gasolin.idv.tw/life/mylifetools"/>
+        <updated>2023-01-19T16:52:31.000Z</updated>
+        <summary type="html"><![CDATA[我的工具箱裡包含各種日常攜帶品(EDC) 與 日常服務(EDS)，這邊整理了我目前和過去使用的工具紀錄。]]></summary>
+        <content type="html"><![CDATA[<p>我的工具箱裡包含各種<a class="" href="https://blog.gasolin.idv.tw/life/edc-2021-11">日常攜帶品 (EDC)</a> 與 <a class="" href="https://blog.gasolin.idv.tw/life/edc-eds">日常服務 (EDS)</a>，這邊整理了我目前和過去使用的工具紀錄。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="日常服務-every-day-service">日常服務 (Every Day Service)<a href="https://blog.gasolin.idv.tw/life/mylifetools#%E6%97%A5%E5%B8%B8%E6%9C%8D%E5%8B%99-every-day-service" class="hash-link" aria-label="Direct link to 日常服務 (Every Day Service)" title="Direct link to 日常服務 (Every Day Service)" translate="no">​</a></h2>
+<ul>
+<li class=""></li>
+<li class="">目前使用的電腦應用程式 <a class="" href="https://blog.gasolin.idv.tw/tools/my-app-2024">2024</a> <a class="" href="https://blog.gasolin.idv.tw/tools/my-app-2023">2023</a></li>
+<li class="">目前使用的 AI 應用 <a class="" href="https://blog.gasolin.idv.tw/tools/my-ai-2023">2023</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="日常自動化">日常自動化<a href="https://blog.gasolin.idv.tw/life/mylifetools#%E6%97%A5%E5%B8%B8%E8%87%AA%E5%8B%95%E5%8C%96" class="hash-link" aria-label="Direct link to 日常自動化" title="Direct link to 日常自動化" translate="no">​</a></h2>
+<ul>
+<li class="">我如何做個人自動化紀錄 <a class="" href="https://blog.gasolin.idv.tw/life/personal-automation-in-2021">2021</a>、<a class="" href="https://blog.gasolin.idv.tw/life/personal-automation-in-2020">2020</a>、<a class="" href="https://blog.gasolin.idv.tw/life/personal-automation-in-2018">2018</a>、<a class="" href="https://blog.gasolin.idv.tw/life/personal-automation-in-2017">2017</a></li>
+<li class=""></li>
+<li class=""></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="家用品">家用品<a href="https://blog.gasolin.idv.tw/life/mylifetools#%E5%AE%B6%E7%94%A8%E5%93%81" class="hash-link" aria-label="Direct link to 家用品" title="Direct link to 家用品" translate="no">​</a></h2>
+<ul>
+<li class="">這一年的<del>敗家</del>投資 <a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2025">2025</a>、<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2024">2024</a>、<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2023">2023</a>、<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2022">2022</a>、<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2021">2021</a>、<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2020">2020</a></li>
+<li class="">個人工具箱 <a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2025-Apr">2025-4</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2024-Mar">2024-3</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2021-Dec">2021-12</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2021-May">2021-5</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2020-Nov">2020</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Nov">2019-11</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2019-Mar">2019-3</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-jun">2018-6</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2018-feb">2018-2</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017-sep">2017-9</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2017">2017</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2016">2016</a>、<a class="" href="https://blog.gasolin.idv.tw/tools/tooling-in-2011">2011</a></li>
+<li class=""></li>
+<li class=""></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="外出攜帶">外出攜帶<a href="https://blog.gasolin.idv.tw/life/mylifetools#%E5%A4%96%E5%87%BA%E6%94%9C%E5%B8%B6" class="hash-link" aria-label="Direct link to 外出攜帶" title="Direct link to 外出攜帶" translate="no">​</a></h2>
+<ul>
+<li class=""></li>
+</ul>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[這一年的投資 (2022)]]></title>
+        <id>https://blog.gasolin.idv.tw/life/my-investment-2022</id>
+        <link href="https://blog.gasolin.idv.tw/life/my-investment-2022"/>
+        <updated>2023-01-19T15:15:31.000Z</updated>
+        <summary type="html"><![CDATA[遠端工作四年多，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的敗家投資。]]></summary>
+        <content type="html"><![CDATA[<p>遠端工作四年多，少了通勤，卻多了一些時間可以出門走走。且隨著世界的變化，未來的趨勢，我也開始嘗試許多不同的<del>敗家</del>投資。</p>
+<p>雖然以下內容看似都是在花錢，但內在的邏輯是：身邊圍繞著自己喜歡的人事物，讓你每次接觸時都感到愉悅。常保身心健康也是對自己，對家人最好的投資。</p>
+<p>此外，我覺得並不是買下來的東西才是投資。
+有些東西你沒有購買，但是你也投資了充足的時間去研究，查看，最後得出不購買的決定。
+這些都是投資的過程。</p>
+<p>上年度的回顧直接更新在<a class="" href="https://blog.gasolin.idv.tw/life/my-investment-2021">這一年的投資 (2021)</a>。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資我的工具箱">投資我的工具箱<a href="https://blog.gasolin.idv.tw/life/my-investment-2022#%E6%8A%95%E8%B3%87%E6%88%91%E7%9A%84%E5%B7%A5%E5%85%B7%E7%AE%B1" class="hash-link" aria-label="Direct link to 投資我的工具箱" title="Direct link to 投資我的工具箱" translate="no">​</a></h2>
+<blockquote>
+<p>從網上買了 2021 版 iPad 10" 5⭐️</p>
+</blockquote>
+<p>原來的 iPad 被小朋友弄爆了，買來平替。iPad 改用 USB C 插頭後，手邊已經沒有使用 Lightning 線的設備。</p>
+<blockquote>
+<p>訂閱飽讀一年期 4⭐️</p>
+</blockquote>
+<p>趁打折時購入，有不少書籍，但雜誌更多。如果有喜歡的雜誌在裡面，每個月看就回本了。我還是更喜歡看書。</p>
+<blockquote>
+<p>從 PUBU 上買了 BOOX Nova Air C 4⭐️</p>
+</blockquote>
+<p>7"8 吋彩色電子紙，能用 Google Play 安裝 App，滿足了我的夢想。
+用來讀 PDF、EPUB、或是儲存到 Pocket 中的文章都很稱職。</p>
+<blockquote>
+<p>從網上買了 8BitDo PRO2 藍牙手把</p>
+</blockquote>
+<p>復古超任配色，類似 PS 手把的形式，手感很好。雖然我玩遊戲的次數不多，但看到它能勾起玩心，讓生活更有意思。</p>
+<blockquote>
+<p>從 Komodo 上預購了 Steam Deck 512G 4⭐️</p>
+</blockquote>
+<p>意識到自己其實不太玩遊戲，但和其他宅宅一樣有一堆 Steam 收藏，
+於是訂購成功 Steam Deck 後，也把生灰的 Switch 處理掉。
+同樣是擺著，但「這台機器可以跑 Linux 桌面喔」，想到也開心。</p>
+<p>2024 更新：已賣出。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資工作生產力">投資工作生產力<a href="https://blog.gasolin.idv.tw/life/my-investment-2022#%E6%8A%95%E8%B3%87%E5%B7%A5%E4%BD%9C%E7%94%9F%E7%94%A2%E5%8A%9B" class="hash-link" aria-label="Direct link to 投資工作生產力" title="Direct link to 投資工作生產力" translate="no">​</a></h2>
+<blockquote>
+<p>訂閱 Tabnine Pro 5⭐️</p>
+</blockquote>
+<p>趁黑色星期五特惠訂閱一年期，Tabnine 是和 Github copilot 類似的程式碼自動補完工具，但程式不需先送到雲端分析以產生建議。使用 Tabnine 等工具可以更快速的輸入預期的程式碼。</p>
+<blockquote>
+<p>從 蝦皮 上買了 羅技 Lift 滑鼠 5⭐️</p>
+</blockquote>
+<p>Lift 滑鼠讓手腕不需旋轉就可以操作滑鼠，在家使用還是蠻香的。</p>
+<blockquote>
+<p>從 蝦皮 上買了 REMAX 多用途線材 4⭐️</p>
+</blockquote>
+<p>薄圓餅型的盒子收納了一條雙頭 USB C 短線材、USB 母頭、Lightning 轉接器
+、Micro USB 轉接器，SIM 卡針、SIM 卡 / SD 卡收納槽。</p>
+<p>便宜的價格，備著總有用到的時候。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資家人的共同記憶">投資家人的共同記憶<a href="https://blog.gasolin.idv.tw/life/my-investment-2022#%E6%8A%95%E8%B3%87%E5%AE%B6%E4%BA%BA%E7%9A%84%E5%85%B1%E5%90%8C%EF%BF%BD%E8%A8%98%E6%86%B6" class="hash-link" aria-label="Direct link to 投資家人的共同記憶" title="Direct link to 投資家人的共同記憶" translate="no">​</a></h2>
+<blockquote>
+<p>在居住地 買了預售屋？⭐️</p>
+</blockquote>
+<p>因為長居需求，在年初買房。過幾年再看是不是合理的投資。</p>
+<blockquote>
+<p>在網上買了 Molokai MiniMax 11'6 吋立槳板 4.5⭐️</p>
+</blockquote>
+<p>不像一般充氣式槳版收納，需要裝進像是聖鬥士聖衣的超大袋子。MiniMax 系列可以將若大的槳板收納進 40 升的「小」袋中，整體的重量也控制在 10 公斤左右，可以背著騎機車前往。帶著槳版划遍溪河、潭、海。在平靜水域多載兩個小朋友也能勝任，目前使用相當滿意。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="投資健康">投資健康<a href="https://blog.gasolin.idv.tw/life/my-investment-2022#%E6%8A%95%E8%B3%87%E5%81%A5%E5%BA%B7" class="hash-link" aria-label="Direct link to 投資健康" title="Direct link to 投資健康" translate="no">​</a></h2>
+<p>今年除了繼續爬一些小山，後半年也開始接觸水上活動，也陸續添購了一些水上裝備。</p>
+<blockquote>
+<p>在戶外商店 買了折疊登山杖 4⭐️</p>
+</blockquote>
+<p>今年小朋友跟著爬了幾次山，需要額外的登山杖。
+原本先在網上買到 Nature Hike 的折疊登山杖，初次使用時有一邊的快扣故障，而且登山杖的握把相比起來頗糙，廠商很爽快的接受退貨並退款。</p>
+<p>後到附近的戶外商店買了犀牛的折疊登山杖 x2。品質尚可，爬完可以完全收納在背包中的感覺，比較開心。</p>
+<p>2023 更新：多數時候我確實更願意選擇帶折疊登山杖。</p>
+<blockquote>
+<p>在蝦皮買了 折疊鴨舌帽 5⭐️</p>
+</blockquote>
+<p>折疊鴨舌帽相當輕便，可以 3 折後收在隨身小包或口袋中。還可以遮擋細雨，實屬必帶的裝備。
+我選擇帶有頸繩的款式，即使掉下水時，帽子也不會弄丟。</p>
+<p>鴨舌帽上還有扣子，可以扣上附帶的布片，保護後頸不被曬傷（穿戴的所需的恥力較高，較少用）。</p>
+<blockquote>
+<p>在蝦皮買了 夾帽式太陽眼鏡 5⭐️</p>
+</blockquote>
+<p>對於眼鏡一族來說，需要改配隱形眼鏡，才能戴一般有眼鏡架的太陽眼鏡。不然就是配有度數的鏡片。</p>
+<p>「既然在有太陽曝曬的時候都會戴著帽子，那直接將太陽眼鏡片夾在上面不就好了？」
+看到這產品時就覺得很符合我的想法。它的鏡片是夾在帽簷兩側根部，即使戴著眼鏡也不影響使用。</p>
+<p>因為少了鏡架，攜帶重量上也很讓人滿意。</p>
+<p>2023 更新：漂溪時折疊鴨舌帽和夾帽式太陽眼鏡一起噴掉了 😵</p>
+<blockquote>
+<p>在蝦皮買了 多用途雨衣 5⭐️</p>
+</blockquote>
+<p>這簡易雨披主要是一片布，可以當作<code>地墊</code>使用。
+其上加了雨衣頭部的部分，穿上後在腋下有魔鬼氈，可以黏起來當<code>雨衣</code>使用。
+反面有銀色反光，可在山上緊急保暖用。</p>
+<blockquote>
+<p>在運動用品店買了 Aropec 3mm 防寒衣 4 -&gt; 3⭐️</p>
+</blockquote>
+<p>為了 SUP 漂溪買了台灣品牌的防寒衣，使用上相當安心，只是有點擔心 3mm 在台灣能派上用場的時段，另外穿脫也比較麻煩，若不潛水的話，以後會考慮二截式的。</p>
+<p>2023 更新：一年來大概使用 5 次，可能買 1.5 mm 的已足供多數水上運動使用。</p>
+<blockquote>
+<p>在運動用品店買了 Aropec 溯溪用救生衣 4⭐️</p>
+</blockquote>
+<p>前開式拉鍊的救生衣，使用時的感覺不錯。對於立槳運動來說掉到水裡的機率不是很高，攜帶時仍偏大件。如果要換裝備時會考慮更加簡單輕便的款式。</p>
+<p>2023 更新：有看到背後能放水袋的救生衣（跑步背心的概念），可能更適合 SUP 運動使用。</p>]]></content>
+        <category label="life" term="life"/>
+    </entry>
+</feed>
