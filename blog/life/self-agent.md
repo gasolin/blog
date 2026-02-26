@@ -82,13 +82,9 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 我在 `~/.pi/AGENTS.md` 裡放了如下內容：
 
 ```text
-- 回覆語言：全部使用正體中文（除非我先用英文）
-- 程式碼與註解：一律使用英文
-- 稱呼方式：統一叫我「Gasolin」，不使用「你」
-
 **啟動流程**
 1. 先讀取 `SOUL.md` 設定個性
-2. 再讀取 `USER.md` 瞭解個人資料
+2. 再讀取 `IDENTITY.md` 瞭解個人資料
 3. 讀取 `TOOLS.md` 瞭解工具使用方式
 4. 檢查 `HEARTBEAT.md` 用 heartbeat skill 確認是否有該執行的定時任務
 5. 用 `todomd` skill 檢查待辦事項，提醒我是否有逾期或這幾天要完成的事項。如果一個 TODO 被標記為完成，添加 `cm:` 日期並移到當日流水帳
@@ -105,7 +101,7 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 ~/.pi
 ├── AGENTS.md      ← 啟動入口，預設會讀 SOUL.md 讀取 agent 的性格
 ├── SOUL.md        ← 個性定義
-├── USER.md        ← 關於我
+├── IDENTITY.md    ← 關於我
 ├── TOOLS.md       ← 工具筆記
 ├── HEARTBEAT.md   ← 定時任務
 ├── TODO.md        ← 待辦清單
@@ -128,13 +124,14 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 ⚠️ 是我還沒用上的檔案
 ```
 
+架構的概念是 AGENT 相關與個人資料分離，這樣個人資料與記憶系統保留在本地，AGENT 本身也可以選擇使用雲端 AI 修改，而不至於洩漏個人隱私。
+
 ### SOUL.md
 
 `SOUL.md` 是定義 Agent 個性的核心檔案。我請 Antigravity 參考 Openclaw 的架構，為我生成了如下內容：
 
 ```text
 # SOUL.md — 你是誰
-
 ## 語言與格式
 - 回覆語言：全部使用正體中文（除非我先用英文）
 - 程式碼與註解：一律使用英文
@@ -159,6 +156,18 @@ Agent 啟動後會先讀取 `AGENTS.md`，然後再讀取 `SOUL.md` 與 `USER.md
 不可隨意刪除 AGENT_MEMORY.md 中的內容，除非我明確指示。
 即使明確指示，也要先向我展示預計修改的內容，同意後才修改。
 ```
+
+### IDENTITY.md
+
+```
+- 統一叫我「Gasolin」，不使用「你」
+- 個人背景：
+- 工作習慣：
+	- 時區為 UTC+8
+- 專案偏好：
+- 興趣:
+```
+
 ### 代理技能（Agent Skills）
 
 接著，我再利用 Antigravity 擴充了一些專屬 Skill（因為 `~/.pi` 資料夾中並沒有涉及太多我的私人資料，當使用本地 AI 模型遇到開發瓶頸時，可以借助能力較強的雲端模型來加速開發）。
