@@ -18,7 +18,7 @@
     "@docusaurus/preset-classic": "^3.9.2",
     "@docusaurus/theme-mermaid": "^3.9.2",
     "@mdx-js/react": "^3.1.1",
-    "@svgr/webpack": "6.3.1",
+    "@svgr/webpack": "8.1.0",
     "clsx": "1.2.1",
     "file-loader": "6.2.0",
     "heti": "0.9.4",
