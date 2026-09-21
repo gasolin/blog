@@ -55,7 +55,7 @@ date: 2025-09-23 10:35:31
 
 非常輕便 (200g)，使用鈕扣電池供電。讓我願意偶而帶出門的重量。
 
-> Mac Studio M4 4⭐
+> Mac Studio M4 Max 4⭐
 
 直上 128 GB 版本，可以順暢執行 GPT-OSS-120b。搭配 Claude Code/Claude Code Router 使用，得以輔助一些程式設計的工作，也不用擔心程式碼外洩的問題。
 
