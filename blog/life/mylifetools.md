@@ -30,4 +30,4 @@ date: 2023-01-19 16:52:31
 
 ## 外出攜帶
 
-- [拿筆電到戶外工作](life/work-outdoor-with-nb.md)
+- [拿筆電到戶外工作](life/work-outdoor-with-nb.md)、[拿筆電到戶外工作II](life/work-outdoor-with-nb-ii.md)
