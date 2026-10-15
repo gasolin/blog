@@ -2,7 +2,7 @@
 title: 這一年的投資 (2026)
 tags:
   - life
-date: 2025-09-21 12:00:31
+date: 2026-09-21 12:00:31
 ---
 
 ![](/img/posts/life/2025_invest.png)
