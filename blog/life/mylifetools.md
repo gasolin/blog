@@ -5,14 +5,16 @@ tags:
 date: 2023-01-19 16:52:31
 ---
 
-我的工具箱裡包含各種[日常攜帶品(EDC)](life/edc-2021-11.md) 與 [日常服務(EDS)](life/edc-eds.md)，這邊整理了我目前和過去使用的工具紀錄。
+我的工具箱裡包含：
+- [日常攜帶品(EDC)](life/edc-2021-11.md)
+- [日常服務(EDS)](life/edc-eds.md)
 
 <!-- truncate -->
 
 ## 日常服務 (Every Day Service)
 
 - [保護你的帳號安全 - 使用密碼管理軟體](life/password_manager.md)
-- 目前使用的電腦應用程式 [2024](tools/my-app-2024.md) [2023](tools/my-app-2023.md)
+- 目前使用的電腦應用程式 [2025](tools/my-app-2025.md) [2024](tools/my-app-2024.md) [2023](tools/my-app-2023.md)
 - 目前使用的 AI 應用 [2023](tools/my-ai-2023.md)
 
 ## 日常自動化
