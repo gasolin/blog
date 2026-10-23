@@ -5,9 +5,7 @@ tags:
 date: 2023-01-19 16:52:31
 ---
 
-我的工具箱裡包含：
-- [日常攜帶品(EDC)](life/edc-2021-11.md)
-- [日常服務(EDS)](life/edc-eds.md)
+我的工具箱裡包含[日常攜帶品(EDC)](life/edc-2021-11.md) 與 [日常服務(EDS)](life/edc-eds.md)。
 
 <!-- truncate -->
 
