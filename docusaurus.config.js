@@ -79,7 +79,7 @@ const config = {
     ],
   ],
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: ['docusaurus-theme-pele'],
 
 
   themeConfig:
@@ -167,6 +167,9 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      pele: {
+        zoom: 'auto',
       },
     }),
 };
