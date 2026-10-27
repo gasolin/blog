@@ -11,9 +11,9 @@ date: 2026-10-27 15:30:00
 
 ## 主要裝備
 
-* :computer:Apple Macbook Pro 13 M2 16GB RAM, 512GB SSD，作業系統：26.6.2
+* :computer: Apple Macbook Pro 13 M2 16GB RAM, 512GB SSD，作業系統：26.6.2
 
-* :iphone:Google Pixel 10, Android 17, 6.1"
+* :iphone: Google Pixel 10, Android 17, 6.1"
 
 * :headphones: Pixel Bud Pro 2
 * U2F(兩步驟驗證): Ubikey 5 NFC, Ledger Stax
@@ -24,39 +24,39 @@ date: 2026-10-27 15:30:00
 
 ## 🚶‍♂️ 外出攜帶
 
-* :computer:筆電, :iphone:手機, OriMouse 折疊滑鼠
+* :computer: 筆電, :iphone: 手機, OriMouse 折疊滑鼠
 * :electric_plug:  30W 行動電源(10000mAh) + 30W 充電器
 * :headphones: 降噪耳機
 
 用 30W 行動電源 + 30W 卡片充電器，在出門的行程中可以保持電腦的電量。停留的地點有插座的時候，也可以插上充電器為筆電供電。
 
-### :house:家
+### :house: 家
 
 * :electric_plug: Apple 雙 USB C 電源插座，雙孔固定式 30W 充電器。
 * 🖱 羅技 Lift 滑鼠
-* :package:Synology NAS: 電影，影集，照片，資料備份, Dropbox, Google Photos
+* :package: Synology NAS: 電影，影集，照片，資料備份, Dropbox, Google Photos
 
-### :spider_web:網站工具
+### :spider_web: 網站工具
 
-* :spider_web:主要瀏覽器：`Brave`
+* :spider_web: 主要瀏覽器：`Brave`
 * 瀏覽器插件
   - 密碼管理：Bitwarden
   - 分頁管理：瀏覽器內建的群組分類（分 Work, idv, gov 三類）
 * 瀏覽器常駐分頁
-  - :email:[GMail](http://mail.google.com/),
+  - :email: [GMail](http://mail.google.com/),
   - ✅待辦事項：[Habitica](https://habitica.com/)
 
-* :busts_in_silhouette:主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
-* :memo:記事：Obsidian, Keet
-* :floppy_disk:網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片、LocalSend
+* :busts_in_silhouette: 主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
+* :memo: 記事：Obsidian, Keet
+* :floppy_disk: 網路硬碟：[Dropbox](http://www.dropbox.com/), 主要用作同步照片、LocalSend
 * 🔑密碼管理：[Bitwarden](https://www.bitwarden.com/)
-* :movie_camera:看電影記錄：[Simkl](https://simkl.com/)
+* :movie_camera: 看電影記錄：[Simkl](https://simkl.com/)
 * 看書紀錄 Logseq, [goodreads](https://www.goodreads.com/)
-* :card_index_dividers:個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
-* :card_index_dividers:個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
-* :tv:[Youtube](https://www.youtube.com/)
+* :card_index_dividers: 個人網站：[個人網站](http://www.gasolin.idv.tw), [Github](https://github.com/gasolin/blog/)
+* :card_index_dividers: 個人履歷：[Linkedin](https://www.linkedin.com/in/fredglin/)
+* :tv: [Youtube](https://www.youtube.com/)
 * Podcast：Youtube Music
-* :purse:電子錢包 Metamask, [Ledger Nano S+](crypto/setup_ledger_nano_on_linux.md)
+* :purse: 電子錢包 Metamask, [Ledger Nano S+](crypto/setup_ledger_nano_on_linux.md)
 
 最大的改變是不在用 n8n，只偶而用 Folo 看看 RSS。
 用 Obsidian 取代 logseq，主要原因是因為某次自動更新到 2.x 後，Logseq 改用資料庫存放，與我的要求相悖。
@@ -87,19 +87,19 @@ Snapzy、SayIt 是今年找到的有用工具。Snapzy 取代系統截圖與編�
 
 編輯器主力改用 zed，似乎比 VSCode 稍微快一點，但其實 Cursor 寫的 Code 已經比我手寫的多了 🤭
 
-## :iphone:Android 手機應用
-* :spider_web:瀏覽器：Brave
-* :newspaper:閱讀：Hyread, Pubu, MooRead
-* :email:信箱：Gmail
-* :world_map:地圖：Google地圖
+## :iphone: Android 手機應用
+* :spider_web: 瀏覽器：Brave
+* :newspaper: 閱讀：Hyread, Pubu, MooRead
+* :email: 信箱：Gmail
+* :world_map: 地圖：Google地圖
 * 記事：Obsidian, Keet
 * 日曆：Google 日曆
 * 待辦事項：Habitica, Obsidian
 * 內建相機, 內建時鐘
 * 相簿：內建相簿, Google相簿, Dropbox
 * 社交：LINE, Facebook, Twitter(網頁版), Keet
-* :closed_lock_with_key:密碼管理：Bitwarden，Yubi Authenticator（2步驟認證）
-* :tv:線上影片：Youtube, Netflix
+* :closed_lock_with_key: 密碼管理：Bitwarden，Yubi Authenticator（2步驟認證）
+* :tv: 線上影片：Youtube, Netflix
 * 音樂：Youtube Music
 * 🚶‍♂️ 健康：Amazfit Balance 2 運動手錶 + Zepp
 * 遊戲：steam
