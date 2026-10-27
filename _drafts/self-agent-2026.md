@@ -125,6 +125,38 @@ Hermes 會用 defuddle 抓頁面內容，然後用繁體中文解釋重點。這
 
 這套工作方式的好處是：**思考的門檻變低了**。看到不懂的東西，不用切換到瀏覽器開新分頁，直接在對話裡問。Agent 的記憶層會記住我之前問過什麼，所以可以累積理解。
 
+### CodeGraph：把程式碼變成可查詢的知識圖譜
+
+十月開始實驗 [CodeGraph](https://github.com/colbymchenry/codegraph)——一個輕量的本地程式碼分析工具，用 SQLite + FTS 把程式碼的符號（function、class、variable）和引用關係建成交叉索引。
+
+跟 grep 的差別在於：grep 找的是**文字**，CodeGraph 找的是**語意**。問「誰呼叫了 `parseOrder`？」不用猜 pattern，直接查呼叫圖。
+
+實際用途：
+
+- **改 POStand 時**：改一個 function 之前，先查它的 caller graph，避免改完才發現三個地方都依賴
+- **跨 repo 追蹤**：Blog 和 POStand 之間有共用的 theme token 邏輯，CodeGraph 一次掃描就能畫出依賴
+- **AI 輔助重構**：把 caller graph 餵給本地 Qwen3.8，讓它建議哪些地方可以合併、哪些變數可以內联
+
+安裝很簡單：
+
+```bash
+# 初始化（掃描 repo，建 SQLite 索引）
+codegraph init /path/to/repo
+
+# 查符號
+codegraph query "parseOrder"
+
+# 查呼叫者
+codegraph callers parseOrder
+
+# 查被呼叫者
+codegraph callees parseOrder
+```
+
+索引是增量更新的，改完檔案跑一次 `codegraph sync` 就行。100 萬行以下的 repo 掃描都在幾秒內完成，對本地開發機來說幾乎零成本。
+
+這個工具最大的價值不是替代 IDE——而是讓**本地 LLM 能拿到結構化的程式碼理解**，而不是每次重新讀整個檔案。配合 Hermes Agent 的 read_file + terminal，CodeGraph 變成了一層「程式碼語意快取」。
+
 ## 與 pi-mono 的比較
 
 | | pi-mono | Hermes Agent |
