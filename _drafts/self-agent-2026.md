@@ -86,6 +86,25 @@ Hermes Agent (Mac Studio)
 - **ComfyUI 生圖**：直接在 Telegram 講 prompt，Hermes 自己呼叫 ComfyUI 生圖，再透過 Telegram 傳回來
 - **日常筆記**：Obsidian 的 Journal 和 Page 都能直接讓 Agent 讀寫
 
+### ComfyUI 生圖：Telegram 下達，本機渲染
+
+在 Mac Studio 上跑 ComfyUI（Qwen-Image-2.1 int8 模型），Hermes 可以直接透過 HTTP API 呼叫它生圖。流程：
+
+1. Telegram 發 prompt（例如「一張賽博朋克風格的城市夜景，1152x1728」）
+2. Hermes 組裝 workflow JSON，POST 到 `localhost:8188/prompt`
+3. 等渲染完成（1152x1728 約 22 分鐘，500x750 測試圖約 5 分鐘）
+4. 讀取 `~/Documents/ComfyUI/output/` 的最新 PNG，透過 Telegram 傳回
+
+```
+Telegram: 「生一張 500x750 測試圖，武僧拿禪杖」
+    ↓
+Hermes → ComfyUI API → Qwen-2.1 渲染 ~5min
+    ↓
+Telegram: [圖片]
+```
+
+大圖要等 20 多分鐘，所以日常先跑小尺寸確認構圖和 prompt 方向，滿意了再跑全尺寸。本地 128GB RAM + MPS 加速，不用花 API 錢，也不用擔心 prompt 內容。
+
 ### 翻譯快捷鍵：把前綴變成反射動作
 
 最順手的日常功能之一是**前綴翻譯**。在 Hermes 裡定義了一個 `quick-translate` skill，約定訊息開頭的前綴代表目標語言：
