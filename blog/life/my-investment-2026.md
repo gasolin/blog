@@ -36,13 +36,15 @@ date: 2026-09-21 12:00:31
 
 > 🕶️ [Eyeglad 太陽眼鏡套鏡](https://www.eyeglad.com.tw/products/shadex-lightweight-sport-fit-over-frosted-ash-grey) 4⭐
 
-整體使用下來不過不失，有被旁人問過是不是有攝影機功能，可見型態有點太張揚 😆
-後來再購入一副便宜的折疊套鏡，體感看出去這副有比較好，目前折疊套鏡隨身攜帶，這副則放在車上使用。
+整體使用下來不過不失，有被旁人問過是不是有攝影機功能，可見型態有點太張揚。
+可能是臉型關係，自覺戴起來不夠帥氣 😅
+
+後來再購入一副便宜的折疊套鏡，體感 Eyeglad 看出去還是比較好。目前將折疊套鏡隨身攜帶，Eyeglad 則放在車上使用。
 
 > SoundCore 小音箱 4⭐
 
 防水且能漂浮在水面的藍芽小音箱。在浴室、戶外或是划船時都可用。
-今年買的體積比2個 Pocket S 小音箱大一點，但他可以漂浮，至少掉了還有機會撿回來啊。
+今年買的體積比 2 個 Pocket S 小音箱大一點，但他勝在可以**漂浮**啊，至少掉了還有機會撿回來。
 
 > SUP 用的打氣機 3⭐
 
@@ -142,4 +144,4 @@ Pixel 10 雖然和 Pixel 8a 的螢幕一樣大，但不知為何平常用很可�
 
 > bobee.tw 域名
 
-取得 [bobee.tw](https://bobee.tw/) 域名，並練習透過持續改善 AI Agent 中的 bobee skill，經營[早安圖粉絲團](https://www.facebook.com/profile.php?id=61590633894057)。
+取得 [bobee.tw](https://bobee.tw/) 域名，並練習透過持續改善 AI Agent 中的 bobee skill，經營銀髮族[早安圖粉絲團](https://www.facebook.com/profile.php?id=61590633894057)，歡迎造訪了解農曆宜忌資訊與分享早安圖 😄。
