@@ -7,7 +7,9 @@ tags:
   - llm
 ---
 
-一月時寫了[器靈與技能魔石 - 我如何看待 AI (2026)](life/2026-how-i-treat-ai)，談了「技能魔石（Agent Skill）」為什麼是今年的重點。這篇來談實際怎麼使用 Skill：怎麼裝別人的技能、怎麼把自己累積的經驗變成技能、怎麼讓多個 Agent 協同工作。
+一月時寫了[器靈與技能魔石 - 我如何看待 AI (2026)](life/2026-how-i-treat-ai)，談了「技能魔石（Agent Skill）」為什麼是今年的重點。但其實到了年底，Harness 已經進一步接過了撰寫 Agent Skill 的工作。諸如 Hermes Agent 等可以自行總結使用者的操作，需要時也會撰寫 Skill，已經完全可以從外派幫手變成能了解你，可以一起工作的夥伴。
+
+這篇來談實際怎麼使用 Skill：怎麼裝別人的技能、怎麼把自己累積的經驗變成技能、怎麼讓多個 Agent 協同工作。
 
 <!-- truncate -->
 
@@ -15,16 +17,19 @@ tags:
 
 這年最大的轉變是：**以前會寫 bash 腳本的工作，現在改寫成 skill 或 note**。
 
-我目前製作的幾個技能：
+我目前在用的幾個技能：
 
-- **todomd**：我的待辦清單格式與處理規則（含 recurrent tasks 流程），放在 logseq 的 TODO 頁，Agent 讀完就能照著格式新增、勾選
-- **changelog**：從專案的 commit 產出 changelog
-- **bobee-post**：用 Antigravity 產出 [bobee.tw](http://bobee.tw) 的貼文與附圖，內建「無齡感」語氣規則
+- **todomd**：我的待辦清單格式與處理規則（含 recurrent tasks 流程），放在 logseq 的 TODO 頁，Agent 讀完就能照著格式新增、勾選。
+- **changelog**：從專案的 commit 產出 changelog。
+- **bobee-post**：用 Antigravity 產出 [bobee.tw](http://bobee.tw) 的貼文與附圖。
+
+這些技能的共同特色是：一個資料夾、一個 README（或 SKILL.md）、明確的適用場景。Agent 讀完就知道什麼時候該用、怎麼用。
 
 寫技能跟寫腳本的差別在於：技能是**給 Agent 看的操作手冊**，所以重點不在指令本身，而在「什麼時候用、判斷標準是什麼、例外狀況怎麼處理」。bobee-post 就是典型例子——貼文格式很容易寫成腳本，但「語感」只能寫成規則讓模型去遵循。
 
 ## 裝技能：一行命令
 
+除了自己寫之外，也能複用別人分享的命令。
 現在分發技能最常見的方式是透過 vercel-labs 的 skills CLI：
 
 ```sh
@@ -33,7 +38,6 @@ npx skills add [repo]
 
 這讓「學一個新技能」從複製一段 prompt 變成安裝一個 package。
 
-這些技能的共同特色是：一個資料夾、一個 README（或 SKILL.md）、明確的適用場景。Agent 讀完就知道什麼時候該用、怎麼用。
 
 ## 多 Agent 協作：像管遠端團隊一樣
 

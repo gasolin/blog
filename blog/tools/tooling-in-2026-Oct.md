@@ -101,10 +101,11 @@ Snapzy、SayIt 是今年找到的有用工具。Snapzy 取代系統截圖與編�
 * 相簿：內建相簿, Google相簿, Dropbox
 * 社交：LINE, Facebook, Twitter(網頁版), Keet
 * :closed_lock_with_key: 密碼管理：Bitwarden，Yubi Authenticator（2步驟認證）
-* :tv: 線上影片：Youtube, Netflix
+* :tv: 線上影片：Youtube
 * 音樂：Youtube Music
 * 🚶‍♂️ 健康：Amazfit Balance 2 運動手錶 + Zepp
 * 遊戲：steam
+* 開源 App 下載：Komi Store
 * 🤖 線上 AI：Gemini, Perplexity, Claude, ChatGPT
 * 🤖 本地 AI：Omlx & Hermes Agent
 
