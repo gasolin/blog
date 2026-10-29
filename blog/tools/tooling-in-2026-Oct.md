@@ -41,10 +41,11 @@ date: 2026-10-27 15:30:00
 * :spider_web: 主要瀏覽器：`Brave`
 * 瀏覽器插件
   - 密碼管理：Bitwarden
-  - 分頁管理：瀏覽器內建的群組分類（分 Work, idv, gov 三類）
+  - 分頁管理：瀏覽器內建的群組分類（分 idv, Work, life 三類）
 * 瀏覽器常駐分頁
   - :email: [GMail](http://mail.google.com/),
   - ✅待辦事項：[Habitica](https://habitica.com/)
+  - Telegram
 
 * :busts_in_silhouette: 主要社交網站：[Facebook](http://www.facebook.com/)、[Twitter](https://twitter.com/gasolin)
 * :memo: 記事：Obsidian, Keet
@@ -60,6 +61,7 @@ date: 2026-10-27 15:30:00
 
 最大的改變是不在用 n8n，只偶而用 Folo 看看 RSS。
 用 Obsidian 取代 logseq，主要原因是因為某次自動更新到 2.x 後，Logseq 改用資料庫存放，與我的要求相悖。
+另外也常駐 Telegram，用來跟自己的 Hermes Agent 交辦事項。
 
 ### 設計工具
 
