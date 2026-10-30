@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkblog=globalThis.webpackChunkblog||[]).push([[43032],{18322(a){a.exports=JSON.parse('{"authors":[{"name":"gasolin","title":"Author and Engineer","url":"https://github.com/gasolin","imageURL":"https://blog.gasolin.idv.tw/img/avatar.jpg","key":"gasolin","page":null,"count":0}]}')}}]);
