@@ -17,7 +17,7 @@ date: 2023-01-19 16:52:31
 
 ## 日常自動化
 
-- 我如何做個人自動化紀錄 [2021](life/personal-automation-in-2021.md)、[2020](life/personal-automation-in-2020.md)、[2018](life/personal-automation-in-2018.md)、[2017](life/personal-automation-in-2017.md)、[用 IFTTT 做自動生活紀錄 (LifeLog)](life/LifeLog-via-IFTTT.md)
+- 我如何做個人自動化紀錄 [用自己的代理（SelfAgent），讀自己的資料](life/self-agent)、[2021](life/personal-automation-in-2021.md)、[2020](life/personal-automation-in-2020.md)、[2018](life/personal-automation-in-2018.md)、[2017](life/personal-automation-in-2017.md)、[用 IFTTT 做自動生活紀錄 (LifeLog)](life/LifeLog-via-IFTTT.md)
 - 實體 [我的實體筆記本配置](life/handbook.md)
 
 ## 家用品
